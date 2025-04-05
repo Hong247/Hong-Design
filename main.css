@@ -1,0 +1,390 @@
+/* Global Styles */
+body::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  background: #ffffff;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  color: #000000;
+  padding: 50px;
+  overflow-x: hidden; 
+  overflow-y: auto; 
+}
+
+.theme-wrapper {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.is-flex {
+  display: flex;
+}
+
+/* Typography */
+.header-title {
+  white-space: nowrap;
+}
+
+.page-title,
+.header-title,
+.title,
+.body-copy p {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: #000000;
+}
+
+.page-title:hover {
+  color: black;
+}
+
+.is-font {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.header-title {
+  padding-top: 10px;
+}
+
+.body-copy {
+  max-width: 500px;
+  padding-top: 0;
+}
+
+.indented-paragraph {
+  margin-left: 20px;
+}
+
+/* Theme Dark.Light */
+.theme-toggle {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+body.light-mode tr.header-row th {
+  background-color: #ffffff;
+}
+body.dark-mode tr.header-row th {
+  background-color: #000000;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background: #ffffff;
+  color: #000000;
+}
+
+body.light-mode .header-title,
+body.light-mode .body-copy p,
+body.light-mode .custom-btn,
+body.light-mode .scroll-wrapper,
+body.light-mode .social-links.is-font a {
+  color: #000000;
+}
+
+body.light-mode .social-links.is-font a:hover {
+  color: #FE5000;
+}
+
+body.light-mode a {
+  color: black;
+  text-decoration: underline;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #000000;
+  color: #ffffff;
+}
+
+body.dark-mode .header-title,
+body.dark-mode .body-copy p,
+body.dark-mode .custom-btn,
+body.dark-mode .scroll-wrapper,
+body.dark-mode .social-links.is-font a {
+  color: #ffffff;
+}
+
+body.dark-mode .social-links.is-font a:hover {
+  color: #FE5000;
+}
+
+body.dark-mode a {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Left Theme Wrapper */
+.left-theme {
+  width: 33.33%;
+  float: left;
+  padding-right: 60px;
+  margin-top: -27px;
+}
+
+.separator {
+  border: 0.5px solid #ccc; 
+  margin: 30px 0; 
+}
+
+.hovered-image {
+  display: none;
+}
+
+.social-links {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li {
+  margin-bottom: 5px;
+}
+
+.social-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: white; 
+  font-size: 13px; 
+  font-family: 'Your Font', sans-serif; 
+  transition: color 0.3s; 
+}
+
+.social-links a:hover {
+  color: #FE5000;
+}
+;
+
+
+
+/* Right Theme Wrapper */
+.right-theme {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 66.66%;
+  float: left;
+  margin-top: 0px;
+  padding-left: 40px;
+  box-sizing: border-box;
+  position: relative;
+  top: 0px;
+  overflow-y: auto; 
+  max-height: calc(100vh - 73px);
+}
+
+.right-theme {
+  overflow: hidden; 
+}
+
+.scroll-wrapper {
+  overflow-y: auto;
+}
+
+tr.header-row th {
+  position: sticky;
+  top: 0;
+}
+
+.right-theme .scroll-container {
+  padding: 0px; 
+}
+
+.right-theme .scroll-container img {
+  width: 100%; 
+  height: auto;
+}
+
+.right-theme .collapse p {
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-top: 20px;
+  padding-right: 20px;
+  word-wrap: break-word;
+}
+
+.right-theme .collapse p {
+  overflow: visible;
+  white-space: normal;
+}
+
+.right-theme .collapse {
+  max-width: 100%;
+}
+
+div.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0px;
+  width: 100%;
+}
+
+.scroll-container iframe {
+  margin-bottom: -300px; 
+}
+
+.custom-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 0px;
+  padding: 0px 0px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.1s; 
+}
+
+tr {
+  height: 30px
+}
+
+tr:hover .custom-btn {
+  color: #FE5000; 
+  text-decoration: underline;
+}
+
+.custom-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 0px;
+  padding: 0px 0px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  color: #FE5000;
+  background-color: transparent;
+  border: none; 
+}
+
+tr.collapse:hover .custom-btn {
+  color: #FE5000; 
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0 100px;
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 0px;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 8px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.scroll-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+div.scroll-container img {
+  width: 100%;
+  height: 100%;
+}
+
+tr[id^="demo"] .scroll-container img {
+  height: 600px; 
+  width: auto;
+}
+
+.max-width-paragraph {
+  padding-right: 20px;
+}
+
+/* Media Query */
+@media (max-width: 1024px) {
+  .role-cell,
+  .role-header {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .right-theme .social-links {
+     display: none; 
+   }
+}
+
+@media (max-width: 768px) {
+  .role-cell,
+  .role-header {
+    display: none;
+  }
+
+  .left-theme,
+  .right-theme {
+      width: 100%;
+      float: none;
+      padding: 0;
+      margin-top: 0;
+    }
+
+    .left-theme .social-links {
+       display: none; 
+     }
+
+  body {
+    margin: 0;
+    padding-right: 20px;
+    padding-left: 20px;
+    overflow-y: auto;
+  }
+
+  .left-theme,
+  .right-theme {
+    width: 100%;
+    float: left;
+    height: auto;
+  }
+
+  .hovered-container {
+    display: none;
+  }
+
+  tr[id^="demo"] .scroll-container img {
+  height: auto; 
+  width: 100vw;
+  }
+
+  iframe{
+    display: none;
+  }
+
+  .scroll-container img.fullscreen-image.keen {
+    display: none;  
+  }
+
+  .scroll-container img.fullscreen-image.keem {
+    display: inline-block;  
+  }
+
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  body {
+    min-width: 320px;
+  }
+}
