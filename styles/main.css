@@ -301,6 +301,13 @@ td:nth-child(4) .custom-btn {
   padding: 18px 8px 34px;
 }
 
+.collapse.is-open > td {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 32%);
+  align-items: end;
+  gap: 24px;
+}
+
 .scroll-container {
   display: flex;
   width: 100%;
@@ -309,6 +316,11 @@ td:nth-child(4) .custom-btn {
   padding-bottom: 10px;
   white-space: nowrap;
   scroll-snap-type: x proximity;
+}
+
+.collapse .scroll-container {
+  grid-column: 1;
+  min-width: 0;
 }
 
 .scroll-container img,
@@ -327,10 +339,17 @@ tr[id^="demo"] .scroll-container img {
   height: min(600px, 70vh);
 }
 
-.right-theme .collapse p {
-  max-width: 780px;
+.project-description {
+  grid-column: 2;
+  align-self: end;
+  max-height: min(600px, 70vh);
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.right-theme .project-description p {
   margin: 0;
-  padding: 16px 20px 0 0;
+  padding: 16px 0 0;
   white-space: normal;
   word-wrap: break-word;
 }
@@ -442,6 +461,10 @@ body.light-mode .case-label {
     padding-bottom: 28px;
   }
 
+  .collapse.is-open > td {
+    display: block;
+  }
+
   .collapse td {
     padding: 0 0 24px;
   }
@@ -462,7 +485,13 @@ body.light-mode .case-label {
     display: none;
   }
 
-  .right-theme .collapse p {
+  .project-description {
+    max-height: none;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .right-theme .project-description p {
     max-width: none;
     padding: 14px 0 0;
   }
