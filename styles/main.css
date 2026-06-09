@@ -42,6 +42,11 @@ body.light-mode {
   color: #000000;
 }
 
+body.orange-mode {
+  background: var(--accent);
+  color: #000000;
+}
+
 body.dark-mode {
   background: #000000;
   color: #ffffff;
@@ -56,6 +61,13 @@ a:hover,
 .custom-btn:hover,
 tr:hover .custom-btn {
   color: var(--accent);
+}
+
+body.orange-mode a:hover,
+body.orange-mode .custom-btn:hover,
+body.orange-mode tr:hover .custom-btn,
+body.orange-mode .theme-toggle:hover {
+  color: #ffffff;
 }
 
 .fullscreen-container {
@@ -133,14 +145,19 @@ tr:hover .custom-btn {
 }
 
 .theme-toggle::before {
-  content: "☾";
+  content: "●";
   display: block;
-  font-size: 16px;
+  color: var(--accent);
+  font-size: 13px;
   line-height: 1;
 }
 
+body.orange-mode .theme-toggle::before {
+  color: #000000;
+}
+
 body.dark-mode .theme-toggle::before {
-  content: "☼";
+  color: var(--accent);
 }
 
 .theme-toggle img {
@@ -249,6 +266,11 @@ thead th {
   color: inherit;
   font-weight: 400;
   text-align: left;
+}
+
+body.orange-mode thead th {
+  background: var(--accent);
+  color: #000000;
 }
 
 body.dark-mode thead th {
