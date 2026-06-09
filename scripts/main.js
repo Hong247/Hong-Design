@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
   applySavedTheme();
+  groupProjectDescriptions();
   setScrolling();
   setPageOverflow();
 
@@ -81,6 +82,32 @@ function setScrolling() {
 
 function setPageOverflow() {
   document.body.style.overflowY = window.innerWidth <= 768 ? "auto" : "hidden";
+}
+
+function groupProjectDescriptions() {
+  document.querySelectorAll("tr.collapse > td").forEach(function (cell) {
+    if (cell.querySelector(".project-description")) {
+      return;
+    }
+
+    var paragraphs = Array.from(cell.querySelectorAll(":scope > p"));
+
+    if (!paragraphs.length) {
+      return;
+    }
+
+    var description = document.createElement("div");
+    description.className = "project-description";
+
+    paragraphs[0].before(description);
+    paragraphs.forEach(function (paragraph) {
+      description.appendChild(paragraph);
+    });
+
+    Array.from(cell.querySelectorAll(":scope > br")).forEach(function (breakElement) {
+      breakElement.remove();
+    });
+  });
 }
 
 function setExpandedState(targetId, isExpanded) {
