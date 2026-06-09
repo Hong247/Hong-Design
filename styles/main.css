@@ -301,11 +301,12 @@ td:nth-child(4) .custom-btn {
   padding: 18px 8px 34px;
 }
 
-.collapse.is-open > td {
+.project-detail {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 32%);
   align-items: end;
   gap: 24px;
+  width: 100%;
 }
 
 .scroll-container {
@@ -318,7 +319,7 @@ td:nth-child(4) .custom-btn {
   scroll-snap-type: x proximity;
 }
 
-.collapse .scroll-container {
+.project-detail .scroll-container {
   grid-column: 1;
   min-width: 0;
 }
@@ -461,7 +462,7 @@ body.light-mode .case-label {
     padding-bottom: 28px;
   }
 
-  .collapse.is-open > td {
+  .project-detail {
     display: block;
   }
 
