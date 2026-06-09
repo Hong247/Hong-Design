@@ -1,3 +1,5 @@
 body.dark-mode .theme-toggle::before{color:#fff}
 .theme-toggle::before{font-size:22px;line-height:1}
-@media (max-width:768px){.theme-toggle::before{font-size:18px}}
+tr[id^="demo"] .scroll-container img{height:min(300px,35vh)}
+.scroll-container iframe{width:min(600px,44vw);height:min(300px,35vh)}
+@media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img,.scroll-container iframe{width:min(43vw,310px);height:auto}}
