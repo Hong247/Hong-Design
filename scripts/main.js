@@ -55,17 +55,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function applySavedTheme() {
-  document.body.classList.remove("dark-mode");
-  document.body.classList.add("light-mode");
-  localStorage.setItem("theme", "light");
+  setTheme("light");
 }
 
 function toggleTheme() {
-  var willBeDark = document.body.classList.contains("light-mode");
+  var currentTheme = getCurrentTheme();
+  var nextTheme = currentTheme === "light" ? "orange" : currentTheme === "orange" ? "dark" : "light";
 
-  document.body.classList.toggle("dark-mode", willBeDark);
-  document.body.classList.toggle("light-mode", !willBeDark);
-  localStorage.setItem("theme", willBeDark ? "dark" : "light");
+  setTheme(nextTheme);
+}
+
+function getCurrentTheme() {
+  if (document.body.classList.contains("orange-mode")) {
+    return "orange";
+  }
+
+  if (document.body.classList.contains("dark-mode")) {
+    return "dark";
+  }
+
+  return "light";
+}
+
+function setTheme(theme) {
+  document.body.classList.remove("light-mode", "orange-mode", "dark-mode");
+  document.body.classList.add(theme + "-mode");
+  localStorage.setItem("theme", theme);
 }
 
 function setScrolling() {
