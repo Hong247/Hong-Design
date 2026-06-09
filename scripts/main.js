@@ -86,20 +86,27 @@ function setPageOverflow() {
 
 function groupProjectDescriptions() {
   document.querySelectorAll("tr.collapse > td").forEach(function (cell) {
-    if (cell.querySelector(".project-description")) {
+    if (cell.querySelector(".project-detail")) {
       return;
     }
 
+    var media = cell.querySelector(":scope > .scroll-container");
     var paragraphs = Array.from(cell.querySelectorAll(":scope > p"));
 
-    if (!paragraphs.length) {
+    if (!media || !paragraphs.length) {
       return;
     }
+
+    var detail = document.createElement("div");
+    detail.className = "project-detail";
 
     var description = document.createElement("div");
     description.className = "project-description";
 
-    paragraphs[0].before(description);
+    media.before(detail);
+    detail.appendChild(media);
+    detail.appendChild(description);
+
     paragraphs.forEach(function (paragraph) {
       description.appendChild(paragraph);
     });
