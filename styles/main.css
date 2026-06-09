@@ -1,9 +1,9 @@
 :root {
-  --accent: #fe5000;
-  --border-light: rgba(0, 0, 0, 0.18);
-  --border-dark: rgba(255, 255, 255, 0.24);
-  --muted-light: rgba(0, 0, 0, 0.58);
-  --muted-dark: rgba(255, 255, 255, 0.62);
+  --accent: currentColor;
+  --border-light: transparent;
+  --border-dark: transparent;
+  --muted-light: currentColor;
+  --muted-dark: currentColor;
 }
 
 * {
@@ -19,11 +19,18 @@ body {
   margin: 0;
   padding: 50px;
   overflow-x: hidden;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.48;
   letter-spacing: 0;
+}
+
+body * {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 body.light-mode {
@@ -38,14 +45,13 @@ body.dark-mode {
 
 a {
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  text-decoration: none;
 }
 
 a:hover,
 .custom-btn:hover,
 tr:hover .custom-btn {
-  color: var(--accent);
+  color: inherit;
 }
 
 .fullscreen-container {
@@ -67,7 +73,7 @@ tr:hover .custom-btn {
 .custom-btn,
 .scroll-wrapper,
 .social-links a {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: inherit;
 }
 
 .left-theme {
@@ -101,7 +107,6 @@ tr:hover .custom-btn {
 .header-title {
   margin: 0;
   padding-top: 10px;
-  font-size: 13px;
   font-weight: 400;
   white-space: nowrap;
 }
@@ -121,7 +126,7 @@ tr:hover .custom-btn {
 .theme-toggle:focus-visible,
 .custom-btn:focus-visible,
 .social-links a:focus-visible {
-  outline: 1px solid var(--accent);
+  outline: 1px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -134,26 +139,18 @@ tr:hover .custom-btn {
 }
 
 .intro-kicker {
-  color: var(--muted-dark);
-  text-transform: uppercase;
-}
-
-body.light-mode .intro-kicker {
-  color: var(--muted-light);
+  color: inherit;
+  text-transform: none;
 }
 
 .intro-statement {
   max-width: 560px;
-  font-size: 18px;
-  line-height: 1.28;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .intro-detail {
-  color: var(--muted-dark);
-}
-
-body.light-mode .intro-detail {
-  color: var(--muted-light);
+  color: inherit;
 }
 
 .profile-facts {
@@ -164,21 +161,13 @@ body.light-mode .intro-detail {
 
 .profile-facts div {
   padding-top: 10px;
-  border-top: 1px solid var(--border-dark);
-}
-
-body.light-mode .profile-facts div {
-  border-color: var(--border-light);
+  border-top: 0;
 }
 
 .profile-facts dt {
   margin-bottom: 3px;
-  color: var(--muted-dark);
-  text-transform: uppercase;
-}
-
-body.light-mode .profile-facts dt {
-  color: var(--muted-light);
+  color: inherit;
+  text-transform: none;
 }
 
 .profile-facts dd {
@@ -187,11 +176,7 @@ body.light-mode .profile-facts dt {
 
 .separator {
   margin: 30px 0;
-  border-top: 1px solid var(--border-dark);
-}
-
-body.light-mode .separator {
-  border-color: var(--border-light);
+  border-top: 0;
 }
 
 .social-links {
@@ -231,31 +216,26 @@ thead th {
   top: 0;
   z-index: 2;
   padding: 8px;
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 0;
   background: #000000;
-  color: var(--muted-dark);
+  color: inherit;
   font-weight: 400;
   text-align: left;
 }
 
 body.light-mode thead th {
-  border-color: var(--border-light);
   background: #ffffff;
-  color: var(--muted-light);
+  color: inherit;
 }
 
 td {
   padding: 8px;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0;
   vertical-align: top;
 }
 
 .hover-trigger:hover td {
-  border-color: var(--border-dark);
-}
-
-body.light-mode .hover-trigger:hover td {
-  border-color: var(--border-light);
+  border-color: transparent;
 }
 
 td:nth-child(1),
@@ -280,7 +260,6 @@ th:nth-child(4) {
   border: 0;
   background: transparent;
   color: inherit;
-  font-size: 13px;
   line-height: 1.45;
   text-align: left;
   cursor: pointer;
@@ -368,12 +347,8 @@ tr[id^="demo"] .scroll-container img {
 .case-label {
   display: block;
   margin-bottom: 4px;
-  color: var(--muted-dark);
-  text-transform: uppercase;
-}
-
-body.light-mode .case-label {
-  color: var(--muted-light);
+  color: inherit;
+  text-transform: none;
 }
 
 .scroll-container img.fullscreen-image.keem {
@@ -422,7 +397,7 @@ body.light-mode .case-label {
   }
 
   .intro-statement {
-    font-size: 17px;
+    font-size: inherit;
   }
 
   .hovered-container {
@@ -447,11 +422,7 @@ body.light-mode .case-label {
     align-items: baseline;
     gap: 8px;
     padding: 12px 0;
-    border-top: 1px solid var(--border-dark);
-  }
-
-  body.light-mode tr.hover-trigger {
-    border-color: var(--border-light);
+    border-top: 0;
   }
 
   tr.hover-trigger td {
