@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var isOpen = target.classList.toggle("is-open");
       setExpandedState(target.id, isOpen);
+
+      if (isOpen) {
+        scrollProjectHeaderIntoView(button);
+      }
     });
   });
 
@@ -124,6 +128,21 @@ function setExpandedState(targetId, isExpanded) {
 
   document.querySelectorAll('.custom-btn[data-target="#' + targetId + '"]').forEach(function (button) {
     button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+  });
+}
+
+function scrollProjectHeaderIntoView(button) {
+  var projectHeader = button.closest(".hover-trigger");
+
+  if (!projectHeader) {
+    return;
+  }
+
+  window.requestAnimationFrame(function () {
+    projectHeader.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   });
 }
 
