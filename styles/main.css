@@ -1,5 +1,5 @@
 :root {
-  --accent: currentColor;
+  --accent: #fe5000;
   --border-light: transparent;
   --border-dark: transparent;
   --muted-light: currentColor;
@@ -51,7 +51,7 @@ a {
 a:hover,
 .custom-btn:hover,
 tr:hover .custom-btn {
-  color: inherit;
+  color: var(--accent);
 }
 
 .fullscreen-container {
