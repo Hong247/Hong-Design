@@ -55,15 +55,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function applySavedTheme() {
   var savedTheme = localStorage.getItem("theme");
+  var theme = savedTheme === "dark" ? "dark-mode" : "light-mode";
 
   document.body.classList.remove("light-mode", "dark-mode");
-  document.body.classList.add(savedTheme === "light" ? "light-mode" : "dark-mode");
+  document.body.classList.add(theme);
 }
 
 function toggleTheme() {
-  var isLight = document.body.classList.toggle("light-mode");
-  document.body.classList.toggle("dark-mode", !isLight);
-  localStorage.setItem("theme", isLight ? "light" : "dark");
+  var willBeDark = document.body.classList.contains("light-mode");
+
+  document.body.classList.add("theme-is-transitioning");
+  document.body.classList.toggle("dark-mode", willBeDark);
+  document.body.classList.toggle("light-mode", !willBeDark);
+  localStorage.setItem("theme", willBeDark ? "dark" : "light");
+
+  window.clearTimeout(window.themeTransitionTimeout);
+  window.themeTransitionTimeout = window.setTimeout(function () {
+    document.body.classList.remove("theme-is-transitioning");
+  }, 430);
 }
 
 function setScrolling() {
