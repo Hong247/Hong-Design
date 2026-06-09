@@ -6,8 +6,8 @@
   --border-dark: transparent;
   --muted-light: currentColor;
   --muted-dark: currentColor;
-  --theme-duration: 520ms;
-  --theme-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --theme-duration: 420ms;
+  --theme-ease: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 * {
@@ -54,13 +54,11 @@ body.dark-mode {
 
 body.theme-is-transitioning .theme-wrapper,
 body.theme-is-transitioning table,
-body.theme-is-transitioning thead th,
 body.theme-is-transitioning .custom-btn,
 body.theme-is-transitioning a,
 body.theme-is-transitioning .social-links a,
 body.theme-is-transitioning .hovered-image {
   transition:
-    background-color var(--theme-duration) var(--theme-ease),
     color var(--theme-duration) var(--theme-ease),
     border-color var(--theme-duration) var(--theme-ease),
     opacity var(--theme-duration) var(--theme-ease),
@@ -140,90 +138,65 @@ tr:hover .custom-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 22px;
-  margin-top: 8px;
+  width: 34px;
+  height: 18px;
+  margin-top: 10px;
   margin-left: auto;
   padding: 0;
   border: 1px solid currentColor;
   border-radius: 999px;
-  background:
-    linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
+  background: linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
   color: inherit;
   cursor: pointer;
   overflow: hidden;
   transform: translateZ(0);
   transition:
-    background var(--theme-duration) var(--theme-ease),
-    color var(--theme-duration) var(--theme-ease),
-    border-color var(--theme-duration) var(--theme-ease),
-    transform 220ms ease;
+    background 280ms var(--theme-ease),
+    border-color 280ms var(--theme-ease),
+    color 280ms var(--theme-ease),
+    transform 160ms ease;
 }
 
 .theme-toggle:hover {
   transform: translateY(-1px);
 }
 
-.theme-toggle::before,
-.theme-toggle::after {
+.theme-toggle::before {
   content: "";
   position: absolute;
   top: 50%;
-  width: 14px;
-  height: 14px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  transform: translateY(-50%);
-  transition:
-    transform var(--theme-duration) var(--theme-ease),
-    opacity var(--theme-duration) var(--theme-ease),
-    background-color var(--theme-duration) var(--theme-ease),
-    box-shadow var(--theme-duration) var(--theme-ease);
-}
-
-.theme-toggle::before {
-  left: 4px;
-  background: #ffffff;
-  box-shadow:
-    0 0 0 1px currentColor,
-    0 0 12px rgba(254, 80, 0, 0.18);
+  background: currentColor;
+  mix-blend-mode: difference;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 280ms var(--theme-ease);
 }
 
 .theme-toggle::after {
-  right: 4px;
-  background: #000000;
-  box-shadow:
-    inset 4px -2px 0 #ffffff,
-    0 0 0 1px currentColor;
-}
-
-body.light-mode .theme-toggle {
-  background:
-    linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
+  content: "";
+  position: absolute;
+  inset: 4px 8px;
+  border-top: 1px solid currentColor;
+  opacity: 0.52;
+  transform: translateX(-3px) scaleX(0.42);
+  transition:
+    opacity 280ms var(--theme-ease),
+    transform 280ms var(--theme-ease);
 }
 
 body.dark-mode .theme-toggle {
-  background:
-    linear-gradient(90deg, transparent 0 50%, currentColor 50% 100%);
-}
-
-body.light-mode .theme-toggle::before {
-  opacity: 1;
-  transform: translateY(-50%) scale(1) rotate(0deg);
-}
-
-body.light-mode .theme-toggle::after {
-  opacity: 0.38;
-  transform: translateY(-50%) scale(0.72) rotate(-24deg);
+  background: linear-gradient(90deg, transparent 0 50%, currentColor 50% 100%);
 }
 
 body.dark-mode .theme-toggle::before {
-  opacity: 0.38;
-  transform: translateY(-50%) scale(0.72) rotate(24deg);
+  transform: translate3d(16px, -50%, 0);
 }
 
 body.dark-mode .theme-toggle::after {
-  opacity: 1;
-  transform: translateY(-50%) scale(1) rotate(0deg);
+  transform: translateX(3px) scaleX(0.42);
 }
 
 .theme-toggle img {
@@ -324,14 +297,15 @@ thead th {
   z-index: 2;
   padding: 8px;
   border-bottom: 0;
-  background: #000000;
+  background: #ffffff;
   color: inherit;
   font-weight: 400;
   text-align: left;
+  transition: color var(--theme-duration) var(--theme-ease);
 }
 
-body.light-mode thead th {
-  background: #ffffff;
+body.dark-mode thead th {
+  background: #000000;
   color: inherit;
 }
 
