@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 50px;
   overflow-x: hidden;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: "Share Tech Mono", "Roboto Mono", "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.48;
