@@ -302,10 +302,7 @@ td:nth-child(4) .custom-btn {
 }
 
 .project-detail {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 32%);
-  align-items: end;
-  gap: 24px;
+  display: block;
   width: 100%;
 }
 
@@ -320,7 +317,6 @@ td:nth-child(4) .custom-btn {
 }
 
 .project-detail .scroll-container {
-  grid-column: 1;
   min-width: 0;
 }
 
@@ -341,18 +337,21 @@ tr[id^="demo"] .scroll-container img {
 }
 
 .project-description {
-  grid-column: 2;
-  align-self: end;
-  max-height: min(600px, 70vh);
-  overflow-y: auto;
+  max-width: 760px;
+  margin-top: 18px;
   padding-bottom: 10px;
+  overflow: visible;
 }
 
 .right-theme .project-description p {
   margin: 0;
-  padding: 16px 0 0;
+  padding: 14px 0 0;
   white-space: normal;
   word-wrap: break-word;
+}
+
+.right-theme .project-description p:first-child {
+  padding-top: 0;
 }
 
 .case-label {
@@ -487,7 +486,9 @@ body.light-mode .case-label {
   }
 
   .project-description {
+    max-width: none;
     max-height: none;
+    margin-top: 14px;
     overflow: visible;
     padding-bottom: 0;
   }
