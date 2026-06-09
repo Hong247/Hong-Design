@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   projectButtons.forEach(function (button) {
+    button.setAttribute("aria-expanded", "false");
+
     button.addEventListener("click", function () {
       var targetSelector = button.getAttribute("data-target");
       var target = document.querySelector(targetSelector);
@@ -22,11 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.querySelectorAll("tr.collapse").forEach(function (row) {
         if (row !== target) {
-          row.style.display = "none";
+          row.classList.remove("is-open");
+          setExpandedState(row.id, false);
         }
       });
 
-      target.style.display = target.style.display === "table-row" ? "none" : "table-row";
+      var isOpen = target.classList.toggle("is-open");
+      setExpandedState(target.id, isOpen);
     });
   });
 
@@ -77,6 +81,16 @@ function setScrolling() {
 
 function setPageOverflow() {
   document.body.style.overflowY = window.innerWidth <= 768 ? "auto" : "hidden";
+}
+
+function setExpandedState(targetId, isExpanded) {
+  if (!targetId) {
+    return;
+  }
+
+  document.querySelectorAll('.custom-btn[data-target="#' + targetId + '"]').forEach(function (button) {
+    button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+  });
 }
 
 function displayHoveredImage(imageSource) {
