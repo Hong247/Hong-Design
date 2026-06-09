@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap");
 
 :root {
   --accent: #fe5000;
@@ -21,7 +21,7 @@ body {
   margin: 0;
   padding: 50px;
   overflow-x: hidden;
-  font-family: "Share Tech Mono", "Roboto Mono", "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.48;
