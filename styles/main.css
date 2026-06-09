@@ -6,6 +6,8 @@
   --border-dark: transparent;
   --muted-light: currentColor;
   --muted-dark: currentColor;
+  --theme-duration: 520ms;
+  --theme-ease: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 * {
@@ -28,6 +30,9 @@ body {
   letter-spacing: 0.012em;
   font-kerning: normal;
   font-feature-settings: "kern" 1;
+  transition:
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease);
 }
 
 body * {
@@ -45,6 +50,21 @@ body.light-mode {
 body.dark-mode {
   background: #000000;
   color: #ffffff;
+}
+
+body.theme-is-transitioning .theme-wrapper,
+body.theme-is-transitioning table,
+body.theme-is-transitioning thead th,
+body.theme-is-transitioning .custom-btn,
+body.theme-is-transitioning a,
+body.theme-is-transitioning .social-links a,
+body.theme-is-transitioning .hovered-image {
+  transition:
+    background-color var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease),
+    opacity var(--theme-duration) var(--theme-ease),
+    filter var(--theme-duration) var(--theme-ease);
 }
 
 a {
@@ -116,15 +136,98 @@ tr:hover .custom-btn {
 }
 
 .theme-toggle {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  margin-top: 11px;
+  justify-content: center;
+  width: 38px;
+  height: 22px;
+  margin-top: 8px;
   margin-left: auto;
-  padding: 3px;
-  border: 0;
-  background: transparent;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
+  color: inherit;
   cursor: pointer;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    background var(--theme-duration) var(--theme-ease),
+    color var(--theme-duration) var(--theme-ease),
+    border-color var(--theme-duration) var(--theme-ease),
+    transform 220ms ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle::before,
+.theme-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition:
+    transform var(--theme-duration) var(--theme-ease),
+    opacity var(--theme-duration) var(--theme-ease),
+    background-color var(--theme-duration) var(--theme-ease),
+    box-shadow var(--theme-duration) var(--theme-ease);
+}
+
+.theme-toggle::before {
+  left: 4px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px currentColor,
+    0 0 12px rgba(254, 80, 0, 0.18);
+}
+
+.theme-toggle::after {
+  right: 4px;
+  background: #000000;
+  box-shadow:
+    inset 4px -2px 0 #ffffff,
+    0 0 0 1px currentColor;
+}
+
+body.light-mode .theme-toggle {
+  background:
+    linear-gradient(90deg, currentColor 0 50%, transparent 50% 100%);
+}
+
+body.dark-mode .theme-toggle {
+  background:
+    linear-gradient(90deg, transparent 0 50%, currentColor 50% 100%);
+}
+
+body.light-mode .theme-toggle::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1) rotate(0deg);
+}
+
+body.light-mode .theme-toggle::after {
+  opacity: 0.38;
+  transform: translateY(-50%) scale(0.72) rotate(-24deg);
+}
+
+body.dark-mode .theme-toggle::before {
+  opacity: 0.38;
+  transform: translateY(-50%) scale(0.72) rotate(24deg);
+}
+
+body.dark-mode .theme-toggle::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1) rotate(0deg);
+}
+
+.theme-toggle img {
+  display: none;
 }
 
 .theme-toggle:focus-visible,
@@ -357,6 +460,17 @@ tr[id^="demo"] .scroll-container img {
 
 .scroll-container img.fullscreen-image.keem {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media (max-width: 1024px) {
