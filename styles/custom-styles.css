@@ -1,1 +1,2 @@
 body.dark-mode .theme-toggle::before{color:#fff}
+.theme-toggle::before{font-size:14px;line-height:1}
