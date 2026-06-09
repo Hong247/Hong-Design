@@ -1,3 +1,3 @@
 body.dark-mode .theme-toggle::before{color:#fff}
-.theme-toggle::before{font-size:17px;line-height:1}
+.theme-toggle::before{font-size:22px;line-height:1}
 @media (max-width:768px){.theme-toggle::before{font-size:18px}}
