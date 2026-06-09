@@ -133,15 +133,27 @@ function setExpandedState(targetId, isExpanded) {
 
 function scrollProjectHeaderIntoView(button) {
   var projectHeader = button.closest(".hover-trigger");
+  var scrollWrapper = projectHeader ? projectHeader.closest(".scroll-wrapper") : null;
+  var topOffset = window.innerWidth <= 768 ? 18 : 32;
 
   if (!projectHeader) {
     return;
   }
 
   window.requestAnimationFrame(function () {
-    projectHeader.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+    window.requestAnimationFrame(function () {
+      if (scrollWrapper && window.innerWidth > 768) {
+        scrollWrapper.scrollTo({
+          top: projectHeader.getBoundingClientRect().top - scrollWrapper.getBoundingClientRect().top + scrollWrapper.scrollTop - topOffset,
+          behavior: "smooth"
+        });
+        return;
+      }
+
+      window.scrollTo({
+        top: projectHeader.getBoundingClientRect().top + window.pageYOffset - topOffset,
+        behavior: "smooth"
+      });
     });
   });
 }
