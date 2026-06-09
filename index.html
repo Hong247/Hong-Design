@@ -32,11 +32,34 @@
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/theme-toggle.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="scripts/main.js" defer></script>
   <link rel="stylesheet" href="styles/custom-styles.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Cheok Hong Lai",
+      "alternateName": "Hong Design",
+      "url": "https://cheokhong.com/",
+      "jobTitle": "Multidisciplinary Designer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vancouver",
+        "addressRegion": "BC",
+        "addressCountry": "CA"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/cheok-hong-lai/"
+      ],
+      "knowsAbout": [
+        "Brand identity",
+        "Campaign design",
+        "Product design",
+        "UI/UX design",
+        "3D rendering"
+      ]
+    }
+  </script>
   <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -52,20 +75,35 @@
       <div class="overlay-text">
         <header class="header is-flex">
           <h1 class="header-title">HONG DESIGN</h1>
-          <button class="theme-toggle" id="themeToggle">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
             <img src="images/mode.png" alt="MODE" style="height:15px; width: auto;">
           </button>
         </header>
         <main>
           <section id="about" class="about std-margin-bottom">
             <div class="body-copy">
-              <br>
-              <p>Hi, I'm Hong, a Vancouver-based multidisciplinary designer working across brand identity, campaign systems, product design, UI/UX, and rendering.</p><p>I turn complex ideas into clear visual systems - from logos and editorial layouts to digital prototypes, physical products, and marketing assets. My work balances concept, usability, and production details so the final design can look sharp and function in the real world.</p><p>I work with Adobe Creative Cloud, Figma, SolidWorks, user research, visualization, and previsualization. I am especially interested in projects where visual identity, product thinking, and business communication meet.</p>
+              <p class="intro-kicker">Vancouver, BC / multidisciplinary design</p>
+              <p class="intro-statement">I design brand, digital, and physical systems that make ideas easier to understand, use, and remember.</p>
+              <p class="intro-detail">My work spans identity, campaign visuals, product design, UI/UX, 3D rendering, and marketing assets. I care about sharp visual direction, practical production details, and design that can hold up in real business contexts.</p>
+              <dl class="profile-facts" aria-label="Profile details">
+                <div>
+                  <dt>Focus</dt>
+                  <dd>Brand systems / product thinking / digital experiences</dd>
+                </div>
+                <div>
+                  <dt>Tools</dt>
+                  <dd>Adobe CC / Figma / SolidWorks / rendering / research</dd>
+                </div>
+                <div>
+                  <dt>Experience</dt>
+                  <dd>Portfolio work across retail, mobility, recruitment, environmental campaigns, and product concepts</dd>
+                </div>
+              </dl>
             </div>
           </section>
           <div class="separator"></div>
           <ul class="social-links is-font">
-            <li><a href="https://www.linkedin.com/in/cheok-hong-lai/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/cheok-hong-lai/" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
           <div class="hovered-container">
             <br>
@@ -78,7 +116,7 @@
   <!-- Right Theme Wrapper -->
   <div class="theme-wrapper right-theme is-font">
     <div class="scroll-wrapper">
-    <table>
+    <table aria-label="Project archive">
       <thead>
         <tr class="header-row">
           <th>No</th>
@@ -114,7 +152,7 @@
               <img class="fullscreen-image keem" src="images/kee/keem3.jpg" alt="Kee - Image 3" loading="lazy">
               <img class="fullscreen-image keem" src="images/kee/keem4.jpg" alt="Kee - Image 4" loading="lazy">
             </div>
-            <p class="max-width-paragraph">Kee is a brand identity concept for a wonton noodle shop rooted in Malaysian Chinese food culture. The project uses line, rhythm, and the <a href="http://www.shufating.com/product/277173986" target="_blank">Yuwei</a> typeface to connect the motion of noodles, the structure of Chinese characters, and the craft of traditional cooking.</p><p>I developed the logo direction, color system, and visual applications around four material cues: carbon, moonstone, flour white, and brandy yellow. The result is a quiet but distinctive identity that feels traditional without becoming nostalgic, with a system that can extend from signage to packaging and motion assets.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>Kee is a brand identity concept for a wonton noodle shop rooted in Malaysian Chinese food culture. The project uses line, rhythm, and the <a href="http://www.shufating.com/product/277173986" target="_blank">Yuwei</a> typeface to connect the motion of noodles, the structure of Chinese characters, and the craft of traditional cooking.</p><p><span class="case-label">Outcome</span>I developed the logo direction, color system, and visual applications around four material cues: carbon, moonstone, flour white, and brandy yellow. The result is a quiet but distinctive identity that feels traditional without becoming nostalgic, with a system that can extend from signage to packaging and motion assets.</p><br>
           </td>
         </tr>
         <!-- 02 -->
@@ -133,7 +171,7 @@
               <img class="fullscreen-image" src="images/maia/maia6.jpg" alt="maia - Image 6" loading="lazy">
               <img class="fullscreen-image" src="images/maia/maia7.jpg" alt="maia - Image 7" loading="lazy">
             </div>
-            <p class="max-width-paragraph">maia is a luxury fashion and beauty identity built around softness, confidence, and modern femininity. The design challenge was to create a visual language that could feel premium and aspirational while still feeling warm enough for personal care and beauty services.</p><p>I shaped the direction through a refined logo, muted color palette, blurred imagery, and elegant typography. The outcome is a cohesive brand system that balances exclusivity with approachability, giving maia a clear emotional tone across digital, print, and campaign applications.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>maia is a luxury fashion and beauty identity built around softness, confidence, and modern femininity. The design challenge was to create a visual language that could feel premium and aspirational while still feeling warm enough for personal care and beauty services.</p><p><span class="case-label">Outcome</span>I shaped the direction through a refined logo, muted color palette, blurred imagery, and elegant typography. The outcome is a cohesive brand system that balances exclusivity with approachability, giving maia a clear emotional tone across digital, print, and campaign applications.</p><br>
           </td>
         </tr>
         <!-- 03 -->
@@ -155,7 +193,7 @@
               <img class="fullscreen-image" src="images/browns/browns6.jpg" alt="maia - Image 6" loading="lazy">
               <img class="fullscreen-image" src="images/browns/browns7.jpg" alt="maia - Image 7" loading="lazy">
             </div>
-            <p class="max-width-paragraph">This rebrand concept for <a href="https://www.brownsshoes.com/en/home" target="_blank">Browns Shoes Inc.</a> explores how a national footwear retailer could sharpen its identity beyond a logo refresh. The goal was to make the brand feel cleaner, more modern, and more product-led while keeping the focus on lifestyle versatility.</p><p>I developed an "inhuman" art direction that reduces reliance on models and gives the shoes more visual authority. Color, texture, material, and composition work together to create a sleek retail system where the product becomes the central character.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>This rebrand concept for <a href="https://www.brownsshoes.com/en/home" target="_blank">Browns Shoes Inc.</a> explores how a national footwear retailer could sharpen its identity beyond a logo refresh. The goal was to make the brand feel cleaner, more modern, and more product-led while keeping the focus on lifestyle versatility.</p><p><span class="case-label">Outcome</span>I developed an "inhuman" art direction that reduces reliance on models and gives the shoes more visual authority. Color, texture, material, and composition work together to create a sleek retail system where the product becomes the central character.</p><br>
           </td>
         </tr>
         <!-- 04 -->
@@ -172,7 +210,7 @@
               <iframe width="1200" height="600" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign" allowfullscreen loading="lazy"></iframe>
               <img class="fullscreen-image" src="images/monday/monday2.jpg" alt="rakuharu - Image 2" loading="lazy">
             </div>
-            <p class="max-width-paragraph">monday is an office-chair brand and website prototype for a product entering a competitive furniture market. I built the identity around four qualities: trustworthy, resilient, authentic, and subtle.</p><p>The lowercase logo takes cues from <a href="https://artsandculture.google.com/project/bauhaus" target="_blank">Bauhaus</a> efficiency and the geometry of <a href="https://learn.microsoft.com/en-us/typography/font-list/bauhaus-93" target="_blank">Bauhaus 93</a>. I used a wider stance, calm spacing, and restrained interface direction to make the brand feel supportive rather than loud - a chair that quietly helps people work better.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>monday is an office-chair brand and website prototype for a product entering a competitive furniture market. I built the identity around four qualities: trustworthy, resilient, authentic, and subtle.</p><p><span class="case-label">Outcome</span>The lowercase logo takes cues from <a href="https://artsandculture.google.com/project/bauhaus" target="_blank">Bauhaus</a> efficiency and the geometry of <a href="https://learn.microsoft.com/en-us/typography/font-list/bauhaus-93" target="_blank">Bauhaus 93</a>. I used a wider stance, calm spacing, and restrained interface direction to make the brand feel supportive rather than loud - a chair that quietly helps people work better.</p><br>
           </td>
         </tr>
         <!-- 05 -->
@@ -190,7 +228,7 @@
               <img class="fullscreen-image" src="images/killthebride/killthebride3.jpg" alt="killthebride - Image 3" loading="lazy">
               <img class="fullscreen-image" src="images/killthebride/killthebride4.jpg" alt="killthebride - Image 4" loading="lazy">
             </div>
-            <p class="max-width-paragraph">Kill The Bride is a speculative film-poster series imagining a spiritual sequel to <a href="https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill" target="_blank">Kill Bill</a>. The concept asks how a familiar action-revenge visual language could evolve twenty years later while still carrying the tension, confidence, and graphic force of the original films.</p><p>I used bold type, controlled color contrast, and a blue-led palette to extend the established red and yellow visual world. The posters aim to feel connected to the franchise without simply copying it, balancing homage with a new point of view.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>Kill The Bride is a speculative film-poster series imagining a spiritual sequel to <a href="https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill" target="_blank">Kill Bill</a>. The concept asks how a familiar action-revenge visual language could evolve twenty years later while still carrying the tension, confidence, and graphic force of the original films.</p><p><span class="case-label">Outcome</span>I used bold type, controlled color contrast, and a blue-led palette to extend the established red and yellow visual world. The posters aim to feel connected to the franchise without simply copying it, balancing homage with a new point of view.</p><br>
           </td>
         </tr>
         <!-- 06 -->
@@ -212,7 +250,7 @@
               <img class="fullscreen-image" src="images/wwf/wwf7.jpg" alt="wwf - Image 7" loading="lazy">
               <img class="fullscreen-image" src="images/wwf/wwf8.jpg" alt="wwf - Image 8" loading="lazy">
             </div>
-            <p class="max-width-paragraph">Stop Haunting Mother Nature is an environmental awareness campaign concept for <a href="https://www.worldwildlife.org/" target="_blank">WWF</a>. Instead of using expected nature imagery, the campaign reframes pollution as a horror story where human activity becomes the threat.</p><p>The series restyles recognizable horror references, including <a href="https://www.imdb.com/title/tt0102926/" target="_blank">The Silence of the Lambs</a>, <a href="https://www.imdb.com/title/tt0081505/?ref_=fn_al_tt_1" target="_blank">The Shining</a>, and <a href="https://www.imdb.com/title/tt0077651/?ref_=nv_sr_srsg_1_tt_7_nm_0_q_halloween" target="_blank">Halloween</a>, into environmental messages. Familiar poster silhouettes create quick recognition, while altered details reveal the campaign message: stop treating nature like the victim in our own horror film.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>Stop Haunting Mother Nature is an environmental awareness campaign concept for <a href="https://www.worldwildlife.org/" target="_blank">WWF</a>. Instead of using expected nature imagery, the campaign reframes pollution as a horror story where human activity becomes the threat.</p><p><span class="case-label">Outcome</span>The series restyles recognizable horror references, including <a href="https://www.imdb.com/title/tt0102926/" target="_blank">The Silence of the Lambs</a>, <a href="https://www.imdb.com/title/tt0081505/?ref_=fn_al_tt_1" target="_blank">The Shining</a>, and <a href="https://www.imdb.com/title/tt0077651/?ref_=nv_sr_srsg_1_tt_7_nm_0_q_halloween" target="_blank">Halloween</a>, into environmental messages. Familiar poster silhouettes create quick recognition, while altered details reveal the campaign message: stop treating nature like the victim in our own horror film.</p><br>
           </td>
         </tr>
         <!-- 07 -->
@@ -233,7 +271,7 @@
               <img class="fullscreen-image" src="images/x/x6.jpg" alt="X̱wáýx̱way - Image 6" loading="lazy">
               <img class="fullscreen-image" src="images/x/x7.jpg" alt="X̱wáýx̱way - Image 7" loading="lazy">
             </div>
-            <p class="max-width-paragraph">X̱wáýx̱way is a speculative vinyl soundtrack album dedicated to <a href="https://stanleyparkecology.ca/" target="_blank">Stanley Park</a> in Vancouver. The project treats the park as living history rather than a tourist landmark, connecting landscape, memory, Indigenous presence, and contemporary city life through sound and print.</p><p>The album is organized around six themes: Indigenous history, woods, waves, land, wind, and modernization. I used a monochromatic retro direction to make the object feel collectible and archival, imagining it as a fundraising piece that could preserve attention, memory, and care for the park.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>X̱wáýx̱way is a speculative vinyl soundtrack album dedicated to <a href="https://stanleyparkecology.ca/" target="_blank">Stanley Park</a> in Vancouver. The project treats the park as living history rather than a tourist landmark, connecting landscape, memory, Indigenous presence, and contemporary city life through sound and print.</p><p><span class="case-label">Outcome</span>The album is organized around six themes: Indigenous history, woods, waves, land, wind, and modernization. I used a monochromatic retro direction to make the object feel collectible and archival, imagining it as a fundraising piece that could preserve attention, memory, and care for the park.</p><br>
           </td>
         </tr>
         <!-- 08 -->
@@ -250,7 +288,7 @@
               <img class="fullscreen-image" src="images/rakuharu/rakuharu2.jpg" alt="rakuharu - Image 2" loading="lazy">
               <img class="fullscreen-image" src="images/rakuharu/rakuharu3.jpg" alt="rakuharu - Image 3" loading="lazy">
             </div>
-            <p class="max-width-paragraph">raku haru is a hijab brand identity focused on accessible elegance. The logo needed to feel feminine, modern, and timeless while supporting a product range designed for women across different ages and personal styles.</p><p>I developed a visual direction that balances softness with clarity, giving the brand an inviting tone without making it feel overly delicate or exclusive. The result is a simple identity system that can support affordable products while still feeling considered and polished.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>raku haru is a hijab brand identity focused on accessible elegance. The logo needed to feel feminine, modern, and timeless while supporting a product range designed for women across different ages and personal styles.</p><p><span class="case-label">Outcome</span>I developed a visual direction that balances softness with clarity, giving the brand an inviting tone without making it feel overly delicate or exclusive. The result is a simple identity system that can support affordable products while still feeling considered and polished.</p><br>
           </td>
         </tr>
         <!-- 09 -->
@@ -268,7 +306,7 @@
               <img class="fullscreen-image" src="images/trapodpc/trapodpc2.png" alt="trapodpc - Image 1" loading="lazy">
               <img class="fullscreen-image" src="images/trapodpc/trapodpc3.png" alt="trapodpc - Image 3" loading="lazy">
             </div>
-            <p class="max-width-paragraph">This digital catalogue prototype for <a href="https://www.trapo.com/" target="_blank">TRAPO</a> explores a more efficient alternative to printed sales materials. Built in Figma, the prototype was designed for offline sales teams, in-store promotion, and quick product comparison.</p><p>The interface prioritizes speed, clear navigation, and immediate access to key product details. The outcome is a practical sales tool that reduces dependence on paper while making product presentation more interactive and easier to update.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>This digital catalogue prototype for <a href="https://www.trapo.com/" target="_blank">TRAPO</a> explores a more efficient alternative to printed sales materials. Built in Figma, the prototype was designed for offline sales teams, in-store promotion, and quick product comparison.</p><p><span class="case-label">Outcome</span>The interface prioritizes speed, clear navigation, and immediate access to key product details. The outcome is a practical sales tool that reduces dependence on paper while making product presentation more interactive and easier to update.</p><br>
           </td>
         </tr>
         <!-- 10 -->
@@ -290,7 +328,7 @@
               <img class="fullscreen-image" src="images/traposh/traposh7.jpg" alt="traposh - Image 7" loading="lazy">
               <img class="fullscreen-image" src="images/traposh/traposh8.jpg" alt="traposh - Image 8" loading="lazy">
             </div>
-            <p class="max-width-paragraph">This MagSafe-compatible smartphone holder was developed as a flagship product concept for TRAPO. The design needed to feel more ownable than a generic holder while still meeting practical constraints around size, mounting, heat, and manufacturing.</p><p>I worked through form development, rendering, material direction, and brand integration. The final direction uses the company logo as a silhouette cue, pairs premium <a href="https://www.alcantara.com/" target="_blank">Alcantara</a> material with a glow LED detail, and balances automotive luxury with everyday usability.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>This MagSafe-compatible smartphone holder was developed as a flagship product concept for TRAPO. The design needed to feel more ownable than a generic holder while still meeting practical constraints around size, mounting, heat, and manufacturing.</p><p><span class="case-label">Outcome</span>I worked through form development, rendering, material direction, and brand integration. The final direction uses the company logo as a silhouette cue, pairs premium <a href="https://www.alcantara.com/" target="_blank">Alcantara</a> material with a glow LED detail, and balances automotive luxury with everyday usability.</p><br>
           </td>
         </tr>
         <!-- 11 -->
@@ -310,7 +348,7 @@
               <img class="fullscreen-image" src="images/talentlounge/talentlounge5.jpg" alt="talentlounge - Image 5" loading="lazy">
               <img class="fullscreen-image" src="images/talentlounge/talentlounge6.jpg" alt="talentlounge - Image 6" loading="lazy">
             </div>
-            <p class="max-width-paragraph">For <a href="https://talentlounge.co/Hello" target="_blank">Talentlounge</a>, I designed and rendered a virtual career fair experience that helped job seekers explore opportunities through an online 3D environment. The challenge was to make recruitment feel more engaging without sacrificing clarity or navigation.</p><p>My role covered visual direction, 3D modelling, rendering, and website integration. I created booth environments, category-based exploration, and visual assets that supported communication between candidates and employers while keeping the experience approachable and easy to scan.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>For <a href="https://talentlounge.co/Hello" target="_blank">Talentlounge</a>, I designed and rendered a virtual career fair experience that helped job seekers explore opportunities through an online 3D environment. The challenge was to make recruitment feel more engaging without sacrificing clarity or navigation.</p><p><span class="case-label">Outcome</span>My role covered visual direction, 3D modelling, rendering, and website integration. I created booth environments, category-based exploration, and visual assets that supported communication between candidates and employers while keeping the experience approachable and easy to scan.</p><br>
           </td>
         </tr>
         <!-- 12 -->
@@ -330,7 +368,7 @@
               <img class="fullscreen-image" src="images/nexus/nexus5.jpg" alt="nexus - Image 5" loading="lazy">
               <img class="fullscreen-image" src="images/nexus/nexus6.jpg" alt="nexus - Image 6" loading="lazy">
             </div>
-            <p class="max-width-paragraph">Nexus is a public furniture concept created for the Malaysia National Design Competition <a href="https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/" target="_blank">TRANSEAT</a>, where our team became a top 10 finalist. The project reimagines station seating as a connector for people, movement, and public space.</p><p>Inspired by the "Serambi" concept in traditional Malay houses, the bench encourages pause, interaction, and continuity within MRT environments. The design uses Thermoplastic Elastomer, modular form, and illuminated edge details to create a seating system that is functional, symbolic, and memorable in transit spaces.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>Nexus is a public furniture concept created for the Malaysia National Design Competition <a href="https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/" target="_blank">TRANSEAT</a>, where our team became a top 10 finalist. The project reimagines station seating as a connector for people, movement, and public space.</p><p><span class="case-label">Outcome</span>Inspired by the "Serambi" concept in traditional Malay houses, the bench encourages pause, interaction, and continuity within MRT environments. The design uses Thermoplastic Elastomer, modular form, and illuminated edge details to create a seating system that is functional, symbolic, and memorable in transit spaces.</p><br>
           </td>
         </tr>
         <!-- 13 -->
@@ -350,7 +388,7 @@
               <img class="fullscreen-image" src="images/motorola/motorola5.jpg" alt="motorola - Image 5" loading="lazy">
               <img class="fullscreen-image" src="images/motorola/motorola6.jpg" alt="motorola - Image 6" loading="lazy">
             </div>
-            <p class="max-width-paragraph">During my internship with <a href="https://www.motorolasolutions.com/en_us.html" target="_blank">Motorola Solutions</a>, I completed a 12-week product design project for a two-way radio concept. The process covered research, concept development, 2D exploration, 3D modelling, rendering, and final presentation.</p><p>I visited 14 hotels to observe staff communication across different service environments. Those observations revealed opportunities around size, multitasking, information access, and product aesthetics. The final concept is a compact radio with a hidden display, LED indicator, intuitive controls, and an ergonomic form designed for real workplace use.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>During my internship with <a href="https://www.motorolasolutions.com/en_us.html" target="_blank">Motorola Solutions</a>, I completed a 12-week product design project for a two-way radio concept. The process covered research, concept development, 2D exploration, 3D modelling, rendering, and final presentation.</p><p><span class="case-label">Outcome</span>I visited 14 hotels to observe staff communication across different service environments. Those observations revealed opportunities around size, multitasking, information access, and product aesthetics. The final concept is a compact radio with a hidden display, LED indicator, intuitive controls, and an ergonomic form designed for real workplace use.</p><br>
           </td>
         </tr>
         <!-- 14 -->
@@ -367,15 +405,12 @@
               <img class="fullscreen-image" src="images/e&k/e&k2.jpg" alt="motorola - Image 2" loading="lazy">
               <img class="fullscreen-image" src="images/e&k/e&k3.jpg" alt="motorola - Image 3" loading="lazy">
             </div>
-            <p class="max-width-paragraph">E&K is an automotive accessories and installation brand identity. The logo needed to feel simple, sharp, and memorable while reflecting the brand's focus on cars, customization, and service.</p><p>I developed a compact mark from the letters E and K, creating a visual form that feels technical without becoming overly complex. The result is a clean identity that can work across signage, decals, packaging, and digital applications.</p><br>
+            <p class="max-width-paragraph"><span class="case-label">Brief</span>E&K is an automotive accessories and installation brand identity. The logo needed to feel simple, sharp, and memorable while reflecting the brand's focus on cars, customization, and service.</p><p><span class="case-label">Outcome</span>I developed a compact mark from the letters E and K, creating a visual form that feels technical without becoming overly complex. The result is a clean identity that can work across signage, decals, packaging, and digital applications.</p><br>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   </div>
-    <ul class="social-links is-font">
-          <li><a href="https://www.linkedin.com/in/cheok-hong-lai/" target="_blank">LinkedIn</a></li>
-        </ul>
 </body>
 </html>
