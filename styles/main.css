@@ -320,25 +320,36 @@ td:nth-child(4) .custom-btn {
 }
 
 .collapse {
-  display: none;
-}
-
-.collapse.is-open {
   display: table-row;
 }
 
 .collapse td {
   width: 100%;
   max-width: 0;
-  padding: 18px 8px 34px;
+  padding: 0 8px;
   overflow-x: hidden;
+  transition: padding 320ms ease;
+}
+
+.collapse.is-open td {
+  padding: 18px 8px 34px;
 }
 
 .project-detail {
   display: block;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: max-height 360ms ease, opacity 240ms ease, transform 320ms ease;
+}
+
+.collapse.is-open .project-detail {
+  max-height: 1800px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .scroll-container {
@@ -488,6 +499,11 @@ tr[id^="demo"] .scroll-container img {
     text-align: right;
   }
 
+  tr.collapse {
+    display: block;
+    padding-bottom: 0;
+  }
+
   tr.collapse.is-open {
     display: block;
     padding-bottom: 28px;
@@ -500,8 +516,12 @@ tr[id^="demo"] .scroll-container img {
   .collapse td {
     width: auto;
     max-width: none;
-    padding: 0 0 24px;
+    padding: 0;
     overflow-x: visible;
+  }
+
+  .collapse.is-open td {
+    padding: 0 0 24px;
   }
 
   .scroll-container {
