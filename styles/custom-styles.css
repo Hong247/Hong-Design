@@ -2,8 +2,7 @@ body.dark-mode .theme-toggle::before{color:#fff}
 .theme-toggle::before{font-size:22px;line-height:1}
 tr[id^="demo"] .scroll-container img{height:min(450px,52.5vh);cursor:default!important}
 .scroll-container iframe{width:min(900px,66vw);height:min(450px,52.5vh)}
-.hovered-container{position:absolute;left:50px;top:50%;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
+.hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
 .hovered-container br{display:none}
 .hovered-image{max-width:100%;max-height:52vh;object-fit:contain}
-.left-theme{position:relative}
 @media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img,.scroll-container iframe{width:min(64.5vw,465px);height:auto}.hovered-container{display:none}}
