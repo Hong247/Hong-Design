@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       openProjectRow(target);
-      scrollProjectHeaderIntoView(button);
+      forceProjectHeaderToTop(button);
     });
   });
 
@@ -242,31 +242,30 @@ function closeProjectRow(row) {
   }, 340);
 }
 
-function scrollProjectHeaderIntoView(button) {
+function forceProjectHeaderToTop(button) {
   var projectHeader = button.closest(".hover-trigger");
-  var scrollWrapper = projectHeader ? projectHeader.closest(".scroll-wrapper") : null;
+  var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
   var topOffset = window.innerWidth <= 768 ? 18 : 32;
 
   if (!projectHeader) {
     return;
   }
 
-  window.requestAnimationFrame(function () {
-    window.requestAnimationFrame(function () {
-      if (scrollWrapper && window.innerWidth > 768) {
-        scrollWrapper.scrollTo({
-          top: projectHeader.getBoundingClientRect().top - scrollWrapper.getBoundingClientRect().top + scrollWrapper.scrollTop - topOffset,
-          behavior: "smooth"
-        });
-        return;
-      }
+  function moveNow() {
+    if (scrollWrapper && window.innerWidth > 768) {
+      var targetTop = projectHeader.offsetTop - topOffset;
+      scrollWrapper.scrollTop = targetTop < 0 ? 0 : targetTop;
+      return;
+    }
 
-      window.scrollTo({
-        top: projectHeader.getBoundingClientRect().top + window.pageYOffset - topOffset,
-        behavior: "smooth"
-      });
-    });
-  });
+    var pageTop = projectHeader.getBoundingClientRect().top + window.pageYOffset - topOffset;
+    window.scrollTo(0, pageTop < 0 ? 0 : pageTop);
+  }
+
+  moveNow();
+  window.requestAnimationFrame(moveNow);
+  window.setTimeout(moveNow, 80);
+  window.setTimeout(moveNow, 220);
 }
 
 function displayHoveredImage(imageSource) {
