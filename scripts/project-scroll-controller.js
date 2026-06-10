@@ -1,5 +1,6 @@
 (function () {
   var savedPositions = {};
+  var activeScrollAnimation = null;
 
   window.addEventListener("click", handleProjectClick, true);
 
@@ -144,22 +145,17 @@
         if (scrollWrapper && window.innerWidth > 768) {
           var header = scrollWrapper.querySelector("thead");
           var headerHeight = header ? header.getBoundingClientRect().height : 0;
-          var targetTop = projectHeader.getBoundingClientRect().top - scrollWrapper.getBoundingClientRect().top + scrollWrapper.scrollTop - headerHeight;
+          var targetTop = projectHeader.offsetTop - headerHeight;
 
-          scrollWrapper.scrollTo({
-            top: Math.max(0, targetTop),
-            behavior: "smooth"
-          });
+          animateElementScroll(scrollWrapper, clampScrollTop(scrollWrapper, targetTop), 420);
           return;
         }
 
         var mobileHeader = document.querySelector("thead");
         var mobileHeaderHeight = mobileHeader && window.getComputedStyle(mobileHeader).display !== "none" ? mobileHeader.getBoundingClientRect().height : 0;
+        var windowTarget = projectHeader.getBoundingClientRect().top + window.pageYOffset - mobileHeaderHeight;
 
-        window.scrollTo({
-          top: Math.max(0, projectHeader.getBoundingClientRect().top + window.pageYOffset - mobileHeaderHeight),
-          behavior: "smooth"
-        });
+        animateWindowScroll(Math.max(0, windowTarget), 420);
       });
     });
   }
@@ -173,17 +169,52 @@
 
     window.requestAnimationFrame(function () {
       if (position.type === "wrapper" && position.element) {
-        position.element.scrollTo({
-          top: position.top,
-          behavior: "smooth"
-        });
+        animateElementScroll(position.element, clampScrollTop(position.element, position.top), 420);
         return;
       }
 
-      window.scrollTo({
-        top: position.top,
-        behavior: "smooth"
-      });
+      animateWindowScroll(Math.max(0, position.top), 420);
     });
+  }
+
+  function clampScrollTop(element, value) {
+    var max = Math.max(0, element.scrollHeight - element.clientHeight);
+    return Math.max(0, Math.min(value, max));
+  }
+
+  function animateElementScroll(element, targetTop, duration) {
+    animateScroll(element.scrollTop, targetTop, duration, function (value) {
+      element.scrollTop = value;
+    });
+  }
+
+  function animateWindowScroll(targetTop, duration) {
+    animateScroll(window.pageYOffset, targetTop, duration, function (value) {
+      window.scrollTo(0, value);
+    });
+  }
+
+  function animateScroll(startTop, targetTop, duration, applyValue) {
+    var startTime = performance.now();
+    var distance = targetTop - startTop;
+
+    if (activeScrollAnimation) {
+      window.cancelAnimationFrame(activeScrollAnimation);
+    }
+
+    function step(now) {
+      var progress = Math.min(1, (now - startTime) / duration);
+      var eased = 1 - Math.pow(1 - progress, 3);
+
+      applyValue(startTop + distance * eased);
+
+      if (progress < 1) {
+        activeScrollAnimation = window.requestAnimationFrame(step);
+      } else {
+        activeScrollAnimation = null;
+      }
+    }
+
+    activeScrollAnimation = window.requestAnimationFrame(step);
   }
 }());
