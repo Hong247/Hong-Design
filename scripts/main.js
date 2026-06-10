@@ -250,41 +250,32 @@ function forceProjectHeaderToTop(button) {
     return;
   }
 
-  function scrollAncestor(element) {
-    if (!element) {
-      return false;
-    }
+  function scrollEveryContainer() {
+    var targetRect = projectHeader.getBoundingClientRect();
+    var current = projectHeader.parentElement;
 
-    var current = element.parentElement;
+    while (current && current !== document.documentElement) {
+      var style = window.getComputedStyle(current);
+      var canScroll = current.scrollHeight > current.clientHeight + 2;
+      var allowsScroll = /(auto|scroll|overlay)/.test(style.overflowY) || /(auto|scroll|overlay)/.test(style.overflow);
 
-    while (current && current !== document.body) {
-      if (current.scrollHeight > current.clientHeight + 2) {
+      if (canScroll && allowsScroll) {
         var parentRect = current.getBoundingClientRect();
-        var childRect = element.getBoundingClientRect();
-        current.scrollTop += childRect.top - parentRect.top - topOffset;
-        return true;
+        current.scrollTop += targetRect.top - parentRect.top - topOffset;
       }
 
       current = current.parentElement;
-    }
-
-    return false;
-  }
-
-  function moveNow() {
-    if (window.innerWidth > 768 && scrollAncestor(projectHeader)) {
-      return;
     }
 
     projectHeader.scrollIntoView({ block: "start", inline: "nearest" });
     window.scrollBy(0, -topOffset);
   }
 
-  moveNow();
-  window.requestAnimationFrame(moveNow);
-  window.setTimeout(moveNow, 80);
-  window.setTimeout(moveNow, 220);
-  window.setTimeout(moveNow, 420);
+  scrollEveryContainer();
+  window.requestAnimationFrame(scrollEveryContainer);
+  window.setTimeout(scrollEveryContainer, 80);
+  window.setTimeout(scrollEveryContainer, 220);
+  window.setTimeout(scrollEveryContainer, 420);
 }
 
 function displayHoveredImage(imageSource) {
