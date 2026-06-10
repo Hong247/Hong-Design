@@ -1,7 +1,9 @@
 (function () {
   var savedPositions = {};
 
-  document.addEventListener("click", function (event) {
+  window.addEventListener("click", handleProjectClick, true);
+
+  function handleProjectClick(event) {
     var button = event.target.closest && event.target.closest(".custom-btn[data-target]");
 
     if (!button) {
@@ -17,29 +19,27 @@
     }
 
     event.preventDefault();
+    event.stopPropagation();
     event.stopImmediatePropagation();
 
     var wasOpen = target.classList.contains("is-open");
 
     document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
       if (row !== target) {
-        row.classList.remove("is-open");
-        setExpandedState(row.id, false);
+        closeRow(row);
       }
     });
 
     if (wasOpen) {
-      target.classList.remove("is-open");
-      setExpandedState(target.id, false);
+      closeRow(target);
       scrollBack(target.id);
       return;
     }
 
     savedPositions[target.id] = getCurrentScrollPosition(projectHeader);
-    target.classList.add("is-open");
-    setExpandedState(target.id, true);
+    openRow(target);
     scrollProjectHeader(projectHeader);
-  }, true);
+  }
 
   function setExpandedState(targetId, isExpanded) {
     if (!targetId) {
@@ -53,6 +53,10 @@
 
   function getScrollWrapper(element) {
     return element.closest(".scroll-wrapper");
+  }
+
+  function getDetail(row) {
+    return row ? row.querySelector(".project-detail") : null;
   }
 
   function getCurrentScrollPosition(projectHeader) {
@@ -72,6 +76,66 @@
     };
   }
 
+  function openRow(row) {
+    var detail = getDetail(row);
+
+    window.clearTimeout(row.closeTimer);
+    window.clearTimeout(row.openTimer);
+    row.classList.add("is-open");
+    setExpandedState(row.id, true);
+
+    if (!detail) {
+      return;
+    }
+
+    detail.style.maxHeight = "0px";
+    detail.style.opacity = "0";
+    detail.style.transform = "translateY(-8px)";
+
+    window.requestAnimationFrame(function () {
+      detail.style.maxHeight = detail.scrollHeight + "px";
+      detail.style.opacity = "1";
+      detail.style.transform = "translateY(0)";
+    });
+
+    row.openTimer = window.setTimeout(function () {
+      if (row.classList.contains("is-open")) {
+        detail.style.maxHeight = "";
+        detail.style.opacity = "";
+        detail.style.transform = "";
+      }
+    }, 380);
+  }
+
+  function closeRow(row) {
+    var detail = getDetail(row);
+
+    window.clearTimeout(row.openTimer);
+    window.clearTimeout(row.closeTimer);
+    row.classList.remove("is-open");
+    setExpandedState(row.id, false);
+
+    if (!detail) {
+      return;
+    }
+
+    detail.style.maxHeight = detail.scrollHeight + "px";
+    detail.style.opacity = "1";
+    detail.style.transform = "translateY(0)";
+
+    window.requestAnimationFrame(function () {
+      detail.style.maxHeight = "0px";
+      detail.style.opacity = "0";
+      detail.style.transform = "translateY(-8px)";
+    });
+
+    row.closeTimer = window.setTimeout(function () {
+      detail.style.maxHeight = "";
+      detail.style.opacity = "";
+      detail.style.transform = "";
+    }, 380);
+  }
+
   function scrollProjectHeader(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
 
@@ -83,14 +147,17 @@
           var targetTop = projectHeader.getBoundingClientRect().top - scrollWrapper.getBoundingClientRect().top + scrollWrapper.scrollTop - headerHeight;
 
           scrollWrapper.scrollTo({
-            top: targetTop,
+            top: Math.max(0, targetTop),
             behavior: "smooth"
           });
           return;
         }
 
+        var mobileHeader = document.querySelector("thead");
+        var mobileHeaderHeight = mobileHeader && window.getComputedStyle(mobileHeader).display !== "none" ? mobileHeader.getBoundingClientRect().height : 0;
+
         window.scrollTo({
-          top: projectHeader.getBoundingClientRect().top + window.pageYOffset,
+          top: Math.max(0, projectHeader.getBoundingClientRect().top + window.pageYOffset - mobileHeaderHeight),
           behavior: "smooth"
         });
       });
