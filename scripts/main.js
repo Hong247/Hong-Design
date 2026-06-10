@@ -244,28 +244,47 @@ function closeProjectRow(row) {
 
 function forceProjectHeaderToTop(button) {
   var projectHeader = button.closest(".hover-trigger");
-  var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
   var topOffset = window.innerWidth <= 768 ? 18 : 32;
 
   if (!projectHeader) {
     return;
   }
 
+  function scrollAncestor(element) {
+    if (!element) {
+      return false;
+    }
+
+    var current = element.parentElement;
+
+    while (current && current !== document.body) {
+      if (current.scrollHeight > current.clientHeight + 2) {
+        var parentRect = current.getBoundingClientRect();
+        var childRect = element.getBoundingClientRect();
+        current.scrollTop += childRect.top - parentRect.top - topOffset;
+        return true;
+      }
+
+      current = current.parentElement;
+    }
+
+    return false;
+  }
+
   function moveNow() {
-    if (scrollWrapper && window.innerWidth > 768) {
-      var targetTop = projectHeader.offsetTop - topOffset;
-      scrollWrapper.scrollTop = targetTop < 0 ? 0 : targetTop;
+    if (window.innerWidth > 768 && scrollAncestor(projectHeader)) {
       return;
     }
 
-    var pageTop = projectHeader.getBoundingClientRect().top + window.pageYOffset - topOffset;
-    window.scrollTo(0, pageTop < 0 ? 0 : pageTop);
+    projectHeader.scrollIntoView({ block: "start", inline: "nearest" });
+    window.scrollBy(0, -topOffset);
   }
 
   moveNow();
   window.requestAnimationFrame(moveNow);
   window.setTimeout(moveNow, 80);
   window.setTimeout(moveNow, 220);
+  window.setTimeout(moveNow, 420);
 }
 
 function displayHoveredImage(imageSource) {
