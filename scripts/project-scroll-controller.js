@@ -1,6 +1,5 @@
 (function () {
   var savedPositions = {};
-  var activeScrollAnimation = null;
 
   window.addEventListener("click", handleProjectClick, true);
 
@@ -39,7 +38,7 @@
 
     savedPositions[target.id] = getCurrentScrollPosition(projectHeader);
     openRow(target);
-    scrollProjectHeader(projectHeader);
+    forceHeaderToTop(projectHeader);
   }
 
   function setExpandedState(targetId, isExpanded) {
@@ -53,7 +52,7 @@
   }
 
   function getScrollWrapper(element) {
-    return element.closest(".scroll-wrapper");
+    return element.closest(".scroll-wrapper") || document.querySelector(".right-theme .scroll-wrapper");
   }
 
   function getDetail(row) {
@@ -64,17 +63,10 @@
     var scrollWrapper = getScrollWrapper(projectHeader);
 
     if (scrollWrapper && window.innerWidth > 768) {
-      return {
-        type: "wrapper",
-        element: scrollWrapper,
-        top: scrollWrapper.scrollTop
-      };
+      return { type: "wrapper", element: scrollWrapper, top: scrollWrapper.scrollTop };
     }
 
-    return {
-      type: "window",
-      top: window.pageYOffset
-    };
+    return { type: "window", top: window.pageYOffset };
   }
 
   function openRow(row) {
@@ -137,27 +129,32 @@
     }, 380);
   }
 
-  function scrollProjectHeader(projectHeader) {
+  function forceHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
+    var headerOffset = getHeaderOffset(scrollWrapper);
 
-    window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(function () {
-        if (scrollWrapper && window.innerWidth > 768) {
-          var header = scrollWrapper.querySelector("thead");
-          var headerHeight = header ? header.getBoundingClientRect().height : 0;
-          var targetTop = projectHeader.offsetTop - headerHeight;
+    function apply() {
+      if (scrollWrapper && window.innerWidth > 768) {
+        var target = projectHeader.offsetTop - headerOffset;
+        scrollWrapper.scrollTop = target < 0 ? 0 : target;
+        return;
+      }
 
-          animateElementScroll(scrollWrapper, clampScrollTop(scrollWrapper, targetTop), 420);
-          return;
-        }
+      projectHeader.scrollIntoView(true);
+      window.scrollBy(0, -headerOffset);
+    }
 
-        var mobileHeader = document.querySelector("thead");
-        var mobileHeaderHeight = mobileHeader && window.getComputedStyle(mobileHeader).display !== "none" ? mobileHeader.getBoundingClientRect().height : 0;
-        var windowTarget = projectHeader.getBoundingClientRect().top + window.pageYOffset - mobileHeaderHeight;
+    apply();
+    window.requestAnimationFrame(apply);
+    window.setTimeout(apply, 40);
+    window.setTimeout(apply, 120);
+    window.setTimeout(apply, 260);
+    window.setTimeout(apply, 420);
+  }
 
-        animateWindowScroll(Math.max(0, windowTarget), 420);
-      });
-    });
+  function getHeaderOffset(scrollWrapper) {
+    var header = scrollWrapper ? scrollWrapper.querySelector("thead") : document.querySelector("thead");
+    return header ? header.getBoundingClientRect().height : 0;
   }
 
   function scrollBack(targetId) {
@@ -169,52 +166,11 @@
 
     window.requestAnimationFrame(function () {
       if (position.type === "wrapper" && position.element) {
-        animateElementScroll(position.element, clampScrollTop(position.element, position.top), 420);
+        position.element.scrollTop = position.top;
         return;
       }
 
-      animateWindowScroll(Math.max(0, position.top), 420);
+      window.scrollTo(0, position.top);
     });
-  }
-
-  function clampScrollTop(element, value) {
-    var max = Math.max(0, element.scrollHeight - element.clientHeight);
-    return Math.max(0, Math.min(value, max));
-  }
-
-  function animateElementScroll(element, targetTop, duration) {
-    animateScroll(element.scrollTop, targetTop, duration, function (value) {
-      element.scrollTop = value;
-    });
-  }
-
-  function animateWindowScroll(targetTop, duration) {
-    animateScroll(window.pageYOffset, targetTop, duration, function (value) {
-      window.scrollTo(0, value);
-    });
-  }
-
-  function animateScroll(startTop, targetTop, duration, applyValue) {
-    var startTime = performance.now();
-    var distance = targetTop - startTop;
-
-    if (activeScrollAnimation) {
-      window.cancelAnimationFrame(activeScrollAnimation);
-    }
-
-    function step(now) {
-      var progress = Math.min(1, (now - startTime) / duration);
-      var eased = 1 - Math.pow(1 - progress, 3);
-
-      applyValue(startTop + distance * eased);
-
-      if (progress < 1) {
-        activeScrollAnimation = window.requestAnimationFrame(step);
-      } else {
-        activeScrollAnimation = null;
-      }
-    }
-
-    activeScrollAnimation = window.requestAnimationFrame(step);
   }
 }());
