@@ -42,6 +42,7 @@
 
     savedPositions[target.id] = getCurrentScrollPosition(projectHeader);
     openRow(target);
+    setProjectFocus(projectHeader);
     flowHeaderToTop(projectHeader);
   }
 
@@ -113,11 +114,20 @@
 
   function closeRow(row) {
     var detail = getDetail(row);
+    var header = getHeaderForRow(row);
 
     window.clearTimeout(row.openTimer);
     window.clearTimeout(row.closeTimer);
     row.classList.remove("is-open");
     setExpandedState(row.id, false);
+
+    if (header) {
+      header.classList.remove("is-active-project");
+    }
+
+    if (!document.querySelector("tr.collapse.is-open")) {
+      clearProjectFocus();
+    }
 
     if (!detail) {
       return;
@@ -140,6 +150,25 @@
       detail.style.transform = "";
       detail.style.overflow = "";
     }, motionDuration);
+  }
+
+  function setProjectFocus(projectHeader) {
+    document.body.classList.add("project-focus-active");
+    document.querySelectorAll(".hover-trigger").forEach(function (row) {
+      row.classList.toggle("is-active-project", row === projectHeader);
+    });
+  }
+
+  function clearProjectFocus() {
+    document.body.classList.remove("project-focus-active");
+    document.querySelectorAll(".hover-trigger").forEach(function (row) {
+      row.classList.remove("is-active-project");
+    });
+  }
+
+  function getHeaderForRow(row) {
+    var header = row ? row.previousElementSibling : null;
+    return header && header.classList.contains("hover-trigger") ? header : null;
   }
 
   function flowHeaderToTop(projectHeader) {
