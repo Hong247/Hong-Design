@@ -1,6 +1,7 @@
 body.dark-mode .theme-toggle::before{color:#fff}
 .theme-toggle::before{font-size:22px;line-height:1}
-.header-title,.profile-facts dt,.social-links a,thead th{font-weight:700!important}
+.header-title,.profile-facts dt,.social-links a{font-weight:800!important}
+thead th{font-weight:900!important;letter-spacing:-.01em}
 tr[id^="demo"] .scroll-container img{height:min(500px,58vh);cursor:default!important;opacity:0;transform:translateY(6px);transition:opacity .42s ease,transform .55s cubic-bezier(.22,1,.36,1)}
 tr[id^="demo"].is-open .scroll-container img{opacity:1;transform:translateY(0)}
 .scroll-container iframe{width:min(980px,72vw);height:min(500px,58vh);opacity:0;transform:translateY(6px);transition:opacity .42s ease,transform .55s cubic-bezier(.22,1,.36,1)}
