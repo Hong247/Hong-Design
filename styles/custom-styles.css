@@ -1,8 +1,20 @@
 body.dark-mode .theme-toggle::before{color:#fff}
 .theme-toggle::before{font-size:22px;line-height:1}
-tr[id^="demo"] .scroll-container img{height:min(450px,52.5vh);cursor:default!important}
-.scroll-container iframe{width:min(900px,66vw);height:min(450px,52.5vh)}
+tr[id^="demo"] .scroll-container img{height:min(500px,58vh);cursor:default!important}
+.scroll-container iframe{width:min(980px,72vw);height:min(500px,58vh)}
 .hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
 .hovered-container br{display:none}
 .hovered-image{max-width:100%;max-height:52vh;object-fit:contain}
-@media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img,.scroll-container iframe{width:min(64.5vw,465px);height:auto}.hovered-container{display:none}}
+.hover-trigger{transition:opacity .38s ease,filter .38s ease,letter-spacing .38s ease}
+.hover-trigger .custom-btn{transition:opacity .38s ease,font-weight .38s ease,letter-spacing .38s ease,color .38s ease}
+body.project-focus-active .hover-trigger{opacity:.36}
+body.project-focus-active .hover-trigger.is-active-project{opacity:1}
+body.project-focus-active .hover-trigger.is-active-project .custom-btn{font-weight:500;letter-spacing:.02em}
+body.project-focus-active .hover-trigger.is-active-project td:first-child{position:relative}
+body.project-focus-active .hover-trigger.is-active-project td:first-child::before{content:"";position:absolute;left:-16px;top:50%;width:8px;height:1px;background:currentColor;transform:translateY(-50%)}
+#demo6 ~ .hover-trigger{opacity:.72}
+#demo6 + .hover-trigger td:first-child{position:relative;padding-top:34px}
+#demo6 + .hover-trigger td:first-child::after{content:"ARCHIVE";position:absolute;left:0;top:12px;font-size:.68em;letter-spacing:.18em;opacity:.55;font-weight:400}
+body.project-focus-active #demo6 ~ .hover-trigger{opacity:.26}
+body.project-focus-active #demo6 ~ .hover-trigger.is-active-project{opacity:1}
+@media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img,.scroll-container iframe{width:min(70vw,505px);height:auto}.hovered-container{display:none}body.project-focus-active .hover-trigger,#demo6 ~ .hover-trigger{opacity:1}#demo6 + .hover-trigger td:first-child{padding-top:0}#demo6 + .hover-trigger td:first-child::after{display:none}}
