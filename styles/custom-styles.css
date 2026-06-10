@@ -1,13 +1,16 @@
 body.dark-mode .theme-toggle::before{color:#fff}
 .theme-toggle::before{font-size:22px;line-height:1}
-tr[id^="demo"] .scroll-container img{height:min(500px,58vh);cursor:default!important}
-.scroll-container iframe{width:min(980px,72vw);height:min(500px,58vh)}
+tr[id^="demo"] .scroll-container img{height:min(500px,58vh);cursor:default!important;opacity:0;transform:translateY(6px);transition:opacity .42s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+tr[id^="demo"].is-open .scroll-container img{opacity:1;transform:translateY(0)}
+.scroll-container iframe{width:min(980px,72vw);height:min(500px,58vh);opacity:0;transform:translateY(6px);transition:opacity .42s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+tr[id^="demo"].is-open .scroll-container iframe{opacity:1;transform:translateY(0)}
 .hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
 .hovered-container br{display:none}
-.hovered-image{max-width:100%;max-height:52vh;object-fit:contain}
+.hovered-image{max-width:100%;max-height:52vh;object-fit:contain;opacity:0;transition:opacity .2s ease,filter .2s ease;filter:blur(3px)}
+.hovered-image[src]{opacity:1;filter:blur(0)}
 .hover-trigger{transition:opacity .38s ease,filter .38s ease,letter-spacing .38s ease}
 .hover-trigger .custom-btn{transition:opacity .38s ease,font-weight .38s ease,letter-spacing .38s ease,color .38s ease}
-body.project-focus-active .hover-trigger{opacity:.36}
+body.project-focus-active .hover-trigger{opacity:.42}
 body.project-focus-active .hover-trigger.is-active-project{opacity:1}
 body.project-focus-active .hover-trigger:hover{opacity:1}
 body.project-focus-active .hover-trigger.is-active-project .custom-btn{font-weight:500;letter-spacing:.02em}
