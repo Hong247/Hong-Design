@@ -1,5 +1,7 @@
 (function () {
   var savedPositions = {};
+  var motionDuration = 650;
+  var motionOffset = "translateY(-4px)";
 
   window.addEventListener("click", handleProjectClick, true);
 
@@ -69,6 +71,11 @@
     return { type: "window", top: window.pageYOffset };
   }
 
+  function prepareDetailMotion(detail) {
+    detail.style.overflow = "hidden";
+    detail.style.transition = "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+  }
+
   function openRow(row) {
     var detail = getDetail(row);
 
@@ -81,9 +88,10 @@
       return;
     }
 
+    prepareDetailMotion(detail);
     detail.style.maxHeight = "0px";
     detail.style.opacity = "0";
-    detail.style.transform = "translateY(-8px)";
+    detail.style.transform = motionOffset;
 
     window.requestAnimationFrame(function () {
       detail.style.maxHeight = detail.scrollHeight + "px";
@@ -96,8 +104,9 @@
         detail.style.maxHeight = "";
         detail.style.opacity = "";
         detail.style.transform = "";
+        detail.style.overflow = "";
       }
-    }, 380);
+    }, motionDuration);
   }
 
   function closeRow(row) {
@@ -112,6 +121,7 @@
       return;
     }
 
+    prepareDetailMotion(detail);
     detail.style.maxHeight = detail.scrollHeight + "px";
     detail.style.opacity = "1";
     detail.style.transform = "translateY(0)";
@@ -119,14 +129,15 @@
     window.requestAnimationFrame(function () {
       detail.style.maxHeight = "0px";
       detail.style.opacity = "0";
-      detail.style.transform = "translateY(-8px)";
+      detail.style.transform = motionOffset;
     });
 
     row.closeTimer = window.setTimeout(function () {
       detail.style.maxHeight = "";
       detail.style.opacity = "";
       detail.style.transform = "";
-    }, 380);
+      detail.style.overflow = "";
+    }, motionDuration);
   }
 
   function forceHeaderToTop(projectHeader) {
@@ -146,10 +157,10 @@
 
     apply();
     window.requestAnimationFrame(apply);
-    window.setTimeout(apply, 40);
-    window.setTimeout(apply, 120);
-    window.setTimeout(apply, 260);
-    window.setTimeout(apply, 420);
+    window.setTimeout(apply, 60);
+    window.setTimeout(apply, 180);
+    window.setTimeout(apply, 360);
+    window.setTimeout(apply, motionDuration);
   }
 
   function getHeaderOffset(scrollWrapper) {
