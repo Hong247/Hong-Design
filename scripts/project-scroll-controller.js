@@ -60,7 +60,7 @@
     yearHeader.setAttribute("aria-label", "Sort projects by year");
     yearHeader.setAttribute("aria-sort", "descending");
     yearHeader.classList.add("year-sort-header", "sort-desc");
-    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-up">↑</span><span class="year-sort-down">↓</span></span>';
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">▲</span><span class="year-sort-arrow year-sort-down">▼</span></span>';
 
     yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
@@ -110,21 +110,22 @@
       }
 
       var detail = row.nextElementSibling && row.nextElementSibling.classList.contains("collapse") ? row.nextElementSibling : null;
+      var numberButton = row.querySelector("td:first-child .custom-btn");
       var yearButton = row.querySelector("td:last-child .custom-btn");
+      var projectNumber = numberButton ? parseInt(numberButton.textContent.trim(), 10) : 0;
       var year = yearButton ? parseInt(yearButton.textContent.trim(), 10) : 0;
-      var originalIndex = pairs.length;
 
       pairs.push({
         header: row,
         detail: detail,
         year: year,
-        originalIndex: originalIndex
+        projectNumber: projectNumber
       });
     });
 
     pairs.sort(function (a, b) {
       if (a.year === b.year) {
-        return a.originalIndex - b.originalIndex;
+        return direction === "desc" ? b.projectNumber - a.projectNumber : a.projectNumber - b.projectNumber;
       }
 
       return direction === "desc" ? b.year - a.year : a.year - b.year;
