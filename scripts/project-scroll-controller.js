@@ -125,7 +125,7 @@
 
     pairs.sort(function (a, b) {
       if (a.year === b.year) {
-        return direction === "desc" ? b.projectNumber - a.projectNumber : a.projectNumber - b.projectNumber;
+        return direction === "desc" ? a.projectNumber - b.projectNumber : b.projectNumber - a.projectNumber;
       }
 
       return direction === "desc" ? b.year - a.year : a.year - b.year;
