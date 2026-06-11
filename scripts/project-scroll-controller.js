@@ -4,8 +4,10 @@
   var scrollDuration = 620;
   var motionOffset = "translateY(-4px)";
   var activeScrollAnimation = null;
+  var currentSortDirection = "desc";
 
   window.addEventListener("click", handleProjectClick, true);
+  document.addEventListener("DOMContentLoaded", initYearSort);
 
   function handleProjectClick(event) {
     var button = event.target.closest && event.target.closest(".custom-btn[data-target]");
@@ -44,6 +46,96 @@
     openRow(target);
     setProjectFocus(projectHeader);
     flowHeaderToTop(projectHeader);
+  }
+
+  function initYearSort() {
+    var yearHeader = document.querySelector("thead th:last-child");
+
+    if (!yearHeader || yearHeader.querySelector(".year-sort-button")) {
+      return;
+    }
+
+    yearHeader.innerHTML = '<button type="button" class="year-sort-button" aria-label="Sort projects by year" aria-sort="descending"><span>YEAR</span><span class="year-sort-icon" aria-hidden="true">↕</span></button>';
+
+    yearHeader.querySelector(".year-sort-button").addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
+      sortProjectsByYear(currentSortDirection);
+      updateYearSortButton(yearHeader, currentSortDirection);
+    });
+  }
+
+  function updateYearSortButton(yearHeader, direction) {
+    var button = yearHeader.querySelector(".year-sort-button");
+    var icon = yearHeader.querySelector(".year-sort-icon");
+
+    if (!button || !icon) {
+      return;
+    }
+
+    button.setAttribute("aria-sort", direction === "desc" ? "descending" : "ascending");
+    icon.textContent = direction === "desc" ? "↓" : "↑";
+  }
+
+  function sortProjectsByYear(direction) {
+    var tbody = document.querySelector("tbody");
+
+    if (!tbody) {
+      return;
+    }
+
+    closeAllProjects();
+
+    var pairs = [];
+    var rows = Array.from(tbody.children);
+
+    rows.forEach(function (row) {
+      if (!row.classList || !row.classList.contains("hover-trigger")) {
+        return;
+      }
+
+      var detail = row.nextElementSibling && row.nextElementSibling.classList.contains("collapse") ? row.nextElementSibling : null;
+      var yearButton = row.querySelector("td:last-child .custom-btn");
+      var year = yearButton ? parseInt(yearButton.textContent.trim(), 10) : 0;
+      var originalIndex = pairs.length;
+
+      pairs.push({
+        header: row,
+        detail: detail,
+        year: year,
+        originalIndex: originalIndex
+      });
+    });
+
+    pairs.sort(function (a, b) {
+      if (a.year === b.year) {
+        return a.originalIndex - b.originalIndex;
+      }
+
+      return direction === "desc" ? b.year - a.year : a.year - b.year;
+    });
+
+    pairs.forEach(function (pair) {
+      tbody.appendChild(pair.header);
+
+      if (pair.detail) {
+        tbody.appendChild(pair.detail);
+      }
+    });
+
+    var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
+
+    if (scrollWrapper) {
+      animateElementScroll(scrollWrapper, 0, 420);
+    }
+  }
+
+  function closeAllProjects() {
+    document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
+      closeRow(row);
+    });
+    clearProjectFocus();
   }
 
   function setExpandedState(targetId, isExpanded) {
