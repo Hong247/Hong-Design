@@ -51,31 +51,45 @@
   function initYearSort() {
     var yearHeader = document.querySelector("thead th:last-child");
 
-    if (!yearHeader || yearHeader.querySelector(".year-sort-button")) {
+    if (!yearHeader || yearHeader.querySelector(".year-sort-label")) {
       return;
     }
 
-    yearHeader.innerHTML = '<button type="button" class="year-sort-button" aria-label="Sort projects by year" aria-sort="descending"><span>YEAR</span><span class="year-sort-icon" aria-hidden="true">↕</span></button>';
+    yearHeader.setAttribute("role", "button");
+    yearHeader.setAttribute("tabindex", "0");
+    yearHeader.setAttribute("aria-label", "Sort projects by year");
+    yearHeader.setAttribute("aria-sort", "descending");
+    yearHeader.classList.add("year-sort-header", "sort-desc");
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-up">↑</span><span class="year-sort-down">↓</span></span>';
 
-    yearHeader.querySelector(".year-sort-button").addEventListener("click", function (event) {
+    yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
-      currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
-      sortProjectsByYear(currentSortDirection);
-      updateYearSortButton(yearHeader, currentSortDirection);
+      toggleYearSort(yearHeader);
+    });
+
+    yearHeader.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleYearSort(yearHeader);
+      }
     });
   }
 
-  function updateYearSortButton(yearHeader, direction) {
-    var button = yearHeader.querySelector(".year-sort-button");
-    var icon = yearHeader.querySelector(".year-sort-icon");
+  function toggleYearSort(yearHeader) {
+    currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
+    sortProjectsByYear(currentSortDirection);
+    updateYearSortHeader(yearHeader, currentSortDirection);
+  }
 
-    if (!button || !icon) {
+  function updateYearSortHeader(yearHeader, direction) {
+    if (!yearHeader) {
       return;
     }
 
-    button.setAttribute("aria-sort", direction === "desc" ? "descending" : "ascending");
-    icon.textContent = direction === "desc" ? "↓" : "↑";
+    yearHeader.setAttribute("aria-sort", direction === "desc" ? "descending" : "ascending");
+    yearHeader.classList.toggle("sort-desc", direction === "desc");
+    yearHeader.classList.toggle("sort-asc", direction === "asc");
   }
 
   function sortProjectsByYear(direction) {
