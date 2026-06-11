@@ -7,7 +7,7 @@
   var currentSortDirection = "desc";
 
   window.addEventListener("click", handleProjectClick, true);
-  document.addEventListener("DOMContentLoaded", initYearSort);
+  document.addEventListener("DOMContentLoaded", initProjectHeaders);
 
   function handleProjectClick(event) {
     var button = event.target.closest && event.target.closest(".custom-btn[data-target]");
@@ -46,6 +46,19 @@
     openRow(target);
     setProjectFocus(projectHeader);
     flowHeaderToTop(projectHeader);
+  }
+
+  function initProjectHeaders() {
+    setNumberHeader();
+    initYearSort();
+  }
+
+  function setNumberHeader() {
+    var numberHeader = document.querySelector("thead th:first-child");
+
+    if (numberHeader) {
+      numberHeader.textContent = "#";
+    }
   }
 
   function initYearSort() {
