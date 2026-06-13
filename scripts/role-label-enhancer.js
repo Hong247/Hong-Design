@@ -1,19 +1,19 @@
 (function () {
   var roleLabels = {
-    demo1: "Brand Identity, Art Direction",
-    demo2: "Brand Identity, Visual Direction",
-    demo3: "Rebrand Concept, Art Direction",
-    demo4: "Brand Identity, UI Prototype",
-    demo5: "Poster Design, Art Direction",
-    demo6: "Campaign Concept, Poster Design",
-    demo7: "Editorial Design, Album Concept",
-    demo8: "Logo Design, Brand Identity",
-    demo9: "UI/UX Prototype, Sales Tool",
-    demo10: "Product Design, 3D Rendering",
-    demo11: "Web Design, 3D Environment",
-    demo12: "Furniture Design, Product Concept",
-    demo13: "Industrial Design, User Research",
-    demo14: "Logo Design, Automotive Branding"
+    demo1: "Brand Identity",
+    demo2: "Brand Identity",
+    demo3: "Art Direction",
+    demo4: "UI Prototype",
+    demo5: "Poster Design",
+    demo6: "Campaign Design",
+    demo7: "Editorial Design",
+    demo8: "Brand Identity",
+    demo9: "UI/UX Design",
+    demo10: "Product Design",
+    demo11: "Web Design",
+    demo12: "Furniture Design",
+    demo13: "Industrial Design",
+    demo14: "Logo Design"
   };
 
   document.addEventListener("DOMContentLoaded", function () {
