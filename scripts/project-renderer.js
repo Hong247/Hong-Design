@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderProjectArchive() {
   var tbody = document.getElementById("projectArchive");
   var projects = window.PORTFOLIO_PROJECTS || [];
+  var titleOverrides = window.PROJECT_TITLE_OVERRIDES || {};
 
   if (!tbody || !projects.length) {
     return;
@@ -14,12 +15,13 @@ function renderProjectArchive() {
 
   projects.forEach(function (project, index) {
     var number = String(index + 1).padStart(2, "0");
+    var displayTitle = titleOverrides[project.id] || project.title;
     var headerRow = document.createElement("tr");
     var detailRow = document.createElement("tr");
 
     headerRow.className = "hover-trigger";
     headerRow.setAttribute("data-image-source", project.preview || "");
-    headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.title + '</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + '</button></td>';
+    headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + '</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + '</button></td>';
 
     detailRow.id = project.id;
     detailRow.className = "collapse";
