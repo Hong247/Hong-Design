@@ -98,5 +98,53 @@ window.PORTFOLIO_PROJECTS = [
     year: "2022",
     preview: "images/rakuharu/rakuharu3.jpg",
     detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/rakuharu/rakuharu1.jpg" alt="rakuharu - Image 1"><img class="fullscreen-image" src="images/rakuharu/rakuharu2.jpg" alt="rakuharu - Image 2" loading="lazy"><img class="fullscreen-image" src="images/rakuharu/rakuharu3.jpg" alt="rakuharu - Image 3" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>raku haru is a hijab brand identity focused on accessible elegance. The logo needed to feel feminine, modern, and timeless while supporting a product range designed for women across different ages and personal styles.</p><p><span class="case-label">Outcome</span>I developed a visual direction that balances softness with clarity, giving the brand an inviting tone without making it feel overly delicate or exclusive. The result is a simple identity system that can support affordable products while still feeling considered and polished.</p><br>'
+  },
+  {
+    id: "demo9",
+    title: "TRAPO Digital Catalogue",
+    role: "UI/UX Design",
+    year: "2022",
+    preview: "images/trapodpc/trapodpc1.png",
+    detailHtml: '<div class="scroll-container"><iframe width="800" height="600" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F42OkkDJ2wRe9etERcPKCVz%2FTRAPO-Digital-Catalogue%3Ftype%3Ddesign%26node-id%3D1-2%26t%3Dh4Ksn1BdopSt7HCP-1%26scaling%3Dcontain%26page-id%3D0%253A1%26mode%3Ddesign" allowfullscreen loading="lazy"></iframe><img class="fullscreen-image" src="images/trapodpc/trapodpc1.png" alt="trapodpc - Image 1" loading="lazy"><img class="fullscreen-image" src="images/trapodpc/trapodpc2.png" alt="trapodpc - Image 1" loading="lazy"><img class="fullscreen-image" src="images/trapodpc/trapodpc3.png" alt="trapodpc - Image 3" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>This digital catalogue prototype for <a href="https://www.trapo.com/" target="_blank">TRAPO</a> explores a more efficient alternative to printed sales materials. Built in Figma, the prototype was designed for offline sales teams, in-store promotion, and quick product comparison.</p><p><span class="case-label">Outcome</span>The interface prioritizes speed, clear navigation, and immediate access to key product details. The outcome is a practical sales tool that reduces dependence on paper while making product presentation more interactive and easier to update.</p><br>'
+  },
+  {
+    id: "demo10",
+    title: "TRAPO Smartphone Holder",
+    role: "Product Design",
+    year: "2022",
+    preview: "images/traposh/traposh5.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/traposh/traposh1.jpg" alt="traposh - Image 1"><img class="fullscreen-image" src="images/traposh/traposh2.jpg" alt="traposh - Image 2" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh3.jpg" alt="traposh - Image 3" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh4.jpg" alt="traposh - Image 4" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh5.jpg" alt="traposh - Image 5" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh6.jpg" alt="traposh - Image 6" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh7.jpg" alt="traposh - Image 7" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh8.jpg" alt="traposh - Image 8" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>This MagSafe-compatible smartphone holder was developed as a flagship product concept for TRAPO. The design needed to feel more ownable than a generic holder while still meeting practical constraints around size, mounting, heat, and manufacturing.</p><p><span class="case-label">Outcome</span>I worked through form development, rendering, material direction, and brand integration. The final direction uses the company logo as a silhouette cue, pairs premium <a href="https://www.alcantara.com/" target="_blank">Alcantara</a> material with a glow LED detail, and balances automotive luxury with everyday usability.</p><br>'
+  },
+  {
+    id: "demo11",
+    title: "Talentlounge Virtual Career Fair",
+    role: "Web Design",
+    year: "2021",
+    preview: "images/talentlounge/talentlounge5.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/talentlounge/talentlounge1.jpg" alt="talentlounge - Image 1"><img class="fullscreen-image" src="images/talentlounge/talentlounge2.jpg" alt="talentlounge - Image 2" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge3.jpg" alt="talentlounge - Image 3" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge4.jpg" alt="talentlounge - Image 4" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge5.jpg" alt="talentlounge - Image 5" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge6.jpg" alt="talentlounge - Image 6" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>For <a href="https://talentlounge.co/Hello" target="_blank">Talentlounge</a>, I designed and rendered a virtual career fair experience that helped job seekers explore opportunities through an online 3D environment. The challenge was to make recruitment feel more engaging without sacrificing clarity or navigation.</p><p><span class="case-label">Outcome</span>My role covered visual direction, 3D modelling, rendering, and website integration. I created booth environments, category-based exploration, and visual assets that supported communication between candidates and employers while keeping the experience approachable and easy to scan.</p><br>'
+  },
+  {
+    id: "demo12",
+    title: "Nexus",
+    role: "Furniture Design",
+    year: "2021",
+    preview: "images/nexus/nexus2.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/nexus/nexus1.jpg" alt="nexus - Image 1"><img class="fullscreen-image" src="images/nexus/nexus2.jpg" alt="nexus - Image 2" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus3.jpg" alt="nexus - Image 3" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus4.jpg" alt="nexus - Image 4" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus5.jpg" alt="nexus - Image 5" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus6.jpg" alt="nexus - Image 6" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>Nexus is a public furniture concept created for the Malaysia National Design Competition <a href="https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/" target="_blank">TRANSEAT</a>, where our team became a top 10 finalist. The project reimagines station seating as a connector for people, movement, and public space.</p><p><span class="case-label">Outcome</span>Inspired by the "Serambi" concept in traditional Malay houses, the bench encourages pause, interaction, and continuity within MRT environments. The design uses Thermoplastic Elastomer, modular form, and illuminated edge details to create a seating system that is functional, symbolic, and memorable in transit spaces.</p><br>'
+  },
+  {
+    id: "demo13",
+    title: "Motorola Solutions Internship",
+    role: "Industrial Design",
+    year: "2020",
+    preview: "images/motorola/motorola3.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/motorola/motorola1.jpg" alt="motorola - Image 1"><img class="fullscreen-image" src="images/motorola/motorola2.jpg" alt="motorola - Image 2" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola3.jpg" alt="motorola - Image 3" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola4.jpg" alt="motorola - Image 4" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola5.jpg" alt="motorola - Image 5" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola6.jpg" alt="motorola - Image 6" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>During my internship with <a href="https://www.motorolasolutions.com/en_us.html" target="_blank">Motorola Solutions</a>, I completed a 12-week product design project for a two-way radio concept. The process covered research, concept development, 2D exploration, 3D modelling, rendering, and final presentation.</p><p><span class="case-label">Outcome</span>I visited 14 hotels to observe staff communication across different service environments. Those observations revealed opportunities around size, multitasking, information access, and product aesthetics. The final concept is a compact radio with a hidden display, LED indicator, intuitive controls, and an ergonomic form designed for real workplace use.</p><br>'
+  },
+  {
+    id: "demo14",
+    title: "E&K",
+    role: "Logo Design",
+    year: "2020",
+    preview: "images/e&k/e&k3.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/e&k/e&k1.jpg" alt="E&K - Image 1"><img class="fullscreen-image" src="images/e&k/e&k2.jpg" alt="E&K - Image 2" loading="lazy"><img class="fullscreen-image" src="images/e&k/e&k3.jpg" alt="E&K - Image 3" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>E&K is an automotive accessories and installation brand identity. The logo needed to feel simple, sharp, and memorable while reflecting the brand\'s focus on cars, customization, and service.</p><p><span class="case-label">Outcome</span>I developed a compact mark from the letters E and K, creating a visual form that feels technical without becoming overly complex. The result is a clean identity that can work across signage, decals, packaging, and digital applications.</p><br>'
   }
 ];
