@@ -30,6 +30,8 @@ function renderProjectArchive() {
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
   });
+
+  loadBase64ProjectImages(document);
 }
 
 function buildProjectDetail(project) {
@@ -45,6 +47,10 @@ function buildProjectDetail(project) {
       mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : '') + '>';
     }
 
+    if (item.type === "base64-image") {
+      mediaHtml += '<img class="fullscreen-image js-base64-image" data-base64-src="' + item.src + '" data-mime-type="' + (item.mimeType || 'image/jpeg') + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : '') + '>';
+    }
+
     if (item.type === "iframe") {
       mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
     }
@@ -57,4 +63,32 @@ function buildProjectDetail(project) {
   });
 
   return mediaHtml + descriptionHtml + "<br>";
+}
+
+function loadBase64ProjectImages(root) {
+  var images = (root || document).querySelectorAll(".js-base64-image[data-base64-src]");
+
+  images.forEach(function (image) {
+    var assetPath = image.getAttribute("data-base64-src");
+    var mimeType = image.getAttribute("data-mime-type") || "image/jpeg";
+
+    if (!assetPath || image.getAttribute("data-base64-loaded") === "true") {
+      return;
+    }
+
+    image.setAttribute("data-base64-loaded", "true");
+
+    window.fetch(assetPath)
+      .then(function (response) {
+        if (!response.ok) {
+          return "";
+        }
+        return response.text();
+      })
+      .then(function (base64Content) {
+        if (base64Content) {
+          image.src = "data:" + mimeType + ";base64," + base64Content.trim();
+        }
+      });
+  });
 }
