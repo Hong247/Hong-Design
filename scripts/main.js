@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       startIntelligentHoverPreview(trigger);
     });
 
+    trigger.addEventListener("mousemove", updateHoverPreviewParallax);
     trigger.addEventListener("mouseleave", stopIntelligentHoverPreview);
   });
 
@@ -58,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
 var hoverPreviewTimer = null;
 var hoverPreviewIndex = 0;
 var hoverPreviewImages = [];
+var hoverPreviewParallaxX = 0;
+var hoverPreviewParallaxY = 0;
 
 function applySavedTheme() {
   setTheme("light");
@@ -317,6 +320,8 @@ function startIntelligentHoverPreview(trigger) {
 
   hoverPreviewImages = getHoverPreviewImages(trigger);
   hoverPreviewIndex = 0;
+  hoverPreviewParallaxX = 0;
+  hoverPreviewParallaxY = 0;
 
   if (!hoverPreviewImages.length) {
     return;
@@ -342,9 +347,12 @@ function stopIntelligentHoverPreview() {
 
   hoverPreviewImages = [];
   hoverPreviewIndex = 0;
+  hoverPreviewParallaxX = 0;
+  hoverPreviewParallaxY = 0;
 
   if (hoveredImage) {
     hoveredImage.style.display = "none";
+    hoveredImage.style.transform = "";
     hoveredImage.removeAttribute("src");
   }
 }
@@ -382,11 +390,39 @@ function showHoveredPreviewImage(source) {
 
   hoveredImage.style.opacity = "0";
   hoveredImage.style.display = "block";
+  applyHoverPreviewParallax();
 
   window.setTimeout(function () {
     hoveredImage.src = source;
     hoveredImage.style.opacity = "1";
+    applyHoverPreviewParallax();
   }, 90);
+}
+
+function updateHoverPreviewParallax(event) {
+  var hoveredImage = document.querySelector(".hovered-image");
+  var row = event.currentTarget;
+  var rect = row.getBoundingClientRect();
+  var relativeX = rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0;
+  var relativeY = rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0;
+
+  if (!hoveredImage || !hoveredImage.getAttribute("src")) {
+    return;
+  }
+
+  hoverPreviewParallaxX = relativeX * 10;
+  hoverPreviewParallaxY = relativeY * 8;
+  applyHoverPreviewParallax();
+}
+
+function applyHoverPreviewParallax() {
+  var hoveredImage = document.querySelector(".hovered-image");
+
+  if (!hoveredImage) {
+    return;
+  }
+
+  hoveredImage.style.transform = "translate(" + hoverPreviewParallaxX + "px, " + hoverPreviewParallaxY + "px)";
 }
 
 function displayHoveredImage(imageSource) {
