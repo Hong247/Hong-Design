@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
-  var projectButtons = document.querySelectorAll(".custom-btn[data-target]");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
   addContactEmailLink();
@@ -14,33 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (themeToggle) {
     themeToggle.addEventListener("click", toggleTheme);
   }
-
-  projectButtons.forEach(function (button) {
-    button.setAttribute("aria-expanded", "false");
-
-    button.addEventListener("click", function () {
-      var targetSelector = button.getAttribute("data-target");
-      var target = document.querySelector(targetSelector);
-
-      if (!target) {
-        return;
-      }
-
-      document.querySelectorAll("tr.collapse").forEach(function (row) {
-        if (row !== target) {
-          closeProjectRow(row);
-        }
-      });
-
-      if (target.classList.contains("is-open")) {
-        closeProjectRow(target);
-        return;
-      }
-
-      openProjectRow(target);
-      forceProjectHeaderToTop(button);
-    });
-  });
 
   hoverTriggers.forEach(function (trigger) {
     trigger.addEventListener("mouseenter", function () {
@@ -288,117 +260,6 @@ function groupProjectDescriptions() {
       breakElement.remove();
     });
   });
-}
-
-function setExpandedState(targetId, isExpanded) {
-  if (!targetId) {
-    return;
-  }
-
-  document.querySelectorAll('.custom-btn[data-target="#' + targetId + '"]').forEach(function (button) {
-    button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
-  });
-}
-
-function getProjectDetail(row) {
-  return row ? row.querySelector(".project-detail") : null;
-}
-
-function openProjectRow(row) {
-  var detail = getProjectDetail(row);
-
-  if (!row || !detail) {
-    return;
-  }
-
-  window.clearTimeout(row.closeTimer);
-  window.clearTimeout(row.openTimer);
-  row.classList.remove("is-closing");
-  row.classList.add("is-open");
-  setExpandedState(row.id, true);
-
-  detail.style.maxHeight = "0px";
-  detail.style.opacity = "0";
-  detail.style.transform = "translateY(-8px)";
-
-  window.requestAnimationFrame(function () {
-    detail.style.maxHeight = detail.scrollHeight + "px";
-    detail.style.opacity = "1";
-    detail.style.transform = "translateY(0)";
-  });
-
-  row.openTimer = window.setTimeout(function () {
-    if (row.classList.contains("is-open")) {
-      detail.style.maxHeight = "none";
-    }
-  }, 340);
-}
-
-function closeProjectRow(row) {
-  var detail = getProjectDetail(row);
-
-  if (!row || !detail || (!row.classList.contains("is-open") && !row.classList.contains("is-closing"))) {
-    return;
-  }
-
-  window.clearTimeout(row.closeTimer);
-  window.clearTimeout(row.openTimer);
-  row.classList.add("is-closing");
-  row.classList.remove("is-open");
-  setExpandedState(row.id, false);
-
-  detail.style.maxHeight = detail.scrollHeight + "px";
-  detail.style.opacity = "1";
-  detail.style.transform = "translateY(0)";
-
-  window.requestAnimationFrame(function () {
-    detail.style.maxHeight = "0px";
-    detail.style.opacity = "0";
-    detail.style.transform = "translateY(-8px)";
-  });
-
-  row.closeTimer = window.setTimeout(function () {
-    row.classList.remove("is-closing");
-    detail.style.maxHeight = "";
-    detail.style.opacity = "";
-    detail.style.transform = "";
-  }, 340);
-}
-
-function forceProjectHeaderToTop(button) {
-  var projectHeader = button.closest(".hover-trigger");
-  var topOffset = window.innerWidth <= 768 ? 18 : 32;
-
-  if (!projectHeader) {
-    return;
-  }
-
-  function scrollEveryContainer() {
-    var targetRect = projectHeader.getBoundingClientRect();
-    var current = projectHeader.parentElement;
-
-    while (current && current !== document.documentElement) {
-      var style = window.getComputedStyle(current);
-      var canScroll = current.scrollHeight > current.clientHeight + 2;
-      var allowsScroll = /(auto|scroll|overlay)/.test(style.overflowY) || /(auto|scroll|overlay)/.test(style.overflow);
-
-      if (canScroll && allowsScroll) {
-        var parentRect = current.getBoundingClientRect();
-        current.scrollTop += targetRect.top - parentRect.top - topOffset;
-      }
-
-      current = current.parentElement;
-    }
-
-    projectHeader.scrollIntoView({ block: "start", inline: "nearest" });
-    window.scrollBy(0, -topOffset);
-  }
-
-  scrollEveryContainer();
-  window.requestAnimationFrame(scrollEveryContainer);
-  window.setTimeout(scrollEveryContainer, 80);
-  window.setTimeout(scrollEveryContainer, 220);
-  window.setTimeout(scrollEveryContainer, 420);
 }
 
 function startIntelligentHoverPreview(trigger) {
