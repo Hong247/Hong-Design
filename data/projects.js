@@ -66,5 +66,37 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/monday/monday1.jpg",
     detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/monday/monday1.jpg" alt="monday - Image 1"><iframe width="1200" height="600" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign" allowfullscreen loading="lazy"></iframe><img class="fullscreen-image" src="images/monday/monday2.jpg" alt="monday - Image 2" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>monday is an office-chair brand and website prototype for a product entering a competitive furniture market. I built the identity around four qualities: trustworthy, resilient, authentic, and subtle.</p><p><span class="case-label">Outcome</span>The lowercase logo takes cues from <a href="https://artsandculture.google.com/project/bauhaus" target="_blank">Bauhaus</a> efficiency and the geometry of <a href="https://learn.microsoft.com/en-us/typography/font-list/bauhaus-93" target="_blank">Bauhaus 93</a>. I used a wider stance, calm spacing, and restrained interface direction to make the brand feel supportive rather than loud - a chair that quietly helps people work better.</p><br>'
+  },
+  {
+    id: "demo5",
+    title: "Kill The Bride",
+    role: "Poster Design",
+    year: "2023",
+    preview: "images/killthebride/killthebride1.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/killthebride/killthebride1.jpg" alt="killthebride - Image 1"><img class="fullscreen-image" src="images/killthebride/killthebride2.jpg" alt="killthebride - Image 2" loading="lazy"><img class="fullscreen-image" src="images/killthebride/killthebride3.jpg" alt="killthebride - Image 3" loading="lazy"><img class="fullscreen-image" src="images/killthebride/killthebride4.jpg" alt="killthebride - Image 4" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>Kill The Bride is a speculative film-poster series imagining a spiritual sequel to <a href="https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill" target="_blank">Kill Bill</a>. The concept asks how a familiar action-revenge visual language could evolve twenty years later while still carrying the tension, confidence, and graphic force of the original films.</p><p><span class="case-label">Outcome</span>I used bold type, controlled color contrast, and a blue-led palette to extend the established red and yellow visual world. The posters aim to feel connected to the franchise without simply copying it, balancing homage with a new point of view.</p><br>'
+  },
+  {
+    id: "demo6",
+    title: "WWF's Stop Haunting Mother Nature",
+    role: "Campaign Design",
+    year: "2023",
+    preview: "images/wwf/wwf4.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/wwf/wwf1.jpg" alt="wwf - Image 1"><img class="fullscreen-image" src="images/wwf/wwf2.jpg" alt="wwf - Image 2" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf3.jpg" alt="wwf - Image 3" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf4.jpg" alt="wwf - Image 4" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf5.jpg" alt="wwf - Image 5" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf6.jpg" alt="wwf - Image 6" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf7.jpg" alt="wwf - Image 7" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf8.jpg" alt="wwf - Image 8" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>Stop Haunting Mother Nature is an environmental awareness campaign concept for <a href="https://www.worldwildlife.org/" target="_blank">WWF</a>. Instead of using expected nature imagery, the campaign reframes pollution as a horror story where human activity becomes the threat.</p><p><span class="case-label">Outcome</span>The series restyles recognizable horror references, including <a href="https://www.imdb.com/title/tt0102926/" target="_blank">The Silence of the Lambs</a>, <a href="https://www.imdb.com/title/tt0081505/?ref_=fn_al_tt_1" target="_blank">The Shining</a>, and <a href="https://www.imdb.com/title/tt0077651/?ref_=nv_sr_srsg_1_tt_7_nm_0_q_halloween" target="_blank">Halloween</a>, into environmental messages. Familiar poster silhouettes create quick recognition, while altered details reveal the campaign message: stop treating nature like the victim in our own horror film.</p><br>'
+  },
+  {
+    id: "demo7",
+    title: "X̱wáýx̱way",
+    role: "Editorial Design",
+    year: "2023",
+    preview: "images/x/x5.gif",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/x/x1.jpg" alt="X̱wáýx̱way - Image 1"><img class="fullscreen-image" src="images/x/x2.jpg" alt="X̱wáýx̱way - Image 2" loading="lazy"><img class="fullscreen-image" src="images/x/x3.jpg" alt="X̱wáýx̱way - Image 3" loading="lazy"><img class="fullscreen-image" src="images/x/x4.jpg" alt="X̱wáýx̱way - Image 4" loading="lazy"><img class="fullscreen-image" src="images/x/x5.gif" alt="X̱wáýx̱way - Image 5" loading="lazy"><img class="fullscreen-image" src="images/x/x6.jpg" alt="X̱wáýx̱way - Image 6" loading="lazy"><img class="fullscreen-image" src="images/x/x7.jpg" alt="X̱wáýx̱way - Image 7" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>X̱wáýx̱way is a speculative vinyl soundtrack album dedicated to <a href="https://stanleyparkecology.ca/" target="_blank">Stanley Park</a> in Vancouver. The project treats the park as living history rather than a tourist landmark, connecting landscape, memory, Indigenous presence, and contemporary city life through sound and print.</p><p><span class="case-label">Outcome</span>The album is organized around six themes: Indigenous history, woods, waves, land, wind, and modernization. I used a monochromatic retro direction to make the object feel collectible and archival, imagining it as a fundraising piece that could preserve attention, memory, and care for the park.</p><br>'
+  },
+  {
+    id: "demo8",
+    title: "raku haru",
+    role: "Brand Identity",
+    year: "2022",
+    preview: "images/rakuharu/rakuharu3.jpg",
+    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/rakuharu/rakuharu1.jpg" alt="rakuharu - Image 1"><img class="fullscreen-image" src="images/rakuharu/rakuharu2.jpg" alt="rakuharu - Image 2" loading="lazy"><img class="fullscreen-image" src="images/rakuharu/rakuharu3.jpg" alt="rakuharu - Image 3" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>raku haru is a hijab brand identity focused on accessible elegance. The logo needed to feel feminine, modern, and timeless while supporting a product range designed for women across different ages and personal styles.</p><p><span class="case-label">Outcome</span>I developed a visual direction that balances softness with clarity, giving the brand an inviting tone without making it feel overly delicate or exclusive. The result is a simple identity system that can support affordable products while still feeling considered and polished.</p><br>'
   }
 ];
