@@ -3,6 +3,7 @@
   var motionDuration = 650;
   var scrollDuration = 620;
   var sortMotionDuration = 520;
+  var sortStaggerDelay = 42;
   var motionOffset = "translateY(-4px)";
   var activeScrollAnimation = null;
   var currentSortDirection = "desc";
@@ -137,23 +138,15 @@
       });
     });
 
-    animateSortReorder(tbody, pairs, function () {
-      pairs.sort(function (a, b) {
-        if (a.year === b.year) {
-          return direction === "desc" ? a.projectNumber - b.projectNumber : b.projectNumber - a.projectNumber;
-        }
+    pairs.sort(function (a, b) {
+      if (a.year === b.year) {
+        return direction === "desc" ? a.projectNumber - b.projectNumber : b.projectNumber - a.projectNumber;
+      }
 
-        return direction === "desc" ? b.year - a.year : a.year - b.year;
-      });
-
-      pairs.forEach(function (pair) {
-        tbody.appendChild(pair.header);
-
-        if (pair.detail) {
-          tbody.appendChild(pair.detail);
-        }
-      });
+      return direction === "desc" ? b.year - a.year : a.year - b.year;
     });
+
+    animateSequentialSortReorder(tbody, pairs);
 
     var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
 
@@ -162,12 +155,12 @@
     }
   }
 
-  function animateSortReorder(tbody, pairs, reorder) {
+  function animateSequentialSortReorder(tbody, sortedPairs) {
     var movingRows = [];
     var firstPositions = new Map();
     var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    pairs.forEach(function (pair) {
+    sortedPairs.forEach(function (pair) {
       movingRows.push(pair.header);
 
       if (pair.detail) {
@@ -176,7 +169,7 @@
     });
 
     if (prefersReducedMotion || !movingRows.length) {
-      reorder();
+      appendSortedPairs(tbody, sortedPairs);
       return;
     }
 
@@ -184,37 +177,65 @@
       firstPositions.set(row, row.getBoundingClientRect());
     });
 
-    reorder();
-
     movingRows.forEach(function (row) {
-      var first = firstPositions.get(row);
-      var last = row.getBoundingClientRect();
-      var deltaY = first ? first.top - last.top : 0;
-
-      if (!deltaY) {
-        return;
-      }
-
-      row.style.transition = "none";
-      row.style.transform = "translateY(" + deltaY + "px)";
-      row.style.opacity = "0.72";
+      row.style.transition = "opacity 160ms ease, transform 160ms ease";
+      row.style.opacity = "0.38";
+      row.style.transform = "translateY(8px)";
       row.style.willChange = "transform, opacity";
-
-      window.requestAnimationFrame(function () {
-        row.style.transition = "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " + sortMotionDuration + "ms ease";
-        row.style.transform = "translateY(0)";
-        row.style.opacity = "1";
-      });
     });
 
     window.setTimeout(function () {
-      movingRows.forEach(function (row) {
-        row.style.transition = "";
-        row.style.transform = "";
-        row.style.opacity = "";
-        row.style.willChange = "";
+      appendSortedPairs(tbody, sortedPairs);
+
+      sortedPairs.forEach(function (pair, index) {
+        animateSortedPair(pair, firstPositions, index);
       });
-    }, sortMotionDuration + 80);
+
+      window.setTimeout(function () {
+        movingRows.forEach(function (row) {
+          row.style.transition = "";
+          row.style.transform = "";
+          row.style.opacity = "";
+          row.style.willChange = "";
+        });
+      }, sortMotionDuration + sortedPairs.length * sortStaggerDelay + 120);
+    }, 120);
+  }
+
+  function appendSortedPairs(tbody, pairs) {
+    pairs.forEach(function (pair) {
+      tbody.appendChild(pair.header);
+
+      if (pair.detail) {
+        tbody.appendChild(pair.detail);
+      }
+    });
+  }
+
+  function animateSortedPair(pair, firstPositions, index) {
+    var rows = [pair.header];
+
+    if (pair.detail) {
+      rows.push(pair.detail);
+    }
+
+    rows.forEach(function (row) {
+      var first = firstPositions.get(row);
+      var last = row.getBoundingClientRect();
+      var deltaY = first ? first.top - last.top : 0;
+      var delay = index * sortStaggerDelay;
+
+      row.style.transition = "none";
+      row.style.transform = deltaY ? "translateY(" + deltaY + "px)" : "translateY(12px)";
+      row.style.opacity = "0";
+      row.style.willChange = "transform, opacity";
+
+      window.setTimeout(function () {
+        row.style.transition = "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " + sortMotionDuration + "ms ease";
+        row.style.transform = "translateY(0)";
+        row.style.opacity = "1";
+      }, delay);
+    });
   }
 
   function closeAllProjects() {
