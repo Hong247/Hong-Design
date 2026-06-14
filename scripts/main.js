@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
-
-  insertCMarketWebsiteProject();
-  addContactEmailLink();
-
   var projectButtons = document.querySelectorAll(".custom-btn[data-target]");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
+  addContactEmailLink();
   applySavedTheme();
   elevatePortfolioIntroCopy();
   applyRefinedRoleLabels();
@@ -65,37 +62,6 @@ var hoverPreviewIndex = 0;
 var hoverPreviewImages = [];
 var hoverPreviewParallaxX = 0;
 var hoverPreviewParallaxY = 0;
-
-function insertCMarketWebsiteProject() {
-  var tbody = document.querySelector("tbody");
-  var firstProject = tbody ? tbody.querySelector(".hover-trigger") : null;
-
-  if (!tbody || document.getElementById("demo-cmarket-site")) {
-    renumberProjectArchive();
-    return;
-  }
-
-  var headerRow = document.createElement("tr");
-  var detailRow = document.createElement("tr");
-
-  headerRow.className = "hover-trigger";
-  headerRow.setAttribute("data-image-source", "https://www.cmarket.ca/cdn/shop/files/ube_latte.jpg?v=1777496662&width=1100");
-  headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#demo-cmarket-site">01</button></td><td><button type="button" class="custom-btn" data-target="#demo-cmarket-site">C Market Coffee Official Site</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#demo-cmarket-site">Web Design</button></td><td><button type="button" class="custom-btn" data-target="#demo-cmarket-site">2024</button></td>';
-
-  detailRow.id = "demo-cmarket-site";
-  detailRow.className = "collapse";
-  detailRow.innerHTML = '<td colspan="4"><div class="scroll-container"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/files/ube_latte.jpg?v=1777496662&width=1100" alt="C Market Coffee website homepage visual"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/files/ube_cream.jpg?v=1777496487&width=1100" alt="C Market Coffee website product feature" loading="lazy"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/collections/Facetune_20-11-2020-10-20-41_82e60f54-972f-4399-bff1-226694e47da1.jpg?v=1779299253&width=1500" alt="C Market Coffee website coffee beans collection" loading="lazy"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/files/app.jpg?v=1725652174&width=1500" alt="C Market Coffee mobile app website section" loading="lazy"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/collections/Newsletter-_Barista_Classes_2ce230b3-6c19-41b1-9ca9-bf60f2abde6d.png?height=1080&v=1779299253" alt="C Market Coffee classes website section" loading="lazy"><img class="fullscreen-image" src="https://www.cmarket.ca/cdn/shop/collections/popup_banner_580e2017-9f93-45a8-bfb8-dcc0e995eba0.jpg?height=1080&v=1779299254" alt="C Market Coffee pop-up market website section" loading="lazy"></div><p class="max-width-paragraph"><span class="case-label">Brief</span>I designed the official C Market Coffee website as a centralized digital platform for a growing coffee and bakery brand, building from a Shopify-based theme and customizing it into a clearer brand, e-commerce, and information experience.</p><p><span class="case-label">Direction</span>The website structure brings together online ordering, coffee beans, matcha, tea, merchandise, gift cards, coffee classes, pop-up markets, room rental, locations, promotions, community programs, franchise information, careers, and mobile app promotion into a single navigable system.</p><p><span class="case-label">Outcome</span>The final site supports both customer-facing discovery and business operations: visitors can browse products, find locations, join community programs, access the mobile app, contact the brand, and move between retail, e-commerce, and service-based offerings through one official destination.</p><br></td>';
-
-  if (firstProject) {
-    tbody.insertBefore(detailRow, firstProject);
-    tbody.insertBefore(headerRow, detailRow);
-  } else {
-    tbody.appendChild(headerRow);
-    tbody.appendChild(detailRow);
-  }
-
-  renumberProjectArchive();
-}
 
 function addContactEmailLink() {
   var socialLinks = document.querySelector(".social-links");
@@ -240,6 +206,7 @@ function updateFact(label, value) {
 
 function applyRefinedRoleLabels() {
   var roleLabels = {
+    "demo-cmarket-tote-bag": "Merchandise Design",
     "demo-cmarket-site": "Web Design",
     demo1: "Brand Identity",
     demo2: "Brand Identity",
