@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function renderProjectArchive() {
-  var tbody = document.querySelector("tbody");
+  var tbody = document.getElementById("projectArchive");
   var projects = window.PORTFOLIO_PROJECTS || [];
 
   if (!tbody || !projects.length) {
