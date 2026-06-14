@@ -39,12 +39,12 @@ function applyProjectMediaOverride(project, override) {
     return project;
   }
 
-  var media = project.media || [];
+  var baseMedia = override.media || project.media || [];
   var prependMedia = override.prependMedia || [];
 
   return Object.assign({}, project, {
     preview: override.preview || project.preview,
-    media: prependMedia.concat(media)
+    media: prependMedia.concat(baseMedia)
   });
 }
 
