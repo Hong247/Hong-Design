@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
 
   insertCMarketWebsiteProject();
+  addContactEmailLink();
 
   var projectButtons = document.querySelectorAll(".custom-btn[data-target]");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
@@ -94,6 +95,22 @@ function insertCMarketWebsiteProject() {
   }
 
   renumberProjectArchive();
+}
+
+function addContactEmailLink() {
+  var socialLinks = document.querySelector(".social-links");
+
+  if (!socialLinks || socialLinks.querySelector('a[href="mailto:cheokhong.design@gmail.com"]')) {
+    return;
+  }
+
+  var item = document.createElement("li");
+  var link = document.createElement("a");
+
+  link.href = "mailto:cheokhong.design@gmail.com";
+  link.textContent = "Email";
+  item.appendChild(link);
+  socialLinks.appendChild(item);
 }
 
 function renumberProjectArchive() {
