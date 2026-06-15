@@ -1,7 +1,17 @@
 window.PROJECT_MEDIA_OVERRIDES = {
   "demo-cmarket-tote-bag": {
-    preview: "images/C Market Coffee Tote Bag/1.jpg",
+    preview: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
     prependMedia: [
+      {
+        type: "image",
+        src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
+        alt: "C Market Coffee tote bag front image 1"
+      },
+      {
+        type: "image",
+        src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.jpg",
+        alt: "C Market Coffee tote bag front image 2"
+      },
       {
         type: "image",
         src: "images/C Market Coffee Tote Bag/1.jpg",
