@@ -24,13 +24,13 @@ body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:fo
 tr.collapse .project-detail{transform-origin:top left;transition:max-height .72s cubic-bezier(.22,1,.36,1),opacity .56s ease,transform .72s cubic-bezier(.22,1,.36,1),filter .56s ease!important;filter:blur(4px)}
 tr.collapse.is-open .project-detail{filter:blur(0)}
 tr.collapse.is-open .project-description{animation:projectDescriptionMorph .72s cubic-bezier(.22,1,.36,1) both}
-tr[id^="demo"] .scroll-container img{height:min(500px,58vh);cursor:default!important;opacity:0;transform:translateY(10px) scale(.985);transition:opacity .48s ease,transform .68s cubic-bezier(.22,1,.36,1)}
+tr[id^="demo"] .scroll-container img{height:min(500px,58vh)!important;width:auto!important;max-width:none;max-height:none;object-fit:contain;object-position:center;aspect-ratio:auto;cursor:default!important;opacity:0;transform:translateY(10px) scale(.985);transition:opacity .48s ease,transform .68s cubic-bezier(.22,1,.36,1)}
 tr[id^="demo"].is-open .scroll-container img{opacity:1;transform:translateY(0) scale(1)}
 .scroll-container iframe{width:min(980px,72vw);height:min(500px,58vh);opacity:0;transform:translateY(10px) scale(.985);transition:opacity .48s ease,transform .68s cubic-bezier(.22,1,.36,1)}
 tr[id^="demo"].is-open .scroll-container iframe{opacity:1;transform:translateY(0) scale(1)}
 .hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
 .hovered-container br{display:none}
-.hovered-image{max-width:100%;max-height:52vh;object-fit:contain;opacity:0;transition:opacity .2s ease,filter .2s ease,transform .22s ease;filter:blur(3px)}
+.hovered-image{width:auto!important;max-width:100%;height:auto!important;max-height:52vh;object-fit:contain;object-position:center;aspect-ratio:auto;opacity:0;transition:opacity .2s ease,filter .2s ease,transform .22s ease;filter:blur(3px)}
 .hovered-image[src]{opacity:1;filter:blur(0)}
 .hover-trigger{transition:opacity .38s ease,filter .38s ease,letter-spacing .38s ease}
 .hover-trigger .custom-btn{transition:opacity .38s ease,font-weight .38s ease,letter-spacing .38s ease,color .38s ease}
@@ -42,4 +42,4 @@ body.project-focus-active .hover-trigger:hover .custom-btn{letter-spacing:.01em}
 body.project-focus-active .hover-trigger.is-active-project td:first-child{position:relative}
 body.project-focus-active .hover-trigger.is-active-project td:first-child::before{content:"";position:absolute;left:-16px;top:50%;width:8px;height:1px;background:currentColor;transform:translateY(-50%)}
 @keyframes projectDescriptionMorph{0%{opacity:0;transform:translateY(12px)}38%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-@media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img,.scroll-container iframe{width:min(70vw,505px);height:auto}.hovered-container{display:none}.email-contact-item{gap:6px}.email-copy-feedback{position:static;margin-left:5px;transform:translateX(-3px)}.email-contact-item.is-copied .email-copy-feedback{transform:translateX(0)}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td{padding-top:8px;padding-bottom:8px}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
+@media (max-width:768px){.theme-toggle::before{font-size:18px}tr[id^="demo"] .scroll-container img{height:min(420px,68vh)!important;width:auto!important;max-width:none;max-height:none;object-fit:contain;object-position:center;aspect-ratio:auto}.scroll-container iframe{width:min(70vw,505px);height:auto}.hovered-container{display:none}.email-contact-item{gap:6px}.email-copy-feedback{position:static;margin-left:5px;transform:translateX(-3px)}.email-contact-item.is-copied .email-copy-feedback{transform:translateX(0)}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td{padding-top:8px;padding-bottom:8px}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
