@@ -1,34 +1,4 @@
 window.PROJECT_MEDIA_OVERRIDES = {
-  "demo-cmarket-tote-bag": {
-    preview: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
-    prependMedia: [
-      {
-        type: "image",
-        src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
-        alt: "C Market Coffee tote bag front image 1"
-      },
-      {
-        type: "image",
-        src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.jpg",
-        alt: "C Market Coffee tote bag front image 2"
-      },
-      {
-        type: "image",
-        src: "images/C Market Coffee Tote Bag/1.jpg",
-        alt: "C Market Coffee tote bags editorial product photo"
-      },
-      {
-        type: "image",
-        src: "images/C Market Coffee Tote Bag/2.jpg",
-        alt: "C Market Coffee white tote bag editorial product photo"
-      },
-      {
-        type: "image",
-        src: "images/C Market Coffee Tote Bag/3.jpg",
-        alt: "C Market Coffee black tote bag editorial product photo"
-      }
-    ]
-  },
   "demo-cmarket-site": {
     preview: "images/C Market Coffee Website/cmarket website 1.jpg",
     media: [
