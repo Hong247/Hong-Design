@@ -1,6 +1,6 @@
 window.HOMEPAGE_CONTENT = {
   intro: {
-    kicker: "Vancouver, BC / multidisciplinary design",
+    kicker: "Vancouver, BC / visual identity & product design",
     statement: "Visual identity and product design with a focus on clarity, restraint, and strong visual structure.",
     detail: "I build design systems that feel intentional, useful, and visually disciplined — from composition and hierarchy to material, rendering, and real-world application."
   },
