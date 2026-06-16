@@ -1,21 +1,21 @@
 window.HOMEPAGE_CONTENT = {
   intro: {
     kicker: "Vancouver, BC / multidisciplinary design",
-    statement: "Working across visual identity, product design, and production-ready design assets — with a focus on clarity, restraint, and strong visual structure.",
-    detail: "Good design should feel intentional, useful, and visually disciplined. Each project is built through careful decisions: composition, hierarchy, and how every detail holds together across real-world applications."
+    statement: "Visual identity and product design with a focus on clarity, restraint, and strong visual structure.",
+    detail: "I build design systems that feel intentional, useful, and visually disciplined — from composition and hierarchy to material, rendering, and real-world application."
   },
   facts: [
     {
       label: "Focus",
-      value: "Visual identity / product design / production-ready design assets"
+      value: "visual identity / product design"
     },
     {
       label: "Tools",
-      value: "Adobe CC / Figma / SolidWorks / KeyShot / rendering / research"
+      value: "visualization / rendering / research"
     },
     {
       label: "Experience",
-      value: "Work across retail, mobility, recruitment, environmental campaigns, and product concepts"
+      value: "retail branding / environmental campaigns / brand systems"
     }
   ],
   links: [
