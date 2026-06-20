@@ -31,11 +31,8 @@
     event.stopImmediatePropagation();
 
     var wasOpen = target.classList.contains("is-open");
-
-    document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
-      if (row !== target) {
-        closeRow(row);
-      }
+    var rowsToClose = Array.from(document.querySelectorAll("tr.collapse.is-open")).filter(function (row) {
+      return row !== target;
     });
 
     if (wasOpen) {
@@ -48,11 +45,22 @@
     setProjectFocus(projectHeader);
 
     if (window.innerWidth <= 768) {
-      flowHeaderToTop(projectHeader, function () {
-        openRow(target);
+      rowsToClose.forEach(function (row) {
+        closeRow(row);
       });
+
+      window.setTimeout(function () {
+        flowHeaderToTop(projectHeader, function () {
+          openRow(target);
+        });
+      }, rowsToClose.length ? motionDuration + 40 : 0);
+
       return;
     }
+
+    rowsToClose.forEach(function (row) {
+      closeRow(row);
+    });
 
     openRow(target);
     flowHeaderToTop(projectHeader);
