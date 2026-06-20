@@ -45,8 +45,16 @@
     }
 
     savedPositions[target.id] = getCurrentScrollPosition(projectHeader);
-    openRow(target);
     setProjectFocus(projectHeader);
+
+    if (window.innerWidth <= 768) {
+      flowHeaderToTop(projectHeader, function () {
+        openRow(target);
+      });
+      return;
+    }
+
+    openRow(target);
     flowHeaderToTop(projectHeader);
   }
 
@@ -370,25 +378,47 @@
     return header && header.classList.contains("hover-trigger") ? header : null;
   }
 
-  function flowHeaderToTop(projectHeader) {
+  function flowHeaderToTop(projectHeader, afterScroll) {
     var scrollWrapper = getScrollWrapper(projectHeader);
+    var duration = scrollDuration;
+    var startedAt = window.pageYOffset;
+    var headerOffset = getHeaderOffset(scrollWrapper);
+    var targetTop = getHeaderTarget(projectHeader, scrollWrapper, headerOffset);
+    var distance = Math.abs(targetTop - startedAt);
 
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        animateHeaderPosition(projectHeader, scrollWrapper, getHeaderOffset(scrollWrapper), scrollDuration);
+        animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration);
       });
     });
+
+    if (typeof afterScroll === "function") {
+      if (distance < 8) {
+        window.setTimeout(afterScroll, 80);
+        return;
+      }
+
+      window.setTimeout(afterScroll, duration + 40);
+    }
+  }
+
+  function getHeaderTarget(projectHeader, scrollWrapper, headerOffset) {
+    if (scrollWrapper && window.innerWidth > 768) {
+      return projectHeader.offsetTop - headerOffset;
+    }
+
+    return projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {
+    var target = getHeaderTarget(projectHeader, scrollWrapper, headerOffset);
+
     if (scrollWrapper && window.innerWidth > 768) {
-      var target = projectHeader.offsetTop - headerOffset;
       animateElementScroll(scrollWrapper, target < 0 ? 0 : target, duration);
       return;
     }
 
-    var pageTarget = projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-    animateWindowScroll(pageTarget < 0 ? 0 : pageTarget, duration);
+    animateWindowScroll(target < 0 ? 0 : target, duration);
   }
 
   function animateElementScroll(element, targetTop, duration) {
