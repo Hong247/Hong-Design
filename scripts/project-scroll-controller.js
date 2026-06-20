@@ -372,13 +372,26 @@
 
   function flowHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
-    var headerOffset = getHeaderOffset(scrollWrapper);
+
+    function runScroll(duration) {
+      animateHeaderPosition(projectHeader, scrollWrapper, getHeaderOffset(scrollWrapper), duration);
+    }
 
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, scrollDuration);
+        runScroll(scrollDuration);
       });
     });
+
+    if (window.innerWidth <= 768) {
+      window.setTimeout(function () {
+        runScroll(420);
+      }, 160);
+
+      window.setTimeout(function () {
+        runScroll(360);
+      }, motionDuration + 80);
+    }
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {
@@ -431,6 +444,10 @@
   }
 
   function getHeaderOffset(scrollWrapper) {
+    if (window.innerWidth <= 768) {
+      return 22;
+    }
+
     var header = scrollWrapper ? scrollWrapper.querySelector("thead") : document.querySelector("thead");
     return header ? header.getBoundingClientRect().height : 0;
   }
