@@ -17,10 +17,8 @@ body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:fo
 .email-copy-feedback{position:static;display:inline-block;margin-left:5px;white-space:nowrap;font:inherit;font-weight:800!important;font-size:1em;letter-spacing:0;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease;color:currentColor;text-shadow:none}
 .email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
 .hover-trigger td{transition:padding .48s cubic-bezier(.22,1,.36,1),letter-spacing .48s cubic-bezier(.22,1,.36,1),opacity .38s ease,transform .48s cubic-bezier(.22,1,.36,1)}
-.hover-trigger.is-active-project td{padding-top:18px;padding-bottom:18px;letter-spacing:.025em}
+.hover-trigger.is-active-project td{padding-top:8px;padding-bottom:8px;letter-spacing:.025em;transform:none!important}
 .hover-trigger.is-active-project .custom-btn{transition:color .38s ease,letter-spacing .48s cubic-bezier(.22,1,.36,1),font-weight .38s ease,opacity .38s ease}
-.hover-trigger.is-active-project td:first-child{transform:translateX(4px)}
-.hover-trigger.is-active-project td:nth-child(2){transform:translateX(8px)}
 tr.collapse .project-detail{transform-origin:top left;transition:max-height .72s cubic-bezier(.22,1,.36,1),opacity .56s ease,transform .72s cubic-bezier(.22,1,.36,1),filter .56s ease!important;filter:blur(4px)}
 tr.collapse.is-open .project-detail{filter:blur(0)}
 tr.collapse.is-open .project-description{animation:projectDescriptionMorph .72s cubic-bezier(.22,1,.36,1) both}
