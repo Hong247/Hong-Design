@@ -373,25 +373,11 @@
   function flowHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
 
-    function runScroll(duration) {
-      animateHeaderPosition(projectHeader, scrollWrapper, getHeaderOffset(scrollWrapper), duration);
-    }
-
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        runScroll(scrollDuration);
+        animateHeaderPosition(projectHeader, scrollWrapper, getHeaderOffset(scrollWrapper), scrollDuration);
       });
     });
-
-    if (window.innerWidth <= 768) {
-      window.setTimeout(function () {
-        runScroll(420);
-      }, 160);
-
-      window.setTimeout(function () {
-        runScroll(360);
-      }, motionDuration + 80);
-    }
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {
