@@ -32,18 +32,40 @@
       }
     });
 
-    if (Array.isArray(window.PORTFOLIO_PROJECT_ORDER) && window.PORTFOLIO_PROJECT_ORDER.length) {
-      var orderIndex = window.PORTFOLIO_PROJECT_ORDER.reduce(function (map, id, index) {
-        map[id] = index;
-        return map;
-      }, {});
+    var defaultOrder = [
+      "demo-cmarket-tote-bag",
+      "demo-cmarket-site",
+      "demo-mara-natha-portfolio-document",
+      "demo1",
+      "demo2",
+      "demo3",
+      "demo4",
+      "demo5",
+      "demo6",
+      "demo7",
+      "demo8",
+      "demo9",
+      "demo10",
+      "demo11",
+      "demo12",
+      "demo13",
+      "demo14"
+    ];
 
-      mergedProjects.sort(function (a, b) {
-        var aIndex = Object.prototype.hasOwnProperty.call(orderIndex, a.id) ? orderIndex[a.id] : Number.MAX_SAFE_INTEGER;
-        var bIndex = Object.prototype.hasOwnProperty.call(orderIndex, b.id) ? orderIndex[b.id] : Number.MAX_SAFE_INTEGER;
-        return aIndex - bIndex;
-      });
-    }
+    var requestedOrder = Array.isArray(window.PORTFOLIO_PROJECT_ORDER) && window.PORTFOLIO_PROJECT_ORDER.length
+      ? window.PORTFOLIO_PROJECT_ORDER
+      : defaultOrder;
+
+    var orderIndex = requestedOrder.reduce(function (map, id, index) {
+      map[id] = index;
+      return map;
+    }, {});
+
+    mergedProjects.sort(function (a, b) {
+      var aIndex = a && a.id && Object.prototype.hasOwnProperty.call(orderIndex, a.id) ? orderIndex[a.id] : Number.MAX_SAFE_INTEGER;
+      var bIndex = b && b.id && Object.prototype.hasOwnProperty.call(orderIndex, b.id) ? orderIndex[b.id] : Number.MAX_SAFE_INTEGER;
+      return aIndex - bIndex;
+    });
 
     window.PORTFOLIO_PROJECTS = mergedProjects;
   }
