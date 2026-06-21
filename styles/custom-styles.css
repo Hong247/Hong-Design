@@ -5,7 +5,7 @@ thead th{font-weight:900!important;letter-spacing:-.01em}
 .year-sort-header,.year-sort-header *{cursor:pointer!important;user-select:none}
 .year-sort-header{transition:color .25s ease}
 .year-sort-header:hover{color:var(--accent)!important}
-body.orange-mode .year-sort-header:hover{color:#fff!important}
+body.orange-mode .year-sort-header:hover{color:#380e00!important}
 .year-sort-symbol{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;margin-left:4px;line-height:.68;font-size:.6em;vertical-align:middle;transform:translateY(-1px)}
 .year-sort-arrow{display:block;transition:opacity .25s ease,color .25s ease}
 .year-sort-header.sort-desc .year-sort-down{opacity:1}.year-sort-header.sort-desc .year-sort-up{opacity:.35}
@@ -13,7 +13,7 @@ body.orange-mode .year-sort-header:hover{color:#fff!important}
 .email-contact-item{display:flex;align-items:center;gap:7px;position:relative}
 .email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-weight:700!important;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transform:scale(1);text-shadow:.08px 0 currentColor,-.08px 0 currentColor;transition:opacity .2s ease,transform .2s ease,color .2s ease}
 .email-copy-button:hover,.email-copy-button:focus-visible{opacity:1;transform:translateY(-1px) scale(1.06);outline:none;color:var(--accent)}
-body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#fff}
+body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#380e00}
 .email-copy-feedback{position:static;display:inline-block;margin-left:5px;white-space:nowrap;font:inherit;font-weight:800!important;font-size:1em;letter-spacing:0;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease;color:currentColor;text-shadow:none}
 .email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
 .hover-trigger td{transition:letter-spacing .48s cubic-bezier(.22,1,.36,1),opacity .38s ease}
