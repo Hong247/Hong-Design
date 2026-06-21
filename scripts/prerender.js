@@ -1,5 +1,5 @@
 /**
- * prerender.js â Vercel build script
+ * prerender.js - Vercel build script
  * Runs before deployment to:
  *   1. Download IBM Plex Sans woff2 font from Fontsource CDN (self-host at runtime)
  *   2. Pre-render the project table into index.html so Google can crawl project content
@@ -11,7 +11,7 @@ const https = require('https');
 
 const ROOT = path.join(__dirname, '..');
 
-// âââ 1. Font download ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// 1. Font download
 
 function downloadFile(url, destPath) {
   return new Promise((resolve, reject) => {
@@ -50,7 +50,7 @@ async function downloadFonts() {
   }
 }
 
-// âââ 2. Project data loading âââââââââââââââââââââââââââââââââââââââââââââââââââ
+// 2. Project data loading
 
 function loadProjectData() {
   // Mock browser environment
@@ -101,7 +101,7 @@ function loadProjectData() {
   };
 }
 
-// âââ 3. HTML generation ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// 3. HTML generation
 
 function escHtml(str) {
   return String(str)
@@ -111,7 +111,7 @@ function escHtml(str) {
     .replace(/"/g,  '&quot;');
 }
 
-/** Extract <p>â¦</p> blocks from a detailHtml string (for SEO text) */
+/** Extract <p>...</p> blocks from a detailHtml string (for SEO text) */
 function extractParagraphs(html) {
   const results = [];
   const re = /<p([^>]*)>([\s\S]*?)<\/p>/g;
@@ -146,7 +146,7 @@ function buildProjectRows(projects, titleOverrides) {
     }
 
     html += `
-    <tr class="hover-trigger" data-image-source="${escHtml(preview)}">
+    <tr class="hover-trigger" data-image-source="${escHtml(preview)}" data-project="${escHtml(title)}" data-role="${escHtml(role)}" data-year="${escHtml(year)}">
       <td><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${number}</button></td>
       <td><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${escHtml(title)}</button></td>
       <td class="role-cell"><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${escHtml(role)}</button></td>
@@ -161,7 +161,7 @@ function buildProjectRows(projects, titleOverrides) {
   return html;
 }
 
-// âââ 4. Main âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// 4. Main
 
 async function main() {
   // Fonts
