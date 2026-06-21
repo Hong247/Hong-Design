@@ -20,18 +20,36 @@ function renderProjectArchive() {
     var displayProject = applyProjectMediaOverride(project, mediaOverrides[project.id]);
     var headerRow = document.createElement("tr");
     var detailRow = document.createElement("tr");
+    var titleBtnId = "btn-title-" + project.id;
+    var safeTitle = escapeAttr(displayTitle);
+    var safeRole = escapeAttr(project.role);
 
     headerRow.className = "hover-trigger";
     headerRow.setAttribute("data-image-source", displayProject.preview || "");
-    headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + '</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + '</button></td>';
+    headerRow.innerHTML =
+      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="' + safeTitle + ', expand project">' + number + '</button></td>' +
+      '<td><button type="button" id="' + titleBtnId + '" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '">' + displayTitle + '</button></td>' +
+      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="' + safeRole + ', ' + safeTitle + '">' + project.role + '</button></td>' +
+      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="Year ' + project.year + ', ' + safeTitle + '">' + project.year + '</button></td>';
 
     detailRow.id = project.id;
     detailRow.className = "collapse";
+    detailRow.setAttribute("role", "region");
+    detailRow.setAttribute("aria-labelledby", titleBtnId);
     detailRow.innerHTML = '<td colspan="4">' + buildProjectDetail(displayProject) + '</td>';
 
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
   });
+}
+
+function escapeAttr(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 function applyProjectMediaOverride(project, override) {
@@ -58,11 +76,11 @@ function buildProjectDetail(project) {
 
   (project.media || []).forEach(function (item, index) {
     if (item.type === "image") {
-      mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : '') + '>';
+      mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + escapeAttr(item.alt) + '" decoding="async"' + (index > 0 ? ' loading="lazy"' : '') + '>';
     }
 
     if (item.type === "iframe") {
-      mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
+      mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy" title="' + escapeAttr(item.alt || project.title) + '"></iframe>';
     }
   });
 
