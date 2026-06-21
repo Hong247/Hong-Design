@@ -23,11 +23,18 @@ function renderProjectArchive() {
 
     headerRow.className = "hover-trigger";
     headerRow.setAttribute("data-image-source", displayProject.preview || "");
-    headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + '</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + '</button></td>';
+    headerRow.setAttribute("data-project", displayTitle);
+    headerRow.setAttribute("data-role", project.role);
+    headerRow.setAttribute("data-year", String(project.year));
+    headerRow.innerHTML =
+      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + "</button></td>" +
+      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + "</button></td>" +
+      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + "</button></td>" +
+      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + "</button></td>";
 
     detailRow.id = project.id;
     detailRow.className = "collapse";
-    detailRow.innerHTML = '<td colspan="4">' + buildProjectDetail(displayProject) + '</td>';
+    detailRow.innerHTML = "<td colspan=\"4\">" + buildProjectDetail(displayProject) + "</td>";
 
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
@@ -49,15 +56,9 @@ function applyProjectMediaOverride(project, override) {
 }
 
 function buildProjectDetail(project) {
-  // When a description array exists, it takes priority for text content.
-  // The image gallery is extracted from detailHtml (scroll-container div) if present,
-  // or built from the media array as a fallback.
   if (Array.isArray(project.description) && project.description.length) {
     var galleryHtml = "";
 
-    // Extract the scroll-container div from detailHtml.
-    // The scroll-container only contains <img> and <iframe> elements (no nested divs),
-    // so the first </div> after the opening tag reliably closes the gallery.
     if (project.detailHtml) {
       var scrollStart = project.detailHtml.indexOf('<div class="scroll-container">');
       if (scrollStart !== -1) {
@@ -68,15 +69,18 @@ function buildProjectDetail(project) {
       }
     }
 
-    // Fall back to building the gallery from the media array.
     if (!galleryHtml) {
       galleryHtml = '<div class="scroll-container">';
       (project.media || []).forEach(function (item, index) {
         if (item.type === "image") {
-          galleryHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : "") + ">";
+          galleryHtml +=
+            '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' +
+            (index > 0 ? ' loading="lazy"' : "") + ">";
         }
         if (item.type === "iframe") {
-          galleryHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
+          galleryHtml +=
+            '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) +
+            '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
         }
       });
       galleryHtml += "</div>";
@@ -84,35 +88,41 @@ function buildProjectDetail(project) {
 
     var descriptionHtml = "";
     project.description.forEach(function (paragraph, index) {
-      descriptionHtml += '<p' + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' + paragraph.label + "</span>" + paragraph.text + "</p>";
+      descriptionHtml +=
+        "<p" + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' +
+        paragraph.label + "</span>" + paragraph.text + "</p>";
     });
 
     return galleryHtml + descriptionHtml + "<br>";
   }
 
-  // Fall back to full detailHtml when no description array is present.
   if (project.detailHtml) {
     return project.detailHtml;
   }
 
-  // Legacy path: build from media array + description (used when neither detailHtml nor description array exists).
   var mediaHtml = '<div class="scroll-container">';
   var legacyDescriptionHtml = "";
 
   (project.media || []).forEach(function (item, index) {
     if (item.type === "image") {
-      mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : "") + ">";
+      mediaHtml +=
+        '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' +
+        (index > 0 ? ' loading="lazy"' : "") + ">";
     }
 
     if (item.type === "iframe") {
-      mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
+      mediaHtml +=
+        '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) +
+        '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
     }
   });
 
   mediaHtml += "</div>";
 
   (project.description || []).forEach(function (paragraph, index) {
-    legacyDescriptionHtml += '<p' + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' + paragraph.label + "</span>" + paragraph.text + "</p>";
+    legacyDescriptionHtml +=
+      "<p" + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' +
+      paragraph.label + "</span>" + paragraph.text + "</p>";
   });
 
   return mediaHtml + legacyDescriptionHtml + "<br>";
