@@ -46,14 +46,12 @@
 
     if (window.innerWidth <= 768) {
       rowsToClose.forEach(function (row) {
-        closeRow(row);
+        closeRowImmediately(row);
       });
 
-      window.setTimeout(function () {
-        flowHeaderToTop(projectHeader, function () {
-          openRow(target);
-        });
-      }, rowsToClose.length ? motionDuration + 40 : 0);
+      flowHeaderToTop(projectHeader, function () {
+        openRow(target);
+      });
 
       return;
     }
@@ -365,6 +363,28 @@
       detail.style.transform = "";
       detail.style.overflow = "";
     }, motionDuration);
+  }
+
+  function closeRowImmediately(row) {
+    var detail = getDetail(row);
+    var header = getHeaderForRow(row);
+
+    window.clearTimeout(row.openTimer);
+    window.clearTimeout(row.closeTimer);
+    row.classList.remove("is-open");
+    setExpandedState(row.id, false);
+
+    if (header) {
+      header.classList.remove("is-active-project");
+    }
+
+    if (detail) {
+      detail.style.maxHeight = "";
+      detail.style.opacity = "";
+      detail.style.transform = "";
+      detail.style.overflow = "";
+      detail.style.transition = "";
+    }
   }
 
   function setProjectFocus(projectHeader) {
