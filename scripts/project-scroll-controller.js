@@ -79,7 +79,7 @@
     yearHeader.setAttribute("aria-label", "Sort projects by year");
     yearHeader.setAttribute("aria-sort", "descending");
     yearHeader.classList.add("year-sort-header", "sort-desc");
-    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">&#9650;</span><span class="year-sort-arrow year-sort-down">&#9660;</span></span>';
 
     yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
@@ -95,7 +95,7 @@
     });
   }
 
-  // ââ Project filter ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Project and role filters
 
   function initProjectFilter() {
     var th = document.querySelector("thead th:nth-child(2)");
@@ -125,8 +125,8 @@
     th.innerHTML =
       '<span class="filter-label">' + defaultLabel + "</span>" +
       '<span class="filter-symbol" aria-hidden="true">' +
-      '<span class="filter-arrow filter-arrow-up">â²</span>' +
-      '<span class="filter-arrow filter-arrow-down">â¼</span>' +
+      '<span class="filter-arrow filter-arrow-up">&#9650;</span>' +
+      '<span class="filter-arrow filter-arrow-down">&#9660;</span>' +
       "</span>";
 
     th.addEventListener("click", function (event) {
@@ -288,7 +288,7 @@
     });
   }
 
-  // ââ Year sort âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Year sort
 
   function toggleYearSort(yearHeader) {
     currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
@@ -464,7 +464,7 @@
     });
   }
 
-  // ââ Row open / close ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Row open / close
 
   function closeAllProjects() {
     document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
@@ -599,7 +599,7 @@
     return header && header.classList.contains("hover-trigger") ? header : null;
   }
 
-  // ââ Scroll to header ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Scroll to header
 
   function flowHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
