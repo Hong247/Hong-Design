@@ -8,7 +8,7 @@
   --muted-dark: currentColor;
 }
 
-/* Skip-to-content link â visually hidden until focused */
+/* Skip-to-content link - visually hidden until focused */
 .skip-to-content {
   position: absolute;
   top: -60px;
