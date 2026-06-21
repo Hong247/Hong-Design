@@ -259,6 +259,36 @@ function groupProjectDescriptions() {
     Array.from(cell.querySelectorAll(":scope > br")).forEach(function (breakElement) {
       breakElement.remove();
     });
+
+    // FIX 1: Add scroll dot indicators for mobile galleries
+    addScrollDots(media);
+  });
+}
+
+// FIX 1: Render progress dots below each image gallery on mobile
+function addScrollDots(scrollContainer) {
+  var images = scrollContainer.querySelectorAll("img");
+
+  if (images.length < 2) {
+    return;
+  }
+
+  var dots = document.createElement("div");
+  dots.className = "scroll-dots";
+
+  images.forEach(function (_, i) {
+    var dot = document.createElement("span");
+    dot.className = "scroll-dot" + (i === 0 ? " is-active" : "");
+    dots.appendChild(dot);
+  });
+
+  scrollContainer.parentNode.insertBefore(dots, scrollContainer.nextSibling);
+
+  scrollContainer.addEventListener("scroll", function () {
+    var index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
+    dots.querySelectorAll(".scroll-dot").forEach(function (dot, i) {
+      dot.classList.toggle("is-active", i === index);
+    });
   });
 }
 
@@ -276,7 +306,10 @@ function startIntelligentHoverPreview(trigger) {
 
   showHoveredPreviewImage(hoverPreviewImages[hoverPreviewIndex]);
 
-  if (hoverPreviewImages.length > 1) {
+  // FIX 6: Respect prefers-reduced-motion — skip cycling animation if user requested less motion
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (hoverPreviewImages.length > 1 && !prefersReduced) {
     hoverPreviewTimer = window.setInterval(function () {
       hoverPreviewIndex = (hoverPreviewIndex + 1) % hoverPreviewImages.length;
       showHoveredPreviewImage(hoverPreviewImages[hoverPreviewIndex]);
