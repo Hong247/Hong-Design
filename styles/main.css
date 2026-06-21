@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap");
+/* IBM Plex Sans is loaded via styles/fonts.css (self-hosted, see scripts/prerender.js) */
 
 :root {
   --accent: #fe5000;
@@ -7,6 +7,29 @@
   --muted-light: currentColor;
   --muted-dark: currentColor;
 }
+
+/* Skip-to-content link â visually hidden until focused */
+.skip-to-content {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  z-index: 9999;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-decoration: underline;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.15s ease;
+}
+.skip-to-content:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+body.light-mode .skip-to-content { background: #000; color: #fff; }
+body.orange-mode .skip-to-content { background: #000; color: #fff; }
 
 * {
   box-sizing: border-box;
@@ -145,7 +168,7 @@ body.orange-mode .theme-toggle:hover {
 }
 
 .theme-toggle::before {
-  content: "●";
+  content: "â";
   display: block;
   color: var(--accent);
   font-size: 13px;
@@ -603,7 +626,7 @@ tr[id^="demo"] .scroll-container img {
     padding: 0;
   }
 
-  /* FIX 1: Scroll dot indicators */
+  /* Scroll dot indicators */
   .scroll-dots {
     display: flex;
     gap: 5px;
@@ -626,7 +649,7 @@ tr[id^="demo"] .scroll-container img {
   }
 }
 
-/* FIX 6: Respect prefers-reduced-motion */
+/* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .project-detail {
     transition: none;
