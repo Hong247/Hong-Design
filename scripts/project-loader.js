@@ -8,9 +8,15 @@
       return;
     }
 
+    // Build a merged map: later pushes extend earlier ones (Object.assign merge),
+    // so projects-content.js can add `description` without losing `detailHtml` from individual files.
     var separatedById = separatedProjects.reduce(function (map, project) {
       if (project && project.id) {
-        map[project.id] = project;
+        if (map[project.id]) {
+          map[project.id] = Object.assign({}, map[project.id], project);
+        } else {
+          map[project.id] = project;
+        }
       }
       return map;
     }, {});
