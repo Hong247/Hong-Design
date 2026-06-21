@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cheokhong.com/sitemap.xml
+Sitemap: https://hong-design.vercel.app/sitemap.xml
