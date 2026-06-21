@@ -416,6 +416,11 @@ tr[id^="demo"] .scroll-container img {
   display: none;
 }
 
+/* Scroll dots — hidden on desktop, shown on mobile */
+.scroll-dots {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .role-cell,
   .role-header {
@@ -482,7 +487,7 @@ tr[id^="demo"] .scroll-container img {
     grid-template-columns: 34px minmax(0, 1fr) 46px;
     align-items: start;
     gap: 8px;
-    padding: 12px 0;
+    padding: 16px 0;
     border-top: 0;
   }
 
@@ -536,7 +541,9 @@ tr[id^="demo"] .scroll-container img {
   .scroll-container {
     gap: 10px;
     margin-right: -18px;
-    padding: 2px 18px 10px 0;
+    padding: 2px 18px 16px 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 
   tr[id^="demo"] .scroll-container img,
@@ -566,5 +573,57 @@ tr[id^="demo"] .scroll-container img {
 
   .scroll-container img.fullscreen-image.keem {
     display: block;
+  }
+
+  /* FIX 5: Generous tap targets */
+  .custom-btn {
+    padding: 10px 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  tr.hover-trigger td:nth-child(1) .custom-btn,
+  tr.hover-trigger td:nth-child(4) .custom-btn {
+    padding: 10px 4px;
+  }
+
+  /* FIX 1: Scroll dot indicators */
+  .scroll-dots {
+    display: flex;
+    gap: 5px;
+    margin-top: 8px;
+    padding-left: 2px;
+  }
+
+  .scroll-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.2;
+    transition: opacity 200ms ease;
+    flex-shrink: 0;
+  }
+
+  .scroll-dot.is-active {
+    opacity: 1;
+  }
+}
+
+/* FIX 6: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-detail {
+    transition: none;
+  }
+
+  .collapse td {
+    transition: none;
+  }
+
+  .hovered-image {
+    transition: none;
+  }
+
+  .scroll-dot {
+    transition: none;
   }
 }
