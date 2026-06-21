@@ -20,36 +20,18 @@ function renderProjectArchive() {
     var displayProject = applyProjectMediaOverride(project, mediaOverrides[project.id]);
     var headerRow = document.createElement("tr");
     var detailRow = document.createElement("tr");
-    var titleBtnId = "btn-title-" + project.id;
-    var safeTitle = escapeAttr(displayTitle);
-    var safeRole = escapeAttr(project.role);
 
     headerRow.className = "hover-trigger";
     headerRow.setAttribute("data-image-source", displayProject.preview || "");
-    headerRow.innerHTML =
-      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="' + safeTitle + ', expand project">' + number + '</button></td>' +
-      '<td><button type="button" id="' + titleBtnId + '" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '">' + displayTitle + '</button></td>' +
-      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="' + safeRole + ', ' + safeTitle + '">' + project.role + '</button></td>' +
-      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '" aria-expanded="false" aria-controls="' + project.id + '" aria-label="Year ' + project.year + ', ' + safeTitle + '">' + project.year + '</button></td>';
+    headerRow.innerHTML = '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + '</button></td><td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + '</button></td><td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + '</button></td>';
 
     detailRow.id = project.id;
     detailRow.className = "collapse";
-    detailRow.setAttribute("role", "region");
-    detailRow.setAttribute("aria-labelledby", titleBtnId);
     detailRow.innerHTML = '<td colspan="4">' + buildProjectDetail(displayProject) + '</td>';
 
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
   });
-}
-
-function escapeAttr(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
 }
 
 function applyProjectMediaOverride(project, override) {
@@ -67,28 +49,71 @@ function applyProjectMediaOverride(project, override) {
 }
 
 function buildProjectDetail(project) {
+  // When a description array exists, it takes priority for text content.
+  // The image gallery is extracted from detailHtml (scroll-container div) if present,
+  // or built from the media array as a fallback.
+  if (Array.isArray(project.description) && project.description.length) {
+    var galleryHtml = "";
+
+    // Extract the scroll-container div from detailHtml.
+    // The scroll-container only contains <img> and <iframe> elements (no nested divs),
+    // so the first </div> after the opening tag reliably closes the gallery.
+    if (project.detailHtml) {
+      var scrollStart = project.detailHtml.indexOf('<div class="scroll-container">');
+      if (scrollStart !== -1) {
+        var divEnd = project.detailHtml.indexOf("</div>", scrollStart);
+        if (divEnd !== -1) {
+          galleryHtml = project.detailHtml.substring(scrollStart, divEnd + 6);
+        }
+      }
+    }
+
+    // Fall back to building the gallery from the media array.
+    if (!galleryHtml) {
+      galleryHtml = '<div class="scroll-container">';
+      (project.media || []).forEach(function (item, index) {
+        if (item.type === "image") {
+          galleryHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : "") + ">";
+        }
+        if (item.type === "iframe") {
+          galleryHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
+        }
+      });
+      galleryHtml += "</div>";
+    }
+
+    var descriptionHtml = "";
+    project.description.forEach(function (paragraph, index) {
+      descriptionHtml += '<p' + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' + paragraph.label + "</span>" + paragraph.text + "</p>";
+    });
+
+    return galleryHtml + descriptionHtml + "<br>";
+  }
+
+  // Fall back to full detailHtml when no description array is present.
   if (project.detailHtml) {
     return project.detailHtml;
   }
 
+  // Legacy path: build from media array + description (used when neither detailHtml nor description array exists).
   var mediaHtml = '<div class="scroll-container">';
-  var descriptionHtml = "";
+  var legacyDescriptionHtml = "";
 
   (project.media || []).forEach(function (item, index) {
     if (item.type === "image") {
-      mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + escapeAttr(item.alt) + '" decoding="async"' + (index > 0 ? ' loading="lazy"' : '') + '>';
+      mediaHtml += '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' + (index > 0 ? ' loading="lazy"' : "") + ">";
     }
 
     if (item.type === "iframe") {
-      mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy" title="' + escapeAttr(item.alt || project.title) + '"></iframe>';
+      mediaHtml += '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) + '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
     }
   });
 
   mediaHtml += "</div>";
 
   (project.description || []).forEach(function (paragraph, index) {
-    descriptionHtml += '<p' + (index === 0 ? ' class="max-width-paragraph"' : '') + '><span class="case-label">' + paragraph.label + '</span>' + paragraph.text + '</p>';
+    legacyDescriptionHtml += '<p' + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' + paragraph.label + "</span>" + paragraph.text + "</p>";
   });
 
-  return mediaHtml + descriptionHtml + "<br>";
+  return mediaHtml + legacyDescriptionHtml + "<br>";
 }
