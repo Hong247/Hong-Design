@@ -168,7 +168,7 @@ body.orange-mode .theme-toggle:hover {
 }
 
 .theme-toggle::before {
-  content: "â";
+  content: "●";
   display: block;
   color: var(--accent);
   font-size: 13px;
@@ -184,7 +184,7 @@ body.dark-mode .theme-toggle::before {
 }
 
 .theme-toggle img {
-  display: none;
+  display: none !important;
 }
 
 .theme-toggle:hover {
