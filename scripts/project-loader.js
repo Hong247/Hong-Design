@@ -1,10 +1,59 @@
 (function () {
+  var MOJIBAKE_PATTERN = /[ÃÂâÌæ]/;
+
+  function repairMojibakeString(value) {
+    var bytes;
+    var index;
+
+    if (typeof value !== "string" || !MOJIBAKE_PATTERN.test(value)) {
+      return value;
+    }
+
+    bytes = new Uint8Array(value.length);
+
+    for (index = 0; index < value.length; index += 1) {
+      if (value.charCodeAt(index) > 255) {
+        return value;
+      }
+
+      bytes[index] = value.charCodeAt(index);
+    }
+
+    try {
+      return new TextDecoder("utf-8").decode(bytes);
+    } catch (error) {
+      return value;
+    }
+  }
+
+  function normalizeTextContent(value) {
+    if (typeof value === "string") {
+      return repairMojibakeString(value);
+    }
+
+    if (Array.isArray(value)) {
+      value.forEach(function (item, index) {
+        value[index] = normalizeTextContent(item);
+      });
+
+      return value;
+    }
+
+    if (value && typeof value === "object") {
+      Object.keys(value).forEach(function (key) {
+        value[key] = normalizeTextContent(value[key]);
+      });
+    }
+
+    return value;
+  }
+
   function normalizeProjectRegistry() {
     var legacyProjects = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
     var separatedProjects = Array.isArray(window.PORTFOLIO_PROJECT_MODULES) ? window.PORTFOLIO_PROJECT_MODULES : [];
 
     if (!separatedProjects.length) {
-      window.PORTFOLIO_PROJECTS = legacyProjects;
+      window.PORTFOLIO_PROJECTS = normalizeTextContent(legacyProjects);
       return;
     }
 
@@ -73,7 +122,8 @@
       return aIndex - bIndex;
     });
 
-    window.PORTFOLIO_PROJECTS = mergedProjects;
+    window.PROJECT_TITLE_OVERRIDES = normalizeTextContent(window.PROJECT_TITLE_OVERRIDES || {});
+    window.PORTFOLIO_PROJECTS = normalizeTextContent(mergedProjects);
   }
 
   normalizeProjectRegistry();
