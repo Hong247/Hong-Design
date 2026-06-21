@@ -78,6 +78,7 @@ function loadProjectData() {
     'data/projects/nexus.js',
     'data/projects/motorola-solutions-internship.js',
     'data/projects/ek-logo.js',
+    'data/projects-content.js',
     'scripts/project-loader.js',
   ];
 
