@@ -7,6 +7,8 @@
   var motionOffset = "translateY(-4px)";
   var activeScrollAnimation = null;
   var currentSortDirection = "desc";
+  var currentProjectFilter = "all";
+  var currentRoleFilter = "all";
 
   window.addEventListener("click", handleProjectClick, true);
   document.addEventListener("DOMContentLoaded", initProjectHeaders);
@@ -53,6 +55,8 @@
   function initProjectHeaders() {
     setNumberHeader();
     initYearSort();
+    initProjectFilter();
+    initRoleFilter();
   }
 
   function setNumberHeader() {
@@ -75,7 +79,7 @@
     yearHeader.setAttribute("aria-label", "Sort projects by year");
     yearHeader.setAttribute("aria-sort", "descending");
     yearHeader.classList.add("year-sort-header", "sort-desc");
-    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">▲</span><span class="year-sort-arrow year-sort-down">▼</span></span>';
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
 
     yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
@@ -90,6 +94,201 @@
       }
     });
   }
+
+  // ââ Project filter ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+
+  function initProjectFilter() {
+    var th = document.querySelector("thead th:nth-child(2)");
+
+    if (!th || th.querySelector(".filter-label")) {
+      return;
+    }
+
+    setupFilterHeader(th, "PROJECT", "project");
+  }
+
+  function initRoleFilter() {
+    var th = document.querySelector("thead th:nth-child(3)");
+
+    if (!th || th.querySelector(".filter-label")) {
+      return;
+    }
+
+    setupFilterHeader(th, "ROLE", "role");
+  }
+
+  function setupFilterHeader(th, defaultLabel, type) {
+    th.setAttribute("role", "button");
+    th.setAttribute("tabindex", "0");
+    th.setAttribute("aria-label", "Filter projects by " + type);
+    th.classList.add(type + "-filter-header");
+    th.innerHTML =
+      '<span class="filter-label">' + defaultLabel + "</span>" +
+      '<span class="filter-symbol" aria-hidden="true">' +
+      '<span class="filter-arrow filter-arrow-up">â²</span>' +
+      '<span class="filter-arrow filter-arrow-down">â¼</span>' +
+      "</span>";
+
+    th.addEventListener("click", function (event) {
+      var upArrow = event.target.closest && event.target.closest(".filter-arrow-up");
+      cycleFilter(type, upArrow ? -1 : 1);
+      event.preventDefault();
+      event.stopPropagation();
+    });
+
+    th.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " " || event.key === "ArrowDown") {
+        event.preventDefault();
+        cycleFilter(type, 1);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        cycleFilter(type, -1);
+      }
+    });
+  }
+
+  function getFilterOptions(type) {
+    var options = [];
+    var seen = {};
+
+    document.querySelectorAll("tbody tr.hover-trigger").forEach(function (row) {
+      // Only include rows that pass the OTHER active filter
+      var otherOk = true;
+
+      if (type === "project") {
+        otherOk =
+          currentRoleFilter === "all" ||
+          (row.getAttribute("data-role") || "") === currentRoleFilter;
+      } else {
+        otherOk =
+          currentProjectFilter === "all" ||
+          (row.getAttribute("data-project") || "") === currentProjectFilter;
+      }
+
+      if (!otherOk) {
+        return;
+      }
+
+      var val = row.getAttribute("data-" + type) || "";
+
+      if (val && !seen[val]) {
+        seen[val] = true;
+        options.push(val);
+      }
+    });
+
+    return options.sort(function (a, b) {
+      return a.localeCompare(b, undefined, { sensitivity: "base" });
+    });
+  }
+
+  function cycleFilter(type, direction) {
+    var options = getFilterOptions(type);
+    var current = type === "project" ? currentProjectFilter : currentRoleFilter;
+    var allOptions = ["all"].concat(options);
+    var idx = allOptions.indexOf(current);
+
+    if (idx === -1) {
+      idx = 0;
+    }
+
+    var newIdx = (idx + direction + allOptions.length) % allOptions.length;
+    var newVal = allOptions[newIdx];
+
+    if (type === "project") {
+      currentProjectFilter = newVal;
+    } else {
+      currentRoleFilter = newVal;
+    }
+
+    updateFilterLabel("project", currentProjectFilter === "all" ? "PROJECT" : currentProjectFilter);
+    updateFilterLabel("role", currentRoleFilter === "all" ? "ROLE" : currentRoleFilter);
+    applyFilters();
+  }
+
+  function updateFilterLabel(type, label) {
+    var th = document.querySelector("thead th." + type + "-filter-header");
+
+    if (!th) {
+      return;
+    }
+
+    var el = th.querySelector(".filter-label");
+
+    if (el) {
+      el.textContent = label;
+    }
+
+    var isActive = (type === "project" ? currentProjectFilter : currentRoleFilter) !== "all";
+    th.classList.toggle("filter-active", isActive);
+  }
+
+  function applyFilters() {
+    var tbody = document.querySelector("tbody");
+
+    if (!tbody) {
+      return;
+    }
+
+    closeAllProjects();
+
+    var count = 0;
+
+    Array.from(tbody.children).forEach(function (row) {
+      if (!row.classList.contains("hover-trigger")) {
+        return;
+      }
+
+      var role = row.getAttribute("data-role") || "";
+      var project = row.getAttribute("data-project") || "";
+      var roleOk = currentRoleFilter === "all" || role === currentRoleFilter;
+      var projectOk = currentProjectFilter === "all" || project === currentProjectFilter;
+      var visible = roleOk && projectOk;
+
+      row.style.display = visible ? "" : "none";
+
+      var detail = row.nextElementSibling;
+
+      if (detail && detail.classList.contains("collapse")) {
+        detail.style.display = visible ? "" : "none";
+      }
+
+      if (visible) {
+        count++;
+        var btn = row.querySelector("td:first-child .custom-btn");
+
+        if (btn) {
+          btn.textContent = String(count).padStart(2, "0");
+        }
+      }
+    });
+
+    // Scroll list back to top when a filter is active
+    var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
+
+    if (scrollWrapper && (currentProjectFilter !== "all" || currentRoleFilter !== "all")) {
+      animateElementScroll(scrollWrapper, 0, 320);
+    }
+  }
+
+  function renumberVisibleRows() {
+    var count = 0;
+
+    document.querySelectorAll("tbody tr.hover-trigger").forEach(function (row) {
+      if (row.style.display === "none") {
+        return;
+      }
+
+      count++;
+      var btn = row.querySelector("td:first-child .custom-btn");
+
+      if (btn) {
+        btn.textContent = String(count).padStart(2, "0");
+      }
+    });
+  }
+
+  // ââ Year sort âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   function toggleYearSort(yearHeader) {
     currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
@@ -124,29 +323,38 @@
         return;
       }
 
-      var detail = row.nextElementSibling && row.nextElementSibling.classList.contains("collapse") ? row.nextElementSibling : null;
+      var detail =
+        row.nextElementSibling && row.nextElementSibling.classList.contains("collapse")
+          ? row.nextElementSibling
+          : null;
       var numberButton = row.querySelector("td:first-child .custom-btn");
       var yearButton = row.querySelector("td:last-child .custom-btn");
       var projectNumber = numberButton ? parseInt(numberButton.textContent.trim(), 10) : 0;
       var year = yearButton ? parseInt(yearButton.textContent.trim(), 10) : 0;
+      var isHidden = row.style.display === "none";
 
       pairs.push({
         header: row,
         detail: detail,
         year: year,
-        projectNumber: projectNumber
+        projectNumber: projectNumber,
+        isHidden: isHidden
       });
     });
 
     pairs.sort(function (a, b) {
       if (a.year === b.year) {
-        return direction === "desc" ? a.projectNumber - b.projectNumber : b.projectNumber - a.projectNumber;
+        return direction === "desc"
+          ? a.projectNumber - b.projectNumber
+          : b.projectNumber - a.projectNumber;
       }
 
       return direction === "desc" ? b.year - a.year : a.year - b.year;
     });
 
-    animateSequentialSortReorder(tbody, pairs);
+    // Only animate visible rows; hidden rows are repositioned silently
+    var visiblePairs = pairs.filter(function (p) { return !p.isHidden; });
+    animateSequentialSortReorder(tbody, pairs, visiblePairs);
 
     var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
 
@@ -155,12 +363,14 @@
     }
   }
 
-  function animateSequentialSortReorder(tbody, sortedPairs) {
+  function animateSequentialSortReorder(tbody, sortedPairs, visiblePairs) {
+    var animatePairs = visiblePairs || sortedPairs;
     var movingRows = [];
     var firstPositions = new Map();
-    var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var prefersReducedMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    sortedPairs.forEach(function (pair) {
+    animatePairs.forEach(function (pair) {
       movingRows.push(pair.header);
 
       if (pair.detail) {
@@ -170,6 +380,8 @@
 
     if (prefersReducedMotion || !movingRows.length) {
       appendSortedPairs(tbody, sortedPairs);
+      reapplyFilterDisplay(sortedPairs);
+      renumberVisibleRows();
       return;
     }
 
@@ -186,8 +398,9 @@
 
     window.setTimeout(function () {
       appendSortedPairs(tbody, sortedPairs);
+      reapplyFilterDisplay(sortedPairs);
 
-      sortedPairs.forEach(function (pair, index) {
+      animatePairs.forEach(function (pair, index) {
         animateSortedPair(pair, firstPositions, index);
       });
 
@@ -198,8 +411,19 @@
           row.style.opacity = "";
           row.style.willChange = "";
         });
-      }, sortMotionDuration + sortedPairs.length * sortStaggerDelay + 120);
+        renumberVisibleRows();
+      }, sortMotionDuration + animatePairs.length * sortStaggerDelay + 120);
     }, 120);
+  }
+
+  function reapplyFilterDisplay(pairs) {
+    pairs.forEach(function (pair) {
+      pair.header.style.display = pair.isHidden ? "none" : "";
+
+      if (pair.detail) {
+        pair.detail.style.display = pair.isHidden ? "none" : "";
+      }
+    });
   }
 
   function appendSortedPairs(tbody, pairs) {
@@ -231,12 +455,16 @@
       row.style.willChange = "transform, opacity";
 
       window.setTimeout(function () {
-        row.style.transition = "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " + sortMotionDuration + "ms ease";
+        row.style.transition =
+          "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " +
+          sortMotionDuration + "ms ease";
         row.style.transform = "translateY(0)";
         row.style.opacity = "1";
       }, delay);
     });
   }
+
+  // ââ Row open / close ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   function closeAllProjects() {
     document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
@@ -275,7 +503,8 @@
 
   function prepareDetailMotion(detail) {
     detail.style.overflow = "hidden";
-    detail.style.transition = "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+    detail.style.transition =
+      "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
   }
 
   function openRow(row) {
@@ -370,6 +599,8 @@
     return header && header.classList.contains("hover-trigger") ? header : null;
   }
 
+  // ââ Scroll to header ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+
   function flowHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
 
@@ -399,20 +630,25 @@
       return;
     }
 
-    var pageTarget = projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    var pageTarget =
+      projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
     animateWindowScroll(pageTarget < 0 ? 0 : pageTarget, duration);
   }
 
   function getPanelTargetTop(projectHeader, scrollWrapper, headerOffset) {
     var headerRect = projectHeader.getBoundingClientRect();
     var wrapperRect = scrollWrapper.getBoundingClientRect();
-    var target = headerRect.top - wrapperRect.top + scrollWrapper.scrollTop - headerOffset;
-
+    var target =
+      headerRect.top - wrapperRect.top + scrollWrapper.scrollTop - headerOffset;
     return clampScrollTop(scrollWrapper, target);
   }
 
   function canUsePanelScroll(scrollWrapper) {
-    return Boolean(scrollWrapper && window.innerWidth > 768 && scrollWrapper.scrollHeight > scrollWrapper.clientHeight + 1);
+    return Boolean(
+      scrollWrapper &&
+        window.innerWidth > 768 &&
+        scrollWrapper.scrollHeight > scrollWrapper.clientHeight + 1
+    );
   }
 
   function clampScrollTop(element, value) {
@@ -423,21 +659,33 @@
   function animateElementScroll(element, targetTop, duration) {
     targetTop = clampScrollTop(element, targetTop);
 
-    animateScroll(element.scrollTop, targetTop, duration, function (value) {
-      element.scrollTop = value;
-    }, function () {
-      element.scrollTop = targetTop;
-    });
+    animateScroll(
+      element.scrollTop,
+      targetTop,
+      duration,
+      function (value) {
+        element.scrollTop = value;
+      },
+      function () {
+        element.scrollTop = targetTop;
+      }
+    );
   }
 
   function animateWindowScroll(targetTop, duration) {
     targetTop = Math.max(0, targetTop);
 
-    animateScroll(window.pageYOffset, targetTop, duration, function (value) {
-      window.scrollTo(0, value);
-    }, function () {
-      window.scrollTo(0, targetTop);
-    });
+    animateScroll(
+      window.pageYOffset,
+      targetTop,
+      duration,
+      function (value) {
+        window.scrollTo(0, value);
+      },
+      function () {
+        window.scrollTo(0, targetTop);
+      }
+    );
   }
 
   function animateScroll(startTop, targetTop, duration, applyValue, onComplete) {
@@ -460,9 +708,10 @@
 
     function step(now) {
       var progress = Math.min(1, (now - startTime) / duration);
-      var eased = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      var eased =
+        progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
       applyValue(startTop + distance * eased);
 
@@ -485,7 +734,9 @@
       return 22;
     }
 
-    var header = scrollWrapper ? scrollWrapper.querySelector("thead") : document.querySelector("thead");
+    var header = scrollWrapper
+      ? scrollWrapper.querySelector("thead")
+      : document.querySelector("thead");
     return header ? header.getBoundingClientRect().height : 0;
   }
 
@@ -497,7 +748,11 @@
     }
 
     window.requestAnimationFrame(function () {
-      if (position.type === "wrapper" && position.element && canUsePanelScroll(position.element)) {
+      if (
+        position.type === "wrapper" &&
+        position.element &&
+        canUsePanelScroll(position.element)
+      ) {
         animateElementScroll(position.element, position.top, 460);
         return;
       }
