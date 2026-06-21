@@ -46,11 +46,13 @@
 
     if (window.innerWidth <= 768) {
       rowsToClose.forEach(function (row) {
-        closeRowImmediately(row);
+        closeRow(row, true);
       });
 
-      flowHeaderToTop(projectHeader, function () {
-        openRow(target);
+      window.requestAnimationFrame(function () {
+        flowHeaderToTop(projectHeader, function () {
+          openRow(target);
+        });
       });
 
       return;
@@ -325,7 +327,7 @@
     }, motionDuration);
   }
 
-  function closeRow(row) {
+  function closeRow(row, instant) {
     var detail = getDetail(row);
     var header = getHeaderForRow(row);
 
@@ -346,6 +348,24 @@
       return;
     }
 
+    if (instant) {
+      detail.style.transition = "none";
+      detail.style.maxHeight = "0px";
+      detail.style.opacity = "0";
+      detail.style.transform = motionOffset;
+      detail.style.overflow = "hidden";
+
+      window.requestAnimationFrame(function () {
+        detail.style.transition = "";
+        detail.style.maxHeight = "";
+        detail.style.opacity = "";
+        detail.style.transform = "";
+        detail.style.overflow = "";
+      });
+
+      return;
+    }
+
     prepareDetailMotion(detail);
     detail.style.maxHeight = detail.scrollHeight + "px";
     detail.style.opacity = "1";
@@ -363,28 +383,6 @@
       detail.style.transform = "";
       detail.style.overflow = "";
     }, motionDuration);
-  }
-
-  function closeRowImmediately(row) {
-    var detail = getDetail(row);
-    var header = getHeaderForRow(row);
-
-    window.clearTimeout(row.openTimer);
-    window.clearTimeout(row.closeTimer);
-    row.classList.remove("is-open");
-    setExpandedState(row.id, false);
-
-    if (header) {
-      header.classList.remove("is-active-project");
-    }
-
-    if (detail) {
-      detail.style.maxHeight = "";
-      detail.style.opacity = "";
-      detail.style.transform = "";
-      detail.style.overflow = "";
-      detail.style.transition = "";
-    }
   }
 
   function setProjectFocus(projectHeader) {
@@ -409,9 +407,9 @@
   function flowHeaderToTop(projectHeader, afterScroll) {
     var scrollWrapper = getScrollWrapper(projectHeader);
     var duration = scrollDuration;
-    var startedAt = window.pageYOffset;
     var headerOffset = getHeaderOffset(scrollWrapper);
     var targetTop = getHeaderTarget(projectHeader, scrollWrapper, headerOffset);
+    var startedAt = getActiveScrollTop(scrollWrapper);
     var distance = Math.abs(targetTop - startedAt);
 
     window.requestAnimationFrame(function () {
@@ -428,6 +426,14 @@
 
       window.setTimeout(afterScroll, duration + 40);
     }
+  }
+
+  function getActiveScrollTop(scrollWrapper) {
+    if (scrollWrapper && window.innerWidth > 768) {
+      return scrollWrapper.scrollTop;
+    }
+
+    return window.pageYOffset;
   }
 
   function getHeaderTarget(projectHeader, scrollWrapper, headerOffset) {
