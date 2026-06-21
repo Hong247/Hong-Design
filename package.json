@@ -1,0 +1,13 @@
+{
+  "name": "hong-design",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio site for Hong Design.",
+  "scripts": {
+    "build": "node scripts/prerender.js",
+    "prerender": "node scripts/prerender.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
