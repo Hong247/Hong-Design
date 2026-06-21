@@ -266,7 +266,7 @@
   function getCurrentScrollPosition(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
 
-    if (scrollWrapper && window.innerWidth > 768) {
+    if (canUsePanelScroll(scrollWrapper)) {
       return { type: "wrapper", element: scrollWrapper, top: scrollWrapper.scrollTop };
     }
 
@@ -383,21 +383,19 @@
       });
     });
 
-    if (window.innerWidth <= 768) {
-      window.setTimeout(function () {
-        runScroll(420);
-      }, 160);
+    window.setTimeout(function () {
+      runScroll(420);
+    }, 160);
 
-      window.setTimeout(function () {
-        runScroll(360);
-      }, motionDuration + 80);
-    }
+    window.setTimeout(function () {
+      runScroll(360);
+    }, motionDuration + 80);
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {
-    if (scrollWrapper && window.innerWidth > 768) {
-      var target = projectHeader.offsetTop - headerOffset;
-      animateElementScroll(scrollWrapper, target < 0 ? 0 : target, duration);
+    if (canUsePanelScroll(scrollWrapper)) {
+      var target = getPanelTargetTop(projectHeader, scrollWrapper, headerOffset);
+      animateElementScroll(scrollWrapper, target, duration);
       return;
     }
 
@@ -405,24 +403,59 @@
     animateWindowScroll(pageTarget < 0 ? 0 : pageTarget, duration);
   }
 
+  function getPanelTargetTop(projectHeader, scrollWrapper, headerOffset) {
+    var headerRect = projectHeader.getBoundingClientRect();
+    var wrapperRect = scrollWrapper.getBoundingClientRect();
+    var target = headerRect.top - wrapperRect.top + scrollWrapper.scrollTop - headerOffset;
+
+    return clampScrollTop(scrollWrapper, target);
+  }
+
+  function canUsePanelScroll(scrollWrapper) {
+    return Boolean(scrollWrapper && window.innerWidth > 768 && scrollWrapper.scrollHeight > scrollWrapper.clientHeight + 1);
+  }
+
+  function clampScrollTop(element, value) {
+    var max = Math.max(0, element.scrollHeight - element.clientHeight);
+    return Math.max(0, Math.min(value, max));
+  }
+
   function animateElementScroll(element, targetTop, duration) {
+    targetTop = clampScrollTop(element, targetTop);
+
     animateScroll(element.scrollTop, targetTop, duration, function (value) {
       element.scrollTop = value;
+    }, function () {
+      element.scrollTop = targetTop;
     });
   }
 
   function animateWindowScroll(targetTop, duration) {
+    targetTop = Math.max(0, targetTop);
+
     animateScroll(window.pageYOffset, targetTop, duration, function (value) {
       window.scrollTo(0, value);
+    }, function () {
+      window.scrollTo(0, targetTop);
     });
   }
 
-  function animateScroll(startTop, targetTop, duration, applyValue) {
+  function animateScroll(startTop, targetTop, duration, applyValue, onComplete) {
     var startTime = performance.now();
     var distance = targetTop - startTop;
 
     if (activeScrollAnimation) {
       window.cancelAnimationFrame(activeScrollAnimation);
+    }
+
+    if (Math.abs(distance) < 1) {
+      applyValue(targetTop);
+
+      if (onComplete) {
+        onComplete();
+      }
+
+      return;
     }
 
     function step(now) {
@@ -437,6 +470,10 @@
         activeScrollAnimation = window.requestAnimationFrame(step);
       } else {
         activeScrollAnimation = null;
+
+        if (onComplete) {
+          onComplete();
+        }
       }
     }
 
@@ -460,7 +497,7 @@
     }
 
     window.requestAnimationFrame(function () {
-      if (position.type === "wrapper" && position.element) {
+      if (position.type === "wrapper" && position.element && canUsePanelScroll(position.element)) {
         animateElementScroll(position.element, position.top, 460);
         return;
       }
