@@ -26,18 +26,18 @@
   <meta name="twitter:title" content="Hong Design | Cheok Hong Lai">
   <meta name="twitter:description" content="Brand, digital, product, and visual design portfolio by Cheok Hong Lai.">
   <meta name="twitter:image" content="https://cheokhong.com/images/share-icon.jpg">
-  <!-- Performance: resource hints -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.clarity.ms">
-  <!-- SEO: sitemap discovery -->
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <title>Hong Design | Cheok Hong Lai - Multidisciplinary Designer</title>
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <!-- Performance: preconnect to font and analytics origins -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.clarity.ms">
+  <!-- Self-hosted IBM Plex Sans (woff2 downloaded at build time by scripts/prerender.js) -->
+  <link rel="stylesheet" href="styles/fonts.css">
   <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/main.css?v=20260620-2">
+  <link rel="stylesheet" href="styles/main.css?v=20260621">
   <link rel="stylesheet" href="styles/theme-toggle.css">
   <script src="data/projects.js?v=20260613" defer></script>
   <script src="data/project-title-overrides.js?v=20260614" defer></script>
@@ -60,7 +60,7 @@
   <script src="data/projects/motorola-solutions-internship.js?v=20260614" defer></script>
   <script src="data/projects/ek-logo.js?v=20260614" defer></script>
   <script src="scripts/project-loader.js?v=20260614" defer></script>
-  <script src="scripts/project-renderer.js?v=20260620-7" defer></script>
+  <script src="scripts/project-renderer.js?v=20260621" defer></script>
   <script src="scripts/project-scroll-controller.js?v=20260620-2" defer></script>
   <script src="scripts/main.js?v=20260620" defer></script>
   <script src="scripts/homepage-intro-override.js?v=20260614-2" defer></script>
@@ -99,8 +99,11 @@
       })(window, document, "clarity", "script", "l7n7rec4v1");
   </script>
 </head>
-  <body class="dark-mode">
-    <div class="fullscreen-container" id="fullscreenContainer">
+<body class="dark-mode">
+  <!-- Skip navigation for keyboard and screen reader users -->
+  <a class="skip-to-content" href="#main">Skip to main content</a>
+
+  <div class="fullscreen-container" id="fullscreenContainer">
     <!-- Left Theme Wrapper -->
     <div class="theme-wrapper left-theme is-font">
       <div class="overlay-text">
@@ -110,13 +113,12 @@
             <img src="images/mode.png" alt="MODE" style="height:15px; width: auto;">
           </button>
         </header>
-        <main>
+        <main id="main">
           <section id="about" class="about std-margin-bottom">
             <div class="body-copy">
-              <!-- Static content for SEO crawlers; JS overwrites on load -->
               <p class="intro-kicker">Vancouver, BC / brand systems, visual direction, product thinking</p>
               <p class="intro-statement">I build visual systems that translate strategy into clear, memorable, and commercially usable design.</p>
-              <p class="intro-detail">My work sits between brand identity, campaign direction, digital experience, product design, and rendered visualization. I approach design as a system of decisions: how an idea is positioned, how it behaves across touchpoints, how visual language supports business intent, and how a concept can remain coherent when it moves from presentation into production.</p>
+              <p class="intro-detail">My work sits between brand identity, campaign direction, digital experience, product design, and rendered visualization â shaped by commercial context, cultural curiosity, and a preference for systems that can actually scale.</p>
               <dl class="profile-facts" aria-label="Profile details">
                 <div><dt>Focus</dt><dd>Brand systems / campaign direction / product-led visual experiences</dd></div>
                 <div><dt>Tools</dt><dd>Adobe CC / Figma / SolidWorks / KeyShot / research / art direction</dd></div>
@@ -126,7 +128,7 @@
           </section>
           <div class="separator"></div>
           <ul class="social-links is-font">
-            <li><a href="https://www.linkedin.com/in/cheok-hong-lai/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/cheok-hong-lai/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li class="email-contact-item"><a href="mailto:cheokhong.design@gmail.com">Email</a></li>
           </ul>
           <div class="hovered-container">
@@ -149,7 +151,7 @@
           <th>YEAR</th>
         </tr>
       </thead>
-      <tbody id="projectArchive"></tbody>
+      <tbody id="projectArchive"><!-- PRERENDER_PROJECTS --></tbody>
     </table>
   </div>
   </div>
