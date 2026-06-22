@@ -401,16 +401,7 @@ td:nth-child(4) .custom-btn {
 
 .scroll-container img.fullscreen-image {
   width: auto;
-  height: auto;
-  max-height: min(600px, 70vh);
-}
-
-/* Full-page website screenshots are very tall (3440x7610+); cap by width
-   so they show at a readable page-width rather than a narrow vertical sliver.
-   overflow-y: hidden on the container gives a natural above-the-fold crop. */
-tr#c-market-coffee-website .scroll-container img.fullscreen-image {
-  max-height: none;
-  max-width: min(560px, 52vw);
+  height: min(600px, 70vh);
 }
 
 .scroll-container iframe {
@@ -598,16 +589,8 @@ tr#c-market-coffee-website .scroll-container img.fullscreen-image {
 
   .scroll-container img.fullscreen-image,
   .scroll-container iframe {
-    width: min(86vw, 620px);
-    height: auto;
-    max-height: none;
-  }
-
-  tr#c-market-coffee-website .scroll-container img.fullscreen-image {
     width: auto;
-    height: auto;
-    max-width: min(80vw, 480px);
-    max-height: min(75vh, 600px);
+    height: min(320px, 52vh);
   }
 
   iframe {
