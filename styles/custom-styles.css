@@ -1,4 +1,4 @@
-body.dark-mode .theme-toggle::before{color:#fff}
+body.dark-mode .theme-toggle::before{color:#fff}.theme-toggle::before{transition:color .18s ease}.theme-toggle:hover::before{color:#000!important}body.orange-mode .theme-toggle:hover::before{color:#fff!important}body.dark-mode .theme-toggle:hover::before{color:var(--accent)!important}
 .theme-toggle::before{font-size:22px;line-height:1}
 .header-title,.profile-facts dt,.social-links a{font-weight:800!important}
 thead th{font-weight:900!important;letter-spacing:-.01em}
