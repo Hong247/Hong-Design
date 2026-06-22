@@ -6,9 +6,12 @@
   var sortStaggerDelay = 42;
   var motionOffset = "translateY(-4px)";
   var activeScrollAnimation = null;
-  var currentSortDirection = "desc";
-  var currentProjectFilter = "all";
-  var currentRoleFilter = "all";
+
+  // Sort state â one column active at a time
+  var activeSortColumn = "year";  // "year" | "project" | "role"
+  var yearSortDir = "desc";       // "desc" | "asc"
+  var projectCycleDir = null;     // null | "asc" | "desc"
+  var roleCycleDir = null;        // null | "asc" | "desc"
 
   window.addEventListener("click", handleProjectClick, true);
   document.addEventListener("DOMContentLoaded", initProjectHeaders);
@@ -55,8 +58,9 @@
   function initProjectHeaders() {
     setNumberHeader();
     initYearSort();
-    initProjectFilter();
-    initRoleFilter();
+    initColumnSortHeader("project");
+    initColumnSortHeader("role");
+    updateSortHeaders();
   }
 
   function setNumberHeader() {
@@ -77,153 +81,93 @@
     yearHeader.setAttribute("role", "button");
     yearHeader.setAttribute("tabindex", "0");
     yearHeader.setAttribute("aria-label", "Sort projects by year");
-    yearHeader.setAttribute("aria-sort", "descending");
-    yearHeader.classList.add("year-sort-header", "sort-desc");
-    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">&#9650;</span><span class="year-sort-arrow year-sort-down">&#9660;</span></span>';
+    yearHeader.classList.add("year-sort-header");
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
 
     yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
-      toggleYearSort(yearHeader);
+      handleYearClick();
     });
 
     yearHeader.addEventListener("keydown", function (event) {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        toggleYearSort(yearHeader);
+        handleYearClick();
       }
     });
   }
 
-  // Project and role filters
+  function handleYearClick() {
+    yearSortDir = yearSortDir === "desc" ? "asc" : "desc";
+    activeSortColumn = "year";
+    projectCycleDir = null;
+    roleCycleDir = null;
+    sortProjectsByYear(yearSortDir);
+    updateSortHeaders();
+  }
 
-  function initProjectFilter() {
-    var th = document.querySelector("thead th:nth-child(2)");
+  function initColumnSortHeader(column) {
+    var headerEl = column === "project"
+      ? document.querySelector("thead th:nth-child(2)")
+      : document.querySelector("thead th:nth-child(3)");
 
-    if (!th || th.querySelector(".filter-label")) {
+    if (!headerEl || headerEl.querySelector(".year-sort-label")) {
       return;
     }
 
-    setupFilterHeader(th, "PROJECT", "project");
-  }
+    var label = column === "project" ? "PROJECT" : "ROLE";
+    headerEl.setAttribute("role", "button");
+    headerEl.setAttribute("tabindex", "0");
+    headerEl.setAttribute("aria-label", "Sort projects by " + label.toLowerCase());
+    headerEl.setAttribute("aria-sort", "none");
+    headerEl.classList.add("year-sort-header");
+    headerEl.innerHTML = '<span class="year-sort-label">' + label + '</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
 
-  function initRoleFilter() {
-    var th = document.querySelector("thead th:nth-child(3)");
-
-    if (!th || th.querySelector(".filter-label")) {
-      return;
-    }
-
-    setupFilterHeader(th, "ROLE", "role");
-  }
-
-  function setupFilterHeader(th, defaultLabel, type) {
-    th.setAttribute("role", "button");
-    th.setAttribute("tabindex", "0");
-    th.setAttribute("aria-label", "Filter projects by " + type);
-    th.classList.add(type + "-filter-header");
-    th.innerHTML =
-      '<span class="filter-label">' + defaultLabel + "</span>" +
-      '<span class="filter-symbol" aria-hidden="true">' +
-      '<span class="filter-arrow filter-arrow-up">&#9650;</span>' +
-      '<span class="filter-arrow filter-arrow-down">&#9660;</span>' +
-      "</span>";
-
-    th.addEventListener("click", function (event) {
-      var upArrow = event.target.closest && event.target.closest(".filter-arrow-up");
-      cycleFilter(type, upArrow ? -1 : 1);
+    headerEl.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
+      handleColumnClick(column);
     });
 
-    th.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" || event.key === " " || event.key === "ArrowDown") {
+    headerEl.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        cycleFilter(type, 1);
-      } else if (event.key === "ArrowUp") {
-        event.preventDefault();
-        cycleFilter(type, -1);
+        handleColumnClick(column);
       }
     });
   }
 
-  function getFilterOptions(type) {
-    var options = [];
-    var seen = {};
+  function handleColumnClick(column) {
+    var cycleDir = column === "project" ? projectCycleDir : roleCycleDir;
 
-    document.querySelectorAll("tbody tr.hover-trigger").forEach(function (row) {
-      // Only include rows that pass the OTHER active filter
-      var otherOk = true;
-
-      if (type === "project") {
-        otherOk =
-          currentRoleFilter === "all" ||
-          (row.getAttribute("data-role") || "") === currentRoleFilter;
-      } else {
-        otherOk =
-          currentProjectFilter === "all" ||
-          (row.getAttribute("data-project") || "") === currentProjectFilter;
-      }
-
-      if (!otherOk) {
-        return;
-      }
-
-      var val = row.getAttribute("data-" + type) || "";
-
-      if (val && !seen[val]) {
-        seen[val] = true;
-        options.push(val);
-      }
-    });
-
-    return options.sort(function (a, b) {
-      return a.localeCompare(b, undefined, { sensitivity: "base" });
-    });
-  }
-
-  function cycleFilter(type, direction) {
-    var options = getFilterOptions(type);
-    var current = type === "project" ? currentProjectFilter : currentRoleFilter;
-    var allOptions = ["all"].concat(options);
-    var idx = allOptions.indexOf(current);
-
-    if (idx === -1) {
-      idx = 0;
-    }
-
-    var newIdx = (idx + direction + allOptions.length) % allOptions.length;
-    var newVal = allOptions[newIdx];
-
-    if (type === "project") {
-      currentProjectFilter = newVal;
+    if (activeSortColumn !== column) {
+      // Switch to this column, start ascending
+      activeSortColumn = column;
+      cycleDir = "asc";
+    } else if (cycleDir === "asc") {
+      cycleDir = "desc";
     } else {
-      currentRoleFilter = newVal;
-    }
-
-    updateFilterLabel("project", currentProjectFilter === "all" ? "PROJECT" : currentProjectFilter);
-    updateFilterLabel("role", currentRoleFilter === "all" ? "ROLE" : currentRoleFilter);
-    applyFilters();
-  }
-
-  function updateFilterLabel(type, label) {
-    var th = document.querySelector("thead th." + type + "-filter-header");
-
-    if (!th) {
+      // Third click: reset to year sort
+      activeSortColumn = "year";
+      projectCycleDir = null;
+      roleCycleDir = null;
+      sortProjectsByYear(yearSortDir);
+      updateSortHeaders();
       return;
     }
 
-    var el = th.querySelector(".filter-label");
-
-    if (el) {
-      el.textContent = label;
+    if (column === "project") {
+      projectCycleDir = cycleDir;
+    } else {
+      roleCycleDir = cycleDir;
     }
 
-    var isActive = (type === "project" ? currentProjectFilter : currentRoleFilter) !== "all";
-    th.classList.toggle("filter-active", isActive);
+    sortByColumnDir(column, cycleDir);
+    updateSortHeaders();
   }
 
-  function applyFilters() {
+  function sortByColumnDir(column, dir) {
     var tbody = document.querySelector("tbody");
 
     if (!tbody) {
@@ -232,78 +176,78 @@
 
     closeAllProjects();
 
-    var count = 0;
+    var pairs = [];
 
     Array.from(tbody.children).forEach(function (row) {
-      if (!row.classList.contains("hover-trigger")) {
+      if (!row.classList || !row.classList.contains("hover-trigger")) {
         return;
       }
 
-      var role = row.getAttribute("data-role") || "";
-      var project = row.getAttribute("data-project") || "";
-      var roleOk = currentRoleFilter === "all" || role === currentRoleFilter;
-      var projectOk = currentProjectFilter === "all" || project === currentProjectFilter;
-      var visible = roleOk && projectOk;
+      var detail = row.nextElementSibling && row.nextElementSibling.classList.contains("collapse")
+        ? row.nextElementSibling : null;
+      var titleBtn = row.querySelector("td:nth-child(2) .custom-btn");
+      var roleBtn = row.querySelector("td:nth-child(3) .custom-btn");
+      var numBtn = row.querySelector("td:first-child .custom-btn");
 
-      row.style.display = visible ? "" : "none";
-
-      var detail = row.nextElementSibling;
-
-      if (detail && detail.classList.contains("collapse")) {
-        detail.style.display = visible ? "" : "none";
-      }
-
-      if (visible) {
-        count++;
-        var btn = row.querySelector("td:first-child .custom-btn");
-
-        if (btn) {
-          btn.textContent = String(count).padStart(2, "0");
-        }
-      }
+      pairs.push({
+        header: row,
+        detail: detail,
+        title: titleBtn ? titleBtn.textContent.trim() : "",
+        role: roleBtn ? roleBtn.textContent.trim() : "",
+        projectNumber: numBtn ? parseInt(numBtn.textContent.trim(), 10) : 0
+      });
     });
 
-    // Scroll list back to top when a filter is active
+    var field = column === "project" ? "title" : "role";
+
+    pairs.sort(function (a, b) {
+      var valA = a[field].toLowerCase();
+      var valB = b[field].toLowerCase();
+
+      if (valA === valB) {
+        return a.projectNumber - b.projectNumber;
+      }
+
+      var cmp = valA < valB ? -1 : 1;
+      return dir === "asc" ? cmp : -cmp;
+    });
+
+    animateSequentialSortReorder(tbody, pairs);
+
     var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
 
-    if (scrollWrapper && (currentProjectFilter !== "all" || currentRoleFilter !== "all")) {
-      animateElementScroll(scrollWrapper, 0, 320);
+    if (scrollWrapper) {
+      animateElementScroll(scrollWrapper, 0, 420);
     }
   }
 
-  function renumberVisibleRows() {
-    var count = 0;
+  function updateSortHeaders() {
+    var yearHeader = document.querySelector("thead th:last-child");
+    var projectHeader = document.querySelector("thead th:nth-child(2)");
+    var roleHeader = document.querySelector("thead th:nth-child(3)");
 
-    document.querySelectorAll("tbody tr.hover-trigger").forEach(function (row) {
-      if (row.style.display === "none") {
-        return;
-      }
+    var yearActiveDir = activeSortColumn === "year" ? yearSortDir : null;
+    var projectActiveDir = activeSortColumn === "project" ? projectCycleDir : null;
+    var roleActiveDir = activeSortColumn === "role" ? roleCycleDir : null;
 
-      count++;
-      var btn = row.querySelector("td:first-child .custom-btn");
+    setSortHeaderState(yearHeader, yearActiveDir,
+      activeSortColumn === "year" ? (yearSortDir === "desc" ? "descending" : "ascending") : "none");
 
-      if (btn) {
-        btn.textContent = String(count).padStart(2, "0");
-      }
-    });
+    setSortHeaderState(projectHeader, projectActiveDir,
+      activeSortColumn === "project" ? (projectCycleDir === "asc" ? "ascending" : "descending") : "none");
+
+    setSortHeaderState(roleHeader, roleActiveDir,
+      activeSortColumn === "role" ? (roleCycleDir === "asc" ? "ascending" : "descending") : "none");
   }
 
-  // Year sort
-
-  function toggleYearSort(yearHeader) {
-    currentSortDirection = currentSortDirection === "desc" ? "asc" : "desc";
-    sortProjectsByYear(currentSortDirection);
-    updateYearSortHeader(yearHeader, currentSortDirection);
-  }
-
-  function updateYearSortHeader(yearHeader, direction) {
-    if (!yearHeader) {
+  function setSortHeaderState(header, dir, ariaSortValue) {
+    if (!header) {
       return;
     }
 
-    yearHeader.setAttribute("aria-sort", direction === "desc" ? "descending" : "ascending");
-    yearHeader.classList.toggle("sort-desc", direction === "desc");
-    yearHeader.classList.toggle("sort-asc", direction === "asc");
+    header.classList.toggle("sort-asc", dir === "asc");
+    header.classList.toggle("sort-desc", dir === "desc");
+    header.setAttribute("aria-sort", ariaSortValue || "none");
   }
 
   function sortProjectsByYear(direction) {
@@ -323,38 +267,29 @@
         return;
       }
 
-      var detail =
-        row.nextElementSibling && row.nextElementSibling.classList.contains("collapse")
-          ? row.nextElementSibling
-          : null;
+      var detail = row.nextElementSibling && row.nextElementSibling.classList.contains("collapse") ? row.nextElementSibling : null;
       var numberButton = row.querySelector("td:first-child .custom-btn");
       var yearButton = row.querySelector("td:last-child .custom-btn");
       var projectNumber = numberButton ? parseInt(numberButton.textContent.trim(), 10) : 0;
       var year = yearButton ? parseInt(yearButton.textContent.trim(), 10) : 0;
-      var isHidden = row.style.display === "none";
 
       pairs.push({
         header: row,
         detail: detail,
         year: year,
-        projectNumber: projectNumber,
-        isHidden: isHidden
+        projectNumber: projectNumber
       });
     });
 
     pairs.sort(function (a, b) {
       if (a.year === b.year) {
-        return direction === "desc"
-          ? a.projectNumber - b.projectNumber
-          : b.projectNumber - a.projectNumber;
+        return direction === "desc" ? a.projectNumber - b.projectNumber : b.projectNumber - a.projectNumber;
       }
 
       return direction === "desc" ? b.year - a.year : a.year - b.year;
     });
 
-    // Only animate visible rows; hidden rows are repositioned silently
-    var visiblePairs = pairs.filter(function (p) { return !p.isHidden; });
-    animateSequentialSortReorder(tbody, pairs, visiblePairs);
+    animateSequentialSortReorder(tbody, pairs);
 
     var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
 
@@ -363,14 +298,12 @@
     }
   }
 
-  function animateSequentialSortReorder(tbody, sortedPairs, visiblePairs) {
-    var animatePairs = visiblePairs || sortedPairs;
+  function animateSequentialSortReorder(tbody, sortedPairs) {
     var movingRows = [];
     var firstPositions = new Map();
-    var prefersReducedMotion =
-      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    animatePairs.forEach(function (pair) {
+    sortedPairs.forEach(function (pair) {
       movingRows.push(pair.header);
 
       if (pair.detail) {
@@ -380,8 +313,6 @@
 
     if (prefersReducedMotion || !movingRows.length) {
       appendSortedPairs(tbody, sortedPairs);
-      reapplyFilterDisplay(sortedPairs);
-      renumberVisibleRows();
       return;
     }
 
@@ -398,9 +329,8 @@
 
     window.setTimeout(function () {
       appendSortedPairs(tbody, sortedPairs);
-      reapplyFilterDisplay(sortedPairs);
 
-      animatePairs.forEach(function (pair, index) {
+      sortedPairs.forEach(function (pair, index) {
         animateSortedPair(pair, firstPositions, index);
       });
 
@@ -411,19 +341,8 @@
           row.style.opacity = "";
           row.style.willChange = "";
         });
-        renumberVisibleRows();
-      }, sortMotionDuration + animatePairs.length * sortStaggerDelay + 120);
+      }, sortMotionDuration + sortedPairs.length * sortStaggerDelay + 120);
     }, 120);
-  }
-
-  function reapplyFilterDisplay(pairs) {
-    pairs.forEach(function (pair) {
-      pair.header.style.display = pair.isHidden ? "none" : "";
-
-      if (pair.detail) {
-        pair.detail.style.display = pair.isHidden ? "none" : "";
-      }
-    });
   }
 
   function appendSortedPairs(tbody, pairs) {
@@ -455,16 +374,12 @@
       row.style.willChange = "transform, opacity";
 
       window.setTimeout(function () {
-        row.style.transition =
-          "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " +
-          sortMotionDuration + "ms ease";
+        row.style.transition = "transform " + sortMotionDuration + "ms cubic-bezier(0.22, 1, 0.36, 1), opacity " + sortMotionDuration + "ms ease";
         row.style.transform = "translateY(0)";
         row.style.opacity = "1";
       }, delay);
     });
   }
-
-  // Row open / close
 
   function closeAllProjects() {
     document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
@@ -503,8 +418,7 @@
 
   function prepareDetailMotion(detail) {
     detail.style.overflow = "hidden";
-    detail.style.transition =
-      "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+    detail.style.transition = "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
   }
 
   function openRow(row) {
@@ -599,8 +513,6 @@
     return header && header.classList.contains("hover-trigger") ? header : null;
   }
 
-  // Scroll to header
-
   function flowHeaderToTop(projectHeader) {
     var scrollWrapper = getScrollWrapper(projectHeader);
 
@@ -630,25 +542,20 @@
       return;
     }
 
-    var pageTarget =
-      projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    var pageTarget = projectHeader.getBoundingClientRect().top + window.pageYOffset - headerOffset;
     animateWindowScroll(pageTarget < 0 ? 0 : pageTarget, duration);
   }
 
   function getPanelTargetTop(projectHeader, scrollWrapper, headerOffset) {
     var headerRect = projectHeader.getBoundingClientRect();
     var wrapperRect = scrollWrapper.getBoundingClientRect();
-    var target =
-      headerRect.top - wrapperRect.top + scrollWrapper.scrollTop - headerOffset;
+    var target = headerRect.top - wrapperRect.top + scrollWrapper.scrollTop - headerOffset;
+
     return clampScrollTop(scrollWrapper, target);
   }
 
   function canUsePanelScroll(scrollWrapper) {
-    return Boolean(
-      scrollWrapper &&
-        window.innerWidth > 768 &&
-        scrollWrapper.scrollHeight > scrollWrapper.clientHeight + 1
-    );
+    return Boolean(scrollWrapper && window.innerWidth > 768 && scrollWrapper.scrollHeight > scrollWrapper.clientHeight + 1);
   }
 
   function clampScrollTop(element, value) {
@@ -659,33 +566,21 @@
   function animateElementScroll(element, targetTop, duration) {
     targetTop = clampScrollTop(element, targetTop);
 
-    animateScroll(
-      element.scrollTop,
-      targetTop,
-      duration,
-      function (value) {
-        element.scrollTop = value;
-      },
-      function () {
-        element.scrollTop = targetTop;
-      }
-    );
+    animateScroll(element.scrollTop, targetTop, duration, function (value) {
+      element.scrollTop = value;
+    }, function () {
+      element.scrollTop = targetTop;
+    });
   }
 
   function animateWindowScroll(targetTop, duration) {
     targetTop = Math.max(0, targetTop);
 
-    animateScroll(
-      window.pageYOffset,
-      targetTop,
-      duration,
-      function (value) {
-        window.scrollTo(0, value);
-      },
-      function () {
-        window.scrollTo(0, targetTop);
-      }
-    );
+    animateScroll(window.pageYOffset, targetTop, duration, function (value) {
+      window.scrollTo(0, value);
+    }, function () {
+      window.scrollTo(0, targetTop);
+    });
   }
 
   function animateScroll(startTop, targetTop, duration, applyValue, onComplete) {
@@ -708,10 +603,9 @@
 
     function step(now) {
       var progress = Math.min(1, (now - startTime) / duration);
-      var eased =
-        progress < 0.5
-          ? 4 * progress * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      var eased = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
       applyValue(startTop + distance * eased);
 
@@ -734,9 +628,7 @@
       return 22;
     }
 
-    var header = scrollWrapper
-      ? scrollWrapper.querySelector("thead")
-      : document.querySelector("thead");
+    var header = scrollWrapper ? scrollWrapper.querySelector("thead") : document.querySelector("thead");
     return header ? header.getBoundingClientRect().height : 0;
   }
 
@@ -748,11 +640,7 @@
     }
 
     window.requestAnimationFrame(function () {
-      if (
-        position.type === "wrapper" &&
-        position.element &&
-        canUsePanelScroll(position.element)
-      ) {
+      if (position.type === "wrapper" && position.element && canUsePanelScroll(position.element)) {
         animateElementScroll(position.element, position.top, 460);
         return;
       }
