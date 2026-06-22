@@ -1,9 +1,9 @@
 (function () {
   var savedPositions = {};
-  var motionDuration = 650;
-  var scrollDuration = 620;
-  var sortMotionDuration = 520;
-  var sortStaggerDelay = 42;
+  var motionDuration = 220;
+  var scrollDuration = 280;
+  var sortMotionDuration = 180;
+  var sortStaggerDelay = 14;
   var motionOffset = "translateY(-4px)";
   var activeScrollAnimation = null;
 
@@ -216,7 +216,7 @@
     var scrollWrapper = document.querySelector(".right-theme .scroll-wrapper");
 
     if (scrollWrapper) {
-      animateElementScroll(scrollWrapper, 0, 420);
+      animateElementScroll(scrollWrapper, 0, 200);
     }
   }
 
@@ -394,7 +394,7 @@
 
   function prepareDetailMotion(detail) {
     detail.style.overflow = "hidden";
-    detail.style.transition = "max-height 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)";
+    detail.style.transition = "max-height 0.20s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.16s ease, transform 0.20s cubic-bezier(0.22, 1, 0.36, 1)";
   }
 
   function openRow(row) {
@@ -503,12 +503,12 @@
     });
 
     window.setTimeout(function () {
-      runScroll(420);
-    }, 160);
+      runScroll(200);
+    }, 60);
 
     window.setTimeout(function () {
-      runScroll(360);
-    }, motionDuration + 80);
+      runScroll(180);
+    }, motionDuration + 40);
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {
@@ -617,11 +617,11 @@
 
     window.requestAnimationFrame(function () {
       if (position.type === "wrapper" && position.element && canUsePanelScroll(position.element)) {
-        animateElementScroll(position.element, position.top, 460);
+        animateElementScroll(position.element, position.top, 220);
         return;
       }
 
-      animateWindowScroll(position.top, 460);
+      animateWindowScroll(position.top, 220);
     });
   }
 }());
