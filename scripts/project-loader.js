@@ -245,6 +245,7 @@
 
     var defaultOrder = [
       "demo-cmarket-tote-bag",
+      "demo-cmarket-brand",
       "demo-cmarket-site",
       "demo-mara-natha-portfolio-document",
       "demo1",
