@@ -16,6 +16,20 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
+    id: "demo-cmarket-brand",
+    title: "C Market Coffee — Brand, Social, E-commerce & Retail Marketing System",
+    role: "Marketing Design",
+    year: "2025",
+    preview: "",
+    media: [],
+    description: [
+      { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage. My role was to support the brand across both digital and physical channels, creating marketing assets that were visually consistent, production-ready, and aligned with real business goals." },
+      { label: "Challenge", text: "C Market operates across many fast-moving touchpoints: retail stores, online ordering, social media, product launches, events, packaging, and customer-facing promotions. Each channel required a different design approach. The challenge was to balance brand consistency, speed, visual quality, and business function without making every asset feel repetitive or disconnected." },
+      { label: "Direction", text: "The creative direction focused on building a flexible brand and marketing system that was clear, consistent, platform-aware, performance-minded, and scalable — able to work for recurring promotions, seasonal campaigns, product launches, and fast internal requests without starting from zero every time." },
+      { label: "Outcome", text: "The project helped C Market build a stronger and more consistent brand presence across digital, social, e-commerce, print, packaging, and retail environments. Key results: a reel that reached 1M+ views, Instagram growth from approximately 8K to 17K followers, and a more unified visual communication system across all digital and physical touchpoints." }
+    ]
+  },
+  {
     id: "demo-cmarket-site",
     title: "C Market Coffee Official Site",
     role: "Web Design",
