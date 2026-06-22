@@ -59,26 +59,6 @@ function loadProjectData() {
   // Files to load in the same order as index.html
   const dataFiles = [
     'data/projects.js',
-    'data/project-title-overrides.js',
-    'data/project-media-overrides.js',
-    'data/projects/cmarket-tote-bag.js',
-    'data/projects/cmarket-website.js',
-    'data/projects/mara-natha-portfolio-document.js',
-    'data/projects/kee.js',
-    'data/projects/maia.js',
-    'data/projects/browns.js',
-    'data/projects/monday.js',
-    'data/projects/kill-the-bride.js',
-    'data/projects/wwf-stop-haunting-mother-nature.js',
-    'data/projects/xway.js',
-    'data/projects/raku-haru.js',
-    'data/projects/trapo-digital-catalogue.js',
-    'data/projects/trapo-smartphone-holder.js',
-    'data/projects/talentlounge-virtual-career-fair.js',
-    'data/projects/nexus.js',
-    'data/projects/motorola-solutions-internship.js',
-    'data/projects/ek-logo.js',
-    'data/projects-content.js',
     'scripts/project-loader.js',
   ];
 
