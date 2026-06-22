@@ -73,6 +73,13 @@
     initYearSort();
     initColumnSortHeader("role");
     updateSortHeaders();
+    initAriaExpandedState();
+  }
+
+  function initAriaExpandedState() {
+    document.querySelectorAll(".custom-btn[data-target]").forEach(function (btn) {
+      btn.setAttribute("aria-expanded", "false");
+    });
   }
 
   function setNumberHeader() {

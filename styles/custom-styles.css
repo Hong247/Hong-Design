@@ -10,20 +10,14 @@ body.orange-mode .year-sort-header:hover{color:#fff!important}
 .year-sort-arrow{display:block;transition:opacity .25s ease,color .25s ease}
 .year-sort-header.sort-desc .year-sort-down{opacity:1}.year-sort-header.sort-desc .year-sort-up{opacity:.35}
 .year-sort-header.sort-asc .year-sort-up{opacity:1}.year-sort-header.sort-asc .year-sort-down{opacity:.35}
-.email-contact-item{display:flex;align-items:center;gap:7px;position:relative}
-.email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-weight:700!important;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transform:scale(1);text-shadow:.08px 0 currentColor,-.08px 0 currentColor;transition:opacity .2s ease,transform .2s ease,color .2s ease}
-.email-copy-button:hover,.email-copy-button:focus-visible{opacity:1;transform:translateY(-1px) scale(1.06);outline:none;color:var(--accent)}
-body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#fff}
-.email-copy-feedback{position:static;display:inline-block;margin-left:5px;white-space:nowrap;font:inherit;font-weight:800!important;font-size:1em;letter-spacing:0;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease;color:currentColor;text-shadow:none}
-.email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
 .hover-trigger td{transition:letter-spacing .18s cubic-bezier(.22,1,.36,1),opacity .14s ease}
 .hover-trigger.is-active-project td{padding-top:8px!important;padding-bottom:8px!important;letter-spacing:.025em;transform:none!important;vertical-align:top!important}
 .hover-trigger.is-active-project .custom-btn{line-height:1.45;transition:color .14s ease,letter-spacing .18s cubic-bezier(.22,1,.36,1),font-weight .14s ease,opacity .14s ease}
 tr.collapse .project-detail{transform-origin:top left;transition:max-height .20s cubic-bezier(.22,1,.36,1),opacity .16s ease,transform .20s cubic-bezier(.22,1,.36,1),filter .16s ease!important;filter:blur(2px)}
 tr.collapse.is-open .project-detail{filter:blur(0)}
 tr.collapse.is-open .project-description{animation:projectDescriptionMorph .22s cubic-bezier(.22,1,.36,1) both}
-tr[id^="demo"] .scroll-container img{height:min(500px,58vh)!important;width:auto!important;max-width:none;max-height:none;object-fit:contain;object-position:center;aspect-ratio:auto;cursor:default!important;opacity:0;transform:translateY(6px) scale(.99);transition:opacity .22s ease,transform .24s cubic-bezier(.22,1,.36,1)}
-tr[id^="demo"].is-open .scroll-container img{opacity:1;transform:translateY(0) scale(1)}
+.scroll-container img.fullscreen-image{cursor:default!important;opacity:0;transform:translateY(6px) scale(.99);transition:opacity .22s ease,transform .24s cubic-bezier(.22,1,.36,1)}
+tr.collapse.is-open .scroll-container img.fullscreen-image{opacity:1;transform:translateY(0) scale(1)}
 .scroll-container iframe{width:min(400px,90vw);height:min(840px,88vh);display:block}.scroll-container iframe[src*="figma.com"]{width:min(900px,85vw);height:min(500px,58vh)}
 
 .hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
@@ -40,16 +34,6 @@ body.project-focus-active .hover-trigger:hover .custom-btn{letter-spacing:.01em}
 body.project-focus-active .hover-trigger.is-active-project td:first-child{position:relative}
 body.project-focus-active .hover-trigger.is-active-project td:first-child::before{content:"";position:absolute;left:-16px;top:50%;width:8px;height:1px;background:currentColor;transform:translateY(-50%)}
 @keyframes projectDescriptionMorph{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
-@media (max-width:768px){.theme-toggle::before{font-size:18px}tr.hover-trigger td:nth-child(4){padding-right:18px}tr.hover-trigger.is-active-project td{padding-top:0!important;padding-bottom:0!important;transform:none!important;vertical-align:top!important}tr.hover-trigger.is-active-project td:nth-child(1),tr.hover-trigger.is-active-project td:nth-child(4){padding-top:1px!important}tr.hover-trigger.is-active-project td:nth-child(2) .custom-btn{line-height:1.34}tr[id^="demo"] .scroll-container img{height:min(420px,68vh)!important;width:auto!important;max-width:90vw!important;max-height:none;object-fit:contain;object-position:center;aspect-ratio:auto}.scroll-container iframe{width:min(90vw,400px);height:min(780px,82vh)}.scroll-container iframe[src*="figma.com"]{width:90vw;height:min(420px,68vh)}.hovered-container{display:none}.email-contact-item{gap:6px}.email-copy-feedback{position:static;margin-left:5px;transform:translateX(-3px)}.email-contact-item.is-copied .email-copy-feedback{transform:translateX(0)}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
-.project-filter-header,.role-filter-header,.project-filter-header *,.role-filter-header *{cursor:pointer!important;user-select:none}
-.project-filter-header,.role-filter-header{transition:color .25s ease}
-.project-filter-header:hover,.role-filter-header:hover{color:var(--accent)!important}
-body.orange-mode .project-filter-header:hover,body.orange-mode .role-filter-header:hover{color:#fff!important}
-.filter-symbol{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;margin-left:4px;line-height:.68;font-size:.6em;vertical-align:middle;transform:translateY(-1px)}
-.filter-arrow{display:block;transition:opacity .25s ease,color .25s ease;opacity:.35}
-.project-filter-header.filter-active,.role-filter-header.filter-active{color:var(--accent)!important}
-body.orange-mode .project-filter-header.filter-active,body.orange-mode .role-filter-header.filter-active{color:#fff!important}
-.project-filter-header.filter-active .filter-arrow,.role-filter-header.filter-active .filter-arrow{opacity:1}
-.project-filter-header .filter-label,.role-filter-header .filter-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 18px);display:inline-block;vertical-align:middle}
+@media (max-width:768px){.theme-toggle::before{font-size:18px}tr.hover-trigger td:nth-child(4){padding-right:18px}tr.hover-trigger.is-active-project td{padding-top:0!important;padding-bottom:0!important;transform:none!important;vertical-align:top!important}tr.hover-trigger.is-active-project td:nth-child(1),tr.hover-trigger.is-active-project td:nth-child(4){padding-top:1px!important}tr.hover-trigger.is-active-project td:nth-child(2) .custom-btn{line-height:1.34}.scroll-container img.fullscreen-image{height:min(420px,68vh)!important;width:auto!important;max-width:90vw!important;max-height:none;object-fit:contain;object-position:center;aspect-ratio:auto}.scroll-container iframe{width:min(90vw,400px);height:min(780px,82vh)}.scroll-container iframe[src*="figma.com"]{width:90vw;height:min(420px,68vh)}.hovered-container{display:none}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
 
 .year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}

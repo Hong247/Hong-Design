@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
+  hoveredImageEl = document.querySelector(".hovered-image");
   applySavedTheme();
   setScrolling();
   setPageOverflow();
@@ -30,6 +31,9 @@ var hoverPreviewIndex = 0;
 var hoverPreviewImages = [];
 var hoverPreviewParallaxX = 0;
 var hoverPreviewParallaxY = 0;
+var hoverPreviewTrigger = null;
+var hoverParallaxRafPending = false;
+var hoveredImageEl = null;
 
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
@@ -104,17 +108,24 @@ function addScrollDots(scrollContainer) {
 
   scrollContainer.parentNode.insertBefore(dots, scrollContainer.nextSibling);
 
+  var scrollDotRafPending = false;
   scrollContainer.addEventListener("scroll", function () {
-    var index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
-    dots.querySelectorAll(".scroll-dot").forEach(function (dot, i) {
-      dot.classList.toggle("is-active", i === index);
+    if (scrollDotRafPending) return;
+    scrollDotRafPending = true;
+    window.requestAnimationFrame(function () {
+      scrollDotRafPending = false;
+      var index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
+      dots.querySelectorAll(".scroll-dot").forEach(function (dot, i) {
+        dot.classList.toggle("is-active", i === index);
+      });
     });
-  });
+  }, { passive: true });
 }
 
 function startIntelligentHoverPreview(trigger) {
   stopIntelligentHoverPreview();
 
+  hoverPreviewTrigger = trigger;
   hoverPreviewImages = getHoverPreviewImages(trigger);
   hoverPreviewIndex = 0;
   hoverPreviewParallaxX = 0;
@@ -138,22 +149,21 @@ function startIntelligentHoverPreview(trigger) {
 }
 
 function stopIntelligentHoverPreview() {
-  var hoveredImage = document.querySelector(".hovered-image");
-
   if (hoverPreviewTimer) {
     window.clearInterval(hoverPreviewTimer);
     hoverPreviewTimer = null;
   }
 
+  hoverPreviewTrigger = null;
   hoverPreviewImages = [];
   hoverPreviewIndex = 0;
   hoverPreviewParallaxX = 0;
   hoverPreviewParallaxY = 0;
 
-  if (hoveredImage) {
-    hoveredImage.style.display = "none";
-    hoveredImage.style.transform = "";
-    hoveredImage.removeAttribute("src");
+  if (hoveredImageEl) {
+    hoveredImageEl.style.display = "none";
+    hoveredImageEl.style.transform = "";
+    hoveredImageEl.removeAttribute("src");
   }
 }
 
@@ -169,46 +179,46 @@ function getHoverPreviewImages(trigger) {
 }
 
 function showHoveredPreviewImage(source) {
-  var hoveredImage = document.querySelector(".hovered-image");
-
-  if (!hoveredImage || !source) {
+  if (!hoveredImageEl || !source) {
     return;
   }
 
-  hoveredImage.style.opacity = "0";
-  hoveredImage.style.display = "block";
+  hoveredImageEl.alt = hoverPreviewTrigger ? (hoverPreviewTrigger.getAttribute("data-project") || "") : "";
+  hoveredImageEl.style.opacity = "0";
+  hoveredImageEl.style.display = "block";
   applyHoverPreviewParallax();
 
   window.setTimeout(function () {
-    hoveredImage.src = source;
-    hoveredImage.style.opacity = "1";
+    hoveredImageEl.src = source;
+    hoveredImageEl.style.opacity = "1";
     applyHoverPreviewParallax();
   }, 90);
 }
 
 function updateHoverPreviewParallax(event) {
-  var hoveredImage = document.querySelector(".hovered-image");
-  var row = event.currentTarget;
-  var rect = row.getBoundingClientRect();
-  var relativeX = rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0;
-  var relativeY = rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0;
-
-  if (!hoveredImage || !hoveredImage.getAttribute("src")) {
+  if (!hoveredImageEl || !hoveredImageEl.getAttribute("src")) {
     return;
   }
 
-  hoverPreviewParallaxX = relativeX * 10;
-  hoverPreviewParallaxY = relativeY * 8;
-  applyHoverPreviewParallax();
+  var row = event.currentTarget;
+  var rect = row.getBoundingClientRect();
+  hoverPreviewParallaxX = (rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0) * 10;
+  hoverPreviewParallaxY = (rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0) * 8;
+
+  if (!hoverParallaxRafPending) {
+    hoverParallaxRafPending = true;
+    window.requestAnimationFrame(function () {
+      hoverParallaxRafPending = false;
+      applyHoverPreviewParallax();
+    });
+  }
 }
 
 function applyHoverPreviewParallax() {
-  var hoveredImage = document.querySelector(".hovered-image");
-
-  if (!hoveredImage) {
+  if (!hoveredImageEl) {
     return;
   }
 
-  hoveredImage.style.transform = "translate(" + hoverPreviewParallaxX + "px, " + hoverPreviewParallaxY + "px)";
+  hoveredImageEl.style.transform = "translate(" + hoverPreviewParallaxX + "px, " + hoverPreviewParallaxY + "px)";
 }
 
