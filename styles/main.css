@@ -604,9 +604,10 @@ tr#c-market-coffee-website .scroll-container img.fullscreen-image {
   }
 
   tr#c-market-coffee-website .scroll-container img.fullscreen-image {
-    width: min(80vw, 480px);
-    max-width: none;
-    max-height: none;
+    width: auto;
+    height: auto;
+    max-width: min(80vw, 480px);
+    max-height: min(75vh, 600px);
   }
 
   iframe {
