@@ -17,16 +17,18 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     id: "demo-cmarket-brand",
-    title: "C Market Coffee — Digital Customer Experience & E-commerce Workflow System",
+    title: "C Market Coffee — Brand Experience System",
     role: "Marketing Design",
     year: "2025",
     preview: "",
-    media: [],
+    media: [
+      { type: "iframe", src: "https://www.instagram.com/p/DZno8d7y0I6/embed", width: 400, height: 750 }
+    ],
     description: [
-      { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage. My role was to support the brand across both digital and physical channels, creating marketing assets that were visually consistent, production-ready, and aligned with real business goals." },
-      { label: "Challenge", text: "C Market operates across many fast-moving touchpoints: retail stores, online ordering, social media, product launches, events, packaging, and customer-facing promotions. Each channel required a different design approach. The challenge was to balance brand consistency, speed, visual quality, and business function without making every asset feel repetitive or disconnected." },
-      { label: "Direction", text: "The creative direction focused on building a flexible brand and marketing system that was clear, consistent, platform-aware, performance-minded, and scalable — able to work for recurring promotions, seasonal campaigns, product launches, and fast internal requests without starting from zero every time." },
-      { label: "Outcome", text: "The project helped C Market build a stronger and more consistent brand presence across digital, social, e-commerce, print, packaging, and retail environments. Key results: a reel that reached 1M+ views, Instagram growth from approximately 8K to 17K followers, and a more unified visual communication system across all digital and physical touchpoints." }
+      { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage.<br><br>My role was to design and maintain customer-facing brand assets across both digital and physical channels, creating marketing materials that were visually consistent, production-ready, and aligned with real business goals." },
+      { label: "Challenge", text: "C Market operates across many fast-moving touchpoints: retail stores, online ordering, social media, product launches, events, packaging, and customer-facing promotions. Each channel required a different design approach.<br><br>Social content needed to be immediate and engaging. Shopify and e-commerce assets needed to be clear and structured. Packaging and print files needed to be accurate and production-ready. In-store signage needed to communicate quickly in a physical environment.<br><br>The challenge was to balance brand consistency, speed, visual quality, and business function without making every asset feel repetitive or disconnected." },
+      { label: "Direction", text: "The creative direction focused on building a flexible brand and marketing system that was clear, consistent, platform-aware, performance-minded, and scalable.<br><br>Rather than treating each asset as a one-off design, I approached the work as a connected system across social, retail, e-commerce, packaging, print, and campaign touchpoints. The goal was to create assets that could support recurring promotions, seasonal campaigns, product launches, and fast internal requests without starting from zero every time." },
+      { label: "Outcome", text: "The project helped C Market build a stronger and more consistent brand presence across digital, social, e-commerce, print, packaging, and retail environments.<br><br>Key results included social media views that reached 1M+ views, Instagram growth from approximately 8K to 17K followers, and a more unified visual communication system across digital and physical touchpoints.<br><br>The final system supported product launches, Shopify updates, social content, packaging, menus, posters, signage, and retail promotions while making the brand feel more recognizable, organized, and scalable." }
     ]
   },
   {
