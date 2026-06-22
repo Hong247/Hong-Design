@@ -119,7 +119,8 @@ function renumberProjectArchive() {
 }
 
 function applySavedTheme() {
-  setTheme("light");
+  var saved = localStorage.getItem("theme");
+  setTheme(saved === "orange" || saved === "dark" || saved === "light" ? saved : "light");
 }
 
 function toggleTheme() {
