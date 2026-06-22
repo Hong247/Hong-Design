@@ -1,6 +1,12 @@
 body.dark-mode .theme-toggle::before{color:#fff}.theme-toggle::before{transition:color .18s ease}.theme-toggle:hover::before{color:#000!important}body.orange-mode .theme-toggle:hover::before{color:#fff!important}body.dark-mode .theme-toggle:hover::before{color:var(--accent)!important}
 .theme-toggle::before{font-size:22px;line-height:1}
 .header-title,.profile-facts dt,.social-links a{font-weight:800!important}
+.email-contact-item{display:flex;align-items:center;gap:7px;position:relative}
+.email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-weight:700!important;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transition:opacity .2s ease,transform .2s ease,color .2s ease}
+.email-copy-button:hover,.email-copy-button:focus-visible{opacity:1;transform:translateY(-1px) scale(1.06);outline:none;color:var(--accent)}
+body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#fff}
+.email-copy-feedback{display:inline-block;white-space:nowrap;font:inherit;font-weight:800!important;font-size:1em;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+.email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
 thead th{font-weight:900!important;letter-spacing:-.01em}
 .year-sort-header,.year-sort-header *{cursor:pointer!important;user-select:none}
 .year-sort-header{transition:color .25s ease}
