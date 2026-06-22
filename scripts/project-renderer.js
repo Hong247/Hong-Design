@@ -79,8 +79,7 @@ function buildProjectDetail(project) {
         }
         if (item.type === "iframe") {
           galleryHtml +=
-            '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) +
-            '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
+            '<iframe src="' + item.src + '" allow="autoplay; fullscreen" scrolling="no" allowfullscreen></iframe>';
         }
       });
       galleryHtml += "</div>";
