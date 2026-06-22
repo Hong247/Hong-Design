@@ -4,9 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addContactEmailLink();
   applySavedTheme();
-  elevatePortfolioIntroCopy();
-  applyRefinedRoleLabels();
-  groupProjectDescriptions();
   setScrolling();
   setPageOverflow();
 
@@ -108,16 +105,6 @@ function fallbackCopyEmailAddress(email) {
   document.body.removeChild(temporaryInput);
 }
 
-function renumberProjectArchive() {
-  document.querySelectorAll("tbody .hover-trigger").forEach(function (row, index) {
-    var numberButton = row.querySelector("td:first-child .custom-btn");
-
-    if (numberButton) {
-      numberButton.textContent = String(index + 1).padStart(2, "0");
-    }
-  });
-}
-
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
   setTheme(saved === "orange" || saved === "dark" || saved === "light" ? saved : "light");
@@ -148,66 +135,6 @@ function setTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
-function elevatePortfolioIntroCopy() {
-  setText(".intro-kicker", "Vancouver, BC / brand systems, visual direction, product thinking");
-  setText(".intro-statement", "I build visual systems that translate strategy into clear, memorable, and commercially usable design.");
-  setText(".intro-detail", "My work sits between brand identity, campaign direction, digital experience, product design, and rendered visualization. I approach design as a system of decisions: how an idea is positioned, how it behaves across touchpoints, how visual language supports business intent, and how a concept can remain coherent when it moves from presentation into production.");
-
-  updateFact("Focus", "Brand systems / campaign direction / product-led visual experiences");
-  updateFact("Tools", "Adobe CC / Figma / SolidWorks / KeyShot / research / art direction");
-  updateFact("Experience", "Work across hospitality, retail, mobility, recruitment, environmental campaigns, and product concepts");
-}
-
-function setText(selector, value) {
-  var element = document.querySelector(selector);
-
-  if (element) {
-    element.textContent = value;
-  }
-}
-
-function updateFact(label, value) {
-  document.querySelectorAll(".profile-facts div").forEach(function (item) {
-    var term = item.querySelector("dt");
-    var description = item.querySelector("dd");
-
-    if (term && description && term.textContent.trim() === label) {
-      description.textContent = value;
-    }
-  });
-}
-
-function applyRefinedRoleLabels() {
-  var roleLabels = {
-    "demo-cmarket-tote-bag": "Merchandise Design",
-    "demo-cmarket-site": "Web Design",
-    demo1: "Brand Identity",
-    demo2: "Brand Identity",
-    demo3: "Art Direction",
-    demo4: "UI Prototype",
-    demo5: "Poster Design",
-    demo6: "Campaign Design",
-    demo7: "Editorial Design",
-    demo8: "Brand Identity",
-    demo9: "UI/UX Design",
-    demo10: "Product Design",
-    demo11: "Web Design",
-    demo12: "Furniture Design",
-    demo13: "Industrial Design",
-    demo14: "Logo Design"
-  };
-
-  Object.keys(roleLabels).forEach(function (targetId) {
-    document.querySelectorAll('.custom-btn[data-target="#' + targetId + '"]').forEach(function (button) {
-      var cell = button.closest("td");
-
-      if (cell && cell.classList.contains("role-cell")) {
-        button.textContent = roleLabels[targetId];
-      }
-    });
-  });
-}
-
 function setScrolling() {
   var leftContent = document.querySelector(".left-theme .overlay-text");
   var rightContent = document.querySelector(".right-theme .scroll-wrapper");
@@ -228,42 +155,6 @@ function setScrolling() {
 
 function setPageOverflow() {
   document.body.style.overflowY = window.innerWidth <= 768 ? "auto" : "hidden";
-}
-
-function groupProjectDescriptions() {
-  document.querySelectorAll("tr.collapse > td").forEach(function (cell) {
-    if (cell.querySelector(".project-detail")) {
-      return;
-    }
-
-    var media = cell.querySelector(":scope > .scroll-container");
-    var paragraphs = Array.from(cell.querySelectorAll(":scope > p"));
-
-    if (!media || !paragraphs.length) {
-      return;
-    }
-
-    var detail = document.createElement("div");
-    detail.className = "project-detail";
-
-    var description = document.createElement("div");
-    description.className = "project-description";
-
-    media.before(detail);
-    detail.appendChild(media);
-    detail.appendChild(description);
-
-    paragraphs.forEach(function (paragraph) {
-      description.appendChild(paragraph);
-    });
-
-    Array.from(cell.querySelectorAll(":scope > br")).forEach(function (breakElement) {
-      breakElement.remove();
-    });
-
-    // FIX 1: Add scroll dot indicators for mobile galleries
-    addScrollDots(media);
-  });
 }
 
 window.addScrollDots = addScrollDots;
