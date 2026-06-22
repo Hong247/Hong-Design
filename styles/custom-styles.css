@@ -51,3 +51,5 @@ body.orange-mode .project-filter-header:hover,body.orange-mode .role-filter-head
 body.orange-mode .project-filter-header.filter-active,body.orange-mode .role-filter-header.filter-active{color:#380e00!important}
 .project-filter-header.filter-active .filter-arrow,.role-filter-header.filter-active .filter-arrow{opacity:1}
 .project-filter-header .filter-label,.role-filter-header .filter-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 18px);display:inline-block;vertical-align:middle}
+
+.year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}
