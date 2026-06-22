@@ -398,7 +398,7 @@ td:nth-child(4) .custom-btn {
   scroll-snap-align: start;
 }
 
-tr[id^="demo"] .scroll-container img {
+.scroll-container img.fullscreen-image {
   width: auto;
   height: min(600px, 70vh);
 }
@@ -586,7 +586,7 @@ tr[id^="demo"] .scroll-container img {
     scroll-behavior: smooth;
   }
 
-  tr[id^="demo"] .scroll-container img,
+  .scroll-container img.fullscreen-image,
   .scroll-container iframe {
     width: min(86vw, 620px);
     height: auto;
