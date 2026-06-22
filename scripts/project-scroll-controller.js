@@ -58,7 +58,6 @@
   function initProjectHeaders() {
     setNumberHeader();
     initYearSort();
-    initColumnSortHeader("project");
     initColumnSortHeader("role");
     updateSortHeaders();
   }
@@ -82,7 +81,7 @@
     yearHeader.setAttribute("tabindex", "0");
     yearHeader.setAttribute("aria-label", "Sort projects by year");
     yearHeader.classList.add("year-sort-header");
-    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
+    yearHeader.innerHTML = '<span class="year-sort-label">YEAR</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">&#9650;</span><span class="year-sort-arrow year-sort-down">&#9660;</span></span>';
 
     yearHeader.addEventListener("click", function (event) {
       event.preventDefault();
@@ -122,7 +121,7 @@
     headerEl.setAttribute("aria-label", "Sort projects by " + label.toLowerCase());
     headerEl.setAttribute("aria-sort", "none");
     headerEl.classList.add("year-sort-header");
-    headerEl.innerHTML = '<span class="year-sort-label">' + label + '</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">â²</span><span class="year-sort-arrow year-sort-down">â¼</span></span>';
+    headerEl.innerHTML = '<span class="year-sort-label">' + label + '</span><span class="year-sort-symbol" aria-hidden="true"><span class="year-sort-arrow year-sort-up">&#9650;</span><span class="year-sort-arrow year-sort-down">&#9660;</span></span>';
 
     headerEl.addEventListener("click", function (event) {
       event.preventDefault();
