@@ -400,7 +400,8 @@ td:nth-child(4) .custom-btn {
 
 .scroll-container img.fullscreen-image {
   width: auto;
-  height: min(600px, 70vh);
+  height: auto;
+  max-height: min(600px, 70vh);
 }
 
 .scroll-container iframe {
