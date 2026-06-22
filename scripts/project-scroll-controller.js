@@ -15,6 +15,7 @@
 
   window.addEventListener("click", handleProjectClick, true);
   document.addEventListener("DOMContentLoaded", initProjectHeaders);
+  document.addEventListener("DOMContentLoaded", openProjectFromHash);
 
   function handleProjectClick(event) {
     var button = event.target.closest && event.target.closest(".custom-btn[data-target]");
@@ -53,6 +54,18 @@
     openRow(target);
     setProjectFocus(projectHeader);
     flowHeaderToTop(projectHeader);
+  }
+
+  function openProjectFromHash() {
+    var hash = window.location.hash;
+    if (!hash) return;
+    var target = document.querySelector("tr.collapse" + hash);
+    var header = target ? target.previousElementSibling : null;
+    if (!target || !header || !header.classList.contains("hover-trigger")) return;
+    savedPositions[target.id] = getCurrentScrollPosition(header);
+    openRow(target);
+    setProjectFocus(header);
+    flowHeaderToTop(header);
   }
 
   function initProjectHeaders() {
@@ -408,6 +421,7 @@
     window.clearTimeout(row.openTimer);
     row.classList.add("is-open");
     setExpandedState(row.id, true);
+    history.replaceState(null, "", "#" + row.id);
 
     if (!detail) {
       return;
@@ -442,6 +456,9 @@
     window.clearTimeout(row.closeTimer);
     row.classList.remove("is-open");
     setExpandedState(row.id, false);
+    if (window.location.hash === "#" + row.id) {
+      history.replaceState(null, "", window.location.pathname);
+    }
 
     if (header) {
       header.classList.remove("is-active-project");
