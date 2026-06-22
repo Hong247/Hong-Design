@@ -422,6 +422,11 @@
       window.renderProjectDetailRow(row);
     }
 
+    var scrollContainer = row.querySelector(".scroll-container");
+    if (scrollContainer) {
+      scrollContainer.scrollLeft = 0;
+    }
+
     var detail = getDetail(row);
 
     window.clearTimeout(row.closeTimer);
