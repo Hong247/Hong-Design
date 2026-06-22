@@ -266,6 +266,8 @@ function groupProjectDescriptions() {
   });
 }
 
+window.addScrollDots = addScrollDots;
+
 // FIX 1: Render progress dots below each image gallery on mobile
 function addScrollDots(scrollContainer) {
   var images = scrollContainer.querySelectorAll("img");
@@ -339,27 +341,14 @@ function stopIntelligentHoverPreview() {
 }
 
 function getHoverPreviewImages(trigger) {
+  var gallerySrcs = trigger.getAttribute("data-gallery-srcs");
+
+  if (gallerySrcs) {
+    return gallerySrcs.split("|").filter(Boolean).slice(0, 4);
+  }
+
   var fallback = trigger.getAttribute("data-image-source");
-  var targetButton = trigger.querySelector(".custom-btn[data-target]");
-  var targetSelector = targetButton ? targetButton.getAttribute("data-target") : "";
-  var detail = targetSelector ? document.querySelector(targetSelector) : null;
-  var sources = [];
-
-  if (fallback) {
-    sources.push(fallback);
-  }
-
-  if (detail) {
-    detail.querySelectorAll("img.fullscreen-image").forEach(function (image) {
-      var source = image.getAttribute("src");
-
-      if (source && sources.indexOf(source) === -1) {
-        sources.push(source);
-      }
-    });
-  }
-
-  return sources.slice(0, 4);
+  return fallback ? [fallback] : [];
 }
 
 function showHoveredPreviewImage(source) {

@@ -32,14 +32,86 @@ function renderProjectArchive() {
       '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + "</button></td>" +
       '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + "</button></td>";
 
+    headerRow.setAttribute("data-gallery-srcs", getProjectGallerySources(displayProject).join("|"));
+
     detailRow.id = project.id;
     detailRow.className = "collapse";
-    detailRow.innerHTML = "<td colspan=\"4\">" + buildProjectDetail(displayProject) + "</td>";
+    detailRow.innerHTML = "<td colspan=\"4\"></td>";
+    detailRow._project = displayProject;
 
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
   });
 }
+
+function getProjectGallerySources(project) {
+  var sources = [];
+
+  if (project.preview) {
+    sources.push(project.preview);
+  }
+
+  if (Array.isArray(project.media)) {
+    project.media.forEach(function (item) {
+      if (item.type === "image" && item.src && sources.indexOf(item.src) === -1) {
+        sources.push(item.src);
+      }
+    });
+  } else if (typeof project.detailHtml === "string") {
+    var re = /src="([^"]+\.(?:jpe?g|png|gif|webp))"/gi;
+    var m;
+    while ((m = re.exec(project.detailHtml)) !== null) {
+      if (sources.indexOf(m[1]) === -1) {
+        sources.push(m[1]);
+      }
+    }
+  }
+
+  return sources.slice(0, 4);
+}
+
+window.renderProjectDetailRow = function (row) {
+  if (row._projectRendered || !row._project) {
+    return;
+  }
+
+  var td = row.querySelector("td");
+
+  if (!td) {
+    return;
+  }
+
+  td.innerHTML = buildProjectDetail(row._project);
+
+  var scrollContainer = td.querySelector(".scroll-container");
+  var paragraphs = Array.from(td.querySelectorAll(":scope > p"));
+
+  if (scrollContainer && paragraphs.length) {
+    var detail = document.createElement("div");
+    detail.className = "project-detail";
+
+    var description = document.createElement("div");
+    description.className = "project-description";
+
+    scrollContainer.before(detail);
+    detail.appendChild(scrollContainer);
+    detail.appendChild(description);
+
+    paragraphs.forEach(function (p) {
+      description.appendChild(p);
+    });
+
+    Array.from(td.querySelectorAll(":scope > br")).forEach(function (br) {
+      br.remove();
+    });
+
+    if (typeof window.addScrollDots === "function") {
+      window.addScrollDots(scrollContainer);
+    }
+  }
+
+  row._projectRendered = true;
+};
 
 function applyProjectMediaOverride(project, override) {
   if (!override) {

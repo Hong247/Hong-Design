@@ -398,6 +398,10 @@
   }
 
   function openRow(row) {
+    if (window.renderProjectDetailRow) {
+      window.renderProjectDetailRow(row);
+    }
+
     var detail = getDetail(row);
 
     window.clearTimeout(row.closeTimer);
