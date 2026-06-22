@@ -83,6 +83,15 @@ function loadProjectData() {
 
 // 3. HTML generation
 
+function slugify(title) {
+  return title
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function escHtml(str) {
   return String(str)
     .replace(/&/g,  '&amp;')
@@ -112,7 +121,7 @@ function buildProjectRows(projects, titleOverrides) {
     const title     = titleOverrides[project.id] || project.title || '';
     const role      = project.role  || '';
     const year      = project.year  || '';
-    const id        = project.id;
+    const slug      = slugify(title);
     const preview   = project.preview || '';
 
     // Build crawlable description content
@@ -127,12 +136,12 @@ function buildProjectRows(projects, titleOverrides) {
 
     html += `
     <tr class="hover-trigger" data-image-source="${escHtml(preview)}" data-project="${escHtml(title)}" data-role="${escHtml(role)}" data-year="${escHtml(year)}">
-      <td><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${number}</button></td>
-      <td><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${escHtml(title)}</button></td>
-      <td class="role-cell"><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${escHtml(role)}</button></td>
-      <td><button type="button" class="custom-btn" data-target="#${escHtml(id)}">${escHtml(year)}</button></td>
+      <td><button type="button" class="custom-btn" data-target="#${slug}">${number}</button></td>
+      <td><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(title)}</button></td>
+      <td class="role-cell"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(role)}</button></td>
+      <td><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(year)}</button></td>
     </tr>
-    <tr id="${escHtml(id)}" class="collapse">
+    <tr id="${slug}" class="collapse">
       <td colspan="4"><div class="project-detail"><div class="project-description">${descHtml}
       </div></div></td>
     </tr>`;

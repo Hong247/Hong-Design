@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
   renderProjectArchive();
 });
 
+function slugify(title) {
+  return title
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function renderProjectArchive() {
   var tbody = document.getElementById("projectArchive");
   var projects = window.PORTFOLIO_PROJECTS || [];
@@ -18,6 +27,7 @@ function renderProjectArchive() {
     var number = String(index + 1).padStart(2, "0");
     var displayTitle = titleOverrides[project.id] || project.title;
     var displayProject = applyProjectMediaOverride(project, mediaOverrides[project.id]);
+    var slug = slugify(displayTitle);
     var headerRow = document.createElement("tr");
     var detailRow = document.createElement("tr");
 
@@ -27,14 +37,14 @@ function renderProjectArchive() {
     headerRow.setAttribute("data-role", project.role);
     headerRow.setAttribute("data-year", String(project.year));
     headerRow.innerHTML =
-      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + number + "</button></td>" +
-      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + displayTitle + "</button></td>" +
-      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.role + "</button></td>" +
-      '<td><button type="button" class="custom-btn" data-target="#' + project.id + '">' + project.year + "</button></td>";
+      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + number + "</button></td>" +
+      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + displayTitle + "</button></td>" +
+      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.role + "</button></td>" +
+      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.year + "</button></td>";
 
     headerRow.setAttribute("data-gallery-srcs", getProjectGallerySources(displayProject).join("|"));
 
-    detailRow.id = project.id;
+    detailRow.id = slug;
     detailRow.className = "collapse";
     detailRow.innerHTML = "<td colspan=\"4\"></td>";
     detailRow._project = displayProject;
