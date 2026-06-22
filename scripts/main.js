@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
-  addContactEmailLink();
   applySavedTheme();
   setScrolling();
   setPageOverflow();
@@ -31,79 +30,6 @@ var hoverPreviewIndex = 0;
 var hoverPreviewImages = [];
 var hoverPreviewParallaxX = 0;
 var hoverPreviewParallaxY = 0;
-
-function addContactEmailLink() {
-  var socialLinks = document.querySelector(".social-links");
-
-  if (!socialLinks || socialLinks.querySelector('a[href="mailto:cheokhong.design@gmail.com"]')) {
-    return;
-  }
-
-  var item = document.createElement("li");
-  var link = document.createElement("a");
-  var copyButton = document.createElement("button");
-  var feedback = document.createElement("span");
-
-  item.className = "email-contact-item";
-  link.href = "mailto:cheokhong.design@gmail.com";
-  link.textContent = "Email";
-  copyButton.type = "button";
-  copyButton.className = "email-copy-button";
-  copyButton.setAttribute("aria-label", "Copy email address");
-  copyButton.textContent = "⧉";
-  feedback.className = "email-copy-feedback";
-  feedback.textContent = "Email copied";
-
-  copyButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    copyEmailAddress("cheokhong.design@gmail.com", item);
-  });
-
-  item.appendChild(link);
-  item.appendChild(copyButton);
-  item.appendChild(feedback);
-  socialLinks.appendChild(item);
-}
-
-function copyEmailAddress(email, container) {
-  function showCopiedState() {
-    if (!container) {
-      return;
-    }
-
-    container.classList.add("is-copied");
-    window.clearTimeout(container.copyTimer);
-    container.copyTimer = window.setTimeout(function () {
-      container.classList.remove("is-copied");
-    }, 1400);
-  }
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(email).then(showCopiedState).catch(function () {
-      fallbackCopyEmailAddress(email);
-      showCopiedState();
-    });
-    return;
-  }
-
-  fallbackCopyEmailAddress(email);
-  showCopiedState();
-}
-
-function fallbackCopyEmailAddress(email) {
-  var temporaryInput = document.createElement("textarea");
-
-  temporaryInput.value = email;
-  temporaryInput.setAttribute("readonly", "readonly");
-  temporaryInput.style.position = "fixed";
-  temporaryInput.style.top = "-9999px";
-  temporaryInput.style.left = "-9999px";
-  document.body.appendChild(temporaryInput);
-  temporaryInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(temporaryInput);
-}
 
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
@@ -286,17 +212,3 @@ function applyHoverPreviewParallax() {
   hoveredImage.style.transform = "translate(" + hoverPreviewParallaxX + "px, " + hoverPreviewParallaxY + "px)";
 }
 
-function displayHoveredImage(imageSource) {
-  var hoveredImage = document.querySelector(".hovered-image");
-
-  if (!hoveredImage || !imageSource) {
-    return;
-  }
-
-  hoveredImage.src = imageSource;
-  hoveredImage.style.display = "block";
-}
-
-function hideHoveredImage() {
-  stopIntelligentHoverPreview();
-}
