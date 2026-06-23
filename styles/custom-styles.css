@@ -144,7 +144,7 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
   transition: opacity .2s ease, transform .2s ease;
 }
 #lb-close:hover,
-#lb-close:focus-visible { opacity: 1; transform: rotate(90deg); outline: none; }
+#lb-close:focus-visible { opacity: 1; outline: none; }
 #lb-close svg { display: block; }
 
 #lb-prev,
