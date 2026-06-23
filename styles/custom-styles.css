@@ -1,13 +1,12 @@
 body.dark-mode .theme-toggle::before{color:#fff}.theme-toggle::before{transition:color .18s ease}.theme-toggle:hover::before{color:#000!important}body.orange-mode .theme-toggle:hover::before{color:#fff!important}body.dark-mode .theme-toggle:hover::before{color:var(--accent)!important}
 .theme-toggle::before{font-size:22px;line-height:1}
-.header-title,.profile-facts dt,.social-links a{font-weight:800!important}
 .email-contact-item{display:flex;align-items:center;gap:7px;position:relative}
-.email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-weight:700!important;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transition:opacity .2s ease,transform .2s ease,color .2s ease}
+.email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transition:opacity .2s ease,transform .2s ease,color .2s ease}
 .email-copy-button:hover,.email-copy-button:focus-visible{opacity:1;transform:translateY(-1px) scale(1.06);outline:none;color:var(--accent)}
 body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#fff}
-.email-copy-feedback{display:inline-block;white-space:nowrap;font:inherit;font-weight:800!important;font-size:1em;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+.email-copy-feedback{display:inline-block;white-space:nowrap;font:inherit;font-size:1em;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
 .email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
-thead th{font-weight:900!important;letter-spacing:-.01em}
+thead th{letter-spacing:-.01em}
 .year-sort-header,.year-sort-header *{cursor:pointer!important;user-select:none}
 .year-sort-header{transition:color .25s ease}
 .year-sort-header:hover{color:var(--accent)!important}
@@ -18,7 +17,7 @@ body.orange-mode .year-sort-header:hover{color:#fff!important}
 .year-sort-header.sort-asc .year-sort-up{opacity:1}.year-sort-header.sort-asc .year-sort-down{opacity:.35}
 .hover-trigger td{transition:letter-spacing .18s cubic-bezier(.22,1,.36,1),opacity .14s ease}
 .hover-trigger.is-active-project td{padding-top:8px!important;padding-bottom:8px!important;letter-spacing:.025em;transform:none!important;vertical-align:top!important}
-.hover-trigger.is-active-project .custom-btn{line-height:1.45;transition:color .14s ease,letter-spacing .18s cubic-bezier(.22,1,.36,1),font-weight .14s ease,opacity .14s ease}
+.hover-trigger.is-active-project .custom-btn{line-height:1.45;transition:color .14s ease,letter-spacing .18s cubic-bezier(.22,1,.36,1),opacity .14s ease}
 tr.collapse .project-detail{transform-origin:top left;transition:max-height .20s cubic-bezier(.22,1,.36,1),opacity .16s ease,transform .20s cubic-bezier(.22,1,.36,1),filter .16s ease!important;filter:blur(2px)}
 tr.collapse.is-open .project-detail{filter:blur(0)}
 tr.collapse.is-open .project-description{animation:projectDescriptionMorph .22s cubic-bezier(.22,1,.36,1) both}
@@ -31,7 +30,7 @@ tr.collapse.is-open .scroll-container img.fullscreen-image{opacity:1;transform:t
 .hovered-image{width:auto!important;max-width:100%;height:auto!important;max-height:52vh;object-fit:contain;object-position:center;aspect-ratio:auto;opacity:0;transition:opacity .2s ease,filter .2s ease,transform .22s ease;filter:blur(3px)}
 .hovered-image[src]{opacity:1;filter:blur(0)}
 .hover-trigger{transition:opacity .14s ease,filter .14s ease,letter-spacing .14s ease}
-.hover-trigger .custom-btn{transition:opacity .14s ease,font-weight .14s ease,letter-spacing .14s ease,color .14s ease}
+.hover-trigger .custom-btn{transition:opacity .14s ease,letter-spacing .14s ease,color .14s ease}
 body.project-focus-active .hover-trigger{opacity:.42}
 body.project-focus-active .hover-trigger.is-active-project{opacity:1}
 body.project-focus-active .hover-trigger:hover{opacity:1}
