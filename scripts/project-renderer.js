@@ -137,74 +137,50 @@ function applyProjectMediaOverride(project, override) {
   });
 }
 
-function buildProjectDetail(project) {
-  if (Array.isArray(project.description) && project.description.length) {
-    var galleryHtml = "";
-
-    if (project.detailHtml) {
-      var scrollStart = project.detailHtml.indexOf('<div class="scroll-container">');
-      if (scrollStart !== -1) {
-        var divEnd = project.detailHtml.indexOf("</div>", scrollStart);
-        if (divEnd !== -1) {
-          galleryHtml = project.detailHtml.substring(scrollStart, divEnd + 6);
-        }
+function buildGalleryHtml(project) {
+  if (project.detailHtml) {
+    var scrollStart = project.detailHtml.indexOf('<div class="scroll-container">');
+    if (scrollStart !== -1) {
+      var divEnd = project.detailHtml.indexOf("</div>", scrollStart);
+      if (divEnd !== -1) {
+        return project.detailHtml.substring(scrollStart, divEnd + 6);
       }
     }
+  }
 
-    if (!galleryHtml) {
-      galleryHtml = '<div class="scroll-container">';
-      (project.media || []).forEach(function (item, index) {
-        if (item.type === "image") {
-          galleryHtml +=
-            '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' +
-            (index > 0 ? ' loading="lazy"' : "") + ">";
-        }
-        if (item.type === "iframe") {
-          galleryHtml +=
-            '<iframe src="' + item.src + '" allow="autoplay; fullscreen" scrolling="no" allowfullscreen></iframe>';
-        }
-      });
-      galleryHtml += "</div>";
+  var html = '<div class="scroll-container">';
+  (project.media || []).forEach(function (item, index) {
+    if (item.type === "image") {
+      html +=
+        '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' +
+        (index > 0 ? ' loading="lazy"' : "") + ">";
     }
+    if (item.type === "iframe") {
+      html +=
+        '<iframe src="' + item.src + '" allow="autoplay; fullscreen" scrolling="no" allowfullscreen></iframe>';
+    }
+  });
+  return html + "</div>";
+}
 
-    var descriptionHtml = "";
-    project.description.forEach(function (paragraph, index) {
-      descriptionHtml +=
-        "<p" + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' +
-        paragraph.label + "</span>" + paragraph.text + "</p>";
-    });
+function buildDescriptionHtml(description) {
+  var html = "";
+  (description || []).forEach(function (paragraph, index) {
+    html +=
+      "<p" + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' +
+      paragraph.label + "</span>" + paragraph.text + "</p>";
+  });
+  return html;
+}
 
-    return galleryHtml + descriptionHtml + "<br>";
+function buildProjectDetail(project) {
+  if (Array.isArray(project.description) && project.description.length) {
+    return buildGalleryHtml(project) + buildDescriptionHtml(project.description) + "<br>";
   }
 
   if (project.detailHtml) {
     return project.detailHtml;
   }
 
-  var mediaHtml = '<div class="scroll-container">';
-  var legacyDescriptionHtml = "";
-
-  (project.media || []).forEach(function (item, index) {
-    if (item.type === "image") {
-      mediaHtml +=
-        '<img class="fullscreen-image" src="' + item.src + '" alt="' + item.alt + '"' +
-        (index > 0 ? ' loading="lazy"' : "") + ">";
-    }
-
-    if (item.type === "iframe") {
-      mediaHtml +=
-        '<iframe width="' + (item.width || 1200) + '" height="' + (item.height || 600) +
-        '" src="' + item.src + '" allowfullscreen loading="lazy"></iframe>';
-    }
-  });
-
-  mediaHtml += "</div>";
-
-  (project.description || []).forEach(function (paragraph, index) {
-    legacyDescriptionHtml +=
-      "<p" + (index === 0 ? ' class="max-width-paragraph"' : "") + '><span class="case-label">' +
-      paragraph.label + "</span>" + paragraph.text + "</p>";
-  });
-
-  return mediaHtml + legacyDescriptionHtml + "<br>";
+  return buildGalleryHtml(project) + buildDescriptionHtml(project.description) + "<br>";
 }
