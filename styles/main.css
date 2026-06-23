@@ -465,11 +465,18 @@ td:nth-child(4) .custom-btn {
   border-radius: 50%;
   background: currentColor;
   opacity: 0.2;
-  transition: opacity 200ms ease;
+  transition: opacity 200ms ease, transform 200ms ease;
   flex-shrink: 0;
-  padding: 0;
+  padding: 6px;
+  margin: -6px;
   border: none;
   cursor: pointer;
+  background-clip: content-box;
+}
+
+.scroll-dot:hover {
+  opacity: 0.6;
+  transform: scale(1.5);
 }
 
 .scroll-dot:hover {
@@ -478,6 +485,11 @@ td:nth-child(4) .custom-btn {
 
 .scroll-dot.is-active {
   opacity: 1;
+}
+
+.scroll-dot.is-active:hover {
+  opacity: 1;
+  transform: scale(1.5);
 }
 
 @media (max-width: 1024px) {
