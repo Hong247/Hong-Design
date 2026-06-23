@@ -48,3 +48,11 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 .js-custom-scrollbar .scroll-wrapper::-webkit-scrollbar,.js-custom-scrollbar .scroll-container::-webkit-scrollbar{display:none}
 /* Extra bottom padding gives room for the horizontal scrollbar + spacing above/below */
 .scroll-container{padding-bottom:16px}
+
+/* Loading indicator for lazy-fetched project detail */
+.project-loading{display:flex;align-items:center;gap:5px;padding:8px 0}
+.project-loading span{display:block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0;animation:project-loading-pulse 1.2s ease-in-out infinite}
+.project-loading span:nth-child(2){animation-delay:.2s}
+.project-loading span:nth-child(3){animation-delay:.4s}
+@keyframes project-loading-pulse{0%,80%,100%{opacity:.15}40%{opacity:.7}}
+@media(prefers-reduced-motion:reduce){.project-loading span{animation:none;opacity:.3}}
