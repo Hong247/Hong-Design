@@ -139,5 +139,6 @@ function buildDescriptionHtml(description) {
 }
 
 function buildProjectDetail(project) {
-  return buildGalleryHtml(project) + buildDescriptionHtml(project.description) + "<br>";
+  var galleryHtml = project.detailHtml || buildGalleryHtml(project);
+  return galleryHtml + buildDescriptionHtml(project.description) + "<br>";
 }
