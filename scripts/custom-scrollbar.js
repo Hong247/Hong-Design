@@ -101,6 +101,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('js-custom-scrollbar');
     initAll();
     new MutationObserver(initAll).observe(document.body, { childList: true, subtree: true });
   });
