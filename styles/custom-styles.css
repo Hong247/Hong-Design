@@ -1,58 +1,206 @@
-body.dark-mode .theme-toggle::before{color:#fff}.theme-toggle::before{transition:color .18s ease}.theme-toggle:hover::before{color:#000!important}body.orange-mode .theme-toggle:hover::before{color:#fff!important}body.dark-mode .theme-toggle:hover::before{color:var(--accent)!important}
-.theme-toggle::before{font-size:22px;line-height:1}
-.email-contact-item{display:flex;align-items:center;gap:7px;position:relative}
-.email-copy-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:1em;line-height:1;cursor:pointer;padding:0 0 1px;opacity:.76;transition:opacity .2s ease,transform .2s ease,color .2s ease}
-.email-copy-button:hover,.email-copy-button:focus-visible{opacity:1;transform:translateY(-1px) scale(1.06);outline:none;color:var(--accent)}
-body.orange-mode .email-copy-button:hover,body.orange-mode .email-copy-button:focus-visible{color:#fff}
-.email-copy-feedback{display:inline-block;white-space:nowrap;font:inherit;font-size:1em;opacity:0;transform:translateX(-3px);pointer-events:none;transition:opacity .22s ease,transform .22s ease}
-.email-contact-item.is-copied .email-copy-feedback{opacity:1;transform:translateX(0)}
-thead th{letter-spacing:-.01em}
-.year-sort-header,.year-sort-header *{cursor:pointer!important;user-select:none}
-.year-sort-header{transition:color .25s ease}
-.year-sort-header:hover{color:var(--accent)!important}
-body.orange-mode .year-sort-header:hover{color:#fff!important}
-.year-sort-symbol{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;margin-left:4px;line-height:.68;font-size:.6em;vertical-align:middle;transform:translateY(-1px)}
-.year-sort-arrow{display:block;transition:opacity .25s ease,color .25s ease}
-.year-sort-header.sort-desc .year-sort-down{opacity:1}.year-sort-header.sort-desc .year-sort-up{opacity:.35}
-.year-sort-header.sort-asc .year-sort-up{opacity:1}.year-sort-header.sort-asc .year-sort-down{opacity:.35}
-.hover-trigger td{transition:letter-spacing .18s cubic-bezier(.22,1,.36,1),opacity .14s ease}
-.hover-trigger.is-active-project td{padding-top:8px!important;padding-bottom:8px!important;letter-spacing:.025em;transform:none!important;vertical-align:top!important}
-.hover-trigger.is-active-project .custom-btn{line-height:1.45;transition:color .14s ease,letter-spacing .18s cubic-bezier(.22,1,.36,1),opacity .14s ease}
-tr.collapse .project-detail{transform-origin:top left;transition:max-height .20s cubic-bezier(.22,1,.36,1),opacity .16s ease,transform .20s cubic-bezier(.22,1,.36,1),filter .16s ease!important;filter:blur(2px)}
-tr.collapse.is-open .project-detail{filter:blur(0)}
-tr.collapse.is-open .project-description{animation:projectDescriptionMorph .22s cubic-bezier(.22,1,.36,1) both}
-.scroll-container img.fullscreen-image{cursor:default!important;opacity:0;transform:translateY(6px) scale(.99);transition:opacity .22s ease,transform .24s cubic-bezier(.22,1,.36,1)}
-tr.collapse.is-open .scroll-container img.fullscreen-image{opacity:1;transform:translateY(0) scale(1)}
-.scroll-container iframe{width:min(400px,90vw);height:min(840px,88vh);display:block}.scroll-container iframe[src*="figma.com"]{width:min(900px,85vw);height:min(500px,58vh)}
+/* Theme toggle */
+body.dark-mode .theme-toggle::before { color: #fff; }
+.theme-toggle::before { transition: color .18s ease; font-size: 22px; line-height: 1; }
+.theme-toggle:hover::before { color: #000 !important; }
+body.orange-mode .theme-toggle:hover::before { color: #fff !important; }
+body.dark-mode .theme-toggle:hover::before { color: var(--accent) !important; }
 
-.hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
+/* Email copy */
+.email-contact-item { display: flex; align-items: center; gap: 7px; position: relative; }
+.email-copy-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 1px;
+  opacity: .76;
+  transition: opacity .2s ease, transform .2s ease, color .2s ease;
+}
+.email-copy-button:hover,
+.email-copy-button:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px) scale(1.06);
+  outline: none;
+  color: var(--accent);
+}
+body.orange-mode .email-copy-button:hover,
+body.orange-mode .email-copy-button:focus-visible { color: #fff; }
+.email-copy-feedback {
+  display: inline-block;
+  white-space: nowrap;
+  font: inherit;
+  font-size: 1em;
+  opacity: 0;
+  transform: translateX(-3px);
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+.email-contact-item.is-copied .email-copy-feedback { opacity: 1; transform: translateX(0); }
 
-.hovered-image{width:auto!important;max-width:100%;height:auto!important;max-height:52vh;object-fit:contain;object-position:center;aspect-ratio:auto;opacity:0;transition:opacity .2s ease,filter .2s ease,transform .22s ease;filter:blur(3px)}
-.hovered-image[src]{opacity:1;filter:blur(0)}
-.hover-trigger{transition:opacity .14s ease,filter .14s ease,letter-spacing .14s ease}
-.hover-trigger .custom-btn{transition:opacity .14s ease,letter-spacing .14s ease,color .14s ease}
-body.project-focus-active .hover-trigger{opacity:.42}
-body.project-focus-active .hover-trigger.is-active-project{opacity:1}
-body.project-focus-active .hover-trigger:hover{opacity:1}
-body.project-focus-active .hover-trigger.is-active-project .custom-btn{font-weight:500;letter-spacing:.02em}
-body.project-focus-active .hover-trigger:hover .custom-btn{letter-spacing:.01em}
-body.project-focus-active .hover-trigger.is-active-project td:first-child{position:relative}
-body.project-focus-active .hover-trigger.is-active-project td:first-child::before{content:"";position:absolute;left:-16px;top:50%;width:8px;height:1px;background:currentColor;transform:translateY(-50%)}
-@keyframes projectDescriptionMorph{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
-@media (max-width:768px){.theme-toggle::before{font-size:18px}tr.hover-trigger td:nth-child(4){padding-right:18px}tr.hover-trigger.is-active-project td{padding-top:0!important;padding-bottom:0!important;transform:none!important;vertical-align:top!important}tr.hover-trigger.is-active-project td:nth-child(1),tr.hover-trigger.is-active-project td:nth-child(4){padding-top:1px!important}tr.hover-trigger.is-active-project td:nth-child(2) .custom-btn{line-height:1.34}.scroll-container iframe{width:min(90vw,400px);height:min(780px,82vh)}.scroll-container iframe[src*="figma.com"]{width:90vw;height:min(420px,68vh)}.hovered-container{display:none}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
+/* Table header */
+thead th { letter-spacing: -.01em; }
 
-.year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}
+/* Column sort headers */
+.year-sort-header,
+.year-sort-header * { cursor: pointer !important; user-select: none; }
+.year-sort-header { transition: color .25s ease; }
+.year-sort-header:hover { color: var(--accent) !important; }
+body.orange-mode .year-sort-header:hover { color: #fff !important; }
+.year-sort-symbol {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 4px;
+  line-height: .68;
+  font-size: .6em;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.year-sort-arrow { display: block; transition: opacity .25s ease, color .25s ease; }
+.year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow { opacity: .35; }
+.year-sort-header.sort-desc .year-sort-down { opacity: 1; }
+.year-sort-header.sort-desc .year-sort-up { opacity: .35; }
+.year-sort-header.sort-asc .year-sort-up { opacity: 1; }
+.year-sort-header.sort-asc .year-sort-down { opacity: .35; }
+
+/* Project row hover / active state */
+.hover-trigger td { transition: letter-spacing .18s cubic-bezier(.22, 1, .36, 1), opacity .14s ease; }
+.hover-trigger.is-active-project td {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  letter-spacing: .025em;
+  transform: none !important;
+  vertical-align: top !important;
+}
+.hover-trigger.is-active-project .custom-btn {
+  line-height: 1.45;
+  transition: color .14s ease, letter-spacing .18s cubic-bezier(.22, 1, .36, 1), opacity .14s ease;
+}
+
+/* Project detail expand animation */
+tr.collapse .project-detail {
+  transform-origin: top left;
+  transition: max-height .20s cubic-bezier(.22, 1, .36, 1), opacity .16s ease, transform .20s cubic-bezier(.22, 1, .36, 1), filter .16s ease !important;
+  filter: blur(2px);
+}
+tr.collapse.is-open .project-detail { filter: blur(0); }
+tr.collapse.is-open .project-description { animation: projectDescriptionMorph .22s cubic-bezier(.22, 1, .36, 1) both; }
+
+@keyframes projectDescriptionMorph {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Gallery images */
+.scroll-container img.fullscreen-image {
+  cursor: default !important;
+  opacity: 0;
+  transform: translateY(6px) scale(.99);
+  transition: opacity .22s ease, transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+tr.collapse.is-open .scroll-container img.fullscreen-image { opacity: 1; transform: translateY(0) scale(1); }
+
+/* Iframes */
+.scroll-container iframe { width: min(400px, 90vw); height: min(840px, 88vh); display: block; }
+.scroll-container iframe[src*="figma.com"] { width: min(900px, 85vw); height: min(500px, 58vh); }
+
+/* Hover preview */
+.hovered-container {
+  position: fixed;
+  left: 50px;
+  top: 50vh;
+  width: calc(33.33vw - 110px);
+  max-width: 420px;
+  transform: translateY(-50%);
+  z-index: 20;
+  pointer-events: none;
+  margin-top: 0;
+}
+.hovered-image {
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  max-height: 52vh;
+  object-fit: contain;
+  object-position: center;
+  aspect-ratio: auto;
+  opacity: 0;
+  transition: opacity .2s ease, filter .2s ease, transform .22s ease;
+  filter: blur(3px);
+}
+.hovered-image[src] { opacity: 1; filter: blur(0); }
+
+/* Project focus state */
+.hover-trigger { transition: opacity .14s ease, filter .14s ease, letter-spacing .14s ease; }
+.hover-trigger .custom-btn { transition: opacity .14s ease, letter-spacing .14s ease, color .14s ease; }
+body.project-focus-active .hover-trigger { opacity: .42; }
+body.project-focus-active .hover-trigger.is-active-project { opacity: 1; }
+body.project-focus-active .hover-trigger:hover { opacity: 1; }
+body.project-focus-active .hover-trigger.is-active-project .custom-btn { font-weight: 500; letter-spacing: .02em; }
+body.project-focus-active .hover-trigger:hover .custom-btn { letter-spacing: .01em; }
+body.project-focus-active .hover-trigger.is-active-project td:first-child { position: relative; }
+body.project-focus-active .hover-trigger.is-active-project td:first-child::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
 
 /* ── Hide native scrollbars only when JS custom scrollbar has initialised ── */
-.js-custom-scrollbar .scroll-wrapper,.js-custom-scrollbar .scroll-container{scrollbar-width:none;-ms-overflow-style:none}
-.js-custom-scrollbar .scroll-wrapper::-webkit-scrollbar,.js-custom-scrollbar .scroll-container::-webkit-scrollbar{display:none}
-/* Extra bottom padding gives room for the horizontal scrollbar + spacing above/below */
-.scroll-container{padding-bottom:16px}
+.js-custom-scrollbar .scroll-wrapper,
+.js-custom-scrollbar .scroll-container { scrollbar-width: none; -ms-overflow-style: none; }
+.js-custom-scrollbar .scroll-wrapper::-webkit-scrollbar,
+.js-custom-scrollbar .scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container { padding-bottom: 16px; }
 
 /* Loading indicator for lazy-fetched project detail */
-.project-loading{display:flex;align-items:center;gap:5px;padding:8px 0}
-.project-loading span{display:block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0;animation:project-loading-pulse 1.2s ease-in-out infinite}
-.project-loading span:nth-child(2){animation-delay:.2s}
-.project-loading span:nth-child(3){animation-delay:.4s}
-@keyframes project-loading-pulse{0%,80%,100%{opacity:.15}40%{opacity:.7}}
-@media(prefers-reduced-motion:reduce){.project-loading span{animation:none;opacity:.3}}
+.project-loading { display: flex; align-items: center; gap: 5px; padding: 8px 0; }
+.project-loading span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  animation: project-loading-pulse 1.2s ease-in-out infinite;
+}
+.project-loading span:nth-child(2) { animation-delay: .2s; }
+.project-loading span:nth-child(3) { animation-delay: .4s; }
+@keyframes project-loading-pulse {
+  0%, 80%, 100% { opacity: .15; }
+  40% { opacity: .7; }
+}
+
+/* Mobile overrides */
+@media (max-width: 768px) {
+  .theme-toggle::before { font-size: 18px; }
+  tr.hover-trigger td:nth-child(4) { padding-right: 18px; }
+  tr.hover-trigger.is-active-project td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    transform: none !important;
+    vertical-align: top !important;
+  }
+  tr.hover-trigger.is-active-project td:nth-child(1),
+  tr.hover-trigger.is-active-project td:nth-child(4) { padding-top: 1px !important; }
+  tr.hover-trigger.is-active-project td:nth-child(2) .custom-btn { line-height: 1.34; }
+  .scroll-container iframe { width: min(90vw, 400px); height: min(780px, 82vh); }
+  .scroll-container iframe[src*="figma.com"] { width: 90vw; height: min(420px, 68vh); }
+  .hovered-container { display: none; }
+  body.project-focus-active .hover-trigger { opacity: 1; }
+  .hover-trigger.is-active-project td:first-child,
+  .hover-trigger.is-active-project td:nth-child(2) { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-loading span { animation: none; opacity: .3; }
+}
