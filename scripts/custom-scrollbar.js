@@ -33,8 +33,9 @@
       thumb.style.background = c.thumb;
 
       var rect = el.getBoundingClientRect();
-      /* 4px inset from the right edge of the scroll panel */
-      track.style.right = (window.innerWidth - rect.right + 4) + 'px';
+      /* Centre the bar in the body's right padding strip (outside the content area) */
+      var bodyPad = window.innerWidth - rect.right;
+      track.style.right = Math.round(bodyPad / 2) + 'px';
       track.style.top = rect.top + 'px';
       track.style.height = rect.height + 'px';
 
