@@ -43,11 +43,11 @@ window.PORTFOLIO_PROJECTS = [
     title: "KAIA",
     role: "Brand Identity",
     year: "2025",
-    preview: "images/kaia/kaia2.jpg",
+    preview: "images/kaia/kaia2.png",
     media: [
-      { type: "image", src: "images/kaia/kaia1.jpg", alt: "KAIA Korean sauce brand identity full system overview" },
-      { type: "image", src: "images/kaia/kaia2.jpg", alt: "KAIA brand identity Latin letterform color-block poster", loading: "lazy" },
-      { type: "image", src: "images/kaia/kaia3.jpg", alt: "KAIA brand identity Hangul character color-block poster", loading: "lazy" }
+      { type: "image", src: "images/kaia/kaia1.png", alt: "KAIA Korean sauce brand identity full system overview" },
+      { type: "image", src: "images/kaia/kaia2.png", alt: "KAIA brand identity Latin letterform color-block poster", loading: "lazy" },
+      { type: "image", src: "images/kaia/kaia3.png", alt: "KAIA brand identity Hangul character color-block poster", loading: "lazy" }
     ],
     description: [
       { label: "Brief", text: "KAIA (카이아) is a Korean-origin sauce and condiment brand designed to travel beyond its home market. The brief was to create a visual identity that felt rooted in Korean typographic culture while remaining legible and distinctive in international retail environments — where the brand needed to communicate quality and cultural specificity without relying on food-category clichés." },
