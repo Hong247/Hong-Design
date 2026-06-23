@@ -16,6 +16,7 @@
     "images/kaia/kaia1.png": "KAIA Korean sauce brand identity full system overview",
     "images/kaia/kaia2.png": "KAIA brand identity Latin letterform color-block poster",
     "images/kaia/kaia3.png": "KAIA brand identity Hangul character color-block poster",
+    "images/kaia/kaia4.png": "KAIA brand identity additional design application",
     "images/kee/keea.jpg": "Kee wonton noodle shop brand application on packaging",
     "images/kee/keeb.jpg": "Kee identity typography and color system presentation",
     "images/kee/keec.jpg": "Kee logo and menu brand layout",
