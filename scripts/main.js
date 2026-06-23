@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
   var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
-  hoveredImageEl = document.querySelector(".hovered-image");
+  hoverState.imageEl = document.querySelector(".hovered-image");
+  initEmailCopyButton();
   applySavedTheme();
   setScrolling();
   setPageOverflow();
@@ -26,14 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-var hoverPreviewTimer = null;
-var hoverPreviewIndex = 0;
-var hoverPreviewImages = [];
-var hoverPreviewParallaxX = 0;
-var hoverPreviewParallaxY = 0;
-var hoverPreviewTrigger = null;
-var hoverParallaxRafPending = false;
-var hoveredImageEl = null;
+var hoverState = {
+  timer: null,
+  index: 0,
+  images: [],
+  parallaxX: 0,
+  parallaxY: 0,
+  trigger: null,
+  rafPending: false,
+  imageEl: null
+};
 
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
@@ -89,7 +92,6 @@ function setPageOverflow() {
 
 window.addScrollDots = addScrollDots;
 
-// FIX 1: Render progress dots below each image gallery on mobile
 function addScrollDots(scrollContainer) {
   var images = scrollContainer.querySelectorAll("img");
 
@@ -125,45 +127,44 @@ function addScrollDots(scrollContainer) {
 function startIntelligentHoverPreview(trigger) {
   stopIntelligentHoverPreview();
 
-  hoverPreviewTrigger = trigger;
-  hoverPreviewImages = getHoverPreviewImages(trigger);
-  hoverPreviewIndex = 0;
-  hoverPreviewParallaxX = 0;
-  hoverPreviewParallaxY = 0;
+  hoverState.trigger = trigger;
+  hoverState.images = getHoverPreviewImages(trigger);
+  hoverState.index = 0;
+  hoverState.parallaxX = 0;
+  hoverState.parallaxY = 0;
 
-  if (!hoverPreviewImages.length) {
+  if (!hoverState.images.length) {
     return;
   }
 
-  showHoveredPreviewImage(hoverPreviewImages[hoverPreviewIndex]);
+  showHoveredPreviewImage(hoverState.images[hoverState.index]);
 
-  // FIX 6: Respect prefers-reduced-motion — skip cycling animation if user requested less motion
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (hoverPreviewImages.length > 1 && !prefersReduced) {
-    hoverPreviewTimer = window.setInterval(function () {
-      hoverPreviewIndex = (hoverPreviewIndex + 1) % hoverPreviewImages.length;
-      showHoveredPreviewImage(hoverPreviewImages[hoverPreviewIndex]);
+  if (hoverState.images.length > 1 && !prefersReduced) {
+    hoverState.timer = window.setInterval(function () {
+      hoverState.index = (hoverState.index + 1) % hoverState.images.length;
+      showHoveredPreviewImage(hoverState.images[hoverState.index]);
     }, 950);
   }
 }
 
 function stopIntelligentHoverPreview() {
-  if (hoverPreviewTimer) {
-    window.clearInterval(hoverPreviewTimer);
-    hoverPreviewTimer = null;
+  if (hoverState.timer) {
+    window.clearInterval(hoverState.timer);
+    hoverState.timer = null;
   }
 
-  hoverPreviewTrigger = null;
-  hoverPreviewImages = [];
-  hoverPreviewIndex = 0;
-  hoverPreviewParallaxX = 0;
-  hoverPreviewParallaxY = 0;
+  hoverState.trigger = null;
+  hoverState.images = [];
+  hoverState.index = 0;
+  hoverState.parallaxX = 0;
+  hoverState.parallaxY = 0;
 
-  if (hoveredImageEl) {
-    hoveredImageEl.style.display = "none";
-    hoveredImageEl.style.transform = "";
-    hoveredImageEl.removeAttribute("src");
+  if (hoverState.imageEl) {
+    hoverState.imageEl.style.display = "none";
+    hoverState.imageEl.style.transform = "";
+    hoverState.imageEl.removeAttribute("src");
   }
 }
 
@@ -179,46 +180,45 @@ function getHoverPreviewImages(trigger) {
 }
 
 function showHoveredPreviewImage(source) {
-  if (!hoveredImageEl || !source) {
+  if (!hoverState.imageEl || !source) {
     return;
   }
 
-  hoveredImageEl.alt = hoverPreviewTrigger ? (hoverPreviewTrigger.getAttribute("data-project") || "") : "";
-  hoveredImageEl.style.opacity = "0";
-  hoveredImageEl.style.display = "block";
+  hoverState.imageEl.alt = hoverState.trigger ? (hoverState.trigger.getAttribute("data-project") || "") : "";
+  hoverState.imageEl.style.opacity = "0";
+  hoverState.imageEl.style.display = "block";
   applyHoverPreviewParallax();
 
   window.setTimeout(function () {
-    hoveredImageEl.src = source;
-    hoveredImageEl.style.opacity = "1";
+    hoverState.imageEl.src = source;
+    hoverState.imageEl.style.opacity = "1";
     applyHoverPreviewParallax();
   }, 90);
 }
 
 function updateHoverPreviewParallax(event) {
-  if (!hoveredImageEl || !hoveredImageEl.getAttribute("src")) {
+  if (!hoverState.imageEl || !hoverState.imageEl.getAttribute("src")) {
     return;
   }
 
   var row = event.currentTarget;
   var rect = row.getBoundingClientRect();
-  hoverPreviewParallaxX = (rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0) * 10;
-  hoverPreviewParallaxY = (rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0) * 8;
+  hoverState.parallaxX = (rect.width ? (event.clientX - rect.left) / rect.width - 0.5 : 0) * 10;
+  hoverState.parallaxY = (rect.height ? (event.clientY - rect.top) / rect.height - 0.5 : 0) * 8;
 
-  if (!hoverParallaxRafPending) {
-    hoverParallaxRafPending = true;
+  if (!hoverState.rafPending) {
+    hoverState.rafPending = true;
     window.requestAnimationFrame(function () {
-      hoverParallaxRafPending = false;
+      hoverState.rafPending = false;
       applyHoverPreviewParallax();
     });
   }
 }
 
 function applyHoverPreviewParallax() {
-  if (!hoveredImageEl) {
+  if (!hoverState.imageEl) {
     return;
   }
 
-  hoveredImageEl.style.transform = "translate(" + hoverPreviewParallaxX + "px, " + hoverPreviewParallaxY + "px)";
+  hoverState.imageEl.style.transform = "translate(" + hoverState.parallaxX + "px, " + hoverState.parallaxY + "px)";
 }
-
