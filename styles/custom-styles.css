@@ -26,7 +26,7 @@ tr.collapse.is-open .scroll-container img.fullscreen-image{opacity:1;transform:t
 .scroll-container iframe{width:min(400px,90vw);height:min(840px,88vh);display:block}.scroll-container iframe[src*="figma.com"]{width:min(900px,85vw);height:min(500px,58vh)}
 
 .hovered-container{position:fixed;left:50px;top:50vh;width:calc(33.33vw - 110px);max-width:420px;transform:translateY(-50%);z-index:20;pointer-events:none;margin-top:0}
-.hovered-container br{display:none}
+
 .hovered-image{width:auto!important;max-width:100%;height:auto!important;max-height:52vh;object-fit:contain;object-position:center;aspect-ratio:auto;opacity:0;transition:opacity .2s ease,filter .2s ease,transform .22s ease;filter:blur(3px)}
 .hovered-image[src]{opacity:1;filter:blur(0)}
 .hover-trigger{transition:opacity .14s ease,filter .14s ease,letter-spacing .14s ease}
