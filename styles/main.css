@@ -472,6 +472,10 @@ td:nth-child(4) .custom-btn {
   cursor: pointer;
 }
 
+.scroll-dot:hover {
+  opacity: 0.5;
+}
+
 .scroll-dot.is-active {
   opacity: 1;
 }
