@@ -194,10 +194,6 @@ body.dark-mode .theme-toggle::before {
   color: var(--accent);
 }
 
-.theme-toggle img {
-  display: none !important;
-}
-
 .theme-toggle:hover {
   color: var(--accent);
 }
