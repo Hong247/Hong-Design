@@ -44,32 +44,6 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 
 .year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}
 
-/* ── Custom scrollbars: thin lines, color-mode aware ── */
-
-/* Firefox */
-.scroll-wrapper{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.7) rgba(255,255,255,.08)}
-body.light-mode .scroll-wrapper{scrollbar-color:rgba(0,0,0,.55) rgba(0,0,0,.07)}
-body.orange-mode .scroll-wrapper{scrollbar-color:rgba(0,0,0,.6) rgba(0,0,0,.1)}
-.scroll-container{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.7) rgba(255,255,255,.08)}
-body.light-mode .scroll-container{scrollbar-color:rgba(0,0,0,.55) rgba(0,0,0,.07)}
-body.orange-mode .scroll-container{scrollbar-color:rgba(0,0,0,.6) rgba(0,0,0,.1)}
-
-/* WebKit – force non-overlay, sized */
-.scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{-webkit-appearance:none;width:3px;height:3px}
-
-/* WebKit – track: subtle tinted rail */
-.scroll-wrapper::-webkit-scrollbar-track,.scroll-container::-webkit-scrollbar-track{-webkit-appearance:none;background:rgba(255,255,255,.08)}
-body.light-mode .scroll-wrapper::-webkit-scrollbar-track,body.light-mode .scroll-container::-webkit-scrollbar-track{background:rgba(0,0,0,.07)}
-body.orange-mode .scroll-wrapper::-webkit-scrollbar-track,body.orange-mode .scroll-container::-webkit-scrollbar-track{background:rgba(0,0,0,.1)}
-
-/* WebKit – thumb: dark mode */
-.scroll-wrapper::-webkit-scrollbar-thumb,.scroll-container::-webkit-scrollbar-thumb{-webkit-appearance:none;background:#fff;border-radius:3px}
-.scroll-wrapper::-webkit-scrollbar-thumb:hover,.scroll-container::-webkit-scrollbar-thumb:hover{background:#fff}
-
-/* WebKit – thumb: light mode */
-body.light-mode .scroll-wrapper::-webkit-scrollbar-thumb,body.light-mode .scroll-container::-webkit-scrollbar-thumb{background:#000}
-body.light-mode .scroll-wrapper::-webkit-scrollbar-thumb:hover,body.light-mode .scroll-container::-webkit-scrollbar-thumb:hover{background:#000}
-
-/* WebKit – thumb: orange mode */
-body.orange-mode .scroll-wrapper::-webkit-scrollbar-thumb,body.orange-mode .scroll-container::-webkit-scrollbar-thumb{background:#000}
-body.orange-mode .scroll-wrapper::-webkit-scrollbar-thumb:hover,body.orange-mode .scroll-container::-webkit-scrollbar-thumb:hover{background:#000}
+/* ── Hide native scrollbars — replaced by JS custom scrollbar ── */
+.scroll-wrapper,.scroll-container{scrollbar-width:none;-ms-overflow-style:none}
+.scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{display:none}
