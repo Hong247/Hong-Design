@@ -440,6 +440,7 @@
       ogTitle:     getMeta("property", "og:title"),
       ogDesc:      getMeta("property", "og:description"),
       ogImage:     getMeta("property", "og:image"),
+      ogUrl:       getMeta("property", "og:url"),
       twTitle:     getMeta("name", "twitter:title"),
       twDesc:      getMeta("name", "twitter:description"),
       twImage:     getMeta("name", "twitter:image")
@@ -484,6 +485,7 @@
     setMeta("property", "og:title",           pageTitle);
     setMeta("property", "og:description",     pageDesc);
     setMeta("property", "og:image",           imageUrl);
+    setMeta("property", "og:url",             "https://hong-design.vercel.app/" + project.id);
     setMeta("name",     "twitter:title",      pageTitle);
     setMeta("name",     "twitter:description",pageDesc);
     setMeta("name",     "twitter:image",      imageUrl);
@@ -496,6 +498,7 @@
     setMeta("property", "og:title",           d.ogTitle);
     setMeta("property", "og:description",     d.ogDesc);
     setMeta("property", "og:image",           d.ogImage);
+    setMeta("property", "og:url",             d.ogUrl);
     setMeta("name",     "twitter:title",      d.twTitle);
     setMeta("name",     "twitter:description",d.twDesc);
     setMeta("name",     "twitter:image",      d.twImage);
