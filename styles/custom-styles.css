@@ -43,8 +43,8 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 
 .year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}
 
-/* ── Hide native scrollbars — replaced by JS custom scrollbar ── */
-.scroll-wrapper,.scroll-container{scrollbar-width:none;-ms-overflow-style:none}
-.scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{display:none}
+/* ── Hide native scrollbars only when JS custom scrollbar has initialised ── */
+.js-custom-scrollbar .scroll-wrapper,.js-custom-scrollbar .scroll-container{scrollbar-width:none;-ms-overflow-style:none}
+.js-custom-scrollbar .scroll-wrapper::-webkit-scrollbar,.js-custom-scrollbar .scroll-container::-webkit-scrollbar{display:none}
 /* Extra bottom padding gives room for the horizontal scrollbar + spacing above/below */
 .scroll-container{padding-bottom:16px}
