@@ -33,8 +33,8 @@
       thumb.style.background = c.thumb;
 
       var rect = el.getBoundingClientRect();
-      /* 12px inset from the right edge of the scroll panel */
-      track.style.right = (window.innerWidth - rect.right + 12) + 'px';
+      /* 4px inset from the right edge of the scroll panel */
+      track.style.right = (window.innerWidth - rect.right + 4) + 'px';
       track.style.top = rect.top + 'px';
       track.style.height = rect.height + 'px';
 
