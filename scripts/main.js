@@ -6,7 +6,17 @@ document.addEventListener("DOMContentLoaded", function () {
   applySavedTheme();
   setScrolling();
   setPageOverflow();
-
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      stopIntelligentHoverPreview();
+      var item = document.querySelector(".email-contact-item");
+      if (item && item._copyTimer) {
+        window.clearTimeout(item._copyTimer);
+        item._copyTimer = null;
+        item.classList.remove("is-copied");
+      }
+    }
+  });
   if (themeToggle) {
     themeToggle.addEventListener("click", toggleTheme);
   }
@@ -197,7 +207,7 @@ function startIntelligentHoverPreview(trigger) {
     hoverState.timer = window.setInterval(function () {
       hoverState.index = (hoverState.index + 1) % hoverState.images.length;
       showHoveredPreviewImage(hoverState.images[hoverState.index]);
-    }, 950);
+    }, 750);
   }
 }
 
@@ -241,7 +251,11 @@ function showHoveredPreviewImage(source) {
   hoverState.imageEl.style.display = "block";
   applyHoverPreviewParallax();
 
-  window.setTimeout(function () {
+    window.setTimeout(function () {
+    hoverState.imageEl.onerror = function () {
+      hoverState.imageEl.style.display = "none";
+      hoverState.imageEl.onerror = null;
+    };
     hoverState.imageEl.src = source;
     hoverState.imageEl.style.opacity = "1";
     applyHoverPreviewParallax();

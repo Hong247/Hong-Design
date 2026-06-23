@@ -119,7 +119,7 @@
     height: min(320px, 52vh);
   }
 
-  iframe {
+  iframe:not([src*="figma.com"]) {
     display: none;
   }
 
