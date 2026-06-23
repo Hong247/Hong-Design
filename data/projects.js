@@ -27,9 +27,17 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee — Brand Experience System",
     role: "Marketing Design",
     year: "2025",
-    preview: "",
+    preview: "images/C Market Coffee Brand Catalog/page-01.jpg",
     media: [
-      { type: "iframe", src: "https://www.instagram.com/p/DZno8d7y0I6/embed", width: 400, height: 750 }
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-01.jpg", alt: "C Market Coffee brand catalog page 1" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-02.jpg", alt: "C Market Coffee brand catalog page 2" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-03.jpg", alt: "C Market Coffee brand catalog page 3" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-04.jpg", alt: "C Market Coffee brand catalog page 4" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-05.jpg", alt: "C Market Coffee brand catalog page 5" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-06.jpg", alt: "C Market Coffee brand catalog page 6" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-07.jpg", alt: "C Market Coffee brand catalog page 7" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-08.jpg", alt: "C Market Coffee brand catalog page 8" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-09.jpg", alt: "C Market Coffee brand catalog page 9" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage.<br><br>My role was to design and maintain customer-facing brand assets across both digital and physical channels, creating marketing materials that were visually consistent, production-ready, and aligned with real business goals." },
