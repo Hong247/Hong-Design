@@ -36,7 +36,7 @@ function renderProjectArchive() {
       '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + number + '</button></td>' +
       '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.title + '</button></td>' +
       '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.role + '</button></td>' +
-      '<td><button type="button" class="custom-btn row-expand-btn" data-target="#' + slug + '">' + project.year + '<span class="row-expand-indicator" aria-hidden="true"></span></button></td>';
+      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.year + '</button></td>';
 
     headerRow.setAttribute("data-gallery-srcs", getProjectGallerySources(project).join("|"));
 
