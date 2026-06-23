@@ -81,7 +81,6 @@
   }
 
   function initProjectHeaders() {
-    setNumberHeader();
     initYearSort();
     initColumnSortHeader("role");
     updateSortHeaders();
@@ -94,13 +93,6 @@
     });
   }
 
-  function setNumberHeader() {
-    var numberHeader = document.querySelector("thead th:first-child");
-
-    if (numberHeader) {
-      numberHeader.textContent = "#";
-    }
-  }
 
   function initYearSort() {
     var yearHeader = document.querySelector("thead th:last-child");
