@@ -16,6 +16,12 @@
   window.addEventListener("click", handleProjectClick, true);
   document.addEventListener("DOMContentLoaded", initProjectHeaders);
   document.addEventListener("DOMContentLoaded", openProjectFromHash);
+  window.addEventListener("popstate", function () {
+    document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
+      closeRow(row);
+    });
+    openProjectFromHash();
+  });
 
   function handleProjectClick(event) {
     var button = event.target.closest && event.target.closest(".custom-btn[data-target]");
@@ -57,9 +63,15 @@
   }
 
   function openProjectFromHash() {
-    var hash = window.location.hash;
-    if (!hash) return;
-    var target = document.querySelector("tr.collapse" + hash);
+    var slug = null;
+    var match = window.location.pathname.match(/^\/projects\/(.+)$/);
+    if (match) {
+      slug = match[1];
+    } else if (window.location.hash) {
+      slug = window.location.hash.slice(1);
+    }
+    if (!slug) return;
+    var target = document.querySelector("tr.collapse#" + slug);
     var header = target ? target.previousElementSibling : null;
     if (!target || !header || !header.classList.contains("hover-trigger")) return;
     savedPositions[target.id] = getCurrentScrollPosition(header);
@@ -433,7 +445,7 @@
     window.clearTimeout(row.openTimer);
     row.classList.add("is-open");
     setExpandedState(row.id, true);
-    history.replaceState(null, "", "#" + row.id);
+    history.pushState(null, "", "/projects/" + row.id);
 
     if (!detail) {
       return;
@@ -468,8 +480,8 @@
     window.clearTimeout(row.closeTimer);
     row.classList.remove("is-open");
     setExpandedState(row.id, false);
-    if (window.location.hash === "#" + row.id) {
-      history.replaceState(null, "", window.location.pathname);
+    if (window.location.pathname === "/projects/" + row.id) {
+      history.pushState(null, "", "/");
     }
 
     if (header) {
