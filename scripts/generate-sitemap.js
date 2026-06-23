@@ -15,7 +15,7 @@ const base = "https://hong-design.vercel.app";
 const urls = [
   `  <url><loc>${base}/</loc><lastmod>${today}</lastmod><priority>1.0</priority></url>`,
   ...ids.map(id =>
-    `  <url><loc>${base}/projects/${id}</loc><lastmod>${today}</lastmod><priority>0.8</priority></url>`
+    `  <url><loc>${base}/${id}</loc><lastmod>${today}</lastmod><priority>0.8</priority></url>`
   )
 ].join("\n");
 

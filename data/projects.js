@@ -3,7 +3,7 @@
 // and a description. Image alt text and src fixups are applied by scripts/project-loader.js.
 window.PORTFOLIO_PROJECTS = [
   {
-    id: "demo-cmarket-tote-bag",
+    id: "c-market-coffee-tote-bag",
     title: "C Market Coffee Tote Bag",
     role: "Merchandise Design",
     year: "2026",
@@ -23,7 +23,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo-cmarket-brand",
+    id: "c-market-coffee-brand-experience-system",
     title: "C Market Coffee — Brand Experience System",
     role: "Marketing Design",
     year: "2025",
@@ -47,7 +47,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo-kaia",
+    id: "kaia",
     title: "KAIA",
     role: "Brand Identity",
     year: "2025",
@@ -65,7 +65,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo-cmarket-site",
+    id: "c-market-coffee-website",
     title: "C Market Coffee Website",
     role: "Web Design",
     year: "2024",
@@ -87,7 +87,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo-mara-natha-portfolio-document",
+    id: "mara-natha-architects-portfolio-document",
     title: "Mara Natha Architects Portfolio Document",
     role: "Editorial Design",
     year: "2023",
@@ -101,7 +101,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo1",
+    id: "kee",
     title: "Kee",
     role: "Brand Identity",
     year: "2023",
@@ -115,7 +115,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo2",
+    id: "maia",
     title: "maia",
     role: "Brand Identity",
     year: "2023",
@@ -129,7 +129,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo3",
+    id: "browns-rebrand-concept",
     title: "Browns Rebrand Concept",
     role: "Brand Identity",
     year: "2023",
@@ -143,7 +143,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo4",
+    id: "monday",
     title: "monday",
     role: "UI Prototype",
     year: "2023",
@@ -157,7 +157,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo5",
+    id: "kill-the-bride",
     title: "Kill the Bride",
     role: "Poster Design",
     year: "2023",
@@ -171,7 +171,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo6",
+    id: "stop-haunting-mother-nature",
     title: "Stop Haunting Mother Nature",
     role: "Campaign Design",
     year: "2023",
@@ -185,7 +185,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo7",
+    id: "xwayxway",
     title: "X̱wáýx̱way",
     role: "Editorial Design",
     year: "2023",
@@ -199,7 +199,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo8",
+    id: "raku-haru",
     title: "raku haru",
     role: "Brand Identity",
     year: "2022",
@@ -213,7 +213,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo9",
+    id: "trapo-digital-catalogue",
     title: "TRAPO Digital Catalogue",
     role: "UI/UX Design",
     year: "2022",
@@ -227,7 +227,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo10",
+    id: "trapo-smartphone-holder",
     title: "TRAPO Smartphone Holder",
     role: "Product Design",
     year: "2022",
@@ -241,7 +241,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo11",
+    id: "talentlounge-virtual-career-fair",
     title: "Talentlounge Virtual Career Fair",
     role: "Web Design",
     year: "2021",
@@ -255,7 +255,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo12",
+    id: "nexus",
     title: "Nexus",
     role: "Furniture Design",
     year: "2021",
@@ -269,7 +269,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo13",
+    id: "motorola-solutions-radio-concept",
     title: "Motorola Solutions Radio Concept",
     role: "Industrial Design",
     year: "2020",
@@ -283,7 +283,7 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "demo14",
+    id: "e-k",
     title: "E/K",
     role: "Logo Design",
     year: "2020",

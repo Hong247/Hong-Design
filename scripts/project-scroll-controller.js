@@ -64,7 +64,7 @@
 
   function openProjectFromHash() {
     var slug = null;
-    var match = window.location.pathname.match(/^\/projects\/(.+)$/);
+    var match = window.location.pathname.match(/^\/([^/]+)$/);
     if (match) {
       slug = match[1];
     } else if (window.location.hash) {
@@ -445,7 +445,7 @@
     window.clearTimeout(row.openTimer);
     row.classList.add("is-open");
     setExpandedState(row.id, true);
-    history.pushState(null, "", "/projects/" + row.id);
+    history.pushState(null, "", "/" + row.id);
 
     if (!detail) {
       return;
@@ -480,7 +480,7 @@
     window.clearTimeout(row.closeTimer);
     row.classList.remove("is-open");
     setExpandedState(row.id, false);
-    if (window.location.pathname === "/projects/" + row.id) {
+    if (window.location.pathname === "/" + row.id) {
       history.pushState(null, "", "/");
     }
 
