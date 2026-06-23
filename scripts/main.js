@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
-  var hoverTriggers = document.querySelectorAll(".hover-trigger");
 
   hoverState.imageEl = document.querySelector(".hovered-image");
   initEmailCopyButton();
@@ -12,14 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
     themeToggle.addEventListener("click", toggleTheme);
   }
 
-  hoverTriggers.forEach(function (trigger) {
-    trigger.addEventListener("mouseenter", function () {
-      startIntelligentHoverPreview(trigger);
+  /* Event delegation — single listener on the table instead of one per row */
+  var tableEl = document.querySelector(".scroll-wrapper table");
+  if (tableEl) {
+    tableEl.addEventListener("mouseover", function (e) {
+      var trigger = e.target.closest && e.target.closest(".hover-trigger");
+      if (trigger && trigger !== hoverState.trigger) {
+        startIntelligentHoverPreview(trigger);
+      }
     });
 
-    trigger.addEventListener("mousemove", updateHoverPreviewParallax);
-    trigger.addEventListener("mouseleave", stopIntelligentHoverPreview);
-  });
+    tableEl.addEventListener("mousemove", function (e) {
+      if (!hoverState.trigger) return;
+      updateHoverPreviewParallax({ currentTarget: hoverState.trigger, clientX: e.clientX, clientY: e.clientY });
+    });
+
+    tableEl.addEventListener("mouseout", function (e) {
+      var trigger = e.target.closest && e.target.closest(".hover-trigger");
+      if (trigger && !trigger.contains(e.relatedTarget)) {
+        stopIntelligentHoverPreview();
+      }
+    });
+  }
 
   window.addEventListener("resize", function () {
     setScrolling();
@@ -237,6 +250,10 @@ function showHoveredPreviewImage(source) {
 
 function updateHoverPreviewParallax(event) {
   if (!hoverState.imageEl || !hoverState.imageEl.getAttribute("src")) {
+    return;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }
 

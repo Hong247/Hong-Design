@@ -529,19 +529,15 @@
       animateHeaderPosition(projectHeader, scrollWrapper, getHeaderOffset(scrollWrapper), duration);
     }
 
+    /* Single RAF — layout is already available, no need for double-RAF */
     window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(function () {
-        runScroll(scrollDuration);
-      });
+      runScroll(scrollDuration);
     });
 
+    /* One correction pass after the expand animation settles */
     window.setTimeout(function () {
-      runScroll(200);
-    }, 60);
-
-    window.setTimeout(function () {
-      runScroll(180);
-    }, motionDuration + 40);
+      runScroll(160);
+    }, motionDuration + 20);
   }
 
   function animateHeaderPosition(projectHeader, scrollWrapper, headerOffset, duration) {

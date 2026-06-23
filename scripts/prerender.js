@@ -36,6 +36,10 @@ async function downloadFonts() {
     {
       url:  'https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5/files/ibm-plex-sans-latin-400-italic.woff2',
       dest: path.join(ROOT, 'fonts/ibm-plex-sans-400-italic.woff2')
+    },
+    {
+      url:  'https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans@5/files/ibm-plex-sans-latin-700-normal.woff2',
+      dest: path.join(ROOT, 'fonts/ibm-plex-sans-700-normal.woff2')
     }
   ];
 
