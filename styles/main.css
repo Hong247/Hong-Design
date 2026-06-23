@@ -454,40 +454,47 @@ td:nth-child(4) .custom-btn {
 /* Scroll dot indicators */
 .scroll-dots {
   display: flex;
-  gap: 5px;
-  margin-top: 8px;
-  padding-left: 2px;
+  gap: 0;
+  margin-top: 2px;
+  padding-left: 0;
 }
 
 .scroll-dot {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-dot::before {
+  content: '';
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: currentColor;
   opacity: 0.2;
   transition: opacity 200ms ease, transform 200ms ease;
+  display: block;
   flex-shrink: 0;
-  padding: 6px;
-  margin: -6px;
-  border: none;
-  cursor: pointer;
-  background-clip: content-box;
 }
 
-.scroll-dot:hover {
+.scroll-dot:hover::before {
   opacity: 0.6;
   transform: scale(1.5);
 }
 
-.scroll-dot:hover {
-  opacity: 0.5;
-}
-
-.scroll-dot.is-active {
+.scroll-dot.is-active::before {
   opacity: 1;
 }
 
-.scroll-dot.is-active:hover {
+.scroll-dot.is-active:hover::before {
   opacity: 1;
   transform: scale(1.5);
 }
@@ -520,7 +527,7 @@ td:nth-child(4) .custom-btn {
     transition: none;
   }
 
-  .scroll-dot {
+  .scroll-dot::before {
     transition: none;
   }
 }
