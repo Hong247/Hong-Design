@@ -189,6 +189,11 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
   to   { opacity: 1; transform: translateX(0)     scale(1); }
 }
 
+/* Hide arrows on mobile — swipe handles navigation */
+@media (max-width: 768px) {
+  #lb-prev, #lb-next { display: none !important; }
+}
+
 body.lb-active { overflow: hidden; }
 
 /* Gallery images */

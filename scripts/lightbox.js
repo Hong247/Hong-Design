@@ -1,19 +1,26 @@
 (function () {
   var overlay, imgEl, closeBtn, prevBtn, nextBtn;
-  var startDist = 0, currentScale = 1, baseScale = 1;
-  var startMidX = 0, startMidY = 0;
-  var translateX = 0, translateY = 0, baseX = 0, baseY = 0;
-  var isDragging = false, dragStartX = 0, dragStartY = 0, dragBaseX = 0, dragBaseY = 0;
+
+  /* zoom / pan state */
+  var currentScale = 1, baseScale = 1;
+  var startDist = 0, startMidX = 0, startMidY = 0;
+  var panX = 0, panY = 0, basePanX = 0, basePanY = 0;
+  var isPan = false, panStartX = 0, panStartY = 0;
+
+  /* swipe state (scale = 1 only) */
+  var swipeOffset = 0;    /* live horizontal offset while dragging */
+  var isSwipe = false;
+  var swipeStartX = 0, swipeStartY = 0;
+  var COMMIT_RATIO = 0.25; /* fraction of screen width to commit */
+  var isAnimating = false;
+
   var activePointers = {};
 
-  /* swipe tracking (at scale=1 only) */
-  var swipeStartX = 0, swipeStartY = 0, swipeActive = false;
-  var SWIPE_THRESHOLD = 50;
-
-  /* image set for the active scroll-container */
+  /* image set */
   var currentImages = [];
-  var currentIndex = 0;
+  var currentIndex  = 0;
 
+  /* ─── init ─── */
   function init() {
     overlay = document.createElement("div");
     overlay.id = "lb-overlay";
@@ -56,8 +63,8 @@
     document.body.appendChild(overlay);
 
     closeBtn.addEventListener("click", close);
-    prevBtn.addEventListener("click", function () { navigate(-1); });
-    nextBtn.addEventListener("click", function () { navigate(1); });
+    prevBtn.addEventListener("click", function () { navigateAnimated(-1, 0); });
+    nextBtn.addEventListener("click", function () { navigateAnimated(1, 0); });
 
     overlay.addEventListener("click", function (e) {
       if (e.target === overlay) close();
@@ -66,58 +73,43 @@
     document.addEventListener("keydown", function (e) {
       if (!overlay.classList.contains("lb-open")) return;
       if (e.key === "Escape") close();
-      if (e.key === "ArrowLeft") navigate(-1);
-      if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft")  navigateAnimated(-1, 0);
+      if (e.key === "ArrowRight") navigateAnimated(1, 0);
     });
 
-    imgEl.addEventListener("pointerdown", onPointerDown);
-    imgEl.addEventListener("pointermove", onPointerMove);
-    imgEl.addEventListener("pointerup", onPointerUp);
+    imgEl.addEventListener("pointerdown",  onPointerDown);
+    imgEl.addEventListener("pointermove",  onPointerMove);
+    imgEl.addEventListener("pointerup",    onPointerUp);
     imgEl.addEventListener("pointercancel", onPointerUp);
   }
 
-  function getImagesFromContainer(clickedImg) {
-    var container = clickedImg.closest(".scroll-container");
-    if (!container) return [clickedImg];
-    return Array.from(container.querySelectorAll("img.fullscreen-image"));
+  /* ─── image set ─── */
+  function getImagesFromContainer(img) {
+    var c = img.closest(".scroll-container");
+    return c ? Array.from(c.querySelectorAll("img.fullscreen-image")) : [img];
   }
 
   function open(clickedImg) {
     currentImages = getImagesFromContainer(clickedImg);
-    currentIndex = currentImages.indexOf(clickedImg);
+    currentIndex  = currentImages.indexOf(clickedImg);
     if (currentIndex < 0) currentIndex = 0;
-    showImage(currentIndex, true);
+    loadImage(currentImages[currentIndex]);
+    resetTransform(true);
     overlay.classList.add("lb-open");
     document.body.classList.add("lb-active");
     updateNavButtons();
     closeBtn.focus();
   }
 
-  function showImage(index, instant, dir) {
-    var img = currentImages[index];
-    if (!img) return;
-    if (instant) {
-      imgEl.src = img.src;
-      imgEl.alt = img.alt || "";
-      imgEl.classList.remove("lb-slide-left", "lb-slide-right");
-    } else {
-      var slideClass = dir > 0 ? "lb-slide-left" : "lb-slide-right";
-      imgEl.classList.remove("lb-slide-left", "lb-slide-right");
-      /* force reflow so removing then adding triggers re-animation */
-      void imgEl.offsetWidth;
-      imgEl.src = img.src;
-      imgEl.alt = img.alt || "";
-      imgEl.classList.add(slideClass);
-    }
-    resetTransform();
-    updateNavButtons();
+  function loadImage(img) {
+    imgEl.src = img.src;
+    imgEl.alt = img.alt || "";
   }
 
-  function navigate(dir) {
-    var next = currentIndex + dir;
-    if (next < 0 || next >= currentImages.length) return;
-    currentIndex = next;
-    showImage(currentIndex, false, dir);
+  function close() {
+    overlay.classList.remove("lb-open");
+    document.body.classList.remove("lb-active");
+    setTimeout(function () { imgEl.src = ""; imgEl.alt = ""; }, 260);
   }
 
   function updateNavButtons() {
@@ -128,139 +120,189 @@
     nextBtn.style.opacity = currentIndex === currentImages.length - 1 ? "0.25" : "";
   }
 
-  function close() {
-    overlay.classList.remove("lb-open");
-    document.body.classList.remove("lb-active");
+  /* ─── smooth navigate with exit → swap → enter ─── */
+  function navigateAnimated(dir, fromOffset) {
+    var next = currentIndex + dir;
+    if (next < 0 || next >= currentImages.length) {
+      /* revert swipe if at boundary */
+      if (fromOffset !== 0) springBack();
+      return;
+    }
+    if (isAnimating) return;
+    isAnimating = true;
+
+    var W = window.innerWidth;
+    var exitX  = dir > 0 ? -W * 1.05 : W * 1.05;
+    var enterX = -exitX;
+
+    /* 1. animate current image off-screen */
+    setTranslate(fromOffset, 0, "transform .22s cubic-bezier(.4, 0, .6, 1)");
+
     setTimeout(function () {
-      imgEl.src = "";
-      imgEl.alt = "";
-    }, 260);
+      setTranslate(exitX, 0, "none");
+
+      /* 2. swap image */
+      currentIndex = next;
+      loadImage(currentImages[currentIndex]);
+
+      /* 3. place new image off-screen on the opposite side */
+      setTranslate(enterX, 0, "none");
+
+      /* 4. animate into view */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          setTranslate(0, 0, "transform .28s cubic-bezier(.22, 1, .36, 1)");
+          setTimeout(function () {
+            resetTransform(true);
+            isAnimating = false;
+            updateNavButtons();
+          }, 290);
+        });
+      });
+    }, 220);
   }
 
-  function resetTransform() {
-    currentScale = 1;
-    baseScale = 1;
-    translateX = 0;
-    translateY = 0;
-    baseX = 0;
-    baseY = 0;
-    applyTransform(true);
+  function springBack() {
+    setTranslate(0, 0, "transform .32s cubic-bezier(.22, 1, .36, 1)");
+    setTimeout(function () { resetTransform(true); }, 340);
   }
 
-  function applyTransform(instant) {
+  /* ─── transform helpers ─── */
+  function setTranslate(tx, ty, transition) {
+    swipeOffset = tx;
+    panX = ty === 0 ? tx : panX; /* keep in sync for pinch base */
+    imgEl.style.transition = transition;
+    imgEl.style.transform  = "translate(" + tx + "px, " + ty + "px) scale(" + currentScale + ")";
+  }
+
+  function resetTransform(instant) {
+    currentScale = 1; baseScale = 1;
+    panX = 0; panY = 0; basePanX = 0; basePanY = 0;
+    swipeOffset = 0;
     imgEl.style.transition = instant ? "none" : "transform .18s ease";
-    imgEl.style.transform =
-      "translate(" + translateX + "px, " + translateY + "px) scale(" + currentScale + ")";
+    imgEl.style.transform  = "translate(0, 0) scale(1)";
   }
 
-  function dist(p1, p2) {
-    var dx = p1.clientX - p2.clientX;
-    var dy = p1.clientY - p2.clientY;
-    return Math.sqrt(dx * dx + dy * dy);
+  function applyPinch() {
+    imgEl.style.transition = "none";
+    imgEl.style.transform  =
+      "translate(" + panX + "px, " + panY + "px) scale(" + currentScale + ")";
   }
 
-  function mid(p1, p2) {
-    return {
-      x: (p1.clientX + p2.clientX) / 2,
-      y: (p1.clientY + p2.clientY) / 2
-    };
+  function applyLiveSwipe() {
+    imgEl.style.transition = "none";
+    imgEl.style.transform  = "translate(" + swipeOffset + "px, 0) scale(1)";
   }
 
-  function pointerList() {
-    return Object.values(activePointers);
+  /* ─── pointer helpers ─── */
+  function dist(a, b) {
+    return Math.sqrt(Math.pow(a.clientX - b.clientX, 2) + Math.pow(a.clientY - b.clientY, 2));
   }
+  function mid(a, b) {
+    return { x: (a.clientX + b.clientX) / 2, y: (a.clientY + b.clientY) / 2 };
+  }
+  function ptrs() { return Object.values(activePointers); }
 
+  /* ─── pointer events ─── */
   function onPointerDown(e) {
+    if (isAnimating) { e.preventDefault(); return; }
     imgEl.setPointerCapture(e.pointerId);
-    activePointers[e.pointerId] = { clientX: e.clientX, clientY: e.clientY, pointerId: e.pointerId };
+    activePointers[e.pointerId] = { clientX: e.clientX, clientY: e.clientY };
 
-    var ptrs = pointerList();
-    if (ptrs.length === 2) {
-      startDist = dist(ptrs[0], ptrs[1]);
-      var m = mid(ptrs[0], ptrs[1]);
-      startMidX = m.x;
-      startMidY = m.y;
-      baseScale = currentScale;
-      baseX = translateX;
-      baseY = translateY;
-      isDragging = false;
-      swipeActive = false;
-    } else if (ptrs.length === 1) {
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragStartY = e.clientY;
-      dragBaseX = translateX;
-      dragBaseY = translateY;
-      swipeStartX = e.clientX;
-      swipeStartY = e.clientY;
-      swipeActive = currentScale <= 1.05;
+    var list = ptrs();
+    if (list.length === 2) {
+      /* start pinch */
+      startDist  = dist(list[0], list[1]);
+      var m      = mid(list[0], list[1]);
+      startMidX  = m.x; startMidY = m.y;
+      baseScale  = currentScale;
+      basePanX   = panX; basePanY = panY;
+      isSwipe    = false; isPan = false;
+    } else if (list.length === 1) {
+      swipeStartX = e.clientX; swipeStartY = e.clientY;
+      panStartX   = e.clientX; panStartY   = e.clientY;
+      basePanX    = panX;      basePanY    = panY;
+      isSwipe     = currentScale <= 1.05;
+      isPan       = currentScale > 1.05;
     }
     e.preventDefault();
   }
 
   function onPointerMove(e) {
-    activePointers[e.pointerId] = { clientX: e.clientX, clientY: e.clientY, pointerId: e.pointerId };
-    var ptrs = pointerList();
+    if (isAnimating) { e.preventDefault(); return; }
+    activePointers[e.pointerId] = { clientX: e.clientX, clientY: e.clientY };
+    var list = ptrs();
 
-    if (ptrs.length === 2) {
-      isDragging = false;
-      swipeActive = false;
-      var d = dist(ptrs[0], ptrs[1]);
-      var newScale = Math.min(Math.max(baseScale * (d / startDist), 1), 5);
-      var m = mid(ptrs[0], ptrs[1]);
-      var scaleRatio = newScale / baseScale;
-      translateX = m.x - startMidX + baseX * scaleRatio + (startMidX - baseX) * (1 - scaleRatio);
-      translateY = m.y - startMidY + baseY * scaleRatio + (startMidY - baseY) * (1 - scaleRatio);
-      currentScale = newScale;
-      applyTransform(true);
-    } else if (ptrs.length === 1 && isDragging) {
-      if (currentScale > 1.05) {
-        swipeActive = false;
-        translateX = dragBaseX + (e.clientX - dragStartX);
-        translateY = dragBaseY + (e.clientY - dragStartY);
-        applyTransform(true);
+    if (list.length === 2) {
+      isSwipe = false; isPan = false;
+      var d  = dist(list[0], list[1]);
+      var ns = Math.min(Math.max(baseScale * (d / startDist), 1), 5);
+      var m  = mid(list[0], list[1]);
+      var sr = ns / baseScale;
+      panX = m.x - startMidX + basePanX * sr + (startMidX - basePanX) * (1 - sr);
+      panY = m.y - startMidY + basePanY * sr + (startMidY - basePanY) * (1 - sr);
+      currentScale = ns;
+      applyPinch();
+    } else if (list.length === 1) {
+      if (isPan) {
+        panX = basePanX + (e.clientX - panStartX);
+        panY = basePanY + (e.clientY - panStartY);
+        applyPinch();
+      } else if (isSwipe) {
+        var dx = e.clientX - swipeStartX;
+        var dy = e.clientY - swipeStartY;
+        /* lock axis on first significant move */
+        if (!isSwipe._locked) {
+          if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+            isSwipe._locked = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
+          }
+        }
+        if (isSwipe._locked === "h") {
+          /* resist at boundaries */
+          var atEdge = (dx > 0 && currentIndex === 0) ||
+                       (dx < 0 && currentIndex === currentImages.length - 1);
+          swipeOffset = atEdge ? dx * 0.18 : dx;
+          applyLiveSwipe();
+        }
+        /* vertical: do nothing, let overlay scroll if any */
       }
     }
     e.preventDefault();
   }
 
   function onPointerUp(e) {
-    var wasSwipe = swipeActive;
-    var swipeDX = e.clientX - swipeStartX;
-    var swipeDY = e.clientY - swipeStartY;
+    var finalDX = e.clientX - swipeStartX;
+    var finalDY = e.clientY - swipeStartY;
+    var wasSwipe = isSwipe;
+    var swipeLocked = isSwipe && isSwipe._locked === "h";
 
     delete activePointers[e.pointerId];
-    var ptrs = pointerList();
+    var list = ptrs();
 
-    if (ptrs.length < 2) {
+    if (list.length < 2) {
       baseScale = currentScale;
-      baseX = translateX;
-      baseY = translateY;
+      basePanX  = panX; basePanY = panY;
     }
-    if (ptrs.length === 1) {
-      isDragging = true;
-      dragStartX = ptrs[0].clientX;
-      dragStartY = ptrs[0].clientY;
-      dragBaseX = translateX;
-      dragBaseY = translateY;
-      swipeActive = false;
+    if (list.length === 1) {
+      isPan = currentScale > 1.05;
+      isSwipe = false;
+      panStartX = list[0].clientX; panStartY = list[0].clientY;
+      basePanX  = panX;            basePanY  = panY;
     }
-    if (ptrs.length === 0) {
-      isDragging = false;
-      swipeActive = false;
+    if (list.length === 0) {
+      isPan = false; isSwipe = false;
       if (currentScale <= 1.05) {
         currentScale = 1;
-        translateX = 0;
-        translateY = 0;
-        applyTransform(false);
-        /* swipe navigation at scale=1 */
-        if (wasSwipe && Math.abs(swipeDX) > SWIPE_THRESHOLD && Math.abs(swipeDX) > Math.abs(swipeDY) * 1.5) {
-          navigate(swipeDX < 0 ? 1 : -1);
+        if (wasSwipe && swipeLocked && Math.abs(finalDX) > window.innerWidth * COMMIT_RATIO) {
+          navigateAnimated(finalDX < 0 ? 1 : -1, swipeOffset);
+        } else {
+          springBack();
         }
       }
     }
   }
 
+  /* ─── delegate tap on gallery images ─── */
   function delegate() {
     document.addEventListener("click", function (e) {
       var img = e.target.closest(".scroll-container img.fullscreen-image");
