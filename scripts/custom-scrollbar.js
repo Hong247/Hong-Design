@@ -6,26 +6,23 @@
 
   function getColors() {
     var b = document.body;
-    if (b.classList.contains('light-mode'))  return { track: 'rgba(0,0,0,.1)',       thumb: '#000' };
-    if (b.classList.contains('orange-mode')) return { track: 'rgba(0,0,0,.12)',      thumb: '#000' };
+    if (b.classList.contains('light-mode'))  return { track: 'rgba(0,0,0,.1)',        thumb: '#000' };
+    if (b.classList.contains('orange-mode')) return { track: 'rgba(0,0,0,.12)',       thumb: '#000' };
     return                                          { track: 'rgba(255,255,255,.12)', thumb: '#fff' };
   }
 
   /* ── Vertical scrollbar for .scroll-wrapper ── */
-  function initY(el, container) {
-    if (!el || !container) return;
+  function initY(el) {
+    if (!el) return;
     markInited(el);
-
-    var prevPos = window.getComputedStyle(container).position;
-    if (prevPos === 'static') container.style.position = 'relative';
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
-    /* 8px from right edge — scroll-wrapper has matching padding-right:28px so YEAR column clears it */
-    track.style.cssText = 'position:absolute;right:8px;top:0;width:2px;height:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
-    thumb.style.cssText = 'position:absolute;right:0;width:100%;border-radius:2px;transition:top .06s linear,height .06s linear,background .2s';
+    /* position:fixed — sits above all stacking contexts, no layering issues */
+    track.style.cssText = 'position:fixed;width:2px;pointer-events:none;z-index:9999;border-radius:2px;transition:opacity .25s';
+    thumb.style.cssText = 'position:absolute;left:0;width:100%;border-radius:2px;transition:top .06s linear,height .06s linear,background .2s';
     track.appendChild(thumb);
-    container.appendChild(track);
+    document.body.appendChild(track);
 
     function update() {
       var c = getColors();
@@ -34,13 +31,18 @@
       track.style.opacity = '1';
       track.style.background = c.track;
       thumb.style.background = c.thumb;
-      var trackH = el.clientHeight;
-      var thumbH = Math.max(ratio * trackH, 28);
+
+      var rect = el.getBoundingClientRect();
+      /* 12px inset from the right edge of the scroll panel */
+      track.style.right = (window.innerWidth - rect.right + 12) + 'px';
+      track.style.top = rect.top + 'px';
+      track.style.height = rect.height + 'px';
+
+      var trackH = rect.height;
+      var thumbH = Math.max((el.clientHeight / el.scrollHeight) * trackH, 28);
       var scrollRatio = el.scrollTop / (el.scrollHeight - el.clientHeight);
       thumb.style.height = thumbH + 'px';
       thumb.style.top = (scrollRatio * (trackH - thumbH)) + 'px';
-      track.style.top = el.offsetTop + 'px';
-      track.style.height = el.clientHeight + 'px';
     }
 
     el.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
@@ -55,13 +57,10 @@
     if (!el) return;
     markInited(el);
 
-    /* Track lives inside the scroll container so it naturally sits below the images.
-       We update its left to match scrollLeft so it stays in the visible viewport. */
     el.style.position = 'relative';
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
-    /* 6px top gap (above track) + 4px bottom gap = sits neatly in padding-bottom area */
     track.style.cssText = 'position:absolute;left:0;bottom:4px;height:2px;width:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
     thumb.style.cssText = 'position:absolute;bottom:0;height:100%;border-radius:2px;transition:width .06s linear,background .2s';
     track.appendChild(thumb);
@@ -74,7 +73,6 @@
       track.style.opacity = '1';
       track.style.background = c.track;
       thumb.style.background = c.thumb;
-      /* pin track to visible viewport */
       track.style.left = el.scrollLeft + 'px';
       track.style.width = el.clientWidth + 'px';
       var trackW = el.clientWidth;
@@ -93,8 +91,7 @@
 
   function initAll() {
     var wrapper = document.querySelector('.scroll-wrapper');
-    var rightTheme = document.querySelector('.right-theme');
-    if (wrapper && rightTheme && !hasInited(wrapper)) initY(wrapper, rightTheme);
+    if (wrapper && !hasInited(wrapper)) initY(wrapper);
 
     var containers = document.querySelectorAll('.scroll-container');
     for (var i = 0; i < containers.length; i++) {

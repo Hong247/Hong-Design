@@ -47,7 +47,7 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 /* ── Hide native scrollbars — replaced by JS custom scrollbar ── */
 .scroll-wrapper,.scroll-container{scrollbar-width:none;-ms-overflow-style:none}
 .scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{display:none}
-/* Space for vertical scrollbar (keeps YEAR column clear) */
-.scroll-wrapper{padding-right:28px}
+/* YEAR column right padding so text stays clear of the fixed vertical scrollbar */
+th:last-child,td:last-child{padding-right:28px!important}
 /* Extra bottom padding gives room for the horizontal scrollbar + spacing above/below */
 .scroll-container{padding-bottom:16px}
