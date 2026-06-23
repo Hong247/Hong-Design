@@ -21,8 +21,8 @@
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
-    /* 4px from right edge — scroll-wrapper has matching padding-right:14px so YEAR column clears it */
-    track.style.cssText = 'position:absolute;right:4px;top:0;width:2px;height:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
+    /* 8px from right edge — scroll-wrapper has matching padding-right:28px so YEAR column clears it */
+    track.style.cssText = 'position:absolute;right:8px;top:0;width:2px;height:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
     thumb.style.cssText = 'position:absolute;right:0;width:100%;border-radius:2px;transition:top .06s linear,height .06s linear,background .2s';
     track.appendChild(thumb);
     container.appendChild(track);

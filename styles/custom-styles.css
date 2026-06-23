@@ -48,6 +48,6 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 .scroll-wrapper,.scroll-container{scrollbar-width:none;-ms-overflow-style:none}
 .scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{display:none}
 /* Space for vertical scrollbar (keeps YEAR column clear) */
-.scroll-wrapper{padding-right:14px}
+.scroll-wrapper{padding-right:28px}
 /* Extra bottom padding gives room for the horizontal scrollbar + spacing above/below */
 .scroll-container{padding-bottom:16px}
