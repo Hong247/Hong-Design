@@ -353,25 +353,6 @@ td:nth-child(4) .custom-btn {
   text-align: left;
 }
 
-.row-expand-indicator::before {
-  content: "+";
-  display: inline-block;
-  margin-left: 6px;
-  font-size: 0.75em;
-  opacity: 0.45;
-  vertical-align: middle;
-  transition: opacity 160ms ease;
-}
-
-.hover-trigger:hover .row-expand-indicator::before {
-  opacity: 0.85;
-}
-
-.hover-trigger.is-active-project .row-expand-indicator::before {
-  content: "−";
-  opacity: 0.85;
-}
-
 .collapse {
   display: table-row;
 }
