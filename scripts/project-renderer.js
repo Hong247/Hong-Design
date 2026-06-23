@@ -112,9 +112,6 @@ window.renderProjectDetailRow = function (row) {
 };
 
 function buildGalleryHtml(project) {
-  if (project.detailHtml && !project.media) {
-    return project.detailHtml;
-  }
   var html = '<div class="scroll-container">';
   (project.media || []).forEach(function (item, index) {
     if (item.type === "image") {
@@ -124,8 +121,9 @@ function buildGalleryHtml(project) {
         (index > 0 ? ' loading="lazy"' : "") + ">";
     }
     if (item.type === "iframe") {
+      var dims = (item.width ? ' width="' + item.width + '"' : "") + (item.height ? ' height="' + item.height + '"' : "");
       html +=
-        '<iframe src="' + item.src + '" allow="autoplay; fullscreen" scrolling="no" allowfullscreen></iframe>';
+        '<iframe' + dims + ' src="' + item.src + '" allow="autoplay; fullscreen" scrolling="no" allowfullscreen loading="lazy"></iframe>';
     }
   });
   return html + "</div>";
