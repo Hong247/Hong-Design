@@ -433,6 +433,7 @@
       ogDesc:      getMeta("property", "og:description"),
       ogImage:     getMeta("property", "og:image"),
       ogUrl:       getMeta("property", "og:url"),
+      canonical:   getCanonical(),
       twTitle:     getMeta("name", "twitter:title"),
       twDesc:      getMeta("name", "twitter:description"),
       twImage:     getMeta("name", "twitter:image")
@@ -443,6 +444,16 @@
   function getMeta(attr, val) {
     var el = document.querySelector('meta[' + attr + '="' + val + '"]');
     return el ? el.getAttribute("content") : "";
+  }
+
+  function getCanonical() {
+    var el = document.querySelector('link[rel="canonical"]');
+    return el ? el.getAttribute("href") : "";
+  }
+
+  function setCanonical(href) {
+    var el = document.querySelector('link[rel="canonical"]');
+    if (el) el.setAttribute("href", href);
   }
 
   function setMeta(attr, val, content) {
@@ -478,6 +489,7 @@
     setMeta("property", "og:description",     pageDesc);
     setMeta("property", "og:image",           imageUrl);
     setMeta("property", "og:url",             "https://hong-design.vercel.app/" + project.id);
+    setCanonical("https://hong-design.vercel.app/" + project.id);
     setMeta("name",     "twitter:title",      pageTitle);
     setMeta("name",     "twitter:description",pageDesc);
     setMeta("name",     "twitter:image",      imageUrl);
@@ -491,6 +503,7 @@
     setMeta("property", "og:description",     d.ogDesc);
     setMeta("property", "og:image",           d.ogImage);
     setMeta("property", "og:url",             d.ogUrl);
+    setCanonical(d.canonical);
     setMeta("name",     "twitter:title",      d.twTitle);
     setMeta("name",     "twitter:description",d.twDesc);
     setMeta("name",     "twitter:image",      d.twImage);
