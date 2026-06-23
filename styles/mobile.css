@@ -117,7 +117,6 @@
     gap: 10px;
     margin-right: -18px;
     padding: 2px 18px 16px 0;
-    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
 

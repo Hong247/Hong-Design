@@ -48,6 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
     setScrolling();
     setPageOverflow();
   });
+
+  /* Re-apply layout on bfcache restore (mobile browsers cache pages on back nav) */
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) {
+      applySavedTheme();
+      setScrolling();
+      setPageOverflow();
+      stopIntelligentHoverPreview();
+    }
+  });
 });
 
 var hoverState = {
