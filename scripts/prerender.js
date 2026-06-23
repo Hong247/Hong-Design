@@ -125,7 +125,7 @@ function buildProjectRows(projects, titleOverrides) {
     const title     = titleOverrides[project.id] || project.title || '';
     const role      = project.role  || '';
     const year      = project.year  || '';
-    const slug      = slugify(title);
+    const slug      = project.id;
     const preview   = project.preview || '';
 
     // Build crawlable description content
