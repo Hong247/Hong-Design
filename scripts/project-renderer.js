@@ -99,6 +99,8 @@ function populateDetailRow(row) {
     if (typeof window.addScrollDots === "function") {
       window.addScrollDots(scrollContainer);
     }
+
+    scrollContainer.scrollLeft = 0;
   }
 
   row._projectRendered = true;
