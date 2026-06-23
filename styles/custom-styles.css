@@ -43,3 +43,35 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 @media (max-width:768px){.theme-toggle::before{font-size:18px}tr.hover-trigger td:nth-child(4){padding-right:18px}tr.hover-trigger.is-active-project td{padding-top:0!important;padding-bottom:0!important;transform:none!important;vertical-align:top!important}tr.hover-trigger.is-active-project td:nth-child(1),tr.hover-trigger.is-active-project td:nth-child(4){padding-top:1px!important}tr.hover-trigger.is-active-project td:nth-child(2) .custom-btn{line-height:1.34}.scroll-container iframe{width:min(90vw,400px);height:min(780px,82vh)}.scroll-container iframe[src*="figma.com"]{width:90vw;height:min(420px,68vh)}.hovered-container{display:none}body.project-focus-active .hover-trigger{opacity:1}.hover-trigger.is-active-project td:first-child,.hover-trigger.is-active-project td:nth-child(2){transform:none}}
 
 .year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow{opacity:.35}
+
+/* ── Custom scrollbars: thin lines, color-mode aware ── */
+
+/* Firefox */
+.scroll-wrapper{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.55) transparent}
+body.light-mode .scroll-wrapper{scrollbar-color:rgba(0,0,0,.45) transparent}
+body.orange-mode .scroll-wrapper{scrollbar-color:rgba(0,0,0,.5) transparent}
+.scroll-container{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.55) transparent}
+body.light-mode .scroll-container{scrollbar-color:rgba(0,0,0,.45) transparent}
+body.orange-mode .scroll-container{scrollbar-color:rgba(0,0,0,.5) transparent}
+
+/* WebKit – track */
+.scroll-wrapper::-webkit-scrollbar,.scroll-container::-webkit-scrollbar{width:2px;height:2px;background:transparent}
+.scroll-wrapper::-webkit-scrollbar-track,.scroll-container::-webkit-scrollbar-track{background:transparent}
+
+/* WebKit – thumb: dark mode (default) */
+.scroll-wrapper::-webkit-scrollbar-thumb{background:rgba(255,255,255,.55);border-radius:2px;transition:background .2s ease}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,1)}
+.scroll-container::-webkit-scrollbar-thumb{background:rgba(255,255,255,.55);border-radius:2px;transition:background .2s ease}
+.scroll-container::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,1)}
+
+/* WebKit – thumb: light mode */
+body.light-mode .scroll-wrapper::-webkit-scrollbar-thumb{background:rgba(0,0,0,.4)}
+body.light-mode .scroll-wrapper::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.9)}
+body.light-mode .scroll-container::-webkit-scrollbar-thumb{background:rgba(0,0,0,.4)}
+body.light-mode .scroll-container::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.9)}
+
+/* WebKit – thumb: orange mode */
+body.orange-mode .scroll-wrapper::-webkit-scrollbar-thumb{background:rgba(0,0,0,.45)}
+body.orange-mode .scroll-wrapper::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.9)}
+body.orange-mode .scroll-container::-webkit-scrollbar-thumb{background:rgba(0,0,0,.45)}
+body.orange-mode .scroll-container::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.9)}
