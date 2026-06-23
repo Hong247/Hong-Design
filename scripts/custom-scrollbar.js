@@ -6,9 +6,9 @@
 
   function getColors() {
     var b = document.body;
-    if (b.classList.contains('light-mode'))  return { track: 'rgba(0,0,0,.1)',          thumb: '#000' };
-    if (b.classList.contains('orange-mode')) return { track: 'rgba(0,0,0,.12)',         thumb: '#000' };
-    return                                          { track: 'rgba(255,255,255,.12)',    thumb: '#fff' };
+    if (b.classList.contains('light-mode'))  return { track: 'rgba(0,0,0,.1)',       thumb: '#000' };
+    if (b.classList.contains('orange-mode')) return { track: 'rgba(0,0,0,.12)',      thumb: '#000' };
+    return                                          { track: 'rgba(255,255,255,.12)', thumb: '#fff' };
   }
 
   /* ── Vertical scrollbar for .scroll-wrapper ── */
@@ -21,7 +21,8 @@
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
-    track.style.cssText = 'position:absolute;right:0;top:0;width:2px;height:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
+    /* 4px from right edge — scroll-wrapper has matching padding-right:14px so YEAR column clears it */
+    track.style.cssText = 'position:absolute;right:4px;top:0;width:2px;height:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
     thumb.style.cssText = 'position:absolute;right:0;width:100%;border-radius:2px;transition:top .06s linear,height .06s linear,background .2s';
     track.appendChild(thumb);
     container.appendChild(track);
@@ -54,16 +55,17 @@
     if (!el) return;
     markInited(el);
 
-    var parent = el.parentElement;
-    var prevPos = window.getComputedStyle(parent).position;
-    if (prevPos === 'static') parent.style.position = 'relative';
+    /* Track lives inside the scroll container so it naturally sits below the images.
+       We update its left to match scrollLeft so it stays in the visible viewport. */
+    el.style.position = 'relative';
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
-    track.style.cssText = 'position:absolute;left:0;bottom:0;height:2px;width:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
-    thumb.style.cssText = 'position:absolute;bottom:0;height:100%;border-radius:2px;transition:left .06s linear,width .06s linear,background .2s';
+    /* 6px top gap (above track) + 4px bottom gap = sits neatly in padding-bottom area */
+    track.style.cssText = 'position:absolute;left:0;bottom:4px;height:2px;width:100%;pointer-events:none;z-index:10;border-radius:2px;transition:opacity .25s';
+    thumb.style.cssText = 'position:absolute;bottom:0;height:100%;border-radius:2px;transition:width .06s linear,background .2s';
     track.appendChild(thumb);
-    parent.appendChild(track);
+    el.appendChild(track);
 
     function update() {
       var c = getColors();
@@ -72,7 +74,8 @@
       track.style.opacity = '1';
       track.style.background = c.track;
       thumb.style.background = c.thumb;
-      track.style.left = el.offsetLeft + 'px';
+      /* pin track to visible viewport */
+      track.style.left = el.scrollLeft + 'px';
       track.style.width = el.clientWidth + 'px';
       var trackW = el.clientWidth;
       var thumbW = Math.max(ratio * trackW, 28);
