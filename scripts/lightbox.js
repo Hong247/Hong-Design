@@ -10,6 +10,7 @@
   /* swipe state (scale = 1 only) */
   var swipeOffset = 0;    /* live horizontal offset while dragging */
   var isSwipe = false;
+  var swipeAxis = null;   /* "h" | "v" | null — locked after first move */
   var swipeStartX = 0, swipeStartY = 0;
   var COMMIT_RATIO = 0.25; /* fraction of screen width to commit */
   var isAnimating = false;
@@ -223,6 +224,7 @@
       panStartX   = e.clientX; panStartY   = e.clientY;
       basePanX    = panX;      basePanY    = panY;
       isSwipe     = currentScale <= 1.05;
+      swipeAxis   = null;
       isPan       = currentScale > 1.05;
     }
     e.preventDefault();
@@ -252,19 +254,19 @@
         var dx = e.clientX - swipeStartX;
         var dy = e.clientY - swipeStartY;
         /* lock axis on first significant move */
-        if (!isSwipe._locked) {
+        if (!swipeAxis) {
           if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
-            isSwipe._locked = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
+            swipeAxis = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
           }
         }
-        if (isSwipe._locked === "h") {
+        if (swipeAxis === "h") {
           /* resist at boundaries */
           var atEdge = (dx > 0 && currentIndex === 0) ||
                        (dx < 0 && currentIndex === currentImages.length - 1);
           swipeOffset = atEdge ? dx * 0.18 : dx;
           applyLiveSwipe();
         }
-        /* vertical: do nothing, let overlay scroll if any */
+        /* vertical: do nothing */
       }
     }
     e.preventDefault();
@@ -274,7 +276,7 @@
     var finalDX = e.clientX - swipeStartX;
     var finalDY = e.clientY - swipeStartY;
     var wasSwipe = isSwipe;
-    var swipeLocked = isSwipe && isSwipe._locked === "h";
+    var swipeLocked = isSwipe && swipeAxis === "h";
 
     delete activePointers[e.pointerId];
     var list = ptrs();
@@ -285,12 +287,12 @@
     }
     if (list.length === 1) {
       isPan = currentScale > 1.05;
-      isSwipe = false;
+      isSwipe = false; swipeAxis = null;
       panStartX = list[0].clientX; panStartY = list[0].clientY;
       basePanX  = panX;            basePanY  = panY;
     }
     if (list.length === 0) {
-      isPan = false; isSwipe = false;
+      isPan = false; isSwipe = false; swipeAxis = null;
       if (currentScale <= 1.05) {
         currentScale = 1;
         if (wasSwipe && swipeLocked && Math.abs(finalDX) > window.innerWidth * COMMIT_RATIO) {
