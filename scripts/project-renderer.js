@@ -33,10 +33,10 @@ function renderProjectArchive() {
     headerRow.setAttribute("data-role", project.role);
     headerRow.setAttribute("data-year", String(project.year));
     headerRow.innerHTML =
-      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + number + '</button></td>' +
-      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + project.title + '</button></td>' +
-      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + id + '">' + project.role + '</button></td>' +
-      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + project.year + '</button></td>';
+      '<td data-label="No"><button type="button" class="custom-btn" data-target="#' + id + '">' + number + '</button></td>' +
+      '<td data-label="Project"><button type="button" class="custom-btn" data-target="#' + id + '">' + project.title + '</button></td>' +
+      '<td data-label="Role" class="role-cell"><button type="button" class="custom-btn" data-target="#' + id + '">' + project.role + '</button></td>' +
+      '<td data-label="Year"><button type="button" class="custom-btn" data-target="#' + id + '">' + project.year + '</button></td>';
 
     headerRow.setAttribute("data-gallery-srcs", getProjectGallerySources(project).join("|"));
 
