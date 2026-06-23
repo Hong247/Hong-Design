@@ -39,6 +39,23 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
+    id: "demo-kaia",
+    title: "KAIA",
+    role: "Brand Identity",
+    year: "2025",
+    preview: "images/kaia/kaia2.jpg",
+    media: [
+      { type: "image", src: "images/kaia/kaia1.jpg", alt: "KAIA Korean sauce brand identity full system overview" },
+      { type: "image", src: "images/kaia/kaia2.jpg", alt: "KAIA brand identity Latin letterform color-block poster", loading: "lazy" },
+      { type: "image", src: "images/kaia/kaia3.jpg", alt: "KAIA brand identity Hangul character color-block poster", loading: "lazy" }
+    ],
+    description: [
+      { label: "Brief", text: "KAIA (카이아) is a Korean-origin sauce and condiment brand designed to travel beyond its home market. The brief was to create a visual identity that felt rooted in Korean typographic culture while remaining legible and distinctive in international retail environments — where the brand needed to communicate quality and cultural specificity without relying on food-category clichés." },
+      { label: "Direction", text: "The identity is built around a bilingual mark — 카이아 in Hangul and KAIA in Latin — treated as equal partners rather than one being a translation of the other. Both scripts share the same geometric construction logic, allowing them to coexist with visual coherence across all applications. The color system pairs crimson red, teal, deep navy, and near-black in a modular grid structure that generates pattern, packaging, and campaign material from a single combinatorial logic. Each color block functions as a frame for individual letterforms, producing a system that scales from a bottle label to a retail environment without losing its core character." },
+      { label: "Outcome", text: "The result is an identity that reads as immediately Korean in origin without depending on exoticism or decorative cultural shorthand. The bilingual structure gives the brand presence in both domestic and export markets. The modular color-block grid provides strong shelf presence and flexibility across digital, packaging, and environmental applications — a system built to grow with the brand." }
+    ]
+  },
+  {
     id: "demo-cmarket-site",
     title: "C Market Coffee Website",
     role: "Web Design",
