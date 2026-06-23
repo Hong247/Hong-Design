@@ -1,5 +1,5 @@
 // Single source of truth for the project archive.
-// Each entry is fully resolved: title/role/year/preview, a gallery (detailHtml or media),
+// Each entry is fully resolved: title/role/year/preview, a media array (images and iframes),
 // and a description. Image alt text and src fixups are applied by scripts/project-loader.js.
 window.PORTFOLIO_PROJECTS = [
   {
@@ -92,7 +92,12 @@ window.PORTFOLIO_PROJECTS = [
     role: "Editorial Design",
     year: "2023",
     preview: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg" alt="Mara Natha portfolio document cover"><img class="fullscreen-image" src="images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg" alt="Mara Natha portfolio document open spread" loading="lazy"><img class="fullscreen-image" src="images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg" alt="Mara Natha portfolio document contents spread" loading="lazy"><img class="fullscreen-image" src="images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg" alt="Mara Natha portfolio document project grid" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg", alt: "Mara Natha portfolio document cover" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg", alt: "Mara Natha portfolio document open spread" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg", alt: "Mara Natha portfolio document contents spread" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg", alt: "Mara Natha portfolio document project grid" }
+    ],
     description: [
       { label: "Brief", text: "Mara Natha Architects needed a client-facing portfolio document capable of presenting the firm's profile, leadership philosophy, and a broad range of completed projects across residential, commercial, hospitality, daycare, and mixed-use typologies. In a competitive proposal context, a portfolio document is often the deciding factor — not just what a firm has built, but how clearly and confidently they can frame it." },
       { label: "Research", text: "Architecture portfolio documents have a density problem: include too little and the firm seems lightweight; include too much and the work gets buried. I studied how the strongest architectural presentations balance scan-readability with depth — consistent project information blocks that let clients move through the work quickly, with enough breathing room in the layout to let photography do its job." },
@@ -106,7 +111,23 @@ window.PORTFOLIO_PROJECTS = [
     role: "Brand Identity",
     year: "2023",
     preview: "images/kee/Kee1.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image keen" src="images/kee/keea.jpg" alt="Kee - Image a"><img class="fullscreen-image keen" src="images/kee/keeb.jpg" alt="Kee - Image b" loading="lazy"><img class="fullscreen-image keen" src="images/kee/keec.jpg" alt="Kee - Image c" loading="lazy"><img class="fullscreen-image keen" src="images/kee/keed.jpg" alt="Kee - Image d" loading="lazy"><img class="fullscreen-image keen" src="images/kee/keee.jpg" alt="Kee - Image e" loading="lazy"><img class="fullscreen-image keen" src="images/kee/keef.jpg" alt="Kee - Image f" loading="lazy"><img class="fullscreen-image keen" src="images/kee/kee1.gif" alt="Kee - gif 1" loading="lazy"><img class="fullscreen-image keen" src="images/kee/kee2.gif" alt="Kee - gif 2" loading="lazy"><img class="fullscreen-image keen" src="images/kee/Kee1.jpg" alt="Kee - Image 1" loading="lazy"><img class="fullscreen-image keen" src="images/kee/Kee2.jpg" alt="Kee - Image 2" loading="lazy"><img class="fullscreen-image keen" src="images/kee/Kee3.jpg" alt="Kee - Image 3" loading="lazy"><img class="fullscreen-image keem" src="images/kee/keem1.jpg" alt="Kee - Image 1" loading="lazy"><img class="fullscreen-image keem" src="images/kee/keem2.jpg" alt="Kee - Image 2" loading="lazy"><img class="fullscreen-image keem" src="images/kee/keem3.jpg" alt="Kee - Image 3" loading="lazy"><img class="fullscreen-image keem" src="images/kee/keem4.jpg" alt="Kee - Image 4" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/kee/keea.jpg", alt: "Kee - Image a", className: "keen" },
+      { type: "image", src: "images/kee/keeb.jpg", alt: "Kee - Image b", className: "keen" },
+      { type: "image", src: "images/kee/keec.jpg", alt: "Kee - Image c", className: "keen" },
+      { type: "image", src: "images/kee/keed.jpg", alt: "Kee - Image d", className: "keen" },
+      { type: "image", src: "images/kee/keee.jpg", alt: "Kee - Image e", className: "keen" },
+      { type: "image", src: "images/kee/keef.jpg", alt: "Kee - Image f", className: "keen" },
+      { type: "image", src: "images/kee/kee1.gif", alt: "Kee - gif 1", className: "keen" },
+      { type: "image", src: "images/kee/kee2.gif", alt: "Kee - gif 2", className: "keen" },
+      { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee - Image 1", className: "keen" },
+      { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee - Image 2", className: "keen" },
+      { type: "image", src: "images/kee/Kee3.jpg", alt: "Kee - Image 3", className: "keen" },
+      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee - Image 1", className: "keem" },
+      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee - Image 2", className: "keem" },
+      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee - Image 3", className: "keem" },
+      { type: "image", src: "images/kee/keem4.jpg", alt: "Kee - Image 4", className: "keem" }
+    ],
     description: [
       { label: "Brief", text: "Malaysian Chinese food culture has a specific visual and emotional register that most contemporary restaurant branding either overwrites with generic Asian-restaurant clichés or ignores entirely. Kee asked whether a brand could feel genuinely rooted in that cultural context — the specific world of Malaysian Chinese wonton noodle cooking — without resorting to illustration, nostalgia, or shorthand." },
       { label: "Research", text: "The conceptual anchor was motion. Wonton noodles are about the pull and fall of noodles from bowl to chopstick, the way broth moves when the bowl is set down, the rhythm of a kitchen at full speed. I looked at how Chinese calligraphy encodes movement into stroke order and weight — the way each character is drawn as a sequence of deliberate motions — and how that same quality of drawn intention exists in the <a href=\"http://www.shufating.com/product/277173986\" target=\"_blank\" rel=\"noopener noreferrer\">Yuwei</a> typeface's letterforms." },
@@ -120,7 +141,13 @@ window.PORTFOLIO_PROJECTS = [
     role: "Brand Identity",
     year: "2023",
     preview: "images/maia/maia4.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/maia/maia3.jpg" alt="maia - Image 3"><img class="fullscreen-image" src="images/maia/maia4.jpg" alt="maia - Image 4" loading="lazy"><img class="fullscreen-image" src="images/maia/maia5.jpg" alt="maia - Image 5" loading="lazy"><img class="fullscreen-image" src="images/maia/maia6.jpg" alt="maia - Image 6" loading="lazy"><img class="fullscreen-image" src="images/maia/maia7.jpg" alt="maia - Image 7" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/maia/maia3.jpg", alt: "maia - Image 3" },
+      { type: "image", src: "images/maia/maia4.jpg", alt: "maia - Image 4" },
+      { type: "image", src: "images/maia/maia5.jpg", alt: "maia - Image 5" },
+      { type: "image", src: "images/maia/maia6.jpg", alt: "maia - Image 6" },
+      { type: "image", src: "images/maia/maia7.jpg", alt: "maia - Image 7" }
+    ],
     description: [
       { label: "Brief", text: "Luxury fashion and beauty brands face a structural tension: they need to feel exclusive enough to justify premium positioning while remaining approachable enough to actually sell personal care services. Most brands resolve this by defaulting to black, gold, and classic serif type — a formula so overused it communicates nothing distinctive. maia needed a different answer." },
       { label: "Research", text: "I studied how contemporary luxury brands signal quality through restraint rather than decoration, and specifically how the fashion sector uses image treatment — selective focus, blur, and proximity — to communicate aspiration more effectively than sharp product photography. The insight: softness doesn't signal weakness in luxury; it signals ease, confidence, and the kind of quiet assurance that only comes from genuine quality." },
@@ -134,7 +161,16 @@ window.PORTFOLIO_PROJECTS = [
     role: "Brand Identity",
     year: "2023",
     preview: "images/browns/browns3.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/browns/browns1.png" alt="Browns - Image 1"><img class="fullscreen-image" src="images/browns/browns2.png" alt="Browns - Image 2" loading="lazy"><img class="fullscreen-image" src="images/browns/browns3.png" alt="Browns - Image 3" loading="lazy"><img class="fullscreen-image" src="images/browns/browns3.jpg" alt="Browns - Image 4" loading="lazy"><img class="fullscreen-image" src="images/browns/browns4.jpg" alt="Browns - Image 5" loading="lazy"><img class="fullscreen-image" src="images/browns/browns5.jpg" alt="Browns - Image 6" loading="lazy"><img class="fullscreen-image" src="images/browns/browns6.jpg" alt="Browns - Image 7" loading="lazy"><img class="fullscreen-image" src="images/browns/browns7.jpg" alt="Browns - Image 8" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/browns/browns1.png", alt: "Browns - Image 1" },
+      { type: "image", src: "images/browns/browns2.png", alt: "Browns - Image 2" },
+      { type: "image", src: "images/browns/browns3.png", alt: "Browns - Image 3" },
+      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns - Image 4" },
+      { type: "image", src: "images/browns/browns4.jpg", alt: "Browns - Image 5" },
+      { type: "image", src: "images/browns/browns5.jpg", alt: "Browns - Image 6" },
+      { type: "image", src: "images/browns/browns6.jpg", alt: "Browns - Image 7" },
+      { type: "image", src: "images/browns/browns7.jpg", alt: "Browns - Image 8" }
+    ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.brownsshoes.com/en/home\" target=\"_blank\" rel=\"noopener noreferrer\">Browns Shoes</a> is a national Canadian footwear retailer with decades of history. Like many legacy retailers, it had accumulated a visual identity that felt neither premium enough for its higher-end product range nor distinctive enough to compete with directional international footwear brands. This speculative rebrand concept explores how Browns could sharpen its identity to feel more product-led and more considered — without abandoning the breadth of a national retailer." },
       { label: "Research", text: "The strategic insight was that most footwear retail art direction treats the product as secondary to lifestyle. Models, environments, and aspirational scenarios dominate, while the shoes end up as props. I asked what would happen if the shoes were consistently treated as the primary visual subject — if the entire visual vocabulary was built around the inherent formal properties of the product: form, material, texture, silhouette, color." },
@@ -148,7 +184,11 @@ window.PORTFOLIO_PROJECTS = [
     role: "UI Prototype",
     year: "2023",
     preview: "images/monday/monday1.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/monday/monday1.jpg" alt="monday - Image 1"><iframe width="1200" height="600" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign" allowfullscreen loading="lazy"></iframe><img class="fullscreen-image" src="images/monday/monday2.jpg" alt="monday - Image 2" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/monday/monday1.jpg", alt: "monday - Image 1" },
+      { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign", width: 1200, height: 600 },
+      { type: "image", src: "images/monday/monday2.jpg", alt: "monday - Image 2" }
+    ],
     description: [
       { label: "Brief", text: "The office chair market divides into two positions: ergonomic function with zero visual ambition, or design-forward pieces that sacrifice usability for looks. monday was a brand and website prototype asking whether a third position existed — a chair brand that felt both genuinely reliable and visually considered, with a personality quiet enough to belong in any workspace." },
       { label: "Research", text: "I identified four qualities the brand needed to communicate: trustworthy, resilient, authentic, and subtle. These became the filter for every design decision. I looked at how the <a href=\"https://artsandculture.google.com/project/bauhaus\" target=\"_blank\" rel=\"noopener noreferrer\">Bauhaus</a> movement resolved similar tensions — useful and beautiful, mass-produced and crafted — and found the geometry of <a href=\"https://learn.microsoft.com/en-us/typography/font-list/bauhaus-93\" target=\"_blank\" rel=\"noopener noreferrer\">Bauhaus 93</a> letterforms particularly relevant: forms that trust the letter's shape to do the work without ornamentation, that feel settled and earned rather than expressive." },
@@ -162,7 +202,12 @@ window.PORTFOLIO_PROJECTS = [
     role: "Poster Design",
     year: "2023",
     preview: "images/killthebride/killthebride1.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/killthebride/killthebride1.jpg" alt="killthebride - Image 1"><img class="fullscreen-image" src="images/killthebride/killthebride2.jpg" alt="killthebride - Image 2" loading="lazy"><img class="fullscreen-image" src="images/killthebride/killthebride3.jpg" alt="killthebride - Image 3" loading="lazy"><img class="fullscreen-image" src="images/killthebride/killthebride4.jpg" alt="killthebride - Image 4" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/killthebride/killthebride1.jpg", alt: "Kill the Bride - Image 1" },
+      { type: "image", src: "images/killthebride/killthebride2.jpg", alt: "Kill the Bride - Image 2" },
+      { type: "image", src: "images/killthebride/killthebride3.jpg", alt: "Kill the Bride - Image 3" },
+      { type: "image", src: "images/killthebride/killthebride4.jpg", alt: "Kill the Bride - Image 4" }
+    ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill\" target=\"_blank\" rel=\"noopener noreferrer\">Kill Bill</a>'s visual language — the yellow tracksuit, the blood-red title treatment, the exploitation-cinema poster grammar — is so established it has become cultural shorthand. This speculative film poster series imagines a spiritual sequel called Kill The Bride, asking how that language could evolve twenty years later while maintaining enough DNA to register as a continuation." },
       { label: "Research", text: "I began with close study of both Kill Bill volumes: their specific type hierarchy, the relationship between title treatment and imagery, how the films move between saturated color and black-and-white. A sequel would naturally inherit some of this grammar while needing to signal tonal evolution. The shift from \"Kill Bill\" to \"Kill The Bride\" reads as a psychological shift — the protagonist is simultaneously predator and potential victim — which suggested a cooler, more controlled emotional register." },
@@ -176,7 +221,16 @@ window.PORTFOLIO_PROJECTS = [
     role: "Campaign Design",
     year: "2023",
     preview: "images/wwf/wwf4.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/wwf/wwf1.jpg" alt="wwf - Image 1"><img class="fullscreen-image" src="images/wwf/wwf2.jpg" alt="wwf - Image 2" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf3.jpg" alt="wwf - Image 3" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf4.jpg" alt="wwf - Image 4" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf5.jpg" alt="wwf - Image 5" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf6.jpg" alt="wwf - Image 6" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf7.jpg" alt="wwf - Image 7" loading="lazy"><img class="fullscreen-image" src="images/wwf/wwf8.jpg" alt="wwf - Image 8" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/wwf/wwf1.jpg", alt: "Stop Haunting Mother Nature - Image 1" },
+      { type: "image", src: "images/wwf/wwf2.jpg", alt: "Stop Haunting Mother Nature - Image 2" },
+      { type: "image", src: "images/wwf/wwf3.jpg", alt: "Stop Haunting Mother Nature - Image 3" },
+      { type: "image", src: "images/wwf/wwf4.jpg", alt: "Stop Haunting Mother Nature - Image 4" },
+      { type: "image", src: "images/wwf/wwf5.jpg", alt: "Stop Haunting Mother Nature - Image 5" },
+      { type: "image", src: "images/wwf/wwf6.jpg", alt: "Stop Haunting Mother Nature - Image 6" },
+      { type: "image", src: "images/wwf/wwf7.jpg", alt: "Stop Haunting Mother Nature - Image 7" },
+      { type: "image", src: "images/wwf/wwf8.jpg", alt: "Stop Haunting Mother Nature - Image 8" }
+    ],
     description: [
       { label: "Brief", text: "Environmental campaigns have a well-documented creative problem: the imagery of destruction — melting glaciers, dying wildlife, deforestation — has been used so repeatedly that audiences have developed visual immunity. The emotional response still happens, but it peaks at sadness and ends at paralysis rather than action. This speculative campaign for <a href=\"https://www.worldwildlife.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WWF</a> found a different entry point." },
       { label: "Research", text: "The insight came from inverting the standard campaign frame. Most environmental advertising positions nature as fragile and humans as capable of saving it — framing the audience as potential heroes, which is comfortable. I asked what would happen if we positioned human behavior as the threat, using horror film grammar to force the audience to experience the discomfort of recognizing themselves as the monster rather than the rescuer." },
@@ -190,7 +244,15 @@ window.PORTFOLIO_PROJECTS = [
     role: "Editorial Design",
     year: "2023",
     preview: "images/x/x5.gif",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/x/x1.jpg" alt="X̱wáýx̱way - Image 1"><img class="fullscreen-image" src="images/x/x2.jpg" alt="X̱wáýx̱way - Image 2" loading="lazy"><img class="fullscreen-image" src="images/x/x3.jpg" alt="X̱wáýx̱way - Image 3" loading="lazy"><img class="fullscreen-image" src="images/x/x4.jpg" alt="X̱wáýx̱way - Image 4" loading="lazy"><img class="fullscreen-image" src="images/x/x5.gif" alt="X̱wáýx̱way - Image 5" loading="lazy"><img class="fullscreen-image" src="images/x/x6.jpg" alt="X̱wáýx̱way - Image 6" loading="lazy"><img class="fullscreen-image" src="images/x/x7.jpg" alt="X̱wáýx̱way - Image 7" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/x/x1.jpg", alt: "X̱wáýx̱way - Image 1" },
+      { type: "image", src: "images/x/x2.jpg", alt: "X̱wáýx̱way - Image 2" },
+      { type: "image", src: "images/x/x3.jpg", alt: "X̱wáýx̱way - Image 3" },
+      { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way - Image 4" },
+      { type: "image", src: "images/x/x5.gif", alt: "X̱wáýx̱way - Image 5" },
+      { type: "image", src: "images/x/x6.jpg", alt: "X̱wáýx̱way - Image 6" },
+      { type: "image", src: "images/x/x7.jpg", alt: "X̱wáýx̱way - Image 7" }
+    ],
     description: [
       { label: "Brief", text: "<a href=\"https://stanleyparkecology.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">Stanley Park</a> is one of the most visited urban parks in North America, but public discourse around it tends toward the scenic and recreational — its status as a tourist landmark rather than as living Indigenous territory, contested urban space, and complex ecological system. X̱wáýx̱way (the Squamish name for the land now called Stanley Park) approaches the park as a subject worthy of serious archival attention and cultural memory." },
       { label: "Research", text: "The design challenge was to create something that felt archival and serious without becoming academic or inaccessible. Vinyl as a medium already carries specific cultural associations — collectibility, deliberate listening, the physical ritual of handling a record — that aligned well with the project's intent. I looked at the visual language of documentary and archival albums from the 1960s and 1970s: flat photography, information-dense liner notes, color restraint from period printing limitations." },
@@ -204,7 +266,11 @@ window.PORTFOLIO_PROJECTS = [
     role: "Brand Identity",
     year: "2022",
     preview: "images/rakuharu/rakuharu3.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/rakuharu/rakuharu1.jpg" alt="rakuharu - Image 1"><img class="fullscreen-image" src="images/rakuharu/rakuharu2.jpg" alt="rakuharu - Image 2" loading="lazy"><img class="fullscreen-image" src="images/rakuharu/rakuharu3.jpg" alt="rakuharu - Image 3" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/rakuharu/rakuharu1.jpg", alt: "raku haru - Image 1" },
+      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru - Image 2" },
+      { type: "image", src: "images/rakuharu/rakuharu3.jpg", alt: "raku haru - Image 3" }
+    ],
     description: [
       { label: "Brief", text: "The Muslim fashion market is one of the fastest-growing segments of global fashion, but available branding for hijab and modest fashion products still tends toward either generic corporate presentation or ethnically coded aesthetics that limit the audience. raku haru was a brand concept exploring what accessible luxury in this space could look like — considered enough to be a genuine purchase decision, inclusive enough to reach across age and personal style." },
       { label: "Research", text: "The naming shaped the design direction from the start. \"Raku\" (楽) means ease, comfort, or enjoyment in Japanese; \"haru\" (春) means spring — lightness, renewal, beginning. The brand name carries a sensory quality the identity needed to deliver visually. I studied how contemporary minimalist fashion brands communicate quality through restraint rather than price signals os heritage narratives, and asked how that system could apply to a product category that deserves more considered design attention." },
@@ -218,7 +284,12 @@ window.PORTFOLIO_PROJECTS = [
     role: "UI/UX Design",
     year: "2022",
     preview: "images/trapodpc/trapodpc1.png",
-    detailHtml: '<div class="scroll-container"><iframe width="800" height="600" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F42OkkDJ2wRe9etERcPKCVz%2FTRAPO-Digital-Catalogue%3Ftype%3Ddesign%26node-id%3D1-2%26t%3Dh4Ksn1BdopSt7HCP-1%26scaling%3Dcontain%26page-id%3D0%253A1%26mode%3Ddesign" allowfullscreen loading="lazy"></iframe><img class="fullscreen-image" src="images/trapodpc/trapodpc1.png" alt="trapodpc - Image 1" loading="lazy"><img class="fullscreen-image" src="images/trapodpc/trapodpc2.png" alt="trapodpc - Image 1" loading="lazy"><img class="fullscreen-image" src="images/trapodpc/trapodpc3.png" alt="trapodpc - Image 3" loading="lazy"></div>',
+    media: [
+      { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F42OkkDJ2wRe9etERcPKCVz%2FTRAPO-Digital-Catalogue%3Ftype%3Ddesign%26node-id%3D1-2%26t%3Dh4Ksn1BdopSt7HCP-1%26scaling%3Dcontain%26page-id%3D0%253A1%26mode%3Ddesign", width: 800, height: 600 },
+      { type: "image", src: "images/trapodpc/trapodpc1.png", alt: "TRAPO Digital Catalogue - Image 1" },
+      { type: "image", src: "images/trapodpc/trapodpc2.png", alt: "TRAPO Digital Catalogue - Image 2" },
+      { type: "image", src: "images/trapodpc/trapodpc3.png", alt: "TRAPO Digital Catalogue - Image 3" }
+    ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.trapo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">TRAPO</a> is a Malaysian automotive accessories brand with a substantial product range sold through retail and direct channels. The printed sales catalogue creates significant operational friction: expensive to produce, difficult to update, and impossible to personalize. This digital catalogue prototype explores a faster, clearer alternative for offline sales teams, in-store promotion, and product comparison." },
       { label: "Research", text: "I mapped the specific use contexts where sales staff use product catalogues: face-to-face customer conversations, counter sales, and regional dealer visits. Each context has different requirements — speed of navigation for counter sales, product depth for dealer conversations, visual quality for first impressions. The prototype needed to serve all three scenarios without becoming so complex it was harder to use than a printed page." },
@@ -232,7 +303,16 @@ window.PORTFOLIO_PROJECTS = [
     role: "Product Design",
     year: "2022",
     preview: "images/traposh/traposh5.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/traposh/traposh1.jpg" alt="traposh - Image 1"><img class="fullscreen-image" src="images/traposh/traposh2.jpg" alt="traposh - Image 2" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh3.jpg" alt="traposh - Image 3" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh4.jpg" alt="traposh - Image 4" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh5.jpg" alt="traposh - Image 5" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh6.jpg" alt="traposh - Image 6" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh7.jpg" alt="traposh - Image 7" loading="lazy"><img class="fullscreen-image" src="images/traposh/traposh8.jpg" alt="traposh - Image 8" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/traposh/traposh1.jpg", alt: "TRAPO Smartphone Holder - Image 1" },
+      { type: "image", src: "images/traposh/traposh2.jpg", alt: "TRAPO Smartphone Holder - Image 2" },
+      { type: "image", src: "images/traposh/traposh3.jpg", alt: "TRAPO Smartphone Holder - Image 3" },
+      { type: "image", src: "images/traposh/traposh4.jpg", alt: "TRAPO Smartphone Holder - Image 4" },
+      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO Smartphone Holder - Image 5" },
+      { type: "image", src: "images/traposh/traposh6.jpg", alt: "TRAPO Smartphone Holder - Image 6" },
+      { type: "image", src: "images/traposh/traposh7.jpg", alt: "TRAPO Smartphone Holder - Image 7" },
+      { type: "image", src: "images/traposh/traposh8.jpg", alt: "TRAPO Smartphone Holder - Image 8" }
+    ],
     description: [
       { label: "Brief", text: "MagSafe-compatible smartphone holders had become a commodity category by 2022 — flooded with generic injection-molded mounts at aggressive price points. For TRAPO to enter this space with a flagship product, it needed something that could justify a premium and immediately communicate the brand's automotive-grade quality positioning. The design had to feel like it belonged in a well-specified vehicle interior, not dropped in from an accessory bin." },
       { label: "Research", text: "I analyzed the category from a user-context perspective: smartphone holders live in the car's interior, which is an environment many drivers genuinely care about. Generic holders break the interior aesthetic. I examined the specific use constraints — accommodating cases, rotating without resistance, avoiding heat trapping, mounting without marring surfaces — and the specific aspiration: a product that signals the same values as a quality automotive accessory." },
@@ -246,7 +326,14 @@ window.PORTFOLIO_PROJECTS = [
     role: "Web Design",
     year: "2021",
     preview: "images/talentlounge/talentlounge5.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/talentlounge/talentlounge1.jpg" alt="talentlounge - Image 1"><img class="fullscreen-image" src="images/talentlounge/talentlounge2.jpg" alt="talentlounge - Image 2" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge3.jpg" alt="talentlounge - Image 3" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge4.jpg" alt="talentlounge - Image 4" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge5.jpg" alt="talentlounge - Image 5" loading="lazy"><img class="fullscreen-image" src="images/talentlounge/talentlounge6.jpg" alt="talentlounge - Image 6" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge Virtual Career Fair - Image 1" },
+      { type: "image", src: "images/talentlounge/talentlounge2.jpg", alt: "Talentlounge Virtual Career Fair - Image 2" },
+      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge Virtual Career Fair - Image 3" },
+      { type: "image", src: "images/talentlounge/talentlounge4.jpg", alt: "Talentlounge Virtual Career Fair - Image 4" },
+      { type: "image", src: "images/talentlounge/talentlounge5.jpg", alt: "Talentlounge Virtual Career Fair - Image 5" },
+      { type: "image", src: "images/talentlounge/talentlounge6.jpg", alt: "Talentlounge Virtual Career Fair - Image 6" }
+    ],
     description: [
       { label: "Brief", text: "The 2020–2021 period eliminated in-person career fairs, forcing recruitment platforms to find digital alternatives. Most solutions were Zoom calls or basic webinar setups — functional but entirely unable to replicate the exploratory, discovery-oriented quality of a physical fair, where candidates could wander, notice unexpected companies, and make quick cultural reads of booths. The <a href=\"https://talentlounge.co/Hello\" target=\"_blank\" rel=\"noopener noreferrer\">Talentlounge</a> virtual career fair asked how a digital recruitment event could feel genuinely engaging rather than simply adequate." },
       { label: "Research", text: "I analyzed what made physical career fairs valuable that virtual alternatives were failing to recreate: spatial navigation (you walk, you discover), ambient social proof (you see other candidates at specific booths), and the ability to make immediate visual assessments about whether a company's presentation matched your expectations of their culture. I also identified what digital could actually improve: accessibility without travel, simultaneous attendance at different sessions, richer content than a folding table and banner." },
@@ -260,7 +347,14 @@ window.PORTFOLIO_PROJECTS = [
     role: "Furniture Design",
     year: "2021",
     preview: "images/nexus/nexus2.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/nexus/nexus1.jpg" alt="nexus - Image 1"><img class="fullscreen-image" src="images/nexus/nexus2.jpg" alt="nexus - Image 2" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus3.jpg" alt="nexus - Image 3" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus4.jpg" alt="nexus - Image 4" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus5.jpg" alt="nexus - Image 5" loading="lazy"><img class="fullscreen-image" src="images/nexus/nexus6.jpg" alt="nexus - Image 6" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/nexus/nexus1.jpg", alt: "Nexus - Image 1" },
+      { type: "image", src: "images/nexus/nexus2.jpg", alt: "Nexus - Image 2" },
+      { type: "image", src: "images/nexus/nexus3.jpg", alt: "Nexus - Image 3" },
+      { type: "image", src: "images/nexus/nexus4.jpg", alt: "Nexus - Image 4" },
+      { type: "image", src: "images/nexus/nexus5.jpg", alt: "Nexus - Image 5" },
+      { type: "image", src: "images/nexus/nexus6.jpg", alt: "Nexus - Image 6" }
+    ],
     description: [
       { label: "Brief", text: "Transit seating is one of the most under-considered categories in public design — built for durability and cleanability above everything else, producing furniture that communicates only institutional indifference. The Malaysia National Design Competition <a href=\"https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/\" target=\"_blank\" rel=\"noopener noreferrer\">TRANSEAT</a> asked whether MRT station seating could be something more: a piece of public furniture with genuine cultural and social intention. Our team reached the top 10 as a finalist." },
       { label: "Research", text: "The conceptual starting point was the \"Serambi\" — the covered, semi-open veranda in traditional Malay architecture that functions as a threshold space between public and private, designed for gathering, conversation, and rest. I asked what Serambi logic could offer transit seating: a space that encourages pause without demanding it, that accommodates individual use and social grouping, that belongs to the community passing through it rather than simply serving a function." },
@@ -274,7 +368,14 @@ window.PORTFOLIO_PROJECTS = [
     role: "Industrial Design",
     year: "2020",
     preview: "images/motorola/motorola3.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/motorola/motorola1.jpg" alt="motorola - Image 1"><img class="fullscreen-image" src="images/motorola/motorola2.jpg" alt="motorola - Image 2" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola3.jpg" alt="motorola - Image 3" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola4.jpg" alt="motorola - Image 4" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola5.jpg" alt="motorola - Image 5" loading="lazy"><img class="fullscreen-image" src="images/motorola/motorola6.jpg" alt="motorola - Image 6" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions Radio Concept - Image 1" },
+      { type: "image", src: "images/motorola/motorola2.jpg", alt: "Motorola Solutions Radio Concept - Image 2" },
+      { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions Radio Concept - Image 3" },
+      { type: "image", src: "images/motorola/motorola4.jpg", alt: "Motorola Solutions Radio Concept - Image 4" },
+      { type: "image", src: "images/motorola/motorola5.jpg", alt: "Motorola Solutions Radio Concept - Image 5" },
+      { type: "image", src: "images/motorola/motorola6.jpg", alt: "Motorola Solutions Radio Concept - Image 6" }
+    ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.motorolasolutions.com/en_us.html\" target=\"_blank\" rel=\"noopener noreferrer\">Motorola Solutions</a> designs two-way radios for professional users across hospitality, security, healthcare, and public safety. The challenge in this category is that function alone doesn't make a product feel valuable to its user — and in hospitality particularly, the visible quality of a communication device directly affects how staff perceive themselves and how guests perceive the service standard. My 12-week internship project explored this gap." },
       { label: "Research", text: "I visited 14 hotels across different service tiers to observe how staff actually used two-way radios in daily work. These field observations surfaced patterns the existing product range wasn't fully addressing: staff needed information access hands-free while managing guest interactions; the physical size of current models created carrying friction for lighter-duty roles like concierge and front desk; and the radio's visible presence in a luxury hotel environment was creating a subtle mismatch between service quality and equipment quality." },
@@ -288,7 +389,11 @@ window.PORTFOLIO_PROJECTS = [
     role: "Logo Design",
     year: "2020",
     preview: "images/e&k/e&k3.jpg",
-    detailHtml: '<div class="scroll-container"><img class="fullscreen-image" src="images/e&k/e&k1.jpg" alt="EK - Image 1"><img class="fullscreen-image" src="images/e&k/e&k2.jpg" alt="EK - Image 2" loading="lazy"><img class="fullscreen-image" src="images/e&k/e&k3.jpg" alt="EK - Image 3" loading="lazy"></div>',
+    media: [
+      { type: "image", src: "images/e&k/e&k1.jpg", alt: "E/K - Image 1" },
+      { type: "image", src: "images/e&k/e&k2.jpg", alt: "E/K - Image 2" },
+      { type: "image", src: "images/e&k/e&k3.jpg", alt: "E/K - Image 3" }
+    ],
     description: [
       { label: "Brief", text: "E&K is an automotive accessories and installation brand. In a category where most brand identities default to speed lines, aggressive angles, and chrome effects, E&K needed a mark that could feel sharp and technically credible without playing into tired conventions — legible across signage, vehicle decals, packaging, and digital touchpoints at every scale." },
       { label: "Research", text: "The constraint and the opportunity were identical: two letters. A lettermark with only two characters has nowhere to hide — the geometry carries all the meaning. I studied how the most successful automotive-adjacent marks (vehicle badges, tire brands, parts manufacturers) resolve the letter-into-shape problem: those that earn recognition through abstraction, and those that earn trust through immediate legibility. E&K needed legibility and technical credibility above all else." },
