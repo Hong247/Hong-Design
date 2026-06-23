@@ -163,10 +163,19 @@ function addScrollDots(scrollContainer) {
 
   var dots = document.createElement("div");
   dots.className = "scroll-dots";
+  dots.setAttribute("role", "tablist");
+  dots.setAttribute("aria-label", "Gallery navigation");
 
-  images.forEach(function (_, i) {
-    var dot = document.createElement("span");
+  images.forEach(function (img, i) {
+    var dot = document.createElement("button");
+    dot.type = "button";
     dot.className = "scroll-dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Image " + (i + 1) + " of " + images.length);
+    dot.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    dot.addEventListener("click", function () {
+      scrollContainer.scrollTo({ left: scrollContainer.clientWidth * i, behavior: "smooth" });
+    });
     dots.appendChild(dot);
   });
 
@@ -180,7 +189,9 @@ function addScrollDots(scrollContainer) {
       scrollDotRafPending = false;
       var index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
       dots.querySelectorAll(".scroll-dot").forEach(function (dot, i) {
-        dot.classList.toggle("is-active", i === index);
+        var active = i === index;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-selected", active ? "true" : "false");
       });
     });
   }, { passive: true });

@@ -467,6 +467,9 @@ td:nth-child(4) .custom-btn {
   opacity: 0.2;
   transition: opacity 200ms ease;
   flex-shrink: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
 }
 
 .scroll-dot.is-active {
