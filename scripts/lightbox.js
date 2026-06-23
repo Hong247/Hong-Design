@@ -29,19 +29,25 @@
     closeBtn.id = "lb-close";
     closeBtn.type = "button";
     closeBtn.setAttribute("aria-label", "Close image");
-    closeBtn.textContent = "×";
+    closeBtn.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round">' +
+      '<line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>';
 
     prevBtn = document.createElement("button");
     prevBtn.id = "lb-prev";
     prevBtn.type = "button";
     prevBtn.setAttribute("aria-label", "Previous image");
-    prevBtn.textContent = "‹";
+    prevBtn.innerHTML =
+      '<svg width="20" height="36" viewBox="0 0 20 36" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="16,4 4,18 16,32"/></svg>';
 
     nextBtn = document.createElement("button");
     nextBtn.id = "lb-next";
     nextBtn.type = "button";
     nextBtn.setAttribute("aria-label", "Next image");
-    nextBtn.textContent = "›";
+    nextBtn.innerHTML =
+      '<svg width="20" height="36" viewBox="0 0 20 36" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<polyline points="4,4 16,18 4,32"/></svg>';
 
     overlay.appendChild(imgEl);
     overlay.appendChild(closeBtn);
@@ -87,20 +93,21 @@
     closeBtn.focus();
   }
 
-  function showImage(index, instant) {
+  function showImage(index, instant, dir) {
     var img = currentImages[index];
     if (!img) return;
     if (instant) {
       imgEl.src = img.src;
       imgEl.alt = img.alt || "";
+      imgEl.classList.remove("lb-slide-left", "lb-slide-right");
     } else {
-      imgEl.style.transition = "opacity .15s ease";
-      imgEl.style.opacity = "0";
-      setTimeout(function () {
-        imgEl.src = img.src;
-        imgEl.alt = img.alt || "";
-        imgEl.style.opacity = "1";
-      }, 150);
+      var slideClass = dir > 0 ? "lb-slide-left" : "lb-slide-right";
+      imgEl.classList.remove("lb-slide-left", "lb-slide-right");
+      /* force reflow so removing then adding triggers re-animation */
+      void imgEl.offsetWidth;
+      imgEl.src = img.src;
+      imgEl.alt = img.alt || "";
+      imgEl.classList.add(slideClass);
     }
     resetTransform();
     updateNavButtons();
@@ -110,7 +117,7 @@
     var next = currentIndex + dir;
     if (next < 0 || next >= currentImages.length) return;
     currentIndex = next;
-    showImage(currentIndex, false);
+    showImage(currentIndex, false, dir);
   }
 
   function updateNavButtons() {
