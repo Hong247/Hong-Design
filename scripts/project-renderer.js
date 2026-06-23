@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function slugify(title) {
   return title
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
@@ -23,7 +23,7 @@ function renderProjectArchive() {
 
   projects.forEach(function (project, index) {
     var number = String(index + 1).padStart(2, "0");
-    var slug = slugify(project.title);
+    var id = project.id;
     var headerRow = document.createElement("tr");
     var detailRow = document.createElement("tr");
 
@@ -33,14 +33,14 @@ function renderProjectArchive() {
     headerRow.setAttribute("data-role", project.role);
     headerRow.setAttribute("data-year", String(project.year));
     headerRow.innerHTML =
-      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + number + '</button></td>' +
-      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.title + '</button></td>' +
-      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.role + '</button></td>' +
-      '<td><button type="button" class="custom-btn" data-target="#' + slug + '">' + project.year + '</button></td>';
+      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + number + '</button></td>' +
+      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + project.title + '</button></td>' +
+      '<td class="role-cell"><button type="button" class="custom-btn" data-target="#' + id + '">' + project.role + '</button></td>' +
+      '<td><button type="button" class="custom-btn" data-target="#' + id + '">' + project.year + '</button></td>';
 
     headerRow.setAttribute("data-gallery-srcs", getProjectGallerySources(project).join("|"));
 
-    detailRow.id = slug;
+    detailRow.id = id;
     detailRow.className = "collapse";
     detailRow.innerHTML = "<td colspan=\"4\"></td>";
     detailRow._project = project;
@@ -139,6 +139,5 @@ function buildDescriptionHtml(description) {
 }
 
 function buildProjectDetail(project) {
-  var galleryHtml = project.detailHtml || buildGalleryHtml(project);
-  return galleryHtml + buildDescriptionHtml(project.description) + "<br>";
+  return buildGalleryHtml(project) + buildDescriptionHtml(project.description) + "<br>";
 }
