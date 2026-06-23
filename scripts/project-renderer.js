@@ -119,6 +119,8 @@ window.renderProjectDetailRow = function (row) {
     return;
   }
 
+  td.innerHTML = '<div class="project-loading" aria-label="Loading" aria-live="polite"><span></span><span></span><span></span></div>';
+
   fetch("/data/projects/" + row._project.id + ".json")
     .then(function (res) { return res.json(); })
     .then(function (data) {
