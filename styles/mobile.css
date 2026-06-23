@@ -77,7 +77,7 @@
   }
 
   tr.hover-trigger td:nth-child(4) {
-    text-align: right;
+    text-align: left;
   }
 
   tr.collapse {

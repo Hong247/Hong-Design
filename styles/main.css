@@ -335,7 +335,7 @@ th:nth-child(3) {
 td:nth-child(4),
 th:nth-child(4) {
   width: 72px;
-  text-align: right;
+  text-align: left;
 }
 
 .custom-btn {
@@ -350,7 +350,7 @@ th:nth-child(4) {
 }
 
 td:nth-child(4) .custom-btn {
-  text-align: right;
+  text-align: left;
 }
 
 .collapse {
