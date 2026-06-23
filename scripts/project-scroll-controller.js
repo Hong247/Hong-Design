@@ -429,6 +429,76 @@
     detail.style.transition = "max-height 0.20s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.16s ease, transform 0.20s cubic-bezier(0.22, 1, 0.36, 1)";
   }
 
+  // Meta tag management
+  var defaultMeta = null;
+
+  function getDefaultMeta() {
+    if (defaultMeta) return defaultMeta;
+    defaultMeta = {
+      title:       document.title,
+      description: getMeta("name", "description"),
+      ogTitle:     getMeta("property", "og:title"),
+      ogDesc:      getMeta("property", "og:description"),
+      ogImage:     getMeta("property", "og:image"),
+      twTitle:     getMeta("name", "twitter:title"),
+      twDesc:      getMeta("name", "twitter:description"),
+      twImage:     getMeta("name", "twitter:image")
+    };
+    return defaultMeta;
+  }
+
+  function getMeta(attr, val) {
+    var el = document.querySelector('meta[' + attr + '="' + val + '"]');
+    return el ? el.getAttribute("content") : "";
+  }
+
+  function setMeta(attr, val, content) {
+    var el = document.querySelector('meta[' + attr + '="' + val + '"]');
+    if (el) el.setAttribute("content", content);
+  }
+
+  function stripHtml(html) {
+    return String(html).replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  }
+
+  function updateMetaForProject(project) {
+    getDefaultMeta();
+    var title   = project.title || "";
+    var preview = project.preview || "";
+    var desc    = "";
+
+    if (Array.isArray(project.description) && project.description.length) {
+      desc = stripHtml(project.description[0].text).slice(0, 160);
+    }
+
+    var imageUrl = preview
+      ? "https://hong-design.vercel.app/" + preview.replace(/^\//, "")
+      : defaultMeta.ogImage;
+    var pageTitle = title + " | Hong Design";
+    var pageDesc  = desc || defaultMeta.description;
+
+    document.title = pageTitle;
+    setMeta("name",     "description",        pageDesc);
+    setMeta("property", "og:title",           pageTitle);
+    setMeta("property", "og:description",     pageDesc);
+    setMeta("property", "og:image",           imageUrl);
+    setMeta("name",     "twitter:title",      pageTitle);
+    setMeta("name",     "twitter:description",pageDesc);
+    setMeta("name",     "twitter:image",      imageUrl);
+  }
+
+  function restoreDefaultMeta() {
+    var d = getDefaultMeta();
+    document.title = d.title;
+    setMeta("name",     "description",        d.description);
+    setMeta("property", "og:title",           d.ogTitle);
+    setMeta("property", "og:description",     d.ogDesc);
+    setMeta("property", "og:image",           d.ogImage);
+    setMeta("name",     "twitter:title",      d.twTitle);
+    setMeta("name",     "twitter:description",d.twDesc);
+    setMeta("name",     "twitter:image",      d.twImage);
+  }
+
   function openRow(row) {
     if (window.renderProjectDetailRow) {
       window.renderProjectDetailRow(row);
@@ -446,6 +516,7 @@
     row.classList.add("is-open");
     setExpandedState(row.id, true);
     history.pushState(null, "", "/" + row.id);
+    if (row._project) updateMetaForProject(row._project);
 
     if (!detail) {
       return;
@@ -482,6 +553,7 @@
     setExpandedState(row.id, false);
     if (window.location.pathname === "/" + row.id) {
       history.pushState(null, "", "/");
+      restoreDefaultMeta();
     }
 
     if (header) {
