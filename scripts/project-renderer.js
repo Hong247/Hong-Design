@@ -68,16 +68,9 @@ function getProjectGallerySources(project) {
   return sources.slice(0, 4);
 }
 
-window.renderProjectDetailRow = function (row) {
-  if (row._projectRendered || !row._project) {
-    return;
-  }
-
+function populateDetailRow(row) {
   var td = row.querySelector("td");
-
-  if (!td) {
-    return;
-  }
+  if (!td) return;
 
   td.innerHTML = buildProjectDetail(row._project);
 
@@ -109,6 +102,34 @@ window.renderProjectDetailRow = function (row) {
   }
 
   row._projectRendered = true;
+}
+
+window.renderProjectDetailRow = function (row) {
+  if (row._projectRendered || !row._project) {
+    return;
+  }
+
+  var td = row.querySelector("td");
+  if (!td) return;
+
+  if (row._project.media && row._project.media.length) {
+    populateDetailRow(row);
+    return;
+  }
+
+  fetch("/data/projects/" + row._project.id + ".json")
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      row._project.media       = data.media       || [];
+      row._project.description = data.description || [];
+      populateDetailRow(row);
+      if (typeof window.updateMetaForProject === "function") {
+        window.updateMetaForProject(row._project);
+      }
+    })
+    .catch(function () {
+      populateDetailRow(row);
+    });
 };
 
 function buildGalleryHtml(project) {

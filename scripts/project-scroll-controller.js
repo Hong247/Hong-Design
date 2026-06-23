@@ -461,6 +461,8 @@
     return String(html).replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   }
 
+  window.updateMetaForProject = function (project) { updateMetaForProject(project); };
+
   function updateMetaForProject(project) {
     getDefaultMeta();
     var title   = project.title || "";

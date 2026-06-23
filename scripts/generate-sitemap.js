@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const projectsJs = fs.readFileSync(path.join(__dirname, "../data/projects.js"), "utf8");
+const projectsJs = fs.readFileSync(path.join(__dirname, "../data/projects-index.js"), "utf8");
 const ids = [];
-const idRegex = /\bid:\s*["']([^"']+)["']/g;
+const idRegex = /"id"\s*:\s*"([^"]+)"/g;
 let match;
 while ((match = idRegex.exec(projectsJs)) !== null) {
   ids.push(match[1]);
