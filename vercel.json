@@ -1,5 +1,4 @@
 {
-  "_comment_csp": "googletagmanager.com is required in script-src for gtag/js analytics. To remove it, self-host gtag.js. style-src has no unsafe-inline: no inline style attributes remain in the HTML.",
   "buildCommand": "npm run build",
   "outputDirectory": ".",
   "rewrites": [{ "source": "/:slug", "destination": "/" }],
