@@ -137,7 +137,7 @@
     var enterX = -exitX;
 
     /* 1. animate current image off-screen */
-    setTranslate(fromOffset, 0, "transform .22s cubic-bezier(.4, 0, .6, 1)");
+    setTranslate(fromOffset, 0, "transform .12s cubic-bezier(.4, 0, .6, 1)");
 
     setTimeout(function () {
       setTranslate(exitX, 0, "none");
@@ -152,15 +152,15 @@
       /* 4. animate into view */
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          setTranslate(0, 0, "transform .28s cubic-bezier(.22, 1, .36, 1)");
+          setTranslate(0, 0, "transform .18s cubic-bezier(.22, 1, .36, 1)");
           setTimeout(function () {
             resetTransform(true);
             isAnimating = false;
             updateNavButtons();
-          }, 290);
+          }, 190);
         });
       });
-    }, 220);
+    }, 120);
   }
 
   function springBack() {
