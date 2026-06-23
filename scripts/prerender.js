@@ -140,10 +140,10 @@ function buildProjectRows(projects, titleOverrides) {
 
     html += `
     <tr class="hover-trigger" data-image-source="${escHtml(preview)}" data-project="${escHtml(title)}" data-role="${escHtml(role)}" data-year="${escHtml(year)}">
-      <td><button type="button" class="custom-btn" data-target="#${slug}">${number}</button></td>
-      <td><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(title)}</button></td>
-      <td class="role-cell"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(role)}</button></td>
-      <td><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(year)}</button></td>
+      <td data-label="No"><button type="button" class="custom-btn" data-target="#${slug}">${number}</button></td>
+      <td data-label="Project"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(title)}</button></td>
+      <td data-label="Role" class="role-cell"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(role)}</button></td>
+      <td data-label="Year"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(year)}</button></td>
     </tr>
     <tr id="${slug}" class="collapse">
       <td colspan="4"><div class="project-detail"><div class="project-description">${descHtml}
