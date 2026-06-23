@@ -112,9 +112,6 @@ window.renderProjectDetailRow = function (row) {
 };
 
 function buildGalleryHtml(project) {
-  if (project.detailHtml && !project.media) {
-    return project.detailHtml;
-  }
   var html = '<div class="scroll-container">';
   (project.media || []).forEach(function (item, index) {
     if (item.type === "image") {
