@@ -18,12 +18,11 @@ const projects = global.window.PORTFOLIO_PROJECTS || [];
 // 1. Lightweight index for initial page load
 const index = projects.map(function (p) {
   return {
-    id:         p.id,
-    title:      p.title,
-    role:       p.role,
-    discipline: p.discipline,
-    year:       p.year,
-    preview:    p.preview
+    id:      p.id,
+    title:   p.title,
+    role:    p.role,
+    year:    p.year,
+    preview: p.preview
   };
 });
 
@@ -42,7 +41,6 @@ projects.forEach(function (p) {
     id:          p.id,
     title:       p.title,
     role:        p.role,
-    discipline:  p.discipline,
     year:        p.year,
     preview:     p.preview,
     media:       p.media       || [],

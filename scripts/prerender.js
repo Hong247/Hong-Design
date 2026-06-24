@@ -124,7 +124,6 @@ function buildProjectRows(projects, titleOverrides) {
     const number    = String(index + 1).padStart(2, '0');
     const title     = titleOverrides[project.id] || project.title || '';
     const role      = project.role  || '';
-    const discipline = project.discipline || '';
     const year      = project.year  || '';
     const slug      = project.id;
     const preview   = project.preview || '';
@@ -140,7 +139,7 @@ function buildProjectRows(projects, titleOverrides) {
     }
 
     html += `
-    <tr class="hover-trigger" data-image-source="${escHtml(preview)}" data-project="${escHtml(title)}" data-role="${escHtml(role)}" data-discipline="${escHtml(discipline)}" data-year="${escHtml(year)}">
+    <tr class="hover-trigger" data-image-source="${escHtml(preview)}" data-project="${escHtml(title)}" data-role="${escHtml(role)}" data-year="${escHtml(year)}">
       <td data-label="No"><button type="button" class="custom-btn" data-target="#${slug}">${number}</button></td>
       <td data-label="Project"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(title)}</button></td>
       <td data-label="Role" class="role-cell"><button type="button" class="custom-btn" data-target="#${slug}">${escHtml(role)}</button></td>
@@ -170,7 +169,6 @@ function buildCreativeWorkSchema(projects) {
         'creator': { '@type': 'Person', 'name': 'Cheok Hong Lai' }
       };
       if (p.role) obj['description'] = p.role;
-      if (p.discipline) obj['genre'] = p.discipline;
       if (p.preview) obj['image'] = base + '/' + p.preview;
       if (Array.isArray(p.description) && p.description.length) {
         obj['abstract'] = p.description.map(d => d.label + ': ' + d.text).join(' ');
@@ -194,47 +192,6 @@ function buildCreativeWorkSchema(projects) {
   return '<script type="application/ld+json">\n' + JSON.stringify(schema, null, 2) + '\n</script>';
 }
 
-function injectProjectRows(html, projectsHtml, projectCount) {
-  if (html.includes('<!-- PRERENDER_PROJECTS -->')) {
-    console.log('Pre-rendered', projectCount, 'projects into index.html');
-    return html.replace('<!-- PRERENDER_PROJECTS -->', projectsHtml + '\n    ');
-  }
-
-  const tbodyRe = /(<tbody id="projectArchive">)[\s\S]*?(<\/tbody>)/;
-  if (tbodyRe.test(html)) {
-    console.log('Updated pre-rendered project rows in index.html');
-    return html.replace(tbodyRe, function (_match, open, close) {
-      return open + projectsHtml + '\n    ' + close;
-    });
-  }
-
-  console.warn('Warning: projectArchive tbody not found in index.html');
-  return html;
-}
-
-function injectProjectSchema(html, schemaHtml, projectCount) {
-  const schemaBlock = '<!-- PRERENDER_SCHEMA_START -->\n' + schemaHtml + '\n<!-- PRERENDER_SCHEMA_END -->';
-  const schemaBlockRe = /<!-- PRERENDER_SCHEMA_START -->[\s\S]*?<!-- PRERENDER_SCHEMA_END -->/;
-
-  if (schemaBlockRe.test(html)) {
-    console.log('Updated CreativeWork schema for', projectCount, 'projects');
-    return html.replace(schemaBlockRe, function () { return schemaBlock; });
-  }
-
-  if (html.includes('<!-- PRERENDER_SCHEMA -->')) {
-    console.log('Injected CreativeWork schema for', projectCount, 'projects');
-    return html.replace('<!-- PRERENDER_SCHEMA -->', function () { return schemaBlock; });
-  }
-
-  if (html.includes('</head>')) {
-    console.log('Inserted CreativeWork schema for', projectCount, 'projects');
-    return html.replace('</head>', function () { return schemaBlock + '\n</head>'; });
-  }
-
-  console.warn('Warning: head end not found in index.html');
-  return html;
-}
-
 // 5. Main
 
 async function main() {
@@ -252,8 +209,20 @@ async function main() {
   const indexPath = path.join(ROOT, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
 
-  html = injectProjectRows(html, projectsHtml, projects.length);
-  html = injectProjectSchema(html, schemaHtml, projects.length);
+  if (!html.includes('<!-- PRERENDER_PROJECTS -->')) {
+    console.warn('Warning: placeholder <!-- PRERENDER_PROJECTS --> not found in index.html');
+    console.warn('Skipping project injection.');
+  } else {
+    html = html.replace('<!-- PRERENDER_PROJECTS -->', projectsHtml + '\n    ');
+    console.log('Pre-rendered', projects.length, 'projects into index.html');
+  }
+
+  if (!html.includes('<!-- PRERENDER_SCHEMA -->')) {
+    console.warn('Warning: placeholder <!-- PRERENDER_SCHEMA --> not found in index.html');
+  } else {
+    html = html.replace('<!-- PRERENDER_SCHEMA -->', schemaHtml);
+    console.log('Injected CreativeWork schema for', projects.length, 'projects');
+  }
 
   fs.writeFileSync(indexPath, html, 'utf8');
 }
