@@ -133,8 +133,11 @@
 
   .scroll-container img.fullscreen-image,
   .scroll-container iframe {
-    width: auto;
-    height: min(320px, 52vh);
+    width: min(85vw, 480px);
+    height: auto;
+    max-height: min(320px, 52vh);
+    object-fit: contain;
+    object-position: left top;
   }
 
   iframe:not([src*="figma.com"]) {
