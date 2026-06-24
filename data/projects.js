@@ -91,9 +91,11 @@ window.PORTFOLIO_PROJECTS = [
     year: "2025",
     preview: "images/kkookie/kkookie1.jpg",
     media: [
-      { type: "image", src: "images/kkookie/kkookie1.jpg", alt: "kkookie sage green stand-up pouch packaging — single bag hero shot with circular window revealing handcrafted cookie" },
-      { type: "image", src: "images/kkookie/kkookie2.jpg", alt: "kkookie full packaging range — dark chocolate, sage green, and natural cream colourways side by side" },
-      { type: "image", src: "images/kkookie/kkookie3.jpg", alt: "kkookie packaging dieline — six colourway variations across front and back panels showing full label system" }
+      { type: "image", src: "images/kkookie/kkookie1.jpg", alt: "kkookie packaging dieline — six colourway variations across front and back panels showing full label system" },
+      { type: "image", src: "images/kkookie/kkookie2.jpg", alt: "kkookie sage green stand-up pouch packaging — single bag hero shot with circular window revealing handcrafted cookie" },
+      { type: "image", src: "images/kkookie/kkookie3.png", alt: "kkookie Millda Bakery cake box dielines — white chocolate matcha, red velvet, and ultimate chocolate cake in dark colourways" },
+      { type: "image", src: "images/kkookie/kkookie4.png", alt: "kkookie Millda Bakery cake box dielines — ultimate chocolate, red velvet, and white chocolate matcha cake in light colourways with bilingual French labelling" },
+      { type: "image", src: "images/kkookie/kkookie5.jpg", alt: "kkookie full cookie packaging range — dark chocolate, sage green, and natural cream colourways side by side" }
     ],
     description: [
       { label: "Brief", text: "kkookie is an in-house bakery brand developed as a strategic extension of Millda Bakery's product portfolio. The brief required a distinct brand identity that could occupy the premium cookie market without cannibalising the parent brand's positioning — tonally different enough to feel like a standalone label, yet coherent within the same production and distribution context. The target market was design-literate gift buyers and specialty food retailers seeking artisan cookie products with shelf presence." },
