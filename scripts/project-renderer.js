@@ -107,7 +107,6 @@ function populateDetailRow(row) {
     closeBtn.className = "project-close-btn";
     closeBtn.setAttribute("aria-label", "Close project");
     closeBtn.innerHTML =
-      '<span class="project-close-line"></span>' +
       '<span class="project-close-label">Close</span>' +
       '<span class="project-close-line"></span>';
     closeBtn.addEventListener("click", function () {
