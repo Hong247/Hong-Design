@@ -4,7 +4,7 @@
   "private": true,
   "description": "Portfolio site for Hong Design.",
   "scripts": {
-    "build": "node scripts/generate-project-files.js && node scripts/version-bump.js && node scripts/prerender.js && node scripts/generate-sitemap.js",
+    "build": "node scripts/generate-project-files.js && node scripts/build-css.js && node scripts/version-bump.js && node scripts/prerender.js && node scripts/generate-sitemap.js",
     "prerender": "node scripts/prerender.js",
     "version-bump": "node scripts/version-bump.js"
   },
