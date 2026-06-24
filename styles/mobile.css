@@ -131,13 +131,16 @@
     scroll-behavior: smooth;
   }
 
-  .scroll-container img.fullscreen-image,
+  .scroll-container img.fullscreen-image {
+    height: min(55vh, 340px);
+    width: auto;
+    max-width: 90vw;
+    object-fit: unset;
+  }
+
   .scroll-container iframe {
     width: min(85vw, 480px);
-    height: auto;
-    max-height: min(320px, 52vh);
-    object-fit: contain;
-    object-position: left top;
+    height: min(55vh, 340px);
   }
 
   iframe:not([src*="figma.com"]) {
