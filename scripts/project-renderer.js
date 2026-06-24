@@ -101,6 +101,21 @@ function populateDetailRow(row) {
     }
 
     scrollContainer.scrollLeft = 0;
+
+    var closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "project-close-btn";
+    closeBtn.setAttribute("aria-label", "Close project");
+    closeBtn.innerHTML =
+      '<span class="project-close-line"></span>' +
+      '<span class="project-close-label">Close</span>' +
+      '<span class="project-close-line"></span>';
+    closeBtn.addEventListener("click", function () {
+      if (typeof window.closeProjectRow === "function") {
+        window.closeProjectRow(row);
+      }
+    });
+    description.appendChild(closeBtn);
   }
 
   row._projectRendered = true;

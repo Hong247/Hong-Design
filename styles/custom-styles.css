@@ -262,6 +262,44 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 .js-custom-scrollbar .scroll-container::-webkit-scrollbar { display: none; }
 .scroll-container { padding-bottom: 16px; }
 
+/* Close project button */
+.project-close-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 36px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: .3;
+  transition: opacity .22s ease, letter-spacing .22s ease;
+  font: inherit;
+  font-size: inherit;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.project-close-btn:hover,
+.project-close-btn:focus-visible {
+  opacity: 1;
+  letter-spacing: .22em;
+  outline: none;
+}
+body.orange-mode .project-close-btn:hover { color: #fff; }
+.project-close-label {
+  flex-shrink: 0;
+  font-size: .72em;
+  line-height: 1;
+}
+.project-close-line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  display: block;
+}
+
 /* Loading indicator for lazy-fetched project detail */
 .project-loading { display: flex; align-items: center; gap: 5px; padding: 8px 0; }
 .project-loading span {
