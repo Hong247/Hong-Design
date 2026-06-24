@@ -71,13 +71,13 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee × Oak + Fort",
     role: "Merchandise Design",
     year: "2024",
-    preview: "images/c-market-oak-fort/cmof1.jpg",
+    preview: "images/c-market-oak-fort/oak+fort1.jpg",
     media: [
-      { type: "image", src: "images/c-market-oak-fort/cmof1.jpg", alt: "C Market Coffee × Oak + Fort wax seal business card mockup in silver and brass" },
-      { type: "image", src: "images/c-market-oak-fort/cmof2.jpg", alt: "C Market Coffee × Oak + Fort bottled beverage label design — Flat White, Latte, Cold Brew" },
-      { type: "image", src: "images/c-market-oak-fort/cmof3.jpg", alt: "C Market Coffee × Oak + Fort fabric hang tag and swing tag on folded textile" },
-      { type: "image", src: "images/c-market-oak-fort/cmof4.jpg", alt: "C Market Coffee × Oak + Fort candle packaging — Acadia Butterfly, Colombia Swiss, Siberian Chrysanthemum" },
-      { type: "image", src: "images/c-market-oak-fort/cmof5.jpg", alt: "C Market Coffee × Oak + Fort co-branded crewneck sweatshirt worn by model" }
+      { type: "image", src: "images/c-market-oak-fort/oak+fort1.jpg", alt: "C Market Coffee × Oak + Fort bottled beverage label design — Flat White, Latte, Cold Brew" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort2.jpg", alt: "C Market Coffee × Oak + Fort candle packaging — Acadia Butterfly, Colombia Swiss, Siberian Chrysanthemum" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort3.jpg", alt: "C Market Coffee × Oak + Fort fabric hang tag and swing tag on folded textile" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort4.jpg", alt: "C Market Coffee × Oak + Fort co-branded crewneck sweatshirt worn by model" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort5.jpg", alt: "C Market Coffee × Oak + Fort wax seal business card mockup in silver and brass" }
     ],
     description: [
       { label: "Brief", text: "A collaboration proposal between C Market Coffee and Oak + Fort for a limited-edition pop-up at Oak + Fort's Gastown, Vancouver location. The brief was to explore what a cross-brand identity could look like in practice — identifying where two distinct visual languages could share the same surface without either brand losing its character. The work focused on proposing tangible touch points across merchandise, packaging, and in-store presentation that would hold up as a cohesive collection." },
