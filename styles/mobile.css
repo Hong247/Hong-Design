@@ -134,6 +134,9 @@
   .scroll-container img.fullscreen-image {
     height: min(55vh, 340px);
     width: auto;
+    flex-shrink: 0;
+    align-self: flex-start;
+    object-fit: unset;
   }
 
   .scroll-container iframe {
