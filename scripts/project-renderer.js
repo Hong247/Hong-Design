@@ -135,7 +135,7 @@ window.renderProjectDetailRow = function (row) {
 
   td.innerHTML = '<div class="project-loading" aria-label="Loading" aria-live="polite"><span></span><span></span><span></span></div>';
 
-  fetch("/data/projects/" + row._project.id + ".json")
+  fetch("/data/projects/" + row._project.id + ".json?v=20260624")
     .then(function (res) { return res.json(); })
     .then(function (data) {
       row._project.media       = data.media       || [];
