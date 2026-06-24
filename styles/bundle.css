@@ -192,9 +192,6 @@ body.orange-mode .theme-toggle::before {
   color: #000000;
 }
 
-body.dark-mode .theme-toggle::before {
-  color: var(--accent);
-}
 
 .theme-toggle:hover {
   color: var(--accent);
@@ -269,16 +266,6 @@ body.dark-mode .theme-toggle::before {
 .social-links a {
   display: inline-block;
   text-decoration: none;
-}
-
-.hovered-container {
-  margin-top: 18px;
-}
-
-.hovered-image {
-  display: none;
-  width: 100%;
-  height: auto;
 }
 
 table {
