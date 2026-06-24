@@ -1,21 +1,23 @@
-const fs = require("fs");
+const fs   = require("fs");
 const path = require("path");
+const ROOT = path.join(__dirname, "..");
 
-const projectsJs = fs.readFileSync(path.join(__dirname, "../data/projects-index.js"), "utf8");
-const ids = [];
-const idRegex = /"id"\s*:\s*"([^"]+)"/g;
-let match;
-while ((match = idRegex.exec(projectsJs)) !== null) {
-  ids.push(match[1]);
+global.window = global.window || {};
+eval(fs.readFileSync(path.join(ROOT, "data/projects.js"), "utf8"));
+const projects = global.window.PORTFOLIO_PROJECTS || [];
+
+if (!projects.length) {
+  console.error("generate-sitemap: no projects loaded — aborting");
+  process.exit(1);
 }
 
 const today = new Date().toISOString().slice(0, 10);
-const base = "https://hong-design.vercel.app";
+const base  = "https://hong-design.vercel.app";
 
 const urls = [
   `  <url><loc>${base}/</loc><lastmod>${today}</lastmod><priority>1.0</priority></url>`,
-  ...ids.map(id =>
-    `  <url><loc>${base}/${id}</loc><lastmod>${today}</lastmod><priority>0.8</priority></url>`
+  ...projects.filter(p => p && p.id).map(p =>
+    `  <url><loc>${base}/${p.id}</loc><lastmod>${today}</lastmod><priority>0.8</priority></url>`
   )
 ].join("\n");
 
@@ -25,5 +27,5 @@ ${urls}
 </urlset>
 `;
 
-fs.writeFileSync(path.join(__dirname, "../sitemap.xml"), xml);
-console.log(`sitemap.xml written with ${ids.length + 1} URLs`);
+fs.writeFileSync(path.join(ROOT, "sitemap.xml"), xml);
+console.log(`sitemap.xml written with ${projects.length + 1} URLs`);
