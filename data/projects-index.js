@@ -21,6 +21,13 @@ window.PORTFOLIO_PROJECTS = [
     "preview": "images/kaia/kaia2.png"
   },
   {
+    "id": "c-market-coffee-x-oak-fort",
+    "title": "C Market Coffee × Oak + Fort",
+    "role": "Merchandise Design",
+    "year": "2024",
+    "preview": "images/c-market-oak-fort/cmof1.jpg"
+  },
+  {
     "id": "c-market-coffee-website",
     "title": "C Market Coffee Website",
     "role": "Web Design",
