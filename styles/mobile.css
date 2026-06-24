@@ -37,11 +37,6 @@
     display: none;
   }
 
-  .project-filters {
-    gap: 0 12px;
-    margin-bottom: 14px;
-  }
-
   table,
   thead,
   tbody,

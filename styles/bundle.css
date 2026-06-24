@@ -96,17 +96,13 @@ a {
 
 a:hover,
 .custom-btn:hover,
-tr:hover .custom-btn,
-.project-filter:hover,
-.project-filter.is-active {
+tr:hover .custom-btn {
   color: var(--accent);
 }
 
 body.orange-mode a:hover,
 body.orange-mode .custom-btn:hover,
 body.orange-mode tr:hover .custom-btn,
-body.orange-mode .project-filter:hover,
-body.orange-mode .project-filter.is-active,
 body.orange-mode .theme-toggle:hover {
   color: #ffffff;
 }
@@ -130,7 +126,6 @@ body.orange-mode .theme-toggle:hover {
 .header-title,
 .body-copy,
 .custom-btn,
-.project-filter,
 .scroll-wrapper,
 .social-links a {
   font-family: inherit;
@@ -210,7 +205,6 @@ body.dark-mode .theme-toggle::before {
 
 .theme-toggle:focus-visible,
 .custom-btn:focus-visible,
-.project-filter:focus-visible,
 .social-links a:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 3px;
@@ -288,24 +282,6 @@ body.dark-mode .theme-toggle::before {
   display: none;
   width: 100%;
   height: auto;
-}
-
-.project-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 14px;
-  margin: 0 0 18px;
-}
-
-.project-filter {
-  max-width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  line-height: 1.45;
-  text-align: left;
-  cursor: pointer;
 }
 
 table {
@@ -944,11 +920,6 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
 
   .hovered-container {
     display: none;
-  }
-
-  .project-filters {
-    gap: 0 12px;
-    margin-bottom: 14px;
   }
 
   table,

@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   renderProjectArchive();
-  initProjectFilters();
 });
-
-var activeProjectDisciplineFilter = "all";
 
 function slugify(title) {
   return title
@@ -34,7 +31,6 @@ function renderProjectArchive() {
     headerRow.setAttribute("data-image-source", project.preview || "");
     headerRow.setAttribute("data-project", project.title);
     headerRow.setAttribute("data-role", project.role);
-    headerRow.setAttribute("data-discipline", project.discipline || "");
     headerRow.setAttribute("data-year", String(project.year));
     headerRow.innerHTML =
       '<td data-label="No"><button type="button" class="custom-btn" data-target="#' + id + '">' + number + '</button></td>' +
@@ -51,62 +47,6 @@ function renderProjectArchive() {
 
     tbody.appendChild(headerRow);
     tbody.appendChild(detailRow);
-  });
-
-  applyProjectDisciplineFilter(activeProjectDisciplineFilter);
-}
-
-function initProjectFilters() {
-  var filters = document.querySelector("[data-project-filters]");
-
-  if (!filters) {
-    return;
-  }
-
-  filters.addEventListener("click", function (event) {
-    var button = event.target.closest && event.target.closest("[data-discipline-filter]");
-
-    if (!button) {
-      return;
-    }
-
-    event.preventDefault();
-    setProjectDisciplineFilter(button.getAttribute("data-discipline-filter") || "all");
-  });
-
-  setProjectDisciplineFilter(activeProjectDisciplineFilter, true);
-}
-
-function setProjectDisciplineFilter(filter, skipClose) {
-  activeProjectDisciplineFilter = filter || "all";
-
-  document.querySelectorAll("[data-discipline-filter]").forEach(function (button) {
-    var isActive = button.getAttribute("data-discipline-filter") === activeProjectDisciplineFilter;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", isActive ? "true" : "false");
-  });
-
-  if (!skipClose && typeof window.closeAllProjectRows === "function") {
-    window.closeAllProjectRows();
-  }
-
-  applyProjectDisciplineFilter(activeProjectDisciplineFilter);
-}
-
-function applyProjectDisciplineFilter(filter) {
-  var activeFilter = filter || "all";
-
-  document.querySelectorAll("#projectArchive .hover-trigger").forEach(function (header) {
-    var detail = header.nextElementSibling && header.nextElementSibling.classList.contains("collapse")
-      ? header.nextElementSibling
-      : null;
-    var matches = activeFilter === "all" || header.getAttribute("data-discipline") === activeFilter;
-
-    header.hidden = !matches;
-
-    if (detail) {
-      detail.hidden = !matches;
-    }
   });
 }
 
