@@ -106,7 +106,7 @@ function populateDetailRow(row) {
       window.addScrollDots(scrollContainer);
     }
 
-    scrollContainer.scrollLeft = 0;
+    window.requestAnimationFrame(function () { scrollContainer.scrollLeft = 0; });
 
     var closeBtn = document.createElement("button");
     closeBtn.type = "button";
