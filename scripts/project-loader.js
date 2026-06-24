@@ -1,15 +1,5 @@
 (function () {
   var MOJIBAKE_PATTERN = /[\u00c3\u00c2\u00e2\u00cc\u00e6\u0080]/;
-  var IMAGE_PATH_FIXES = {
-    "images/wwf/wwf2.jpg": "images/wwf/wwf2 copy.jpg"
-  };
-
-  function repairImagePaths(value) {
-    Object.keys(IMAGE_PATH_FIXES).forEach(function (badPath) {
-      value = value.split(badPath).join(IMAGE_PATH_FIXES[badPath]);
-    });
-    return value;
-  }
 
   function repairMojibakeString(value) {
     var bytes;
@@ -33,7 +23,7 @@
 
   function normalizeTextContent(value) {
     if (typeof value === "string") {
-      return repairImagePaths(repairMojibakeString(value));
+      return repairMojibakeString(value);
     }
     if (Array.isArray(value)) {
       value.forEach(function (item, index) {
