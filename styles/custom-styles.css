@@ -1,4 +1,5 @@
 /* Theme toggle */
+body.light-mode .theme-toggle::before { color: var(--accent); }
 body.dark-mode .theme-toggle::before { color: #fff; }
 .theme-toggle::before { transition: color .18s ease; font-size: 22px; line-height: 1; }
 .theme-toggle:hover::before { color: #000 !important; }
