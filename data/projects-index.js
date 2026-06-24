@@ -28,6 +28,13 @@ window.PORTFOLIO_PROJECTS = [
     "preview": "images/kaia/kaia2.png"
   },
   {
+    "id": "kkookie",
+    "title": "kkookie",
+    "role": "Brand Identity",
+    "year": "2025",
+    "preview": "images/kkookie/kkookie1.jpg"
+  },
+  {
     "id": "c-market-coffee-x-oak-fort",
     "title": "C Market Coffee × Oak + Fort",
     "role": "Merchandise Design",
