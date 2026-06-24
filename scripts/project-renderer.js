@@ -1,3 +1,9 @@
+var _CACHE_V = (function () {
+  var s = document.querySelector('script[src*="project-renderer.js"]');
+  if (s) { var m = s.src.match(/\?v=([^&]+)/); if (m) return m[1]; }
+  return Date.now();
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
   renderProjectArchive();
 });
@@ -135,7 +141,7 @@ window.renderProjectDetailRow = function (row) {
 
   td.innerHTML = '<div class="project-loading" aria-label="Loading" aria-live="polite"><span></span><span></span><span></span></div>';
 
-  fetch("/data/projects/" + row._project.id + ".json?v=20260624")
+  fetch("/data/projects/" + row._project.id + ".json?v=" + _CACHE_V)
     .then(function (res) { return res.json(); })
     .then(function (data) {
       row._project.media       = data.media       || [];
