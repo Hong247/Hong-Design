@@ -281,7 +281,7 @@ window.PORTFOLIO_PROJECTS = [
     preview: "images/wwf/wwf4.jpg",
     media: [
       { type: "image", src: "images/wwf/wwf1.jpg", alt: "Stop Haunting Mother Nature - Image 1" },
-      { type: "image", src: "images/wwf/wwf2.jpg", alt: "Stop Haunting Mother Nature - Image 2" },
+      { type: "image", src: "images/wwf/wwf2 copy.jpg", alt: "Stop Haunting Mother Nature - Image 2" },
       { type: "image", src: "images/wwf/wwf3.jpg", alt: "Stop Haunting Mother Nature - Image 3" },
       { type: "image", src: "images/wwf/wwf4.jpg", alt: "Stop Haunting Mother Nature - Image 4" },
       { type: "image", src: "images/wwf/wwf5.jpg", alt: "Stop Haunting Mother Nature - Image 5" },
