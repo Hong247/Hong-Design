@@ -14,6 +14,13 @@ window.PORTFOLIO_PROJECTS = [
     "preview": "images/C Market Coffee Brand Catalog/page-01.jpg"
   },
   {
+    "id": "c-market-barista-apron",
+    "title": "C Market Coffee Barista Apron",
+    "role": "Merchandise Design",
+    "year": "2025",
+    "preview": "images/c-market-barista-apron/apron1.jpg"
+  },
+  {
     "id": "kaia",
     "title": "KAIA",
     "role": "Brand Identity",
