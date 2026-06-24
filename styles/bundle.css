@@ -1004,10 +1004,8 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
   .scroll-container img.fullscreen-image {
     display: inline-block;
     vertical-align: top;
-    height: auto !important;
-    width: auto !important;
-    max-height: min(55vh, 340px);
-    max-width: min(85vw, 480px);
+    height: min(52vh, 320px);
+    width: auto;
     margin-right: 10px;
     flex: none;
   }
