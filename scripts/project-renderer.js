@@ -163,7 +163,8 @@ function buildGalleryHtml(project) {
       var cls = "fullscreen-image" + (item.className ? " " + item.className : "");
       html +=
         '<img class="' + cls + '" src="' + item.src + '" alt="' + item.alt + '"' +
-        (index > 0 ? ' loading="lazy"' : "") + ">";
+        ' sizes="(max-width: 768px) 85vw, (max-width: 1024px) 60vw, 50vw"' +
+        (index > 0 ? ' loading="lazy" decoding="async"' : ' decoding="async"') + ">";
     }
     if (item.type === "iframe") {
       var dims = (item.width ? ' width="' + item.width + '"' : "") + (item.height ? ' height="' + item.height + '"' : "");
