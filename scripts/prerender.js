@@ -154,7 +154,45 @@ function buildProjectRows(projects, titleOverrides) {
   return html;
 }
 
-// 4. Main
+// 4. CreativeWork schema
+
+function buildCreativeWorkSchema(projects) {
+  const base = 'https://hong-design.vercel.app';
+  const items = projects
+    .filter(p => p && p.id)
+    .map(p => {
+      const obj = {
+        '@type': 'CreativeWork',
+        'name': p.title || '',
+        'url': base + '/' + p.id,
+        'dateCreated': String(p.year || ''),
+        'creator': { '@type': 'Person', 'name': 'Cheok Hong Lai' }
+      };
+      if (p.role) obj['description'] = p.role;
+      if (p.preview) obj['image'] = base + '/' + p.preview;
+      if (Array.isArray(p.description) && p.description.length) {
+        obj['abstract'] = p.description.map(d => d.label + ': ' + d.text).join(' ');
+      }
+      return obj;
+    });
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'name': 'Hong Design Portfolio',
+    'url': base + '/',
+    'numberOfItems': items.length,
+    'itemListElement': items.map((item, i) => ({
+      '@type': 'ListItem',
+      'position': i + 1,
+      'item': item
+    }))
+  };
+
+  return '<script type="application/ld+json">\n' + JSON.stringify(schema, null, 2) + '\n</script>';
+}
+
+// 5. Main
 
 async function main() {
   // Fonts
@@ -166,6 +204,7 @@ async function main() {
 
   // Pre-render HTML
   const projectsHtml = buildProjectRows(projects, titleOverrides);
+  const schemaHtml   = buildCreativeWorkSchema(projects);
 
   const indexPath = path.join(ROOT, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
@@ -174,13 +213,18 @@ async function main() {
     console.warn('Warning: placeholder <!-- PRERENDER_PROJECTS --> not found in index.html');
     console.warn('Skipping project injection.');
   } else {
-    html = html.replace(
-      '<!-- PRERENDER_PROJECTS -->',
-      projectsHtml + '\n    '
-    );
-    fs.writeFileSync(indexPath, html, 'utf8');
+    html = html.replace('<!-- PRERENDER_PROJECTS -->', projectsHtml + '\n    ');
     console.log('Pre-rendered', projects.length, 'projects into index.html');
   }
+
+  if (!html.includes('<!-- PRERENDER_SCHEMA -->')) {
+    console.warn('Warning: placeholder <!-- PRERENDER_SCHEMA --> not found in index.html');
+  } else {
+    html = html.replace('<!-- PRERENDER_SCHEMA -->', schemaHtml);
+    console.log('Injected CreativeWork schema for', projects.length, 'projects');
+  }
+
+  fs.writeFileSync(indexPath, html, 'utf8');
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
