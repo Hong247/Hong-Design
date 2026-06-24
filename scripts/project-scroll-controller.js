@@ -542,6 +542,8 @@
       detail.style.maxHeight = detail.scrollHeight + "px";
       detail.style.opacity = "1";
       detail.style.transform = "translateY(0)";
+      var sc = row.querySelector(".scroll-container");
+      if (sc) sc.scrollLeft = 0;
     });
 
     row.openTimer = window.setTimeout(function () {
