@@ -13,13 +13,14 @@ const indexPath = path.join(__dirname, '..', 'index.html');
 
 let html = fs.readFileSync(indexPath, 'utf8');
 
-// Replace every ?v=<alphanum> occurrence with the new stamp
-const updated = html.replace(/\?v=[a-z0-9]+/gi, '?v=' + stamp);
+// Replace ?v= only inside src/href attribute values — avoids false positives in content
+const pattern = /((?:src|href)="[^"]*)\?v=[a-z0-9]+/gi;
+const updated = html.replace(pattern, '$1?v=' + stamp);
 
 if (updated === html) {
   console.log('version-bump: no version strings found — nothing changed');
 } else {
-  const count = (html.match(/\?v=[a-z0-9]+/gi) || []).length;
+  const count = (html.match(/((?:src|href)="[^"]*)\?v=[a-z0-9]+/gi) || []).length;
   fs.writeFileSync(indexPath, updated, 'utf8');
   console.log('version-bump: updated ' + count + ' version strings to ?v=' + stamp);
 }
