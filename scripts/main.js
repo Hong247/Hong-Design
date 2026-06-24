@@ -74,40 +74,24 @@ var hoverState = {
 function initEmailCopyButton() {
   var item = document.querySelector(".email-contact-item");
   var btn = item && item.querySelector(".email-copy-button");
-  if (!btn) return;
+  var link = item && item.querySelector("a[href^='mailto:']");
+  if (!btn || !link) return;
+  var email = link.href.replace("mailto:", "").trim();
   btn.addEventListener("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
-    copyEmailAddress("cheokhong.design@gmail.com", item);
+    if (!email) return;
+    function showCopied() {
+      item.classList.add("is-copied");
+      window.clearTimeout(item._copyTimer);
+      item._copyTimer = window.setTimeout(function () {
+        item.classList.remove("is-copied");
+      }, 1400);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(showCopied).catch(showCopied);
+    }
   });
-}
-
-function copyEmailAddress(email, container) {
-  function showCopied() {
-    container.classList.add("is-copied");
-    window.clearTimeout(container._copyTimer);
-    container._copyTimer = window.setTimeout(function () {
-      container.classList.remove("is-copied");
-    }, 1400);
-  }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(email).then(showCopied).catch(function () {
-      fallbackCopy(email); showCopied();
-    });
-    return;
-  }
-  fallbackCopy(email); showCopied();
-}
-
-function fallbackCopy(email) {
-  var el = document.createElement("textarea");
-  el.value = email;
-  el.setAttribute("readonly", "");
-  el.style.cssText = "position:fixed;top:-9999px;left:-9999px";
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
 }
 
 function applySavedTheme() {
