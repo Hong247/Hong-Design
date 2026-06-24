@@ -280,6 +280,7 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
   font-size: inherit;
   letter-spacing: .12em;
   text-transform: uppercase;
+  justify-content: flex-start;
 }
 .project-close-btn:hover,
 .project-close-btn:focus-visible {
