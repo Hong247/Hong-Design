@@ -1,24 +1,30 @@
 {
   "name": "Hong Design",
   "short_name": "Hong Design",
-  "description": "Portfolio of Cheok Hong Lai, a Vancouver-based multidisciplinary designer working across brand identity, campaign visuals, product design, UI/UX, and rendering.",
+  "description": "Portfolio of Cheok Hong Lai, a Vancouver-based designer specializing in visual identity and product design.",
   "start_url": "/",
   "scope": "/",
-  "display": "browser",
-  "background_color": "#ffffff",
+  "display": "standalone",
+  "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "images/favicon.png",
-      "sizes": "any",
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "images/share-icon.jpg",
-      "sizes": "1200x630",
-      "type": "image/jpeg",
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "images/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
