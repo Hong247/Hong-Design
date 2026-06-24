@@ -467,6 +467,7 @@
 
   window.updateMetaForProject = function (project) { updateMetaForProject(project); };
   window.closeProjectRow = function (row) { closeRow(row); scrollBack(row.id); };
+  window.closeAllProjectRows = function () { closeAllProjects(); };
 
   function updateMetaForProject(project) {
     getDefaultMeta();

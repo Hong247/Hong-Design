@@ -3,6 +3,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "c-market-coffee-tote-bag",
     "title": "C Market Coffee Tote Bag",
     "role": "Merchandise Design",
+    "discipline": "product",
     "year": "2026",
     "preview": "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg"
   },
@@ -10,6 +11,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "c-market-coffee-brand-experience-system",
     "title": "C Market Coffee — Brand Experience System",
     "role": "Marketing Design",
+    "discipline": "brand",
     "year": "2025",
     "preview": "images/C Market Coffee Brand Catalog/page-01.jpg"
   },
@@ -17,6 +19,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "c-market-barista-apron",
     "title": "C Market Coffee Barista Apron",
     "role": "Merchandise Design",
+    "discipline": "product",
     "year": "2025",
     "preview": "images/c-market-barista-apron/apron1.jpg"
   },
@@ -24,6 +27,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "kaia",
     "title": "KAIA",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2025",
     "preview": "images/kaia/kaia2.png"
   },
@@ -31,6 +35,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "kkookie",
     "title": "kkookie",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2025",
     "preview": "images/kkookie/kkookie1.jpg"
   },
@@ -38,6 +43,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "c-market-coffee-x-oak-fort",
     "title": "C Market Coffee × Oak + Fort",
     "role": "Merchandise Design",
+    "discipline": "product",
     "year": "2024",
     "preview": "images/c-market-oak-fort/oak+fort1.jpg"
   },
@@ -45,6 +51,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "c-market-coffee-website",
     "title": "C Market Coffee Website",
     "role": "Web Design",
+    "discipline": "web",
     "year": "2024",
     "preview": "images/C Market Coffee Website/cmarket website 1.jpg"
   },
@@ -52,6 +59,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "mara-natha-architects-portfolio-document",
     "title": "Mara Natha Architects Portfolio Document",
     "role": "Editorial Design",
+    "discipline": "editorial",
     "year": "2023",
     "preview": "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg"
   },
@@ -59,6 +67,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "kee",
     "title": "Kee",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2023",
     "preview": "images/kee/Kee1.jpg"
   },
@@ -66,6 +75,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "maia",
     "title": "maia",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2023",
     "preview": "images/maia/maia4.jpg"
   },
@@ -73,6 +83,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "browns-rebrand-concept",
     "title": "Browns Rebrand Concept",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2023",
     "preview": "images/browns/browns3.jpg"
   },
@@ -80,6 +91,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "monday",
     "title": "monday",
     "role": "UI Prototype",
+    "discipline": "web",
     "year": "2023",
     "preview": "images/monday/monday1.jpg"
   },
@@ -87,6 +99,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "kill-the-bride",
     "title": "Kill the Bride",
     "role": "Poster Design",
+    "discipline": "editorial",
     "year": "2023",
     "preview": "images/killthebride/killthebride1.jpg"
   },
@@ -94,6 +107,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "stop-haunting-mother-nature",
     "title": "Stop Haunting Mother Nature",
     "role": "Campaign Design",
+    "discipline": "editorial",
     "year": "2023",
     "preview": "images/wwf/wwf4.jpg"
   },
@@ -101,6 +115,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "xwayxway",
     "title": "X̱wáýx̱way",
     "role": "Editorial Design",
+    "discipline": "editorial",
     "year": "2023",
     "preview": "images/x/x5.gif"
   },
@@ -108,6 +123,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "raku-haru",
     "title": "raku haru",
     "role": "Brand Identity",
+    "discipline": "brand",
     "year": "2022",
     "preview": "images/rakuharu/rakuharu3.jpg"
   },
@@ -115,6 +131,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "trapo-digital-catalogue",
     "title": "TRAPO Digital Catalogue",
     "role": "UI/UX Design",
+    "discipline": "web",
     "year": "2022",
     "preview": "images/trapodpc/trapodpc1.png"
   },
@@ -122,6 +139,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "trapo-smartphone-holder",
     "title": "TRAPO Smartphone Holder",
     "role": "Product Design",
+    "discipline": "product",
     "year": "2022",
     "preview": "images/traposh/traposh5.jpg"
   },
@@ -129,6 +147,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "talentlounge-virtual-career-fair",
     "title": "Talentlounge Virtual Career Fair",
     "role": "Web Design",
+    "discipline": "web",
     "year": "2021",
     "preview": "images/talentlounge/talentlounge5.jpg"
   },
@@ -136,6 +155,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "nexus",
     "title": "Nexus",
     "role": "Furniture Design",
+    "discipline": "industrial",
     "year": "2021",
     "preview": "images/nexus/nexus2.jpg"
   },
@@ -143,6 +163,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "motorola-solutions-radio-concept",
     "title": "Motorola Solutions Radio Concept",
     "role": "Industrial Design",
+    "discipline": "industrial",
     "year": "2020",
     "preview": "images/motorola/motorola3.jpg"
   },
@@ -150,6 +171,7 @@ window.PORTFOLIO_PROJECTS = [
     "id": "e-k",
     "title": "E/K",
     "role": "Logo Design",
+    "discipline": "brand",
     "year": "2020",
     "preview": "images/e&k/e&k3.jpg"
   }
