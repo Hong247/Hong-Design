@@ -125,23 +125,30 @@
   }
 
   .scroll-container {
-    gap: 10px;
+    display: block;
+    white-space: nowrap;
     margin-right: -18px;
     padding: 2px 18px 16px 0;
     scroll-behavior: smooth;
-    align-items: flex-start;
   }
 
   .scroll-container img.fullscreen-image {
+    display: inline-block;
+    vertical-align: top;
     height: auto !important;
     width: auto !important;
     max-height: min(55vh, 340px);
     max-width: min(85vw, 480px);
+    margin-right: 10px;
+    flex: none;
   }
 
   .scroll-container iframe {
+    display: inline-block;
+    vertical-align: top;
     width: min(85vw, 480px);
     height: min(55vh, 340px);
+    margin-right: 10px;
   }
 
   iframe:not([src*="figma.com"]) {
