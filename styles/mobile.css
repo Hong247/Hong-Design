@@ -14,11 +14,22 @@
     overflow: visible;
   }
 
+  .fullscreen-container {
+    flex-direction: column;
+    height: auto;
+  }
+
   .left-theme,
   .right-theme {
-    float: none;
+    flex: none;
     width: 100%;
+    min-width: 0;
     padding: 0;
+  }
+
+  .theme-wrapper {
+    height: auto;
+    overflow: visible;
   }
 
   .right-theme {
