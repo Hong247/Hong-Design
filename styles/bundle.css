@@ -98,8 +98,7 @@ body.chameleon-light {
 /* Accent-driven UI eases as chameleon samples each project */
 body.chameleon-mode a:hover,
 body.chameleon-mode .custom-btn:hover,
-body.chameleon-mode tr:hover .custom-btn,
-body.chameleon-mode .theme-toggle::before {
+body.chameleon-mode tr:hover .custom-btn {
   transition: color 0.35s ease;
 }
 
