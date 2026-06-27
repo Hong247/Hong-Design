@@ -1040,6 +1040,8 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
 
   .scroll-container img.fullscreen-image.keem {
     display: inline-block;
+    height: min(74vh, 620px);
+    width: auto;
   }
 
   /* Mobile tap highlight without increasing row height */
