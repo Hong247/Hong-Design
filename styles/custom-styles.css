@@ -317,16 +317,12 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child { posi
 body.project-focus-active .hover-trigger.is-active-project td:first-child::before {
   content: "";
   position: absolute;
-  left: -18px;
+  left: -16px;
   top: 50%;
-  width: 10px;
-  height: 2px;
-  background: var(--accent);
+  width: 8px;
+  height: 1px;
+  background: currentColor;
   transform: translateY(-50%);
-}
-/* In orange mode the accent is the background — use ink instead */
-body.orange-mode.project-focus-active .hover-trigger.is-active-project td:first-child::before {
-  background: #000000;
 }
 
 /* ── Hide native scrollbars only when JS custom scrollbar has initialised ── */
