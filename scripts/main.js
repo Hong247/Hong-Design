@@ -100,7 +100,7 @@ var THEMES = ["light", "orange", "dark", "chameleon"];
 
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
-  setTheme(THEMES.indexOf(saved) !== -1 ? saved : "light");
+  setTheme(THEMES.indexOf(saved) !== -1 ? saved : "chameleon");
 }
 
 function toggleTheme() {
@@ -313,6 +313,7 @@ function startIntelligentHoverPreview(trigger) {
   }
 
   if (document.body.classList.contains("chameleon-mode")) {
+    document.body.classList.add("chroma-locked");
     applySampledAccent(trigger.getAttribute("data-image-source"));
   }
 
@@ -346,8 +347,9 @@ function stopIntelligentHoverPreview() {
     hoverState.imageEl.removeAttribute("src");
   }
 
-  /* Chameleon accent breathes back to its default when nothing is hovered */
+  /* Release the lock so the idle hue-cycle resumes when nothing is hovered */
   if (document.body.classList.contains("chameleon-mode")) {
+    document.body.classList.remove("chroma-locked");
     resetAccent();
   }
 }

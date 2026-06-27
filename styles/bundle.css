@@ -840,9 +840,9 @@ body.orange-mode .colophon-sep { color: #000000; }
 
 /* ── Chameleon mode: animated gaussian-blur background ── */
 :root {
-  --chroma-1: #fe5000;
-  --chroma-2: #2a0d00;
-  --chroma-3: #15140f;
+  --chroma-1: hsl(220, 78%, 44%);
+  --chroma-2: hsl(285, 70%, 42%);
+  --chroma-3: hsl(165, 70%, 38%);
 }
 .chroma-bg { display: none; }
 body.chameleon-mode .chroma-bg {
@@ -854,6 +854,17 @@ body.chameleon-mode .chroma-bg {
   opacity: 0.55;
   filter: blur(80px);
   pointer-events: none;
+  /* Idle: the whole field keeps cycling through hues */
+  animation: chroma-cycle 16s linear infinite;
+}
+/* While hovering a project, freeze the cycle so its true colours show */
+body.chameleon-mode.chroma-locked .chroma-bg {
+  animation: none;
+  filter: blur(80px);
+}
+@keyframes chroma-cycle {
+  from { filter: blur(80px) hue-rotate(0deg); }
+  to   { filter: blur(80px) hue-rotate(360deg); }
 }
 .chroma-blob {
   position: absolute;
@@ -893,7 +904,15 @@ body.chameleon-mode .chroma-bg {
   to   { transform: translate(9vw, -12vh) scale(1.3); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .chroma-blob { animation: none !important; }
+  .chroma-blob,
+  body.chameleon-mode .chroma-bg { animation: none !important; }
+}
+
+/* Frosted header so it blends with the gradient instead of a hard black block */
+body.chameleon-mode thead th {
+  background: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 
 /* Project focus state */
