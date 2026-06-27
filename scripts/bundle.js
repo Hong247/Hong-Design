@@ -1021,6 +1021,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var themeToggle = document.getElementById("themeToggle");
 
   hoverState.imageEl = document.querySelector(".hovered-image");
+  hoverState.captionEl = document.querySelector(".hovered-caption");
   initEmailCopyButton();
   applySavedTheme();
   setScrolling();
@@ -1087,7 +1088,8 @@ var hoverState = {
   parallaxY: 0,
   trigger: null,
   rafPending: false,
-  imageEl: null
+  imageEl: null,
+  captionEl: null
 };
 
 function initEmailCopyButton() {
@@ -1239,6 +1241,12 @@ function startIntelligentHoverPreview(trigger) {
 
   if (!hoverState.images.length) {
     return;
+  }
+
+  if (hoverState.captionEl) {
+    var title = trigger.getAttribute("data-project") || "";
+    var year = trigger.getAttribute("data-year") || "";
+    hoverState.captionEl.textContent = year ? title + "  ·  " + year : title;
   }
 
   showHoveredPreviewImage(hoverState.images[hoverState.index]);

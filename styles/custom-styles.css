@@ -244,6 +244,67 @@ tr.collapse.is-open .scroll-container img.fullscreen-image { opacity: 1; transfo
 }
 .hovered-image[src] { opacity: 1; filter: blur(0); }
 
+/* Preview caption — title · year, revealed with the image */
+.hovered-caption {
+  margin: 12px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.22s ease;
+}
+.hovered-caption::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: var(--accent);
+}
+body.orange-mode .hovered-caption::before { background: #000000; }
+.hovered-image[src] + .hovered-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Archive colophon — deliberate end of the scroll */
+.archive-colophon {
+  position: relative;
+  margin: 0 0 60px;
+  padding-top: 28px;
+}
+.archive-colophon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+}
+body.orange-mode .archive-colophon::before { background: #000000; }
+.colophon-statement {
+  margin: 0 0 14px;
+  max-width: 460px;
+  opacity: 0.55;
+  line-height: 1.5;
+}
+.colophon-meta {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.colophon-meta a { text-decoration: none; }
+.colophon-meta a:hover { color: var(--accent); }
+body.orange-mode .colophon-meta a:hover { color: #ffffff; }
+.colophon-sep {
+  margin: 0 10px;
+  color: var(--accent);
+}
+body.orange-mode .colophon-sep { color: #000000; }
+
 /* Project focus state */
 .hover-trigger { transition: opacity .14s ease, filter .14s ease, letter-spacing .14s ease; }
 .hover-trigger .custom-btn { transition: opacity .14s ease, letter-spacing .14s ease, color .14s ease; }
@@ -256,12 +317,16 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child { posi
 body.project-focus-active .hover-trigger.is-active-project td:first-child::before {
   content: "";
   position: absolute;
-  left: -16px;
+  left: -18px;
   top: 50%;
-  width: 8px;
-  height: 1px;
-  background: currentColor;
+  width: 10px;
+  height: 2px;
+  background: var(--accent);
   transform: translateY(-50%);
+}
+/* In orange mode the accent is the background — use ink instead */
+body.orange-mode.project-focus-active .hover-trigger.is-active-project td:first-child::before {
+  background: #000000;
 }
 
 /* ── Hide native scrollbars only when JS custom scrollbar has initialised ── */
