@@ -377,13 +377,11 @@ body.chameleon-mode.chroma-locked .chroma-bg {
   body.chameleon-mode .chroma-bg { animation: none !important; }
 }
 
-/* Sticky header: solid base colour, soft bottom fade so there's no hard seam */
+/* No opaque header bar in chameleon — it would block the gradient and read as a
+   floating rectangle. Let the labels sit on the same colour field and scroll. */
 body.chameleon-mode thead th {
-  background: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0) 100%);
-}
-body.chameleon-light thead th {
-  color: #000000;
-  background: linear-gradient(to bottom, #fff 0%, #fff 70%, rgba(255, 255, 255, 0) 100%);
+  position: static;
+  background: transparent;
 }
 
 /* Project focus state */
