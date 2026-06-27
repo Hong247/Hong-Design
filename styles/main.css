@@ -1,7 +1,7 @@
 /* IBM Plex Sans is loaded via styles/fonts.css (self-hosted, see scripts/prerender.js) */
 
 :root {
-  --accent: #fe5000;
+  --accent: #ffffff;
   --border-light: transparent;
   --border-dark: transparent;
   --muted-light: currentColor;
@@ -81,13 +81,18 @@ body.orange-mode {
   color: #000000;
 }
 
-body.dark-mode,
 body.chameleon-mode {
   background: #000000;
   color: #ffffff;
 }
 
-/* Accent-driven UI animates as chameleon mode samples each project */
+/* White chameleon: paper base, ink text */
+body.chameleon-light {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Accent-driven UI eases as chameleon samples each project */
 body.chameleon-mode a:hover,
 body.chameleon-mode .custom-btn:hover,
 body.chameleon-mode tr:hover .custom-btn,

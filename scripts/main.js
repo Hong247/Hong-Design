@@ -96,7 +96,8 @@ function initEmailCopyButton() {
   });
 }
 
-var THEMES = ["light", "orange", "dark", "chameleon"];
+/* Two modes only: black chameleon and white (light) chameleon */
+var THEMES = ["chameleon", "chameleon-light"];
 
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
@@ -109,31 +110,27 @@ function toggleTheme() {
 }
 
 function getCurrentTheme() {
-  if (document.body.classList.contains("orange-mode")) {
-    return "orange";
-  }
-  if (document.body.classList.contains("dark-mode")) {
-    return "dark";
-  }
-  if (document.body.classList.contains("chameleon-mode")) {
-    return "chameleon";
-  }
-  return "light";
+  return document.body.classList.contains("chameleon-light") ? "chameleon-light" : "chameleon";
 }
 
 function setTheme(theme) {
-  document.body.classList.remove("light-mode", "orange-mode", "dark-mode", "chameleon-mode");
-  document.body.classList.add(theme + "-mode");
+  /* Both modes share .chameleon-mode; the white one adds .chameleon-light */
+  document.body.classList.remove(
+    "light-mode", "orange-mode", "dark-mode", "chameleon-light", "chroma-locked"
+  );
+  document.body.classList.add("chameleon-mode");
+  if (theme === "chameleon-light") {
+    document.body.classList.add("chameleon-light");
+  }
   localStorage.setItem("theme", theme);
-  /* Drop any live chameleon accent so other modes use the CSS default */
   resetAccent();
 }
 
-/* ── Chameleon mode: accent + animated background sample the hovered project ── */
+/* ── Chameleon: accent + animated background sample the hovered project ── */
 var _accentCache = {};
 
 function resetAccent() {
-  var s = document.documentElement.style;
+  var s = document.body.style;
   s.removeProperty("--accent");
   s.removeProperty("--chroma-1");
   s.removeProperty("--chroma-2");
@@ -141,7 +138,7 @@ function resetAccent() {
 }
 
 function applyColours(res) {
-  var s = document.documentElement.style;
+  var s = document.body.style;
   s.setProperty("--accent", res.accent);
   s.setProperty("--chroma-1", res.chroma[0]);
   s.setProperty("--chroma-2", res.chroma[1]);
@@ -150,8 +147,10 @@ function applyColours(res) {
 
 function applySampledAccent(src) {
   if (!src) return;
-  if (_accentCache[src]) {
-    applyColours(_accentCache[src]);
+  var light = document.body.classList.contains("chameleon-light");
+  var key = src + (light ? "|l" : "|d");
+  if (_accentCache[key]) {
+    applyColours(_accentCache[key]);
     return;
   }
   var img = new Image();
@@ -177,13 +176,16 @@ function applySampledAccent(src) {
         }
       }
       var a = cv[3] ? cv : av;
+      /* White mode wants light blobs + a dark accent; black mode the reverse */
+      var accLo = light ? 0.30 : 0.55, accHi = light ? 0.46 : 0.72;
+      var bgLo = light ? 0.62 : 0.26, bgHi = light ? 0.82 : 0.5;
       var res = {
-        accent: vividRgb(a[0] / a[3], a[1] / a[3], a[2] / a[3], 0.42, 0.62),
+        accent: vividRgb(a[0] / a[3], a[1] / a[3], a[2] / a[3], accLo, accHi),
         chroma: bands.map(function (bd) {
-          return vividRgb(bd[0] / bd[3], bd[1] / bd[3], bd[2] / bd[3], 0.26, 0.5);
+          return vividRgb(bd[0] / bd[3], bd[1] / bd[3], bd[2] / bd[3], bgLo, bgHi);
         })
       };
-      _accentCache[src] = res;
+      _accentCache[key] = res;
       if (document.body.classList.contains("chameleon-mode") && hoverState.trigger) {
         applyColours(res);
       }
