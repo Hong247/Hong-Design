@@ -1178,58 +1178,6 @@ window.clearChromaActiveProject = function () {
 };
 
 /* Cursor parallax + click ripple — make the field react to pointer and clicks */
-(function initChromaInteractions() {
-  var bg = document.querySelector(".chroma-bg");
-  if (!bg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  var pxT = 0, pyT = 0, pxE = 0, pyE = 0, cursorX = 0.5;
-  var autoHue = 0, hue = 0;
-  var kick = 0, shoveX = 0, shoveY = 0; /* click impulse to the motion */
-  function isCham() { return document.body.classList.contains("chameleon-mode"); }
-  function isLocked() { return document.body.classList.contains("chroma-locked"); }
-
-  window.addEventListener("mousemove", function (e) {
-    if (!isCham()) return;
-    cursorX = e.clientX / window.innerWidth;
-    pxT = (cursorX - 0.5) * 56;
-    pyT = (e.clientY / window.innerHeight - 0.5) * 56;
-  }, { passive: true });
-
-  window.addEventListener("click", function (e) {
-    if (!isCham()) return;
-    /* Clicking jolts the MOTION (a pulse + a shove away from the click) — colours
-       are untouched. */
-    kick = 1;
-    shoveX = (0.5 - e.clientX / window.innerWidth) * 130;
-    shoveY = (0.5 - e.clientY / window.innerHeight) * 130;
-  }, { passive: true });
-
-  function loop() {
-    if (isCham()) {
-      /* Colour: slow drift + cursor position (frozen when a project is locked) */
-      if (!isLocked()) {
-        autoHue = (autoHue + 0.05) % 360;
-        var t = (((autoHue + (cursorX - 0.5) * 140) % 360) + 360) % 360;
-        var dl = ((t - hue + 540) % 360) - 180;
-        hue = (hue + dl * 0.05 + 360) % 360;
-      }
-      /* Motion: eased cursor parallax + decaying click impulse */
-      pxE += (pxT - pxE) * 0.06;
-      pyE += (pyT - pyE) * 0.06;
-      kick *= 0.92;
-      shoveX *= 0.90;
-      shoveY *= 0.90;
-      var s = (1 + kick * 0.14).toFixed(3);
-      var rot = (kick * 10).toFixed(2);
-      bg.style.transform =
-        "translate(" + (pxE + shoveX).toFixed(1) + "px," + (pyE + shoveY).toFixed(1) + "px) " +
-        "scale(" + s + ") rotate(" + rot + "deg)";
-      bg.style.filter = isLocked() ? "blur(140px)" : "blur(140px) hue-rotate(" + hue.toFixed(1) + "deg)";
-    }
-    window.requestAnimationFrame(loop);
-  }
-  window.requestAnimationFrame(loop);
-})();
 
 function resetAccent() {
   var s = document.body.style;

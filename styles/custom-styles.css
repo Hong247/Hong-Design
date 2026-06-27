@@ -296,41 +296,34 @@ body.orange-mode .colophon-meta a:hover { color: #ffffff; }
 }
 body.orange-mode .colophon-sep { color: #000000; }
 
-/* ── Chameleon mode: animated gaussian-blur background ── */
-/* Black chameleon: white accent + mid-dark idle palette */
+/* ── Chameleon mode: gaussian-blur colour field, shown only on interaction ── */
+/* Idle palette = the base colour, so the field is invisible until a project is
+   hovered/opened, at which point JS swaps in that project's colours. */
 body.chameleon-mode {
   --accent: #ffffff;
-  --chroma-1: hsl(220, 78%, 44%);
-  --chroma-2: hsl(285, 70%, 42%);
+  --chroma-1: #000000;
+  --chroma-2: #000000;
 }
-/* White chameleon: ink accent + bright pastel idle palette */
 body.chameleon-light {
   --accent: #000000;
-  --chroma-1: hsl(212, 96%, 85%);
-  --chroma-2: hsl(282, 92%, 88%);
+  --chroma-1: #ffffff;
+  --chroma-2: #ffffff;
 }
 .chroma-bg { display: none; }
 body.chameleon-mode .chroma-bg {
   display: block;
   position: fixed;
-  inset: -8vmax;            /* oversized so cursor parallax never reveals an edge */
+  inset: -8vmax;
   z-index: -1;
   overflow: hidden;
-  opacity: 0.6;
+  opacity: 0;               /* idle: plain black / white background, no colour */
   pointer-events: none;
-  will-change: transform, filter;
-  /* Very soft so the two circles read as one diffuse colour field.
-     Hue is driven by JS so it reacts to cursor + clicks. */
-  /* Transform + filter are driven per-frame by JS (parallax, click-kick, hue).
-     These are just the static fallback for reduced-motion / no-JS. */
-  filter: blur(140px) hue-rotate(var(--hue, 0deg));
-}
-/* Lighter base needs a touch more presence to read as colour over white */
-body.chameleon-light .chroma-bg { opacity: 0.82; }
-/* With a project open/hovered, drop the hue shift so its true colours show */
-body.chameleon-mode.chroma-locked .chroma-bg {
   filter: blur(140px);
+  transition: opacity 0.6s ease;
 }
+/* Colours fade in only while hovering or with a project open */
+body.chameleon-mode.chroma-locked .chroma-bg { opacity: 0.55; }
+body.chameleon-light.chroma-locked .chroma-bg { opacity: 0.82; }
 .chroma-blob {
   position: absolute;
   border-radius: 50%;
