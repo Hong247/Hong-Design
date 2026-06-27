@@ -171,6 +171,14 @@ function buildGalleryHtml(project) {
         ' sizes="(max-width: 768px) 85vw, (max-width: 1024px) 60vw, 50vw"' +
         (index > 0 ? ' loading="lazy" decoding="async"' : ' decoding="async"') + ">";
     }
+    if (item.type === "video") {
+      var vcls = "fullscreen-image is-video" + (item.className ? " " + item.className : "");
+      html +=
+        '<video class="' + vcls + '" autoplay muted loop playsinline preload="metadata"' +
+        (item.poster ? ' poster="' + item.poster + '"' : "") + '>' +
+        (item.webm ? '<source src="' + item.webm + '" type="video/webm">' : "") +
+        '<source src="' + item.src + '" type="video/mp4"></video>';
+    }
     if (item.type === "iframe") {
       var dims = (item.width ? ' width="' + item.width + '"' : "") + (item.height ? ' height="' + item.height + '"' : "");
       html +=

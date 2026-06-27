@@ -176,7 +176,7 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/kee/keed.jpg", alt: "Kee - Image d", className: "keen" },
       { type: "image", src: "images/kee/keee.jpg", alt: "Kee - Image e", className: "keen" },
       { type: "image", src: "images/kee/keef.jpg", alt: "Kee - Image f", className: "keen" },
-      { type: "image", src: "images/kee/kee1.gif", alt: "Kee - gif 1", className: "keen" },
+      { type: "video", src: "images/kee/kee1.mp4", alt: "Kee - animation 1", className: "keen" },
       { type: "image", src: "images/kee/kee2.gif", alt: "Kee - gif 2", className: "keen" },
       { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee - Image 1", className: "keen" },
       { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee - Image 2", className: "keen" },

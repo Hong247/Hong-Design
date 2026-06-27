@@ -389,13 +389,15 @@ td:nth-child(4) .custom-btn {
 }
 
 .scroll-container img,
+.scroll-container video,
 .scroll-container iframe {
   flex: 0 0 auto;
   align-self: flex-start;
   scroll-snap-align: start;
 }
 
-.scroll-container img.fullscreen-image {
+.scroll-container img.fullscreen-image,
+.scroll-container video.fullscreen-image {
   width: auto;
   height: min(600px, 70vh);
 }
@@ -1002,7 +1004,8 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
     scroll-behavior: smooth;
   }
 
-  .scroll-container img.fullscreen-image {
+  .scroll-container img.fullscreen-image,
+  .scroll-container video.fullscreen-image {
     display: inline-block;
     vertical-align: top;
     height: min(52vh, 320px);
@@ -1034,7 +1037,8 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
     padding: 14px 0 0;
   }
 
-  .scroll-container img.fullscreen-image.keen {
+  .scroll-container img.fullscreen-image.keen,
+  .scroll-container video.fullscreen-image.keen {
     display: none;
   }
 
