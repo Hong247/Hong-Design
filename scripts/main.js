@@ -153,12 +153,15 @@ window.clearChromaActiveProject = function () {
   var bg = document.querySelector(".chroma-bg");
   if (!bg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var tx = 0, ty = 0, pending = false;
+  var tx = 0, ty = 0, cursorX = 0.5, pending = false;
+  var autoHue = 0, clickHue = 0, hue = 0;
   function isCham() { return document.body.classList.contains("chameleon-mode"); }
+  function isLocked() { return document.body.classList.contains("chroma-locked"); }
 
   window.addEventListener("mousemove", function (e) {
     if (!isCham()) return;
-    tx = (e.clientX / window.innerWidth - 0.5) * 56;
+    cursorX = e.clientX / window.innerWidth;
+    tx = (cursorX - 0.5) * 56;
     ty = (e.clientY / window.innerHeight - 0.5) * 56;
     if (!pending) {
       pending = true;
@@ -172,6 +175,8 @@ window.clearChromaActiveProject = function () {
 
   window.addEventListener("click", function (e) {
     if (!isCham()) return;
+    /* A click on the field nudges the palette to a fresh hue */
+    if (!isLocked()) clickHue = (clickHue + 55 + Math.random() * 85) % 360;
     var r = document.createElement("span");
     r.className = "chroma-ripple";
     r.style.left = e.clientX + "px";
@@ -179,6 +184,20 @@ window.clearChromaActiveProject = function () {
     document.body.appendChild(r);
     r.addEventListener("animationend", function () { r.remove(); });
   }, { passive: true });
+
+  /* Drive the field's hue: slow drift + cursor position + click jumps, eased on
+     the shortest path so shifts feel chill. Frozen while a project is locked. */
+  function loop() {
+    if (isCham() && !isLocked()) {
+      autoHue = (autoHue + 0.05) % 360;
+      var target = (((autoHue + (cursorX - 0.5) * 140 + clickHue) % 360) + 360) % 360;
+      var delta = ((target - hue + 540) % 360) - 180;
+      hue = (hue + delta * 0.05 + 360) % 360;
+      bg.style.setProperty("--hue", hue.toFixed(1) + "deg");
+    }
+    window.requestAnimationFrame(loop);
+  }
+  window.requestAnimationFrame(loop);
 })();
 
 function resetAccent() {
@@ -186,7 +205,6 @@ function resetAccent() {
   s.removeProperty("--accent");
   s.removeProperty("--chroma-1");
   s.removeProperty("--chroma-2");
-  s.removeProperty("--chroma-3");
 }
 
 function applyColours(res) {
@@ -194,7 +212,6 @@ function applyColours(res) {
   s.setProperty("--accent", res.accent);
   s.setProperty("--chroma-1", res.chroma[0]);
   s.setProperty("--chroma-2", res.chroma[1]);
-  s.setProperty("--chroma-3", res.chroma[2]);
 }
 
 function applySampledAccent(src) {
@@ -213,11 +230,11 @@ function applySampledAccent(src) {
       var ctx = c.getContext("2d");
       ctx.drawImage(img, 0, 0, w, h);
       var d = ctx.getImageData(0, 0, w, h).data;
-      /* three horizontal bands → background palette; colourful overall → accent */
-      var bands = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+      /* two horizontal bands → two background blobs; colourful overall → accent */
+      var bands = [[0, 0, 0, 0], [0, 0, 0, 0]];
       var av = [0, 0, 0, 0], cv = [0, 0, 0, 0], x, y, i, rr, gg, bb, mx, mn, band;
       for (y = 0; y < h; y++) {
-        band = y < h / 3 ? 0 : y < (2 * h) / 3 ? 1 : 2;
+        band = y < h / 2 ? 0 : 1;
         for (x = 0; x < w; x++) {
           i = (y * w + x) * 4; rr = d[i]; gg = d[i + 1]; bb = d[i + 2];
           bands[band][0] += rr; bands[band][1] += gg; bands[band][2] += bb; bands[band][3]++;
