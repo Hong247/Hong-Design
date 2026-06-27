@@ -1,5 +1,5 @@
 (function () {
-  var overlay, imgEl, closeBtn, prevBtn, nextBtn;
+  var overlay, imgEl, videoEl, closeBtn, prevBtn, nextBtn;
 
   /* zoom / pan state */
   var currentScale = 1, baseScale = 1;
@@ -33,6 +33,13 @@
     imgEl.id = "lb-img";
     imgEl.alt = "";
 
+    videoEl = document.createElement("video");
+    videoEl.id = "lb-video";
+    videoEl.setAttribute("controls", "");
+    videoEl.setAttribute("playsinline", "");
+    videoEl.setAttribute("loop", "");
+    videoEl.muted = true;
+
     closeBtn = document.createElement("button");
     closeBtn.id = "lb-close";
     closeBtn.type = "button";
@@ -58,6 +65,7 @@
       '<polyline points="4,4 16,18 4,32"/></svg>';
 
     overlay.appendChild(imgEl);
+    overlay.appendChild(videoEl);
     overlay.appendChild(closeBtn);
     overlay.appendChild(prevBtn);
     overlay.appendChild(nextBtn);
@@ -91,6 +99,10 @@
   }
 
   function open(clickedImg) {
+    videoEl.style.display = "none";
+    imgEl.style.display = "";
+    prevBtn.style.display = "";
+    nextBtn.style.display = "";
     currentImages = getImagesFromContainer(clickedImg);
     currentIndex  = currentImages.indexOf(clickedImg);
     if (currentIndex < 0) currentIndex = 0;
@@ -102,6 +114,23 @@
     closeBtn.focus();
   }
 
+  function openVideo(clickedVideo) {
+    /* Single-item video mode: no gallery nav, native controls */
+    currentImages = [];
+    imgEl.style.display = "none";
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    var src = clickedVideo.currentSrc ||
+      (clickedVideo.querySelector("source") && clickedVideo.querySelector("source").src) || "";
+    videoEl.src = src;
+    videoEl.style.display = "block";
+    overlay.classList.add("lb-open");
+    document.body.classList.add("lb-active");
+    var p = videoEl.play();
+    if (p && p.catch) p.catch(function () {});
+    closeBtn.focus();
+  }
+
   function loadImage(img) {
     imgEl.src = img.src;
     imgEl.alt = img.alt || "";
@@ -110,7 +139,12 @@
   function close() {
     overlay.classList.remove("lb-open");
     document.body.classList.remove("lb-active");
-    setTimeout(function () { imgEl.src = ""; imgEl.alt = ""; }, 260);
+    if (!videoEl.paused) videoEl.pause();
+    setTimeout(function () {
+      imgEl.src = ""; imgEl.alt = "";
+      videoEl.removeAttribute("src");
+      videoEl.load();
+    }, 260);
   }
 
   function updateNavButtons() {
@@ -308,7 +342,9 @@
   function delegate() {
     document.addEventListener("click", function (e) {
       var img = e.target.closest(".scroll-container img.fullscreen-image");
-      if (img) open(img);
+      if (img) { open(img); return; }
+      var vid = e.target.closest(".scroll-container video.fullscreen-image");
+      if (vid) openVideo(vid);
     });
   }
 
