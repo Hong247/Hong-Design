@@ -515,6 +515,12 @@
       window.renderProjectDetailRow(row);
     }
 
+    /* Chameleon: pin the background to this project's colours while it's open */
+    if (window.setChromaActiveProject) {
+      var openHeader = getHeaderForRow(row);
+      window.setChromaActiveProject(openHeader ? openHeader.getAttribute("data-image-source") : "");
+    }
+
     var scrollContainer = row.querySelector(".scroll-container");
     if (scrollContainer) {
       scrollContainer.scrollTo({ left: 0, behavior: "instant" });
@@ -559,6 +565,10 @@
   function closeRow(row) {
     var detail = getDetail(row);
     var header = getHeaderForRow(row);
+
+    if (window.clearChromaActiveProject) {
+      window.clearChromaActiveProject();
+    }
 
     window.clearTimeout(row.openTimer);
     window.clearTimeout(row.closeTimer);

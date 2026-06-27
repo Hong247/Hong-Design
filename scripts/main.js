@@ -128,6 +128,25 @@ function setTheme(theme) {
 
 /* ── Chameleon: accent + animated background sample the hovered project ── */
 var _accentCache = {};
+var _activeProjectSrc = null; /* preview of the currently OPEN project, if any */
+
+/* Called by the scroll controller when a project opens/closes so the background
+   stays pinned to that project's colours instead of resuming the idle cycle. */
+window.setChromaActiveProject = function (src) {
+  _activeProjectSrc = src || null;
+  if (_activeProjectSrc && document.body.classList.contains("chameleon-mode")) {
+    document.body.classList.add("chroma-locked");
+    applySampledAccent(_activeProjectSrc);
+  }
+};
+
+window.clearChromaActiveProject = function () {
+  _activeProjectSrc = null;
+  if (document.body.classList.contains("chameleon-mode") && !hoverState.trigger) {
+    document.body.classList.remove("chroma-locked");
+    resetAccent();
+  }
+};
 
 function resetAccent() {
   var s = document.body.style;
@@ -349,10 +368,15 @@ function stopIntelligentHoverPreview() {
     hoverState.imageEl.removeAttribute("src");
   }
 
-  /* Release the lock so the idle hue-cycle resumes when nothing is hovered */
+  /* On unhover: fall back to the open project's colours if one is open,
+     otherwise release the lock and resume the idle hue-cycle */
   if (document.body.classList.contains("chameleon-mode")) {
-    document.body.classList.remove("chroma-locked");
-    resetAccent();
+    if (_activeProjectSrc) {
+      applySampledAccent(_activeProjectSrc);
+    } else {
+      document.body.classList.remove("chroma-locked");
+      resetAccent();
+    }
   }
 }
 
