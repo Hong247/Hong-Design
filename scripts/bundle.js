@@ -278,6 +278,15 @@ function buildProjectDetail(project) {
   window.addEventListener("click", handleProjectClick, true);
   document.addEventListener("DOMContentLoaded", initProjectHeaders);
   document.addEventListener("DOMContentLoaded", openProjectFromHash);
+  document.addEventListener("DOMContentLoaded", function () {
+    var title = document.querySelector(".header-title");
+    if (!title) return;
+    title.addEventListener("click", function () {
+      document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
+        closeRow(row);
+      });
+    });
+  });
   window.addEventListener("popstate", function () {
     document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
       closeRow(row);

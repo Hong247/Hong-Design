@@ -170,6 +170,7 @@ body.orange-mode .theme-toggle:hover {
   padding-top: 10px;
   font-weight: 400;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .theme-toggle {
