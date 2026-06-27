@@ -853,8 +853,8 @@ body.chameleon-mode {
 /* White chameleon: ink accent + bright pastel idle palette */
 body.chameleon-light {
   --accent: #000000;
-  --chroma-1: hsl(212, 95%, 74%);
-  --chroma-2: hsl(282, 88%, 78%);
+  --chroma-1: hsl(212, 96%, 85%);
+  --chroma-2: hsl(282, 92%, 88%);
 }
 .chroma-bg { display: none; }
 body.chameleon-mode .chroma-bg {
@@ -868,10 +868,9 @@ body.chameleon-mode .chroma-bg {
   will-change: transform, filter;
   /* Very soft so the two circles read as one diffuse colour field.
      Hue is driven by JS so it reacts to cursor + clicks. */
+  /* Transform + filter are driven per-frame by JS (parallax, click-kick, hue).
+     These are just the static fallback for reduced-motion / no-JS. */
   filter: blur(140px) hue-rotate(var(--hue, 0deg));
-  /* Cursor parallax — the whole field leans toward the pointer, with a chill lag */
-  transform: translate(var(--px, 0px), var(--py, 0px));
-  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 /* Lighter base needs a touch more presence to read as colour over white */
 body.chameleon-light .chroma-bg { opacity: 0.82; }
@@ -912,28 +911,9 @@ body.chameleon-mode.chroma-locked .chroma-bg {
   75%  { transform: translate(-15vw, 2vh) scale(0.98) rotate(-3deg); }
   100% { transform: translate(0, 0) scale(1.1) rotate(0deg); }
 }
-/* Click ripple — a soft glow blooms from the pointer in the current accent */
-.chroma-ripple {
-  position: fixed;
-  width: 26px;
-  height: 26px;
-  margin: -13px 0 0 -13px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(6px);
-  animation: chroma-ripple 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes chroma-ripple {
-  from { transform: scale(0.4); opacity: 0.5; }
-  to   { transform: scale(36); opacity: 0; }
-}
 @media (prefers-reduced-motion: reduce) {
   .chroma-blob,
   body.chameleon-mode .chroma-bg { animation: none !important; }
-  .chroma-bg { transition: none !important; }
-  .chroma-ripple { display: none !important; }
 }
 
 /* No opaque header bar in chameleon — it would block the gradient and read as a
