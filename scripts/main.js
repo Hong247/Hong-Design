@@ -126,6 +126,8 @@ function setTheme(theme) {
   }
   localStorage.setItem("theme", theme);
   resetAccent();
+  /* Nudge the custom scrollbar to recolour for the new mode */
+  window.dispatchEvent(new Event("resize"));
 }
 
 /* ── Chameleon: accent + animated background sample the hovered project ── */
