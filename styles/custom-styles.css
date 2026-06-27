@@ -116,7 +116,8 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
   pointer-events: auto;
   background: rgba(0, 0, 0, .88);
 }
-#lb-img {
+#lb-img,
+#lb-video {
   max-width: 92vw;
   max-height: 92vh;
   object-fit: contain;
@@ -126,6 +127,13 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
   transform-origin: center center;
   will-change: transform;
   touch-action: none;
+}
+#lb-video { display: none; }
+/* Gallery video: size and behave like images, clickable to enlarge */
+.scroll-container video.fullscreen-image {
+  max-width: none;
+  object-fit: contain;
+  cursor: zoom-in;
 }
 #lb-close {
   position: fixed;
