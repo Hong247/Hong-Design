@@ -57,6 +57,11 @@ function renderProjectArchive() {
 }
 
 function getProjectGallerySources(project) {
+  // Prefer the precomputed gallery from the index (full image set, keem excluded)
+  if (Array.isArray(project.gallery) && project.gallery.length) {
+    return project.gallery.slice();
+  }
+
   var sources = [];
 
   if (project.preview) {
@@ -71,7 +76,7 @@ function getProjectGallerySources(project) {
     });
   }
 
-  return sources.slice(0, 4);
+  return sources;
 }
 
 function populateDetailRow(row) {
