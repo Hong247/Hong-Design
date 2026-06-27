@@ -22,17 +22,22 @@ body.chameleon-mode .theme-toggle::before { color: var(--accent); }
   cursor: pointer;
   padding: 0 0 1px;
   opacity: .76;
-  transition: opacity .2s ease, transform .2s ease, color .2s ease;
 }
+/* LinkedIn, Email and the copy button share one lift+scale hover, eased over 2s */
+.social-links a,
+.email-copy-button {
+  display: inline-block;
+  transition: transform 2s cubic-bezier(.22, 1, .36, 1), opacity 2s ease, color .2s ease;
+}
+.social-links a:hover,
+.social-links a:focus-visible,
 .email-copy-button:hover,
 .email-copy-button:focus-visible {
-  opacity: 1;
   transform: translateY(-1px) scale(1.06);
+  opacity: 1;
   outline: none;
   color: var(--accent);
 }
-body.orange-mode .email-copy-button:hover,
-body.orange-mode .email-copy-button:focus-visible { color: #fff; }
 .email-copy-feedback {
   display: inline-block;
   white-space: nowrap;
