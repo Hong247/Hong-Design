@@ -4,7 +4,7 @@
 /* IBM Plex Sans is loaded via styles/fonts.css (self-hosted, see scripts/prerender.js) */
 
 :root {
-  --accent: #fe5000;
+  --accent: #ffffff;
   --border-light: transparent;
   --border-dark: transparent;
   --muted-light: currentColor;
@@ -84,13 +84,18 @@ body.orange-mode {
   color: #000000;
 }
 
-body.dark-mode,
 body.chameleon-mode {
   background: #000000;
   color: #ffffff;
 }
 
-/* Accent-driven UI animates as chameleon mode samples each project */
+/* White chameleon: paper base, ink text */
+body.chameleon-light {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Accent-driven UI eases as chameleon samples each project */
 body.chameleon-mode a:hover,
 body.chameleon-mode .custom-btn:hover,
 body.chameleon-mode tr:hover .custom-btn,
@@ -839,10 +844,19 @@ body.orange-mode .colophon-meta a:hover { color: #ffffff; }
 body.orange-mode .colophon-sep { color: #000000; }
 
 /* ── Chameleon mode: animated gaussian-blur background ── */
-:root {
+/* Black chameleon: white accent + mid-dark idle palette */
+body.chameleon-mode {
+  --accent: #ffffff;
   --chroma-1: hsl(220, 78%, 44%);
   --chroma-2: hsl(285, 70%, 42%);
   --chroma-3: hsl(165, 70%, 38%);
+}
+/* White chameleon: ink accent + bright pastel idle palette */
+body.chameleon-light {
+  --accent: #000000;
+  --chroma-1: hsl(212, 95%, 74%);
+  --chroma-2: hsl(282, 88%, 78%);
+  --chroma-3: hsl(160, 82%, 72%);
 }
 .chroma-bg { display: none; }
 body.chameleon-mode .chroma-bg {
@@ -857,6 +871,8 @@ body.chameleon-mode .chroma-bg {
   /* Idle: the whole field keeps cycling through hues */
   animation: chroma-cycle 16s linear infinite;
 }
+/* Lighter base needs a touch more presence to read as colour over white */
+body.chameleon-light .chroma-bg { opacity: 0.78; }
 /* While hovering a project, freeze the cycle so its true colours show */
 body.chameleon-mode.chroma-locked .chroma-bg {
   animation: none;
@@ -908,11 +924,13 @@ body.chameleon-mode.chroma-locked .chroma-bg {
   body.chameleon-mode .chroma-bg { animation: none !important; }
 }
 
-/* Frosted header so it blends with the gradient instead of a hard black block */
+/* Sticky header: solid base colour, soft bottom fade so there's no hard seam */
 body.chameleon-mode thead th {
-  background: rgba(0, 0, 0, 0.35);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0) 100%);
+}
+body.chameleon-light thead th {
+  color: #000000;
+  background: linear-gradient(to bottom, #fff 0%, #fff 70%, rgba(255, 255, 255, 0) 100%);
 }
 
 /* Project focus state */
