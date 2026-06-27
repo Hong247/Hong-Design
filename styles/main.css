@@ -81,9 +81,18 @@ body.orange-mode {
   color: #000000;
 }
 
-body.dark-mode {
+body.dark-mode,
+body.chameleon-mode {
   background: #000000;
   color: #ffffff;
+}
+
+/* Accent-driven UI animates as chameleon mode samples each project */
+body.chameleon-mode a:hover,
+body.chameleon-mode .custom-btn:hover,
+body.chameleon-mode tr:hover .custom-btn,
+body.chameleon-mode .theme-toggle::before {
+  transition: color 0.35s ease;
 }
 
 a {
@@ -289,7 +298,8 @@ body.orange-mode thead th {
   color: #000000;
 }
 
-body.dark-mode thead th {
+body.dark-mode thead th,
+body.chameleon-mode thead th {
   background: #000000;
   color: inherit;
 }
