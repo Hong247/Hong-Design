@@ -1115,34 +1115,96 @@ function initEmailCopyButton() {
   });
 }
 
+var THEMES = ["light", "orange", "dark", "chameleon"];
+
 function applySavedTheme() {
   var saved = localStorage.getItem("theme");
-  setTheme(saved === "orange" || saved === "dark" || saved === "light" ? saved : "light");
+  setTheme(THEMES.indexOf(saved) !== -1 ? saved : "light");
 }
 
 function toggleTheme() {
-  var currentTheme = getCurrentTheme();
-  var nextTheme = currentTheme === "light" ? "orange" : currentTheme === "orange" ? "dark" : "light";
-
-  setTheme(nextTheme);
+  var i = THEMES.indexOf(getCurrentTheme());
+  setTheme(THEMES[(i + 1) % THEMES.length]);
 }
 
 function getCurrentTheme() {
   if (document.body.classList.contains("orange-mode")) {
     return "orange";
   }
-
   if (document.body.classList.contains("dark-mode")) {
     return "dark";
   }
-
+  if (document.body.classList.contains("chameleon-mode")) {
+    return "chameleon";
+  }
   return "light";
 }
 
 function setTheme(theme) {
-  document.body.classList.remove("light-mode", "orange-mode", "dark-mode");
+  document.body.classList.remove("light-mode", "orange-mode", "dark-mode", "chameleon-mode");
   document.body.classList.add(theme + "-mode");
   localStorage.setItem("theme", theme);
+  /* Drop any live chameleon accent so other modes use the CSS default */
+  resetAccent();
+}
+
+/* ── Chameleon mode: accent samples the hovered project's preview ── */
+var _accentCache = {};
+
+function resetAccent() {
+  document.documentElement.style.removeProperty("--accent");
+}
+
+function applySampledAccent(src) {
+  if (!src) return;
+  if (_accentCache[src]) {
+    document.documentElement.style.setProperty("--accent", _accentCache[src]);
+    return;
+  }
+  var img = new Image();
+  img.onload = function () {
+    try {
+      var c = document.createElement("canvas");
+      var w = (c.width = 16), h = (c.height = 16);
+      var ctx = c.getContext("2d");
+      ctx.drawImage(img, 0, 0, w, h);
+      var d = ctx.getImageData(0, 0, w, h).data;
+      var r = 0, g = 0, b = 0, n = 0, i, rr, gg, bb, mx, mn;
+      /* average only the colourful mid-tones — skip near-black / near-white */
+      for (i = 0; i < d.length; i += 4) {
+        rr = d[i]; gg = d[i + 1]; bb = d[i + 2];
+        mx = Math.max(rr, gg, bb); mn = Math.min(rr, gg, bb);
+        if (mx < 30 || mn > 228) continue;
+        r += rr; g += gg; b += bb; n++;
+      }
+      if (!n) {
+        for (i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; }
+      }
+      var col = vividRgb(r / n, g / n, b / n);
+      _accentCache[src] = col;
+      /* only apply if we're still in chameleon mode and still hovering */
+      if (document.body.classList.contains("chameleon-mode") && hoverState.trigger) {
+        document.documentElement.style.setProperty("--accent", col);
+      }
+    } catch (e) {}
+  };
+  img.src = src;
+}
+
+/* Nudge saturation/brightness up so the accent always reads as an accent */
+function vividRgb(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  var mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, s = 0, h = 0, dd = mx - mn;
+  if (dd) {
+    s = dd / (1 - Math.abs(2 * l - 1));
+    if (mx === r) h = ((g - b) / dd) % 6;
+    else if (mx === g) h = (b - r) / dd + 2;
+    else h = (r - g) / dd + 4;
+    h *= 60; if (h < 0) h += 360;
+  }
+  s = Math.min(1, s * 1.5 + 0.15);
+  l = Math.min(0.62, Math.max(0.42, l));
+  return "hsl(" + Math.round(h) + ", " + Math.round(s * 100) + "%, " + Math.round(l * 100) + "%)";
 }
 
 function setScrolling() {
@@ -1249,6 +1311,10 @@ function startIntelligentHoverPreview(trigger) {
     hoverState.captionEl.textContent = year ? title + "  ·  " + year : title;
   }
 
+  if (document.body.classList.contains("chameleon-mode")) {
+    applySampledAccent(trigger.getAttribute("data-image-source"));
+  }
+
   showHoveredPreviewImage(hoverState.images[hoverState.index]);
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1277,6 +1343,11 @@ function stopIntelligentHoverPreview() {
     hoverState.imageEl.style.display = "none";
     hoverState.imageEl.style.transform = "";
     hoverState.imageEl.removeAttribute("src");
+  }
+
+  /* Chameleon accent breathes back to its default when nothing is hovered */
+  if (document.body.classList.contains("chameleon-mode")) {
+    resetAccent();
   }
 }
 
