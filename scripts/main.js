@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   hoverState.imageEl = document.querySelector(".hovered-image");
   hoverState.captionEl = document.querySelector(".hovered-caption");
+  var yearEl = document.querySelector(".colophon-year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
   initEmailCopyButton();
   applySavedTheme();
   setScrolling();
