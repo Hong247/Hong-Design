@@ -149,7 +149,13 @@ function setPageOverflow() {
 window.addScrollDots = addScrollDots;
 
 function addScrollDots(scrollContainer) {
-  var images = scrollContainer.querySelectorAll("img");
+  /* Only count images actually visible in this viewport — some projects hide a
+     desktop/mobile image set via display:none (e.g. Kee's keem/keen split). */
+  var images = Array.prototype.slice
+    .call(scrollContainer.querySelectorAll("img"))
+    .filter(function (img) {
+      return window.getComputedStyle(img).display !== "none";
+    });
 
   if (images.length < 2) {
     return;
@@ -168,7 +174,8 @@ function addScrollDots(scrollContainer) {
     dot.setAttribute("aria-label", "Image " + (i + 1) + " of " + images.length);
     dot.setAttribute("aria-selected", i === 0 ? "true" : "false");
     dot.addEventListener("click", function () {
-      scrollContainer.scrollTo({ left: scrollContainer.clientWidth * i, behavior: "smooth" });
+      var offset = img.getBoundingClientRect().left - scrollContainer.getBoundingClientRect().left;
+      scrollContainer.scrollTo({ left: scrollContainer.scrollLeft + offset, behavior: "smooth" });
     });
     dots.appendChild(dot);
   });
@@ -181,7 +188,18 @@ function addScrollDots(scrollContainer) {
     scrollDotRafPending = true;
     window.requestAnimationFrame(function () {
       scrollDotRafPending = false;
-      var index = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
+      /* Active = whichever visible image sits closest to the container's left edge,
+         since image widths vary (no fixed one-image-per-viewport assumption). */
+      var containerLeft = scrollContainer.getBoundingClientRect().left;
+      var index = 0;
+      var closest = Infinity;
+      images.forEach(function (img, i) {
+        var dist = Math.abs(img.getBoundingClientRect().left - containerLeft);
+        if (dist < closest) {
+          closest = dist;
+          index = i;
+        }
+      });
       dots.querySelectorAll(".scroll-dot").forEach(function (dot, i) {
         var active = i === index;
         dot.classList.toggle("is-active", active);
