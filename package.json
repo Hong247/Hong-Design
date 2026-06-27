@@ -4,7 +4,7 @@
   "private": true,
   "description": "Portfolio site for Hong Design.",
   "scripts": {
-    "build": "node scripts/generate-project-files.js && node scripts/build-css.js && node scripts/version-bump.js && node scripts/prerender.js && node scripts/generate-sitemap.js",
+    "build": "node scripts/generate-project-files.js && node scripts/build-css.js && node scripts/version-bump.js && node scripts/prerender.js && node scripts/generate-sitemap.js && node scripts/minify.js",
     "prerender": "node scripts/prerender.js",
     "version-bump": "node scripts/version-bump.js"
   },
@@ -12,6 +12,7 @@
     "node": "22.x"
   },
   "devDependencies": {
+    "clean-css": "^5.3.3",
     "clean-css-cli": "^5.6.3",
     "terser": "^5.48.0"
   }
