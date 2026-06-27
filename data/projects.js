@@ -170,21 +170,21 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/kee/Kee1.jpg",
     media: [
-      { type: "image", src: "images/kee/keea.jpg", alt: "Kee - Image a", className: "keen" },
-      { type: "image", src: "images/kee/keeb.jpg", alt: "Kee - Image b", className: "keen" },
-      { type: "image", src: "images/kee/keec.jpg", alt: "Kee - Image c", className: "keen" },
-      { type: "image", src: "images/kee/keed.jpg", alt: "Kee - Image d", className: "keen" },
-      { type: "image", src: "images/kee/keee.jpg", alt: "Kee - Image e", className: "keen" },
-      { type: "image", src: "images/kee/keef.jpg", alt: "Kee - Image f", className: "keen" },
-      { type: "video", src: "images/kee/kee1.mp4", alt: "Kee - animation 1", className: "keen" },
-      { type: "video", src: "images/kee/kee2.mp4", alt: "Kee - animation 2", className: "keen" },
-      { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee - Image 1", className: "keen" },
-      { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee - Image 2", className: "keen" },
-      { type: "image", src: "images/kee/Kee3.jpg", alt: "Kee - Image 3", className: "keen" },
-      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee - Image 1", className: "keem" },
-      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee - Image 2", className: "keem" },
-      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee - Image 3", className: "keem" },
-      { type: "image", src: "images/kee/keem4.jpg", alt: "Kee - Image 4", className: "keem" }
+      { type: "image", src: "images/kee/keea.jpg", alt: "Kee Malaysian Chinese wonton noodle brand identity — logotype set in the motion-inspired Yuwei typeface", className: "keen" },
+      { type: "image", src: "images/kee/keeb.jpg", alt: "Kee brand identity — carbon and brandy-yellow material colour system drawn from the kitchen", className: "keen" },
+      { type: "image", src: "images/kee/keec.jpg", alt: "Kee brand identity — packaging application rooted in Malaysian Chinese noodle culture", className: "keen" },
+      { type: "image", src: "images/kee/keed.jpg", alt: "Kee brand identity — storefront signage application", className: "keen" },
+      { type: "image", src: "images/kee/keee.jpg", alt: "Kee brand identity — stationery and collateral application", className: "keen" },
+      { type: "image", src: "images/kee/keef.jpg", alt: "Kee brand identity — menu and print application", className: "keen" },
+      { type: "video", src: "images/kee/kee1.mp4", alt: "Kee brand identity — animated noodle-pulling motion graphic", className: "keen" },
+      { type: "video", src: "images/kee/kee2.mp4", alt: "Kee brand identity — animated broth-and-noodle rhythm motion graphic", className: "keen" },
+      { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee wonton noodle brand identity — hero composition", className: "keen" },
+      { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee brand identity — secondary brand application", className: "keen" },
+      { type: "image", src: "images/kee/Kee3.jpg", alt: "Kee brand identity — typographic and colour treatment detail", className: "keen" },
+      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee brand identity — full-length mobile presentation panel 1", className: "keem" },
+      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee brand identity — full-length mobile presentation panel 2", className: "keem" },
+      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee brand identity — full-length mobile presentation panel 3", className: "keem" },
+      { type: "image", src: "images/kee/keem4.jpg", alt: "Kee brand identity — full-length mobile presentation panel 4", className: "keem" }
     ],
     description: [
       { label: "Brief", text: "Malaysian Chinese food culture has a specific visual and emotional register that most contemporary restaurant branding either overwrites with generic Asian-restaurant clichés or ignores entirely. Kee asked whether a brand could feel genuinely rooted in that cultural context — the specific world of Malaysian Chinese wonton noodle cooking — without resorting to illustration, nostalgia, or shorthand." },
@@ -200,11 +200,11 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/maia/maia4.jpg",
     media: [
-      { type: "image", src: "images/maia/maia3.jpg", alt: "maia - Image 3" },
-      { type: "image", src: "images/maia/maia4.jpg", alt: "maia - Image 4" },
-      { type: "image", src: "images/maia/maia5.jpg", alt: "maia - Image 5" },
-      { type: "image", src: "images/maia/maia6.jpg", alt: "maia - Image 6" },
-      { type: "image", src: "images/maia/maia7.jpg", alt: "maia - Image 7" }
+      { type: "image", src: "images/maia/maia3.jpg", alt: "maia luxury beauty brand identity — custom refined serif logotype" },
+      { type: "image", src: "images/maia/maia4.jpg", alt: "maia brand identity — softly blurred lifestyle imagery in a warm neutral palette" },
+      { type: "image", src: "images/maia/maia5.jpg", alt: "maia brand identity — product application in muted warm neutrals" },
+      { type: "image", src: "images/maia/maia6.jpg", alt: "maia brand identity — editorial campaign composition using negative space" },
+      { type: "image", src: "images/maia/maia7.jpg", alt: "maia brand identity — retail and packaging touchpoint" }
     ],
     description: [
       { label: "Brief", text: "Luxury fashion and beauty brands face a structural tension: they need to feel exclusive enough to justify premium positioning while remaining approachable enough to actually sell personal care services. Most brands resolve this by defaulting to black, gold, and classic serif type — a formula so overused it communicates nothing distinctive. maia needed a different answer." },
@@ -220,14 +220,14 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/browns/browns3.jpg",
     media: [
-      { type: "image", src: "images/browns/browns1.png", alt: "Browns - Image 1" },
-      { type: "image", src: "images/browns/browns2.png", alt: "Browns - Image 2" },
-      { type: "image", src: "images/browns/browns3.png", alt: "Browns - Image 3" },
-      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns - Image 4" },
-      { type: "image", src: "images/browns/browns4.jpg", alt: "Browns - Image 5" },
-      { type: "image", src: "images/browns/browns5.jpg", alt: "Browns - Image 6" },
-      { type: "image", src: "images/browns/browns6.jpg", alt: "Browns - Image 7" },
-      { type: "image", src: "images/browns/browns7.jpg", alt: "Browns - Image 8" }
+      { type: "image", src: "images/browns/browns1.png", alt: "Browns Shoes rebrand concept — product-led campaign visual against a colour-matched background" },
+      { type: "image", src: "images/browns/browns2.png", alt: "Browns Shoes rebrand concept — material and texture study with footwear as the primary subject" },
+      { type: "image", src: "images/browns/browns3.png", alt: "Browns Shoes rebrand concept — catalogue spread with tight grid discipline" },
+      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns Shoes rebrand concept — hero campaign image" },
+      { type: "image", src: "images/browns/browns4.jpg", alt: "Browns Shoes rebrand concept — e-commerce product grid layout" },
+      { type: "image", src: "images/browns/browns5.jpg", alt: "Browns Shoes rebrand concept — out-of-home campaign application" },
+      { type: "image", src: "images/browns/browns6.jpg", alt: "Browns Shoes rebrand concept — seasonal lookbook spread" },
+      { type: "image", src: "images/browns/browns7.jpg", alt: "Browns Shoes rebrand concept — wide-set single-weight typographic treatment" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.brownsshoes.com/en/home\" target=\"_blank\" rel=\"noopener noreferrer\">Browns Shoes</a> is a national Canadian footwear retailer with decades of history. Like many legacy retailers, it had accumulated a visual identity that felt neither premium enough for its higher-end product range nor distinctive enough to compete with directional international footwear brands. This speculative rebrand concept explores how Browns could sharpen its identity to feel more product-led and more considered — without abandoning the breadth of a national retailer." },
@@ -243,9 +243,9 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/monday/monday1.jpg",
     media: [
-      { type: "image", src: "images/monday/monday1.jpg", alt: "monday - Image 1" },
+      { type: "image", src: "images/monday/monday1.jpg", alt: "monday office chair brand — lowercase logotype built from Bauhaus 93 geometry" },
       { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign", width: 1200, height: 600 },
-      { type: "image", src: "images/monday/monday2.jpg", alt: "monday - Image 2" }
+      { type: "image", src: "images/monday/monday2.jpg", alt: "monday office chair brand — product photography of the chair in a workspace" }
     ],
     description: [
       { label: "Brief", text: "The office chair market divides into two positions: ergonomic function with zero visual ambition, or design-forward pieces that sacrifice usability for looks. monday was a brand and website prototype asking whether a third position existed — a chair brand that felt both genuinely reliable and visually considered, with a personality quiet enough to belong in any workspace." },
@@ -261,10 +261,10 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/killthebride/killthebride1.jpg",
     media: [
-      { type: "image", src: "images/killthebride/killthebride1.jpg", alt: "Kill the Bride - Image 1" },
-      { type: "image", src: "images/killthebride/killthebride2.jpg", alt: "Kill the Bride - Image 2" },
-      { type: "image", src: "images/killthebride/killthebride3.jpg", alt: "Kill the Bride - Image 3" },
-      { type: "image", src: "images/killthebride/killthebride4.jpg", alt: "Kill the Bride - Image 4" }
+      { type: "image", src: "images/killthebride/killthebride1.jpg", alt: "Kill the Bride speculative film poster — blue-led title treatment, poster one" },
+      { type: "image", src: "images/killthebride/killthebride2.jpg", alt: "Kill the Bride speculative film poster — high-contrast tightly-spaced typography, poster two" },
+      { type: "image", src: "images/killthebride/killthebride3.jpg", alt: "Kill the Bride speculative film poster — exploitation-cinema composition, poster three" },
+      { type: "image", src: "images/killthebride/killthebride4.jpg", alt: "Kill the Bride speculative film poster — geometric negative-space layout, poster four" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill\" target=\"_blank\" rel=\"noopener noreferrer\">Kill Bill</a>'s visual language — the yellow tracksuit, the blood-red title treatment, the exploitation-cinema poster grammar — is so established it has become cultural shorthand. This speculative film poster series imagines a spiritual sequel called Kill The Bride, asking how that language could evolve twenty years later while maintaining enough DNA to register as a continuation." },
@@ -280,14 +280,14 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/wwf/wwf4.jpg",
     media: [
-      { type: "image", src: "images/wwf/wwf1.jpg", alt: "Stop Haunting Mother Nature - Image 1" },
-      { type: "image", src: "images/wwf/wwf2 copy.jpg", alt: "Stop Haunting Mother Nature - Image 2" },
-      { type: "image", src: "images/wwf/wwf3.jpg", alt: "Stop Haunting Mother Nature - Image 3" },
-      { type: "image", src: "images/wwf/wwf4.jpg", alt: "Stop Haunting Mother Nature - Image 4" },
-      { type: "image", src: "images/wwf/wwf5.jpg", alt: "Stop Haunting Mother Nature - Image 5" },
-      { type: "image", src: "images/wwf/wwf6.jpg", alt: "Stop Haunting Mother Nature - Image 6" },
-      { type: "image", src: "images/wwf/wwf7.jpg", alt: "Stop Haunting Mother Nature - Image 7" },
-      { type: "image", src: "images/wwf/wwf8.jpg", alt: "Stop Haunting Mother Nature - Image 8" }
+      { type: "image", src: "images/wwf/wwf1.jpg", alt: "Stop Haunting Mother Nature — WWF speculative campaign using horror-film grammar, lead poster" },
+      { type: "image", src: "images/wwf/wwf2 copy.jpg", alt: "Stop Haunting Mother Nature WWF campaign — horror-poster silhouette with an environmental threat substituted" },
+      { type: "image", src: "images/wwf/wwf3.jpg", alt: "Stop Haunting Mother Nature WWF campaign — industrial pollution reframed as horror imagery" },
+      { type: "image", src: "images/wwf/wwf4.jpg", alt: "Stop Haunting Mother Nature WWF campaign — deforestation reframed through horror-film composition" },
+      { type: "image", src: "images/wwf/wwf5.jpg", alt: "Stop Haunting Mother Nature WWF campaign — pesticide equipment cast as the horror weapon" },
+      { type: "image", src: "images/wwf/wwf6.jpg", alt: "Stop Haunting Mother Nature WWF campaign — poster application with period-accurate horror colour treatment" },
+      { type: "image", src: "images/wwf/wwf7.jpg", alt: "Stop Haunting Mother Nature WWF campaign — campaign poster variant" },
+      { type: "image", src: "images/wwf/wwf8.jpg", alt: "Stop Haunting Mother Nature WWF campaign — out-of-home campaign application" }
     ],
     description: [
       { label: "Brief", text: "Environmental campaigns have a well-documented creative problem: the imagery of destruction — melting glaciers, dying wildlife, deforestation — has been used so repeatedly that audiences have developed visual immunity. The emotional response still happens, but it peaks at sadness and ends at paralysis rather than action. This speculative campaign for <a href=\"https://www.worldwildlife.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WWF</a> found a different entry point." },
@@ -303,13 +303,13 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/x/x5.gif",
     media: [
-      { type: "image", src: "images/x/x1.jpg", alt: "X̱wáýx̱way - Image 1" },
-      { type: "image", src: "images/x/x2.jpg", alt: "X̱wáýx̱way - Image 2" },
-      { type: "image", src: "images/x/x3.jpg", alt: "X̱wáýx̱way - Image 3" },
-      { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way - Image 4" },
-      { type: "image", src: "images/x/x5.gif", alt: "X̱wáýx̱way - Image 5" },
-      { type: "image", src: "images/x/x6.jpg", alt: "X̱wáýx̱way - Image 6" },
-      { type: "image", src: "images/x/x7.jpg", alt: "X̱wáýx̱way - Image 7" }
+      { type: "image", src: "images/x/x1.jpg", alt: "X̱wáýx̱way — archival vinyl record concept honouring Stanley Park as Squamish territory, cover" },
+      { type: "image", src: "images/x/x2.jpg", alt: "X̱wáýx̱way vinyl record — monochromatic documentary photography spread" },
+      { type: "image", src: "images/x/x3.jpg", alt: "X̱wáýx̱way vinyl record — information-dense liner notes layout" },
+      { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way vinyl record — two-colour archival palette application" },
+      { type: "image", src: "images/x/x5.gif", alt: "X̱wáýx̱way — animated sequence from the record's six-theme structure" },
+      { type: "image", src: "images/x/x6.jpg", alt: "X̱wáýx̱way vinyl record — gatefold spread on a documentary grid" },
+      { type: "image", src: "images/x/x7.jpg", alt: "X̱wáýx̱way vinyl record — track listing and Indigenous place-name typography" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://stanleyparkecology.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">Stanley Park</a> is one of the most visited urban parks in North America, but public discourse around it tends toward the scenic and recreational — its status as a tourist landmark rather than as living Indigenous territory, contested urban space, and complex ecological system. X̱wáýx̱way (the Squamish name for the land now called Stanley Park) approaches the park as a subject worthy of serious archival attention and cultural memory." },
@@ -325,9 +325,9 @@ window.PORTFOLIO_PROJECTS = [
     year: "2022",
     preview: "images/rakuharu/rakuharu3.jpg",
     media: [
-      { type: "image", src: "images/rakuharu/rakuharu1.jpg", alt: "raku haru - Image 1" },
-      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru - Image 2" },
-      { type: "image", src: "images/rakuharu/rakuharu3.jpg", alt: "raku haru - Image 3" }
+      { type: "image", src: "images/rakuharu/rakuharu1.jpg", alt: "raku haru modest fashion brand — custom refined logotype balancing softness and clarity" },
+      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru brand identity — product application in a warm white palette" },
+      { type: "image", src: "images/rakuharu/rakuharu3.jpg", alt: "raku haru brand identity — lifestyle campaign photography with a quiet brand mark" }
     ],
     description: [
       { label: "Brief", text: "The Muslim fashion market is one of the fastest-growing segments of global fashion, but available branding for hijab and modest fashion products still tends toward either generic corporate presentation or ethnically coded aesthetics that limit the audience. raku haru was a brand concept exploring what accessible luxury in this space could look like — considered enough to be a genuine purchase decision, inclusive enough to reach across age and personal style." },
@@ -344,9 +344,9 @@ window.PORTFOLIO_PROJECTS = [
     preview: "images/trapodpc/trapodpc1.png",
     media: [
       { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F42OkkDJ2wRe9etERcPKCVz%2FTRAPO-Digital-Catalogue%3Ftype%3Ddesign%26node-id%3D1-2%26t%3Dh4Ksn1BdopSt7HCP-1%26scaling%3Dcontain%26page-id%3D0%253A1%26mode%3Ddesign", width: 800, height: 600 },
-      { type: "image", src: "images/trapodpc/trapodpc1.png", alt: "TRAPO Digital Catalogue - Image 1" },
-      { type: "image", src: "images/trapodpc/trapodpc2.png", alt: "TRAPO Digital Catalogue - Image 2" },
-      { type: "image", src: "images/trapodpc/trapodpc3.png", alt: "TRAPO Digital Catalogue - Image 3" }
+      { type: "image", src: "images/trapodpc/trapodpc1.png", alt: "TRAPO digital catalogue prototype — category browse interface" },
+      { type: "image", src: "images/trapodpc/trapodpc2.png", alt: "TRAPO digital catalogue prototype — product detail view with specs and price tier" },
+      { type: "image", src: "images/trapodpc/trapodpc3.png", alt: "TRAPO digital catalogue prototype — product comparison layout" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.trapo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">TRAPO</a> is a Malaysian automotive accessories brand with a substantial product range sold through retail and direct channels. The printed sales catalogue creates significant operational friction: expensive to produce, difficult to update, and impossible to personalize. This digital catalogue prototype explores a faster, clearer alternative for offline sales teams, in-store promotion, and product comparison." },
@@ -362,14 +362,14 @@ window.PORTFOLIO_PROJECTS = [
     year: "2022",
     preview: "images/traposh/traposh5.jpg",
     media: [
-      { type: "image", src: "images/traposh/traposh1.jpg", alt: "TRAPO Smartphone Holder - Image 1" },
-      { type: "image", src: "images/traposh/traposh2.jpg", alt: "TRAPO Smartphone Holder - Image 2" },
-      { type: "image", src: "images/traposh/traposh3.jpg", alt: "TRAPO Smartphone Holder - Image 3" },
-      { type: "image", src: "images/traposh/traposh4.jpg", alt: "TRAPO Smartphone Holder - Image 4" },
-      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO Smartphone Holder - Image 5" },
-      { type: "image", src: "images/traposh/traposh6.jpg", alt: "TRAPO Smartphone Holder - Image 6" },
-      { type: "image", src: "images/traposh/traposh7.jpg", alt: "TRAPO Smartphone Holder - Image 7" },
-      { type: "image", src: "images/traposh/traposh8.jpg", alt: "TRAPO Smartphone Holder - Image 8" }
+      { type: "image", src: "images/traposh/traposh1.jpg", alt: "TRAPO smartphone holder concept — form built from the TRAPO logo silhouette" },
+      { type: "image", src: "images/traposh/traposh2.jpg", alt: "TRAPO smartphone holder — Alcantara suede and machined aluminium construction" },
+      { type: "image", src: "images/traposh/traposh3.jpg", alt: "TRAPO smartphone holder — LED edge detail illuminated on connection" },
+      { type: "image", src: "images/traposh/traposh4.jpg", alt: "TRAPO smartphone holder — mounted in a vehicle interior" },
+      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO smartphone holder — hero product render" },
+      { type: "image", src: "images/traposh/traposh6.jpg", alt: "TRAPO smartphone holder — MagSafe rotation and case-clearance detail" },
+      { type: "image", src: "images/traposh/traposh7.jpg", alt: "TRAPO smartphone holder — material and finish close-up" },
+      { type: "image", src: "images/traposh/traposh8.jpg", alt: "TRAPO smartphone holder — driver's-seat view showing the brand signature form" }
     ],
     description: [
       { label: "Brief", text: "MagSafe-compatible smartphone holders had become a commodity category by 2022 — flooded with generic injection-molded mounts at aggressive price points. For TRAPO to enter this space with a flagship product, it needed something that could justify a premium and immediately communicate the brand's automotive-grade quality positioning. The design had to feel like it belonged in a well-specified vehicle interior, not dropped in from an accessory bin." },
@@ -385,12 +385,12 @@ window.PORTFOLIO_PROJECTS = [
     year: "2021",
     preview: "images/talentlounge/talentlounge5.jpg",
     media: [
-      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge Virtual Career Fair - Image 1" },
-      { type: "image", src: "images/talentlounge/talentlounge2.jpg", alt: "Talentlounge Virtual Career Fair - Image 2" },
-      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge Virtual Career Fair - Image 3" },
-      { type: "image", src: "images/talentlounge/talentlounge4.jpg", alt: "Talentlounge Virtual Career Fair - Image 4" },
-      { type: "image", src: "images/talentlounge/talentlounge5.jpg", alt: "Talentlounge Virtual Career Fair - Image 5" },
-      { type: "image", src: "images/talentlounge/talentlounge6.jpg", alt: "Talentlounge Virtual Career Fair - Image 6" }
+      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge virtual career fair — 3D-rendered booth environment hero" },
+      { type: "image", src: "images/talentlounge/talentlounge2.jpg", alt: "Talentlounge virtual career fair — industry-categorised booth hall rendering" },
+      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge virtual career fair — company listing booth visual" },
+      { type: "image", src: "images/talentlounge/talentlounge4.jpg", alt: "Talentlounge virtual career fair — spatial navigation environment render" },
+      { type: "image", src: "images/talentlounge/talentlounge5.jpg", alt: "Talentlounge virtual career fair — colour-coded booth wayfinding" },
+      { type: "image", src: "images/talentlounge/talentlounge6.jpg", alt: "Talentlounge virtual career fair — website integration of rendered booth assets" }
     ],
     description: [
       { label: "Brief", text: "The 2020–2021 period eliminated in-person career fairs, forcing recruitment platforms to find digital alternatives. Most solutions were Zoom calls or basic webinar setups — functional but entirely unable to replicate the exploratory, discovery-oriented quality of a physical fair, where candidates could wander, notice unexpected companies, and make quick cultural reads of booths. The <a href=\"https://talentlounge.co/Hello\" target=\"_blank\" rel=\"noopener noreferrer\">Talentlounge</a> virtual career fair asked how a digital recruitment event could feel genuinely engaging rather than simply adequate." },
@@ -406,12 +406,12 @@ window.PORTFOLIO_PROJECTS = [
     year: "2021",
     preview: "images/nexus/nexus2.jpg",
     media: [
-      { type: "image", src: "images/nexus/nexus1.jpg", alt: "Nexus - Image 1" },
-      { type: "image", src: "images/nexus/nexus2.jpg", alt: "Nexus - Image 2" },
-      { type: "image", src: "images/nexus/nexus3.jpg", alt: "Nexus - Image 3" },
-      { type: "image", src: "images/nexus/nexus4.jpg", alt: "Nexus - Image 4" },
-      { type: "image", src: "images/nexus/nexus5.jpg", alt: "Nexus - Image 5" },
-      { type: "image", src: "images/nexus/nexus6.jpg", alt: "Nexus - Image 6" }
+      { type: "image", src: "images/nexus/nexus1.jpg", alt: "Nexus transit bench concept — modular Serambi-inspired MRT seating, TRANSEAT finalist" },
+      { type: "image", src: "images/nexus/nexus2.jpg", alt: "Nexus transit bench — modular units connected for social grouping" },
+      { type: "image", src: "images/nexus/nexus3.jpg", alt: "Nexus transit bench — Thermoplastic Elastomer in warm earth tones" },
+      { type: "image", src: "images/nexus/nexus4.jpg", alt: "Nexus transit bench — illuminated edge detail for low-light wayfinding" },
+      { type: "image", src: "images/nexus/nexus5.jpg", alt: "Nexus transit bench — continuous-flow silhouette in elevation" },
+      { type: "image", src: "images/nexus/nexus6.jpg", alt: "Nexus transit bench — MRT station context render" }
     ],
     description: [
       { label: "Brief", text: "Transit seating is one of the most under-considered categories in public design — built for durability and cleanability above everything else, producing furniture that communicates only institutional indifference. The Malaysia National Design Competition <a href=\"https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/\" target=\"_blank\" rel=\"noopener noreferrer\">TRANSEAT</a> asked whether MRT station seating could be something more: a piece of public furniture with genuine cultural and social intention. Our team reached the top 10 as a finalist." },
@@ -427,12 +427,12 @@ window.PORTFOLIO_PROJECTS = [
     year: "2020",
     preview: "images/motorola/motorola3.jpg",
     media: [
-      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions Radio Concept - Image 1" },
-      { type: "image", src: "images/motorola/motorola2.jpg", alt: "Motorola Solutions Radio Concept - Image 2" },
-      { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions Radio Concept - Image 3" },
-      { type: "image", src: "images/motorola/motorola4.jpg", alt: "Motorola Solutions Radio Concept - Image 4" },
-      { type: "image", src: "images/motorola/motorola5.jpg", alt: "Motorola Solutions Radio Concept - Image 5" },
-      { type: "image", src: "images/motorola/motorola6.jpg", alt: "Motorola Solutions Radio Concept - Image 6" }
+      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions two-way radio concept — compact hospitality-grade form, hero render" },
+      { type: "image", src: "images/motorola/motorola2.jpg", alt: "Motorola Solutions radio concept — flatter profile for chest pocket or belt holster" },
+      { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions radio concept — hidden secondary e-ink information display" },
+      { type: "image", src: "images/motorola/motorola4.jpg", alt: "Motorola Solutions radio concept — ergonomic grip and control-layout study" },
+      { type: "image", src: "images/motorola/motorola5.jpg", alt: "Motorola Solutions radio concept — premium surface finish and LED status indicator" },
+      { type: "image", src: "images/motorola/motorola6.jpg", alt: "Motorola Solutions radio concept — in-use hospitality context" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.motorolasolutions.com/en_us.html\" target=\"_blank\" rel=\"noopener noreferrer\">Motorola Solutions</a> designs two-way radios for professional users across hospitality, security, healthcare, and public safety. The challenge in this category is that function alone doesn't make a product feel valuable to its user — and in hospitality particularly, the visible quality of a communication device directly affects how staff perceive themselves and how guests perceive the service standard. My 12-week internship project explored this gap." },
@@ -448,9 +448,9 @@ window.PORTFOLIO_PROJECTS = [
     year: "2020",
     preview: "images/e&k/e&k3.jpg",
     media: [
-      { type: "image", src: "images/e&k/e&k1.jpg", alt: "E/K - Image 1" },
-      { type: "image", src: "images/e&k/e&k2.jpg", alt: "E/K - Image 2" },
-      { type: "image", src: "images/e&k/e&k3.jpg", alt: "E/K - Image 3" }
+      { type: "image", src: "images/e&k/e&k1.jpg", alt: "E&K automotive accessories brand — two-letter lettermark resolving E and K into a single form" },
+      { type: "image", src: "images/e&k/e&k2.jpg", alt: "E&K brand identity — lettermark applied to vehicle decal and signage" },
+      { type: "image", src: "images/e&k/e&k3.jpg", alt: "E&K brand identity — single-colour mark across packaging touchpoints" }
     ],
     description: [
       { label: "Brief", text: "E&K is an automotive accessories and installation brand. In a category where most brand identities default to speed lines, aggressive angles, and chrome effects, E&K needed a mark that could feel sharp and technically credible without playing into tired conventions — legible across signage, vehicle decals, packaging, and digital touchpoints at every scale." },

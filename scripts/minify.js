@@ -20,15 +20,12 @@ const CleanCSS = require("clean-css");
 const ROOT = path.join(__dirname, "..");
 
 // Browser-facing JS (must match the <script src> tags in index.html).
+// The six app scripts are concatenated into bundle.js by build-js.js, so only
+// the bundle + the standalone loaders/data are minified here.
 const JS_FILES = [
   "scripts/analytics.js",
   "scripts/clarity.js",
-  "scripts/custom-scrollbar.js",
-  "scripts/lightbox.js",
-  "scripts/main.js",
-  "scripts/project-loader.js",
-  "scripts/project-renderer.js",
-  "scripts/project-scroll-controller.js",
+  "scripts/bundle.js",
   "data/projects-index.js",
 ];
 
