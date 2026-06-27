@@ -64,24 +64,48 @@ body.orange-mode .year-sort-header:hover { color: #fff !important; }
   font-size: .6em;
   vertical-align: middle;
   transform: translateY(-1px);
-  transition: transform .2s ease;
+  transition: transform 2s cubic-bezier(.22, 1, .36, 1);
 }
-.year-sort-label { display: inline-block; transition: transform .2s ease; }
-/* ROLE + YEAR: lift + scale on hover, like the email copy symbol */
-.year-sort-header.role-header:hover .year-sort-label,
-thead th.year-sort-header:last-child:hover .year-sort-label {
-  transform: translateY(-1px) scale(1.06);
-}
-.year-sort-header.role-header:hover .year-sort-symbol,
-thead th.year-sort-header:last-child:hover .year-sort-symbol {
-  transform: translateY(-1px) scale(1.06);
-}
-.year-sort-arrow { display: block; transition: opacity .25s ease, color .25s ease; }
+.year-sort-label { display: inline-block; transition: transform 2s cubic-bezier(.22, 1, .36, 1); }
+.year-sort-arrow { display: block; transition: opacity 2s ease; }
+
+/* Default arrow states = the active sort direction */
 .year-sort-header:not(.sort-asc):not(.sort-desc) .year-sort-arrow { opacity: .35; }
 .year-sort-header.sort-desc .year-sort-down { opacity: 1; }
 .year-sort-header.sort-desc .year-sort-up { opacity: .35; }
 .year-sort-header.sort-asc .year-sort-up { opacity: 1; }
 .year-sort-header.sort-asc .year-sort-down { opacity: .35; }
+
+/* ── ROLE + YEAR premium hover: label + arrows grow together, and the arrows
+   crossfade to preview the next sort direction — all eased over 2s ── */
+.year-sort-header.role-header:hover .year-sort-label,
+.year-sort-header.role-header:hover .year-sort-symbol,
+thead th.year-sort-header:last-child:hover .year-sort-label,
+thead th.year-sort-header:last-child:hover .year-sort-symbol {
+  transform: translateY(-1px) scale(1.14);
+}
+/* desc (or neutral) → preview ascending: up arrow rises, down arrow falls */
+.year-sort-header.role-header.sort-desc:hover .year-sort-up,
+.year-sort-header.role-header:not(.sort-asc):not(.sort-desc):hover .year-sort-up,
+thead th.year-sort-header:last-child.sort-desc:hover .year-sort-up,
+thead th.year-sort-header:last-child:not(.sort-asc):not(.sort-desc):hover .year-sort-up {
+  opacity: 1;
+}
+.year-sort-header.role-header.sort-desc:hover .year-sort-down,
+.year-sort-header.role-header:not(.sort-asc):not(.sort-desc):hover .year-sort-down,
+thead th.year-sort-header:last-child.sort-desc:hover .year-sort-down,
+thead th.year-sort-header:last-child:not(.sort-asc):not(.sort-desc):hover .year-sort-down {
+  opacity: .35;
+}
+/* asc → preview descending: down arrow rises, up arrow falls */
+.year-sort-header.role-header.sort-asc:hover .year-sort-down,
+thead th.year-sort-header:last-child.sort-asc:hover .year-sort-down {
+  opacity: 1;
+}
+.year-sort-header.role-header.sort-asc:hover .year-sort-up,
+thead th.year-sort-header:last-child.sort-asc:hover .year-sort-up {
+  opacity: .35;
+}
 
 /* Project row hover / active state */
 .hover-trigger td { transition: letter-spacing .18s cubic-bezier(.22, 1, .36, 1), opacity .14s ease; }
