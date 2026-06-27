@@ -169,7 +169,7 @@
   }
 
   .scroll-container img.fullscreen-image.keem {
-    display: block;
+    display: inline-block;
   }
 
   /* Mobile tap highlight without increasing row height */
