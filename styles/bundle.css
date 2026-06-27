@@ -545,14 +545,16 @@ tr:hover td:nth-child(4) .custom-btn {
 
 
 /* === custom-styles.css === */
-/* Theme toggle */
-body.light-mode .theme-toggle::before { color: var(--accent); }
-body.dark-mode .theme-toggle::before { color: var(--accent); }
+/* Theme toggle — dot is the accent (white on black mode, black on white mode);
+   grows on hover to signal it switches the mode */
 body.chameleon-mode .theme-toggle::before { color: var(--accent); }
-.theme-toggle::before { transition: color .18s ease; font-size: 22px; line-height: 1; }
-.theme-toggle:hover::before { color: #000 !important; }
-body.orange-mode .theme-toggle:hover::before { color: #fff !important; }
-body.dark-mode .theme-toggle:hover::before { color: var(--accent) !important; }
+.theme-toggle::before {
+  font-size: 22px;
+  line-height: 1;
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), color .18s ease;
+}
+.theme-toggle:hover::before,
+.theme-toggle:focus-visible::before { transform: scale(1.6); }
 
 /* Email copy */
 .email-contact-item { display: flex; align-items: center; gap: 7px; position: relative; }
