@@ -1148,51 +1148,71 @@ function setTheme(theme) {
   resetAccent();
 }
 
-/* ── Chameleon mode: accent samples the hovered project's preview ── */
+/* ── Chameleon mode: accent + animated background sample the hovered project ── */
 var _accentCache = {};
 
 function resetAccent() {
-  document.documentElement.style.removeProperty("--accent");
+  var s = document.documentElement.style;
+  s.removeProperty("--accent");
+  s.removeProperty("--chroma-1");
+  s.removeProperty("--chroma-2");
+  s.removeProperty("--chroma-3");
+}
+
+function applyColours(res) {
+  var s = document.documentElement.style;
+  s.setProperty("--accent", res.accent);
+  s.setProperty("--chroma-1", res.chroma[0]);
+  s.setProperty("--chroma-2", res.chroma[1]);
+  s.setProperty("--chroma-3", res.chroma[2]);
 }
 
 function applySampledAccent(src) {
   if (!src) return;
   if (_accentCache[src]) {
-    document.documentElement.style.setProperty("--accent", _accentCache[src]);
+    applyColours(_accentCache[src]);
     return;
   }
   var img = new Image();
   img.onload = function () {
     try {
       var c = document.createElement("canvas");
-      var w = (c.width = 16), h = (c.height = 16);
+      var w = (c.width = 24), h = (c.height = 24);
       var ctx = c.getContext("2d");
       ctx.drawImage(img, 0, 0, w, h);
       var d = ctx.getImageData(0, 0, w, h).data;
-      var r = 0, g = 0, b = 0, n = 0, i, rr, gg, bb, mx, mn;
-      /* average only the colourful mid-tones — skip near-black / near-white */
-      for (i = 0; i < d.length; i += 4) {
-        rr = d[i]; gg = d[i + 1]; bb = d[i + 2];
-        mx = Math.max(rr, gg, bb); mn = Math.min(rr, gg, bb);
-        if (mx < 30 || mn > 228) continue;
-        r += rr; g += gg; b += bb; n++;
+      /* three horizontal bands → background palette; colourful overall → accent */
+      var bands = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+      var av = [0, 0, 0, 0], cv = [0, 0, 0, 0], x, y, i, rr, gg, bb, mx, mn, band;
+      for (y = 0; y < h; y++) {
+        band = y < h / 3 ? 0 : y < (2 * h) / 3 ? 1 : 2;
+        for (x = 0; x < w; x++) {
+          i = (y * w + x) * 4; rr = d[i]; gg = d[i + 1]; bb = d[i + 2];
+          bands[band][0] += rr; bands[band][1] += gg; bands[band][2] += bb; bands[band][3]++;
+          av[0] += rr; av[1] += gg; av[2] += bb; av[3]++;
+          mx = Math.max(rr, gg, bb); mn = Math.min(rr, gg, bb);
+          if (mx < 30 || mn > 228) continue;
+          cv[0] += rr; cv[1] += gg; cv[2] += bb; cv[3]++;
+        }
       }
-      if (!n) {
-        for (i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; }
-      }
-      var col = vividRgb(r / n, g / n, b / n);
-      _accentCache[src] = col;
-      /* only apply if we're still in chameleon mode and still hovering */
+      var a = cv[3] ? cv : av;
+      var res = {
+        accent: vividRgb(a[0] / a[3], a[1] / a[3], a[2] / a[3], 0.42, 0.62),
+        chroma: bands.map(function (bd) {
+          return vividRgb(bd[0] / bd[3], bd[1] / bd[3], bd[2] / bd[3], 0.26, 0.5);
+        })
+      };
+      _accentCache[src] = res;
       if (document.body.classList.contains("chameleon-mode") && hoverState.trigger) {
-        document.documentElement.style.setProperty("--accent", col);
+        applyColours(res);
       }
     } catch (e) {}
   };
   img.src = src;
 }
 
-/* Nudge saturation/brightness up so the accent always reads as an accent */
-function vividRgb(r, g, b) {
+/* Convert rgb → hsl, boost saturation, clamp lightness to a usable band */
+function vividRgb(r, g, b, lMin, lMax) {
   r /= 255; g /= 255; b /= 255;
   var mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, s = 0, h = 0, dd = mx - mn;
   if (dd) {
@@ -1203,7 +1223,7 @@ function vividRgb(r, g, b) {
     h *= 60; if (h < 0) h += 360;
   }
   s = Math.min(1, s * 1.5 + 0.15);
-  l = Math.min(0.62, Math.max(0.42, l));
+  l = Math.min(lMax, Math.max(lMin, l));
   return "hsl(" + Math.round(h) + ", " + Math.round(s * 100) + "%, " + Math.round(l * 100) + "%)";
 }
 
