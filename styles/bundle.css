@@ -786,16 +786,6 @@ tr.collapse.is-open .scroll-container img.fullscreen-image { opacity: 1; transfo
   transform: translateY(4px);
   transition: opacity 0.2s ease, transform 0.22s ease;
 }
-.hovered-caption::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 2px;
-  margin-right: 8px;
-  vertical-align: middle;
-  background: var(--accent);
-}
-body.orange-mode .hovered-caption::before { background: #000000; }
 .hovered-image[src] + .hovered-caption {
   opacity: 1;
   transform: translateY(0);
@@ -940,6 +930,8 @@ body.orange-mode .project-close-btn:hover { color: #fff; }
   body.project-focus-active .hover-trigger { opacity: 1; }
   .hover-trigger.is-active-project td:first-child,
   .hover-trigger.is-active-project td:nth-child(2) { transform: none; }
+  /* No "you are here" marker dash on mobile */
+  .hover-trigger.is-active-project td:first-child::before { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
