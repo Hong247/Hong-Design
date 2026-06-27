@@ -402,6 +402,9 @@ function showHoveredPreviewImage(source) {
   applyHoverPreviewParallax();
 
     window.setTimeout(function () {
+    /* Hover may have ended during the delay — don't re-add src (it would
+       re-show the image/caption after the user already left). */
+    if (!hoverState.trigger) return;
     hoverState.imageEl.onerror = function () {
       hoverState.imageEl.style.display = "none";
       hoverState.imageEl.onerror = null;
