@@ -148,6 +148,39 @@ window.clearChromaActiveProject = function () {
   }
 };
 
+/* Cursor parallax + click ripple — make the field react to pointer and clicks */
+(function initChromaInteractions() {
+  var bg = document.querySelector(".chroma-bg");
+  if (!bg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var tx = 0, ty = 0, pending = false;
+  function isCham() { return document.body.classList.contains("chameleon-mode"); }
+
+  window.addEventListener("mousemove", function (e) {
+    if (!isCham()) return;
+    tx = (e.clientX / window.innerWidth - 0.5) * 56;
+    ty = (e.clientY / window.innerHeight - 0.5) * 56;
+    if (!pending) {
+      pending = true;
+      window.requestAnimationFrame(function () {
+        pending = false;
+        bg.style.setProperty("--px", tx.toFixed(1) + "px");
+        bg.style.setProperty("--py", ty.toFixed(1) + "px");
+      });
+    }
+  }, { passive: true });
+
+  window.addEventListener("click", function (e) {
+    if (!isCham()) return;
+    var r = document.createElement("span");
+    r.className = "chroma-ripple";
+    r.style.left = e.clientX + "px";
+    r.style.top = e.clientY + "px";
+    document.body.appendChild(r);
+    r.addEventListener("animationend", function () { r.remove(); });
+  }, { passive: true });
+})();
+
 function resetAccent() {
   var s = document.body.style;
   s.removeProperty("--accent");
