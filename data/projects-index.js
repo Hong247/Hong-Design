@@ -1,5 +1,20 @@
 window.PORTFOLIO_PROJECTS = [
   {
+    "id": "c-market-coffee-wear-red",
+    "title": "C Market Coffee — Wear Red",
+    "role": "Brand",
+    "year": "2026",
+    "preview": "images/wear-red/wearred1.jpg",
+    "gallery": [
+      "images/wear-red/wearred1.jpg",
+      "images/wear-red/wearred2.jpg",
+      "images/wear-red/wearred3.jpg",
+      "images/wear-red/wearred4.jpg",
+      "images/wear-red/wearred5.jpg",
+      "images/wear-red/wearred6.jpg"
+    ]
+  },
+  {
     "id": "c-market-coffee-tote-bag",
     "title": "C Market Coffee Tote Bag",
     "role": "Product",

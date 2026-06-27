@@ -3,6 +3,27 @@
 // and a description. Image alt text and src fixups are applied by scripts/project-loader.js.
 window.PORTFOLIO_PROJECTS = [
   {
+    id: "c-market-coffee-wear-red",
+    title: "C Market Coffee — Wear Red",
+    role: "Brand",
+    year: "2026",
+    preview: "images/wear-red/wearred1.jpg",
+    media: [
+      { type: "image", src: "images/wear-red/wearred1.jpg", alt: "C Market Coffee Wear Red campaign — matcha spilled across red satin, the stain almost invisible" },
+      { type: "image", src: "images/wear-red/wearred2.jpg", alt: "C Market Coffee Wear Red campaign — coffee blooming across white trousers in full view" },
+      { type: "image", src: "images/wear-red/wearred3.jpg", alt: "C Market Coffee Wear Red campaign — a tumble down concrete steps with a dropped C Market cup" },
+      { type: "image", src: "images/wear-red/wearred4.jpg", alt: "C Market Coffee Wear Red campaign — red Mary-Jane heels beside a spilled iced latte" },
+      { type: "image", src: "images/wear-red/wearred5.jpg", alt: "C Market Coffee Wear Red campaign — red velvet trousers standing over a large coffee spill" },
+      { type: "image", src: "images/wear-red/wearred6.jpg", alt: "C Market Coffee Wear Red campaign — a spilled C Market Coffee cup on concrete beside red fabric that hides the stain" }
+    ],
+    description: [
+      { label: "Brief", text: "C Market Coffee wanted a Canada Day campaign that escaped the predictable maple-leaf-and-flag promotions every café defaults to on July 1 — something witty and shareable enough to live natively on social while still driving real foot traffic and drink sales." },
+      { label: "Insight", text: "Two unrelated facts about the day point to the same answer: red is the colour of Canada Day, and red is the one colour that hides a coffee spill. Anyone who has carried an iced latte through a crowd knows the small daily tragedy of a stain on a white shirt — the campaign turns that universal anxiety into the reason to take part." },
+      { label: "Direction", text: "The creative is built as a series of candid, phone-shot \"spill moments,\" deliberately grainy, high-contrast and off-kilter so they read as real life rather than studio advertising. Each frame pairs a C Market drink with a wardrobe outcome — matcha vanishing into red satin, coffee mortifying across white trousers, a tumble down concrete steps, red Mary-Janes beside an abandoned latte. The lockup stays minimal and consistent — wide-set caps, an italic <em>WEAR</em>, a single red <em>RED</em> — so the set coheres while the photography carries the joke. The offer rewards anyone who shows up in red." },
+      { label: "Outcome", text: "A generic holiday becomes a participatory promotion: customers wear red for the discount, become walking advertisements for the brand, and share the gag. The spill idea gives C Market an ownable, genuinely funny Canada Day position and a flexible image system that extends across social, in-store, and out-of-home." }
+    ]
+  },
+  {
     id: "c-market-coffee-tote-bag",
     title: "C Market Coffee Tote Bag",
     role: "Product",
