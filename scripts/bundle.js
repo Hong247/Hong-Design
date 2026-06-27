@@ -1182,47 +1182,49 @@ window.clearChromaActiveProject = function () {
   var bg = document.querySelector(".chroma-bg");
   if (!bg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var tx = 0, ty = 0, cursorX = 0.5, pending = false;
-  var autoHue = 0, clickHue = 0, hue = 0;
+  var pxT = 0, pyT = 0, pxE = 0, pyE = 0, cursorX = 0.5;
+  var autoHue = 0, hue = 0;
+  var kick = 0, shoveX = 0, shoveY = 0; /* click impulse to the motion */
   function isCham() { return document.body.classList.contains("chameleon-mode"); }
   function isLocked() { return document.body.classList.contains("chroma-locked"); }
 
   window.addEventListener("mousemove", function (e) {
     if (!isCham()) return;
     cursorX = e.clientX / window.innerWidth;
-    tx = (cursorX - 0.5) * 56;
-    ty = (e.clientY / window.innerHeight - 0.5) * 56;
-    if (!pending) {
-      pending = true;
-      window.requestAnimationFrame(function () {
-        pending = false;
-        bg.style.setProperty("--px", tx.toFixed(1) + "px");
-        bg.style.setProperty("--py", ty.toFixed(1) + "px");
-      });
-    }
+    pxT = (cursorX - 0.5) * 56;
+    pyT = (e.clientY / window.innerHeight - 0.5) * 56;
   }, { passive: true });
 
   window.addEventListener("click", function (e) {
     if (!isCham()) return;
-    /* A click on the field nudges the palette to a fresh hue */
-    if (!isLocked()) clickHue = (clickHue + 55 + Math.random() * 85) % 360;
-    var r = document.createElement("span");
-    r.className = "chroma-ripple";
-    r.style.left = e.clientX + "px";
-    r.style.top = e.clientY + "px";
-    document.body.appendChild(r);
-    r.addEventListener("animationend", function () { r.remove(); });
+    /* Clicking jolts the MOTION (a pulse + a shove away from the click) — colours
+       are untouched. */
+    kick = 1;
+    shoveX = (0.5 - e.clientX / window.innerWidth) * 130;
+    shoveY = (0.5 - e.clientY / window.innerHeight) * 130;
   }, { passive: true });
 
-  /* Drive the field's hue: slow drift + cursor position + click jumps, eased on
-     the shortest path so shifts feel chill. Frozen while a project is locked. */
   function loop() {
-    if (isCham() && !isLocked()) {
-      autoHue = (autoHue + 0.05) % 360;
-      var target = (((autoHue + (cursorX - 0.5) * 140 + clickHue) % 360) + 360) % 360;
-      var delta = ((target - hue + 540) % 360) - 180;
-      hue = (hue + delta * 0.05 + 360) % 360;
-      bg.style.setProperty("--hue", hue.toFixed(1) + "deg");
+    if (isCham()) {
+      /* Colour: slow drift + cursor position (frozen when a project is locked) */
+      if (!isLocked()) {
+        autoHue = (autoHue + 0.05) % 360;
+        var t = (((autoHue + (cursorX - 0.5) * 140) % 360) + 360) % 360;
+        var dl = ((t - hue + 540) % 360) - 180;
+        hue = (hue + dl * 0.05 + 360) % 360;
+      }
+      /* Motion: eased cursor parallax + decaying click impulse */
+      pxE += (pxT - pxE) * 0.06;
+      pyE += (pyT - pyE) * 0.06;
+      kick *= 0.92;
+      shoveX *= 0.90;
+      shoveY *= 0.90;
+      var s = (1 + kick * 0.14).toFixed(3);
+      var rot = (kick * 10).toFixed(2);
+      bg.style.transform =
+        "translate(" + (pxE + shoveX).toFixed(1) + "px," + (pyE + shoveY).toFixed(1) + "px) " +
+        "scale(" + s + ") rotate(" + rot + "deg)";
+      bg.style.filter = isLocked() ? "blur(140px)" : "blur(140px) hue-rotate(" + hue.toFixed(1) + "deg)";
     }
     window.requestAnimationFrame(loop);
   }
@@ -1276,7 +1278,7 @@ function applySampledAccent(src) {
       var a = cv[3] ? cv : av;
       /* White mode wants light blobs + a dark accent; black mode the reverse */
       var accLo = light ? 0.30 : 0.55, accHi = light ? 0.46 : 0.72;
-      var bgLo = light ? 0.62 : 0.26, bgHi = light ? 0.82 : 0.5;
+      var bgLo = light ? 0.74 : 0.26, bgHi = light ? 0.92 : 0.5;
       var res = {
         accent: vividRgb(a[0] / a[3], a[1] / a[3], a[2] / a[3], accLo, accHi),
         chroma: bands.map(function (bd) {
