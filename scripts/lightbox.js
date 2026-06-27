@@ -38,6 +38,8 @@
     videoEl.id = "lb-video";
     videoEl.setAttribute("playsinline", "");
     videoEl.setAttribute("loop", "");
+    videoEl.setAttribute("disablepictureinpicture", "");
+    videoEl.disablePictureInPicture = true;
     videoEl.muted = true;
 
     closeBtn = document.createElement("button");
