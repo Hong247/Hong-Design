@@ -335,6 +335,13 @@ th:nth-child(4) {
 
 td:nth-child(4) .custom-btn {
   text-align: left;
+  opacity: 0.45;
+  transition: opacity 0.15s ease;
+}
+
+/* YEAR recedes by default, returns to full on row hover */
+tr:hover td:nth-child(4) .custom-btn {
+  opacity: 1;
 }
 
 .collapse {
