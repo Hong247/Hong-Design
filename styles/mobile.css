@@ -132,7 +132,8 @@
     scroll-behavior: smooth;
   }
 
-  .scroll-container img.fullscreen-image {
+  .scroll-container img.fullscreen-image,
+  .scroll-container video.fullscreen-image {
     display: inline-block;
     vertical-align: top;
     height: min(52vh, 320px);
@@ -164,7 +165,8 @@
     padding: 14px 0 0;
   }
 
-  .scroll-container img.fullscreen-image.keen {
+  .scroll-container img.fullscreen-image.keen,
+  .scroll-container video.fullscreen-image.keen {
     display: none;
   }
 

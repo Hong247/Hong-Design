@@ -386,13 +386,15 @@ td:nth-child(4) .custom-btn {
 }
 
 .scroll-container img,
+.scroll-container video,
 .scroll-container iframe {
   flex: 0 0 auto;
   align-self: flex-start;
   scroll-snap-align: start;
 }
 
-.scroll-container img.fullscreen-image {
+.scroll-container img.fullscreen-image,
+.scroll-container video.fullscreen-image {
   width: auto;
   height: min(600px, 70vh);
 }
