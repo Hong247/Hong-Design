@@ -1155,6 +1155,8 @@ function setTheme(theme) {
   }
   localStorage.setItem("theme", theme);
   resetAccent();
+  /* Nudge the custom scrollbar to recolour for the new mode */
+  window.dispatchEvent(new Event("resize"));
 }
 
 /* ── Chameleon: accent + animated background sample the hovered project ── */
@@ -1487,10 +1489,11 @@ function applyHoverPreviewParallax() {
   function markInited(el) { if (inited) inited.add(el); else el._sbInited = true; }
 
   function getColors() {
-    var b = document.body;
-    if (b.classList.contains('light-mode'))  return { track: 'rgba(0,0,0,.1)',        thumb: '#000' };
-    if (b.classList.contains('orange-mode')) return { track: 'rgba(0,0,0,.12)',       thumb: '#000' };
-    return                                          { track: 'rgba(255,255,255,.12)', thumb: '#fff' };
+    /* White chameleon → dark scroller; black chameleon → light scroller */
+    if (document.body.classList.contains('chameleon-light')) {
+      return { track: 'rgba(0,0,0,.12)', thumb: '#000' };
+    }
+    return { track: 'rgba(255,255,255,.12)', thumb: '#fff' };
   }
 
   /* ── Vertical scrollbar for .scroll-wrapper ── */
