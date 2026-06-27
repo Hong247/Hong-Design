@@ -174,7 +174,7 @@ function buildGalleryHtml(project) {
     if (item.type === "video") {
       var vcls = "fullscreen-image is-video" + (item.className ? " " + item.className : "");
       html +=
-        '<video class="' + vcls + '" autoplay muted loop playsinline preload="metadata"' +
+        '<video class="' + vcls + '" autoplay muted loop playsinline disablepictureinpicture preload="metadata"' +
         (item.poster ? ' poster="' + item.poster + '"' : "") + '>' +
         (item.webm ? '<source src="' + item.webm + '" type="video/webm">' : "") +
         '<source src="' + item.src + '" type="video/mp4"></video>';
