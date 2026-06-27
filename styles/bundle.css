@@ -310,6 +310,7 @@ td {
 td:nth-child(1),
 th:nth-child(1) {
   width: 48px;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 td:nth-child(3),
@@ -321,6 +322,7 @@ td:nth-child(4),
 th:nth-child(4) {
   width: 72px;
   text-align: left;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .custom-btn {
