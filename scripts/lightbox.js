@@ -1,5 +1,6 @@
 (function () {
   var overlay, imgEl, videoEl, closeBtn, prevBtn, nextBtn;
+  var mediaEl; /* the element currently shown (imgEl or videoEl) */
 
   /* zoom / pan state */
   var currentScale = 1, baseScale = 1;
@@ -35,7 +36,6 @@
 
     videoEl = document.createElement("video");
     videoEl.id = "lb-video";
-    videoEl.setAttribute("controls", "");
     videoEl.setAttribute("playsinline", "");
     videoEl.setAttribute("loop", "");
     videoEl.muted = true;
@@ -86,27 +86,28 @@
       if (e.key === "ArrowRight") navigateAnimated(1, 0);
     });
 
-    imgEl.addEventListener("pointerdown",  onPointerDown);
-    imgEl.addEventListener("pointermove",  onPointerMove);
-    imgEl.addEventListener("pointerup",    onPointerUp);
-    imgEl.addEventListener("pointercancel", onPointerUp);
+    [imgEl, videoEl].forEach(function (el) {
+      el.addEventListener("pointerdown",  onPointerDown);
+      el.addEventListener("pointermove",  onPointerMove);
+      el.addEventListener("pointerup",    onPointerUp);
+      el.addEventListener("pointercancel", onPointerUp);
+    });
+    mediaEl = imgEl;
   }
 
-  /* ─── image set ─── */
-  function getImagesFromContainer(img) {
-    var c = img.closest(".scroll-container");
-    return c ? Array.from(c.querySelectorAll("img.fullscreen-image")) : [img];
+  /* ─── media set (images + videos, in gallery order) ─── */
+  function getImagesFromContainer(el) {
+    var c = el.closest(".scroll-container");
+    if (!c) return [el];
+    return Array.from(c.querySelectorAll("img.fullscreen-image, video.fullscreen-image"))
+      .filter(function (m) { return window.getComputedStyle(m).display !== "none"; });
   }
 
-  function open(clickedImg) {
-    videoEl.style.display = "none";
-    imgEl.style.display = "";
-    prevBtn.style.display = "";
-    nextBtn.style.display = "";
-    currentImages = getImagesFromContainer(clickedImg);
-    currentIndex  = currentImages.indexOf(clickedImg);
+  function open(clickedEl) {
+    currentImages = getImagesFromContainer(clickedEl);
+    currentIndex  = currentImages.indexOf(clickedEl);
     if (currentIndex < 0) currentIndex = 0;
-    loadImage(currentImages[currentIndex]);
+    loadItem(currentImages[currentIndex]);
     resetTransform(true);
     overlay.classList.add("lb-open");
     document.body.classList.add("lb-active");
@@ -114,26 +115,25 @@
     closeBtn.focus();
   }
 
-  function openVideo(clickedVideo) {
-    /* Single-item video mode: no gallery nav, native controls */
-    currentImages = [];
-    imgEl.style.display = "none";
-    prevBtn.style.display = "none";
-    nextBtn.style.display = "none";
-    var src = clickedVideo.currentSrc ||
-      (clickedVideo.querySelector("source") && clickedVideo.querySelector("source").src) || "";
-    videoEl.src = src;
-    videoEl.style.display = "block";
-    overlay.classList.add("lb-open");
-    document.body.classList.add("lb-active");
-    var p = videoEl.play();
-    if (p && p.catch) p.catch(function () {});
-    closeBtn.focus();
-  }
-
-  function loadImage(img) {
-    imgEl.src = img.src;
-    imgEl.alt = img.alt || "";
+  /* Show the given gallery element; switches mediaEl between img and video. */
+  function loadItem(el) {
+    if (el.tagName === "VIDEO") {
+      imgEl.style.display = "none";
+      var src = el.currentSrc ||
+        (el.querySelector("source") && el.querySelector("source").src) || "";
+      if (videoEl.getAttribute("src") !== src) videoEl.src = src;
+      videoEl.style.display = "block";
+      var p = videoEl.play();
+      if (p && p.catch) p.catch(function () {});
+      mediaEl = videoEl;
+    } else {
+      if (!videoEl.paused) videoEl.pause();
+      videoEl.style.display = "none";
+      imgEl.src = el.src;
+      imgEl.alt = el.alt || "";
+      imgEl.style.display = "";
+      mediaEl = imgEl;
+    }
   }
 
   function close() {
@@ -169,24 +169,27 @@
     var W = window.innerWidth;
     var exitX  = dir > 0 ? -W * 1.05 : W * 1.05;
     var enterX = -exitX;
+    var oldEl  = mediaEl;
 
-    /* 1. animate current image off-screen */
-    setTranslate(fromOffset, 0, "transform .12s cubic-bezier(.4, 0, .6, 1)");
+    /* 1. animate current item off-screen */
+    translateEl(oldEl, fromOffset, "transform .12s cubic-bezier(.4, 0, .6, 1)");
 
     setTimeout(function () {
-      setTranslate(exitX, 0, "none");
+      translateEl(oldEl, exitX, "none");
 
-      /* 2. swap image */
+      /* 2. swap to new item (may switch between img and video element) */
       currentIndex = next;
-      loadImage(currentImages[currentIndex]);
+      loadItem(currentImages[currentIndex]);
+      var newEl = mediaEl;
+      if (newEl !== oldEl) translateEl(oldEl, 0, "none"); /* park the outgoing element */
 
-      /* 3. place new image off-screen on the opposite side */
-      setTranslate(enterX, 0, "none");
+      /* 3. place new item off-screen on the opposite side */
+      translateEl(newEl, enterX, "none");
 
       /* 4. animate into view */
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          setTranslate(0, 0, "transform .18s cubic-bezier(.22, 1, .36, 1)");
+          translateEl(newEl, 0, "transform .18s cubic-bezier(.22, 1, .36, 1)");
           setTimeout(function () {
             resetTransform(true);
             isAnimating = false;
@@ -203,30 +206,35 @@
   }
 
   /* ─── transform helpers ─── */
+  function translateEl(el, tx, transition) {
+    el.style.transition = transition;
+    el.style.transform  = "translate(" + tx + "px, 0) scale(1)";
+  }
+
   function setTranslate(tx, ty, transition) {
     swipeOffset = tx;
     panX = ty === 0 ? tx : panX; /* keep in sync for pinch base */
-    imgEl.style.transition = transition;
-    imgEl.style.transform  = "translate(" + tx + "px, " + ty + "px) scale(" + currentScale + ")";
+    mediaEl.style.transition = transition;
+    mediaEl.style.transform  = "translate(" + tx + "px, " + ty + "px) scale(" + currentScale + ")";
   }
 
   function resetTransform(instant) {
     currentScale = 1; baseScale = 1;
     panX = 0; panY = 0; basePanX = 0; basePanY = 0;
     swipeOffset = 0;
-    imgEl.style.transition = instant ? "none" : "transform .18s ease";
-    imgEl.style.transform  = "translate(0, 0) scale(1)";
+    mediaEl.style.transition = instant ? "none" : "transform .18s ease";
+    mediaEl.style.transform  = "translate(0, 0) scale(1)";
   }
 
   function applyPinch() {
-    imgEl.style.transition = "none";
-    imgEl.style.transform  =
+    mediaEl.style.transition = "none";
+    mediaEl.style.transform  =
       "translate(" + panX + "px, " + panY + "px) scale(" + currentScale + ")";
   }
 
   function applyLiveSwipe() {
-    imgEl.style.transition = "none";
-    imgEl.style.transform  = "translate(" + swipeOffset + "px, 0) scale(1)";
+    mediaEl.style.transition = "none";
+    mediaEl.style.transform  = "translate(" + swipeOffset + "px, 0) scale(1)";
   }
 
   /* ─── pointer helpers ─── */
@@ -241,7 +249,7 @@
   /* ─── pointer events ─── */
   function onPointerDown(e) {
     if (isAnimating) { e.preventDefault(); return; }
-    imgEl.setPointerCapture(e.pointerId);
+    mediaEl.setPointerCapture(e.pointerId);
     activePointers[e.pointerId] = { clientX: e.clientX, clientY: e.clientY };
 
     var list = ptrs();
@@ -341,10 +349,8 @@
   /* ─── delegate tap on gallery images ─── */
   function delegate() {
     document.addEventListener("click", function (e) {
-      var img = e.target.closest(".scroll-container img.fullscreen-image");
-      if (img) { open(img); return; }
-      var vid = e.target.closest(".scroll-container video.fullscreen-image");
-      if (vid) openVideo(vid);
+      var el = e.target.closest(".scroll-container img.fullscreen-image, .scroll-container video.fullscreen-image");
+      if (el) open(el);
     });
   }
 
