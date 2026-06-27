@@ -1,5 +1,5 @@
 var _CACHE_V = (function () {
-  var s = document.querySelector('script[src*="project-renderer.js"]');
+  var s = document.querySelector('script[src*="bundle.js"]');
   if (s) { var m = s.src.match(/\?v=([^&]+)/); if (m) return m[1]; }
   return Date.now();
 })();
