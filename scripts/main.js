@@ -257,7 +257,7 @@ function getHoverPreviewImages(trigger) {
   var gallerySrcs = trigger.getAttribute("data-gallery-srcs");
 
   if (gallerySrcs) {
-    return gallerySrcs.split("|").filter(Boolean).slice(0, 4);
+    return gallerySrcs.split("|").filter(Boolean);
   }
 
   var fallback = trigger.getAttribute("data-image-source");
