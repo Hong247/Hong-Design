@@ -432,20 +432,32 @@
 
   // Meta tag management
   var defaultMeta = null;
+  var HOME_META = {
+    title: "Hong Design | Visual Identity & Product Design",
+    description: "Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.",
+    ogTitle: "Hong Design | Visual Identity & Product Design",
+    ogDesc: "Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.",
+    ogImage: "https://hong-design.vercel.app/images/share-icon.jpg",
+    ogUrl: "https://hong-design.vercel.app/",
+    canonical: "https://hong-design.vercel.app/",
+    twTitle: "Hong Design | Visual Identity & Product Design",
+    twDesc: "Visual identity and product design portfolio by Cheok Hong Lai, Vancouver.",
+    twImage: "https://hong-design.vercel.app/images/share-icon.jpg"
+  };
 
   function getDefaultMeta() {
     if (defaultMeta) return defaultMeta;
     defaultMeta = {
-      title:       document.title,
-      description: getMeta("name", "description"),
-      ogTitle:     getMeta("property", "og:title"),
-      ogDesc:      getMeta("property", "og:description"),
-      ogImage:     getMeta("property", "og:image"),
-      ogUrl:       getMeta("property", "og:url"),
-      canonical:   getCanonical(),
-      twTitle:     getMeta("name", "twitter:title"),
-      twDesc:      getMeta("name", "twitter:description"),
-      twImage:     getMeta("name", "twitter:image")
+      title:       HOME_META.title,
+      description: HOME_META.description,
+      ogTitle:     HOME_META.ogTitle,
+      ogDesc:      HOME_META.ogDesc,
+      ogImage:     HOME_META.ogImage,
+      ogUrl:       HOME_META.ogUrl,
+      canonical:   HOME_META.canonical,
+      twTitle:     HOME_META.twTitle,
+      twDesc:      HOME_META.twDesc,
+      twImage:     HOME_META.twImage
     };
     return defaultMeta;
   }

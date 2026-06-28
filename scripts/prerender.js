@@ -10,6 +10,15 @@ const path = require('path');
 const https = require('https');
 
 const ROOT = path.join(__dirname, '..');
+const BASE_URL = 'https://hong-design.vercel.app';
+
+const HOME_META = {
+  title: 'Hong Design | Visual Identity & Product Design',
+  description: 'Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.',
+  twitterDescription: 'Visual identity and product design portfolio by Cheok Hong Lai, Vancouver.',
+  image: BASE_URL + '/images/share-icon.jpg',
+  url: BASE_URL + '/'
+};
 
 // 1. Font download
 
@@ -104,6 +113,83 @@ function escHtml(str) {
     .replace(/"/g,  '&quot;');
 }
 
+function stripHtml(str) {
+  return String(str || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function truncateText(str, maxLength) {
+  const text = stripHtml(str);
+
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  const shortened = text.slice(0, maxLength - 1).replace(/\s+\S*$/, '');
+  return shortened.replace(/[.,;:!?-]+$/, '') + '…';
+}
+
+function encodePathSegment(segment) {
+  try {
+    return encodeURIComponent(decodeURIComponent(segment));
+  } catch (error) {
+    return encodeURIComponent(segment);
+  }
+}
+
+function toAbsoluteUrl(src) {
+  if (!src) {
+    return HOME_META.image;
+  }
+
+  if (/^https?:\/\//i.test(src)) {
+    return src;
+  }
+
+  const encodedPath = String(src)
+    .replace(/^\//, '')
+    .split('/')
+    .map(encodePathSegment)
+    .join('/');
+
+  return BASE_URL + '/' + encodedPath;
+}
+
+function getProjectDescription(project) {
+  if (Array.isArray(project.description) && project.description.length) {
+    return truncateText(project.description[0].text, 160);
+  }
+
+  return truncateText((project.role || 'Design') + ' project by Cheok Hong Lai for the Hong Design portfolio.', 160);
+}
+
+function getProjectMeta(project) {
+  const title = (project.title || 'Project') + ' | Hong Design';
+  const description = getProjectDescription(project) || HOME_META.description;
+  const url = BASE_URL + '/' + project.id;
+  const image = toAbsoluteUrl(project.preview);
+
+  return { title, description, url, image };
+}
+
+function replaceHeadMetadata(html, project) {
+  const meta = getProjectMeta(project);
+
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/, '<title>' + escHtml(meta.title) + '</title>')
+    .replace(/(<meta name="description" content=")[^"]*(")/, '$1' + escHtml(meta.description) + '$2')
+    .replace(/(<link rel="canonical" href=")[^"]*(")/, '$1' + escHtml(meta.url) + '$2')
+    .replace(/(<meta property="og:title" content=")[^"]*(")/, '$1' + escHtml(meta.title) + '$2')
+    .replace(/(<meta property="og:description" content=")[^"]*(")/, '$1' + escHtml(meta.description) + '$2')
+    .replace(/(<meta property="og:image" content=")[^"]*(")/, '$1' + escHtml(meta.image) + '$2')
+    .replace(/(<meta property="og:url" content=")[^"]*(")/, '$1' + escHtml(meta.url) + '$2')
+    .replace(/(<meta name="twitter:title" content=")[^"]*(")/, '$1' + escHtml(meta.title) + '$2')
+    .replace(/(<meta name="twitter:description" content=")[^"]*(")/, '$1' + escHtml(meta.description) + '$2')
+    .replace(/(<meta name="twitter:image" content=")[^"]*(")/, '$1' + escHtml(meta.image) + '$2');
+}
+
 /** Extract <p>...</p> blocks from a detailHtml string (for SEO text) */
 function extractParagraphs(html) {
   const results = [];
@@ -157,21 +243,20 @@ function buildProjectRows(projects, titleOverrides) {
 // 4. CreativeWork schema
 
 function buildCreativeWorkSchema(projects) {
-  const base = 'https://hong-design.vercel.app';
   const items = projects
     .filter(p => p && p.id)
     .map(p => {
       const obj = {
         '@type': 'CreativeWork',
         'name': p.title || '',
-        'url': base + '/' + p.id,
+        'url': BASE_URL + '/' + p.id,
         'dateCreated': String(p.year || ''),
         'creator': { '@type': 'Person', 'name': 'Cheok Hong Lai' }
       };
       if (p.role) obj['description'] = p.role;
-      if (p.preview) obj['image'] = base + '/' + p.preview;
+      if (p.preview) obj['image'] = toAbsoluteUrl(p.preview);
       if (Array.isArray(p.description) && p.description.length) {
-        obj['abstract'] = p.description.map(d => d.label + ': ' + d.text).join(' ');
+        obj['abstract'] = p.description.map(d => d.label + ': ' + stripHtml(d.text)).join(' ');
       }
       return obj;
     });
@@ -180,7 +265,7 @@ function buildCreativeWorkSchema(projects) {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     'name': 'Hong Design Portfolio',
-    'url': base + '/',
+    'url': BASE_URL + '/',
     'numberOfItems': items.length,
     'itemListElement': items.map((item, i) => ({
       '@type': 'ListItem',
@@ -190,6 +275,22 @@ function buildCreativeWorkSchema(projects) {
   };
 
   return '<script type="application/ld+json">\n' + JSON.stringify(schema, null, 2) + '\n</script>';
+}
+
+function writeProjectPages(baseHtml, projects) {
+  let count = 0;
+
+  projects.forEach(project => {
+    if (!project || !project.id) {
+      return;
+    }
+
+    const pagePath = path.join(ROOT, project.id + '.html');
+    fs.writeFileSync(pagePath, replaceHeadMetadata(baseHtml, project), 'utf8');
+    count += 1;
+  });
+
+  console.log('Wrote', count, 'project metadata pages');
 }
 
 // 5. Main
@@ -225,6 +326,7 @@ async function main() {
   }
 
   fs.writeFileSync(indexPath, html, 'utf8');
+  writeProjectPages(html, projects);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

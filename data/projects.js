@@ -30,11 +30,11 @@ window.PORTFOLIO_PROJECTS = [
     year: "2026",
     preview: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
     media: [
-      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg", alt: "C Market Coffee tote bag front image 1" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.jpg", alt: "C Market Coffee tote bag front image 2" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/1.jpg", alt: "C Market Coffee tote bags editorial product photo" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/2.jpg", alt: "C Market Coffee white tote bag editorial product photo" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/3.jpg", alt: "C Market Coffee black tote bag editorial product photo" }
+      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg", alt: "C Market Coffee natural canvas tote bag worn over the shoulder with black handles and small stacked logo" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.jpg", alt: "C Market Coffee natural canvas tote bag carried by black handles in angled shadow" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/1.jpg", alt: "C Market Coffee black and natural tote bag pair staged in directional shadow" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/2.jpg", alt: "C Market Coffee natural canvas tote bag standing upright with black side panels and handles" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/3.jpg", alt: "C Market Coffee black canvas tote bag with oversized white C Market graphic mark" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee is a Vancouver-based specialty coffee and bakery brand with multiple locations and a growing community presence. When they needed to extend the brand into physical merchandise, the goal wasn't promotional swag — it was a carry object useful enough that customers would actually choose it for daily use, creating authentic brand visibility across the city." },
@@ -50,15 +50,15 @@ window.PORTFOLIO_PROJECTS = [
     year: "2025",
     preview: "images/C Market Coffee Brand Catalog/page-01.jpg",
     media: [
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-01.jpg", alt: "C Market Coffee brand catalog page 1" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-02.jpg", alt: "C Market Coffee brand catalog page 2" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-03.jpg", alt: "C Market Coffee brand catalog page 3" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-04.jpg", alt: "C Market Coffee brand catalog page 4" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-05.jpg", alt: "C Market Coffee brand catalog page 5" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-06.jpg", alt: "C Market Coffee brand catalog page 6" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-07.jpg", alt: "C Market Coffee brand catalog page 7" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-08.jpg", alt: "C Market Coffee brand catalog page 8" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-09.jpg", alt: "C Market Coffee brand catalog page 9" }
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-01.jpg", alt: "C Market Coffee brand catalog cover with cafe interior photography and centered C Market mark" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-02.jpg", alt: "C Market Coffee brand catalog executive summary spread with cafe interior photography" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-03.jpg", alt: "C Market Coffee brand catalog brand story spread with bar counter photography and Where Every Sip Sparks Connection headline" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-04.jpg", alt: "C Market Coffee brand catalog store environment spread with counter and espresso bar photography" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-05.jpg", alt: "C Market Coffee brand catalog company background and menu offerings spread" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-06.jpg", alt: "C Market Coffee brand catalog branding and innovation spread with tote, mug, and campaign examples" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-07.jpg", alt: "C Market Coffee brand catalog locally crafted menu spread with Korean-inspired food and drink imagery" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-08.jpg", alt: "C Market Coffee brand catalog community involvement and connection spread with cupping and latte art programs" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-09.jpg", alt: "C Market Coffee brand catalog closing spread with Canadian identity, trend positioning, and multicultural values" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage.<br><br>My role was to design and maintain customer-facing brand assets across both digital and physical channels, creating marketing materials that were visually consistent, production-ready, and aligned with real business goals." },
@@ -95,8 +95,8 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/kaia/kaia1.png", alt: "KAIA Korean sauce brand identity full system overview" },
       { type: "image", src: "images/kaia/kaia2.png", alt: "KAIA brand identity Latin letterform color-block poster" },
       { type: "image", src: "images/kaia/kaia3.png", alt: "KAIA brand identity Hangul character color-block poster" },
-      { type: "image", src: "images/kaia/kaia4.png", alt: "KAIA brand identity additional design application" },
-      { type: "image", src: "images/kaia/kaia5.png", alt: "KAIA Spicy Yang Nyeom Sauce label design — bilingual front and back panels" },
+      { type: "image", src: "images/kaia/kaia4.png", alt: "KAIA Soy Garlic and Yang Nyeom sauce labels shown as overlapping product, nutrition, and barcode panels" },
+      { type: "image", src: "images/kaia/kaia5.png", alt: "KAIA Spicy Yang Nyeom Sauce back labels with nutrition table, barcode, and circular bilingual seal" },
       { type: "image", src: "images/kaia/kaia6.png", alt: "KAIA sauce packaging mockup — Teriyaki, Soy Garlic and Yang Nyeom variants" }
     ],
     description: [
@@ -112,8 +112,8 @@ window.PORTFOLIO_PROJECTS = [
     year: "2025",
     preview: "images/kkookie/kkookie1.jpg",
     media: [
-      { type: "image", src: "images/kkookie/kkookie1.jpg", alt: "kkookie packaging dieline — six colourway variations across front and back panels showing full label system" },
-      { type: "image", src: "images/kkookie/kkookie2.jpg", alt: "kkookie sage green stand-up pouch packaging — single bag hero shot with circular window revealing handcrafted cookie" },
+      { type: "image", src: "images/kkookie/kkookie1.jpg", alt: "kkookie packaging dieline system showing six cookie flavours, colour variants, nutrition panels, and circular product windows" },
+      { type: "image", src: "images/kkookie/kkookie2.jpg", alt: "kkookie sage green stand-up pouch with oversized serif wordmark and circular cookie window" },
       { type: "image", src: "images/kkookie/kkookie3.png", alt: "kkookie Millda Bakery cake box dielines — white chocolate matcha, red velvet, and ultimate chocolate cake in dark colourways" },
       { type: "image", src: "images/kkookie/kkookie4.png", alt: "kkookie Millda Bakery cake box dielines — ultimate chocolate, red velvet, and white chocolate matcha cake in light colourways with bilingual French labelling" },
       { type: "image", src: "images/kkookie/kkookie5.jpg", alt: "kkookie full cookie packaging range — dark chocolate, sage green, and natural cream colourways side by side" }
@@ -150,7 +150,7 @@ window.PORTFOLIO_PROJECTS = [
     year: "2024",
     preview: "images/C Market Coffee Website/cmarket website 1.jpg",
     media: [
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 1.jpg", alt: "C Market Coffee homepage hero with product photography and navigation" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 1.jpg", alt: "C Market Coffee website shown on a mobile phone beside concrete block and coffee beans" },
       { type: "image", src: "images/C Market Coffee Website/cmarket website 2.png", alt: "C Market Coffee online ordering and menu section" },
       { type: "image", src: "images/C Market Coffee Website/cmarket website 3.png", alt: "C Market Coffee community events and classes section" },
       { type: "image", src: "images/C Market Coffee Website/cmarket website 4.png", alt: "C Market Coffee mobile app promotion section" },
@@ -172,10 +172,10 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg",
     media: [
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg", alt: "Mara Natha portfolio document cover" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg", alt: "Mara Natha portfolio document open spread" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg", alt: "Mara Natha portfolio document contents spread" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg", alt: "Mara Natha portfolio document project grid" }
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg", alt: "Mara Natha Architects portfolio document red cover with black logotype and project information" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg", alt: "Mara Natha Architects portfolio document vision spread with body copy and architectural massing diagram" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg", alt: "Mara Natha Architects portfolio document table of contents spread with project index columns" },
+      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg", alt: "Mara Natha Architects portfolio document case study grid with four architecture projects and photographic thumbnails" }
     ],
     description: [
       { label: "Brief", text: "Mara Natha Architects needed a client-facing portfolio document capable of presenting the firm's profile, leadership philosophy, and a broad range of completed projects across residential, commercial, hospitality, daycare, and mixed-use typologies. In a competitive proposal context, a portfolio document is often the deciding factor — not just what a firm has built, but how clearly and confidently they can frame it." },
@@ -193,19 +193,19 @@ window.PORTFOLIO_PROJECTS = [
     media: [
       { type: "image", src: "images/kee/keea.jpg", alt: "Kee Malaysian Chinese wonton noodle brand identity — logotype set in the motion-inspired Yuwei typeface", className: "keen" },
       { type: "image", src: "images/kee/keeb.jpg", alt: "Kee brand identity — carbon and brandy-yellow material colour system drawn from the kitchen", className: "keen" },
-      { type: "image", src: "images/kee/keec.jpg", alt: "Kee brand identity — packaging application rooted in Malaysian Chinese noodle culture", className: "keen" },
-      { type: "image", src: "images/kee/keed.jpg", alt: "Kee brand identity — storefront signage application", className: "keen" },
-      { type: "image", src: "images/kee/keee.jpg", alt: "Kee brand identity — stationery and collateral application", className: "keen" },
-      { type: "image", src: "images/kee/keef.jpg", alt: "Kee brand identity — menu and print application", className: "keen" },
+      { type: "image", src: "images/kee/keec.jpg", alt: "Kee brand identity packaging sleeve using carbon, moonstone, flour white, and brandy-yellow color cues", className: "keen" },
+      { type: "image", src: "images/kee/keed.jpg", alt: "Kee storefront signage with motion-led Yuwei letterforms applied above the restaurant entrance", className: "keen" },
+      { type: "image", src: "images/kee/keee.jpg", alt: "Kee stationery system with business cards and small-format brand collateral", className: "keen" },
+      { type: "image", src: "images/kee/keef.jpg", alt: "Kee menu and printed collateral using the noodle-motion logotype and restrained color palette", className: "keen" },
       { type: "video", src: "images/kee/kee1.mp4", alt: "Kee brand identity — animated noodle-pulling motion graphic", className: "keen" },
       { type: "video", src: "images/kee/kee2.mp4", alt: "Kee brand identity — animated broth-and-noodle rhythm motion graphic", className: "keen" },
-      { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee wonton noodle brand identity — hero composition", className: "keen" },
-      { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee brand identity — secondary brand application", className: "keen" },
+      { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee wonton noodle brand identity lead composition with bowl-inspired color system and logotype", className: "keen" },
+      { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee brand identity restaurant touchpoint with signage and printed assets", className: "keen" },
       { type: "image", src: "images/kee/Kee3.jpg", alt: "Kee brand identity — typographic and colour treatment detail", className: "keen" },
-      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee brand identity — full-length mobile presentation panel 1", className: "keem" },
-      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee brand identity — full-length mobile presentation panel 2", className: "keem" },
-      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee brand identity — full-length mobile presentation panel 3", className: "keem" },
-      { type: "image", src: "images/kee/keem4.jpg", alt: "Kee brand identity — full-length mobile presentation panel 4", className: "keem" }
+      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee mobile presentation layout introducing the Malaysian Chinese wonton noodle brand concept", className: "keem" },
+      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee mobile presentation layout showing color, material, and kitchen-inspired identity system", className: "keem" },
+      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee mobile presentation layout showing packaging, signage, and collateral applications", className: "keem" },
+      { type: "image", src: "images/kee/keem4.jpg", alt: "Kee mobile presentation layout showing motion graphics and restaurant brand touchpoints", className: "keem" }
     ],
     description: [
       { label: "Brief", text: "Malaysian Chinese food culture has a specific visual and emotional register that most contemporary restaurant branding either overwrites with generic Asian-restaurant clichés or ignores entirely. Kee asked whether a brand could feel genuinely rooted in that cultural context — the specific world of Malaysian Chinese wonton noodle cooking — without resorting to illustration, nostalgia, or shorthand." },
@@ -223,7 +223,7 @@ window.PORTFOLIO_PROJECTS = [
     media: [
       { type: "image", src: "images/maia/maia3.jpg", alt: "maia luxury beauty brand identity — custom refined serif logotype" },
       { type: "image", src: "images/maia/maia4.jpg", alt: "maia brand identity — softly blurred lifestyle imagery in a warm neutral palette" },
-      { type: "image", src: "images/maia/maia5.jpg", alt: "maia brand identity — product application in muted warm neutrals" },
+      { type: "image", src: "images/maia/maia5.jpg", alt: "maia brand identity packaging and product touchpoint in muted warm neutral tones" },
       { type: "image", src: "images/maia/maia6.jpg", alt: "maia brand identity — editorial campaign composition using negative space" },
       { type: "image", src: "images/maia/maia7.jpg", alt: "maia brand identity — retail and packaging touchpoint" }
     ],
@@ -241,12 +241,12 @@ window.PORTFOLIO_PROJECTS = [
     year: "2023",
     preview: "images/browns/browns3.jpg",
     media: [
-      { type: "image", src: "images/browns/browns1.png", alt: "Browns Shoes rebrand concept — product-led campaign visual against a colour-matched background" },
+      { type: "image", src: "images/browns/browns1.png", alt: "Browns Shoes rebrand concept campaign composition with footwear isolated against a color-matched background" },
       { type: "image", src: "images/browns/browns2.png", alt: "Browns Shoes rebrand concept — material and texture study with footwear as the primary subject" },
       { type: "image", src: "images/browns/browns3.png", alt: "Browns Shoes rebrand concept — catalogue spread with tight grid discipline" },
-      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns Shoes rebrand concept — hero campaign image" },
+      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns Shoes rebrand concept campaign photograph with the shoe as the primary subject" },
       { type: "image", src: "images/browns/browns4.jpg", alt: "Browns Shoes rebrand concept — e-commerce product grid layout" },
-      { type: "image", src: "images/browns/browns5.jpg", alt: "Browns Shoes rebrand concept — out-of-home campaign application" },
+      { type: "image", src: "images/browns/browns5.jpg", alt: "Browns Shoes rebrand concept large-format retail advertising mockup" },
       { type: "image", src: "images/browns/browns6.jpg", alt: "Browns Shoes rebrand concept — seasonal lookbook spread" },
       { type: "image", src: "images/browns/browns7.jpg", alt: "Browns Shoes rebrand concept — wide-set single-weight typographic treatment" }
     ],
@@ -306,9 +306,9 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/wwf/wwf3.jpg", alt: "Stop Haunting Mother Nature WWF campaign — industrial pollution reframed as horror imagery" },
       { type: "image", src: "images/wwf/wwf4.jpg", alt: "Stop Haunting Mother Nature WWF campaign — deforestation reframed through horror-film composition" },
       { type: "image", src: "images/wwf/wwf5.jpg", alt: "Stop Haunting Mother Nature WWF campaign — pesticide equipment cast as the horror weapon" },
-      { type: "image", src: "images/wwf/wwf6.jpg", alt: "Stop Haunting Mother Nature WWF campaign — poster application with period-accurate horror colour treatment" },
+      { type: "image", src: "images/wwf/wwf6.jpg", alt: "Stop Haunting Mother Nature WWF campaign poster mockup with period-accurate horror color treatment" },
       { type: "image", src: "images/wwf/wwf7.jpg", alt: "Stop Haunting Mother Nature WWF campaign — campaign poster variant" },
-      { type: "image", src: "images/wwf/wwf8.jpg", alt: "Stop Haunting Mother Nature WWF campaign — out-of-home campaign application" }
+      { type: "image", src: "images/wwf/wwf8.jpg", alt: "Stop Haunting Mother Nature WWF campaign out-of-home billboard installation" }
     ],
     description: [
       { label: "Brief", text: "Environmental campaigns have a well-documented creative problem: the imagery of destruction — melting glaciers, dying wildlife, deforestation — has been used so repeatedly that audiences have developed visual immunity. The emotional response still happens, but it peaks at sadness and ends at paralysis rather than action. This speculative campaign for <a href=\"https://www.worldwildlife.org/\" target=\"_blank\" rel=\"noopener noreferrer\">WWF</a> found a different entry point." },
@@ -327,7 +327,7 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/x/x1.jpg", alt: "X̱wáýx̱way — archival vinyl record concept honouring Stanley Park as Squamish territory, cover" },
       { type: "image", src: "images/x/x2.jpg", alt: "X̱wáýx̱way vinyl record — monochromatic documentary photography spread" },
       { type: "image", src: "images/x/x3.jpg", alt: "X̱wáýx̱way vinyl record — information-dense liner notes layout" },
-      { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way vinyl record — two-colour archival palette application" },
+      { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way vinyl record two-colour archival layout using red and green documentary photography" },
       { type: "image", src: "images/x/x5.gif", alt: "X̱wáýx̱way — animated sequence from the record's six-theme structure" },
       { type: "image", src: "images/x/x6.jpg", alt: "X̱wáýx̱way vinyl record — gatefold spread on a documentary grid" },
       { type: "image", src: "images/x/x7.jpg", alt: "X̱wáýx̱way vinyl record — track listing and Indigenous place-name typography" }
@@ -347,7 +347,7 @@ window.PORTFOLIO_PROJECTS = [
     preview: "images/rakuharu/rakuharu3.jpg",
     media: [
       { type: "image", src: "images/rakuharu/rakuharu1.jpg", alt: "raku haru modest fashion brand — custom refined logotype balancing softness and clarity" },
-      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru brand identity — product application in a warm white palette" },
+      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru brand identity product packaging and tag system in a warm white palette" },
       { type: "image", src: "images/rakuharu/rakuharu3.jpg", alt: "raku haru brand identity — lifestyle campaign photography with a quiet brand mark" }
     ],
     description: [
@@ -387,7 +387,7 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/traposh/traposh2.jpg", alt: "TRAPO smartphone holder — Alcantara suede and machined aluminium construction" },
       { type: "image", src: "images/traposh/traposh3.jpg", alt: "TRAPO smartphone holder — LED edge detail illuminated on connection" },
       { type: "image", src: "images/traposh/traposh4.jpg", alt: "TRAPO smartphone holder — mounted in a vehicle interior" },
-      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO smartphone holder — hero product render" },
+      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO smartphone holder close-up render showing the TRAPO silhouette as the product body" },
       { type: "image", src: "images/traposh/traposh6.jpg", alt: "TRAPO smartphone holder — MagSafe rotation and case-clearance detail" },
       { type: "image", src: "images/traposh/traposh7.jpg", alt: "TRAPO smartphone holder — material and finish close-up" },
       { type: "image", src: "images/traposh/traposh8.jpg", alt: "TRAPO smartphone holder — driver's-seat view showing the brand signature form" }
@@ -406,9 +406,9 @@ window.PORTFOLIO_PROJECTS = [
     year: "2021",
     preview: "images/talentlounge/talentlounge5.jpg",
     media: [
-      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge virtual career fair — 3D-rendered booth environment hero" },
+      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge virtual career fair 3D-rendered booth hall with category signage and walkable environment" },
       { type: "image", src: "images/talentlounge/talentlounge2.jpg", alt: "Talentlounge virtual career fair — industry-categorised booth hall rendering" },
-      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge virtual career fair — company listing booth visual" },
+      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge virtual career fair company listing scene with branded booth and interview entry point" },
       { type: "image", src: "images/talentlounge/talentlounge4.jpg", alt: "Talentlounge virtual career fair — spatial navigation environment render" },
       { type: "image", src: "images/talentlounge/talentlounge5.jpg", alt: "Talentlounge virtual career fair — colour-coded booth wayfinding" },
       { type: "image", src: "images/talentlounge/talentlounge6.jpg", alt: "Talentlounge virtual career fair — website integration of rendered booth assets" }
@@ -448,9 +448,9 @@ window.PORTFOLIO_PROJECTS = [
     year: "2020",
     preview: "images/motorola/motorola3.jpg",
     media: [
-      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions two-way radio concept — compact hospitality-grade form, hero render" },
+      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions two-way radio concept compact hospitality-grade form with premium black finish" },
       { type: "image", src: "images/motorola/motorola2.jpg", alt: "Motorola Solutions radio concept — flatter profile for chest pocket or belt holster" },
-      { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions radio concept — hidden secondary e-ink information display" },
+      { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions radio concept auxiliary e-ink information display hidden behind the device surface" },
       { type: "image", src: "images/motorola/motorola4.jpg", alt: "Motorola Solutions radio concept — ergonomic grip and control-layout study" },
       { type: "image", src: "images/motorola/motorola5.jpg", alt: "Motorola Solutions radio concept — premium surface finish and LED status indicator" },
       { type: "image", src: "images/motorola/motorola6.jpg", alt: "Motorola Solutions radio concept — in-use hospitality context" }

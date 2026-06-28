@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "rewrites": [{ "source": "/:slug", "destination": "/" }],
+  "rewrites": [{ "source": "/:slug", "destination": "/:slug.html" }],
   "headers": [
     {
       "source": "/(.*)",
