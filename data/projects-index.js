@@ -119,19 +119,6 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    "id": "mara-natha-architects-portfolio-document",
-    "title": "Mara Natha Architects Portfolio Document",
-    "role": "Editorial",
-    "year": "2023",
-    "preview": "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg",
-    "gallery": [
-      "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg",
-      "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg",
-      "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg",
-      "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg"
-    ]
-  },
-  {
     "id": "kee",
     "title": "Kee",
     "role": "Brand",
@@ -147,20 +134,6 @@ window.PORTFOLIO_PROJECTS = [
       "images/kee/keef.jpg",
       "images/kee/Kee2.jpg",
       "images/kee/Kee3.jpg"
-    ]
-  },
-  {
-    "id": "maia",
-    "title": "maia",
-    "role": "Brand",
-    "year": "2023",
-    "preview": "images/maia/maia4.jpg",
-    "gallery": [
-      "images/maia/maia4.jpg",
-      "images/maia/maia3.jpg",
-      "images/maia/maia5.jpg",
-      "images/maia/maia6.jpg",
-      "images/maia/maia7.jpg"
     ]
   },
   {
@@ -189,19 +162,6 @@ window.PORTFOLIO_PROJECTS = [
     "gallery": [
       "images/monday/monday1.jpg",
       "images/monday/monday2.jpg"
-    ]
-  },
-  {
-    "id": "kill-the-bride",
-    "title": "Kill the Bride",
-    "role": "Editorial",
-    "year": "2023",
-    "preview": "images/killthebride/killthebride1.jpg",
-    "gallery": [
-      "images/killthebride/killthebride1.jpg",
-      "images/killthebride/killthebride2.jpg",
-      "images/killthebride/killthebride3.jpg",
-      "images/killthebride/killthebride4.jpg"
     ]
   },
   {
@@ -235,18 +195,6 @@ window.PORTFOLIO_PROJECTS = [
       "images/x/x4.jpg",
       "images/x/x6.jpg",
       "images/x/x7.jpg"
-    ]
-  },
-  {
-    "id": "raku-haru",
-    "title": "raku haru",
-    "role": "Brand",
-    "year": "2022",
-    "preview": "images/rakuharu/rakuharu3.jpg",
-    "gallery": [
-      "images/rakuharu/rakuharu3.jpg",
-      "images/rakuharu/rakuharu1.jpg",
-      "images/rakuharu/rakuharu2.jpg"
     ]
   },
   {
@@ -321,18 +269,6 @@ window.PORTFOLIO_PROJECTS = [
       "images/motorola/motorola4.jpg",
       "images/motorola/motorola5.jpg",
       "images/motorola/motorola6.jpg"
-    ]
-  },
-  {
-    "id": "e-k",
-    "title": "E/K",
-    "role": "Brand",
-    "year": "2020",
-    "preview": "images/e&k/e&k3.jpg",
-    "gallery": [
-      "images/e&k/e&k3.jpg",
-      "images/e&k/e&k1.jpg",
-      "images/e&k/e&k2.jpg"
     ]
   }
 ];
