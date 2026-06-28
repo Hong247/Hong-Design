@@ -166,25 +166,6 @@ window.PORTFOLIO_PROJECTS = [
     ]
   },
   {
-    id: "mara-natha-architects-portfolio-document",
-    title: "Mara Natha Architects Portfolio Document",
-    role: "Editorial",
-    year: "2023",
-    preview: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg",
-    media: [
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-01-cover.jpg", alt: "Mara Natha Architects portfolio document red cover with black logotype and project information" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-02-open-spread.jpg", alt: "Mara Natha Architects portfolio document vision spread with body copy and architectural massing diagram" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-03-editorial-table.jpg", alt: "Mara Natha Architects portfolio document table of contents spread with project index columns" },
-      { type: "image", src: "images/Mara%20%2B%20Natha%20Architects%20Portfolio%20Document/mara-natha-simple-04-case-study-grid.jpg", alt: "Mara Natha Architects portfolio document case study grid with four architecture projects and photographic thumbnails" }
-    ],
-    description: [
-      { label: "Brief", text: "Mara Natha Architects needed a client-facing portfolio document capable of presenting the firm's profile, leadership philosophy, and a broad range of completed projects across residential, commercial, hospitality, daycare, and mixed-use typologies. In a competitive proposal context, a portfolio document is often the deciding factor — not just what a firm has built, but how clearly and confidently they can frame it." },
-      { label: "Research", text: "Architecture portfolio documents have a density problem: include too little and the firm seems lightweight; include too much and the work gets buried. I studied how the strongest architectural presentations balance scan-readability with depth — consistent project information blocks that let clients move through the work quickly, with enough breathing room in the layout to let photography do its job." },
-      { label: "Direction", text: "The layout uses a restrained editorial grid balancing structure with openness. Section headers, project titles, and body text each occupy defined typographic positions, creating a system any reader can navigate without reading sequentially. Project spreads use a consistent two-column approach: photography on one side, project data and description on the other. Typographic hierarchy was kept deliberately minimal — the work is the voice, not the layout." },
-      { label: "Outcome", text: "The final document functions across two distinct contexts: as a standalone portfolio piece clients can review between meetings, and as a presentation support tool architects can reference during pitches. Its consistency and precision communicate the same qualities Mara Natha wants to be hired for." }
-    ]
-  },
-  {
     id: "kee",
     title: "Kee",
     role: "Brand",
@@ -212,26 +193,6 @@ window.PORTFOLIO_PROJECTS = [
       { label: "Research", text: "The conceptual anchor was motion. Wonton noodles are about the pull and fall of noodles from bowl to chopstick, the way broth moves when the bowl is set down, the rhythm of a kitchen at full speed. I looked at how Chinese calligraphy encodes movement into stroke order and weight — the way each character is drawn as a sequence of deliberate motions — and how that same quality of drawn intention exists in the <a href=\"http://www.shufating.com/product/277173986\" target=\"_blank\" rel=\"noopener noreferrer\">Yuwei</a> typeface's letterforms." },
       { label: "Direction", text: "The Yuwei typeface became the spine of the identity. Its strokes reference the flow of noodle-pulling while maintaining contemporary legibility. I built the color system around four material cues derived directly from the kitchen: carbon (the wok and the fuel), moonstone (the glaze of a noodle bowl), flour white (dough before cooking), and brandy yellow (the broth and the egg noodle). These colors create sensory connection to the food without using food illustration. Motion graphics extend the identity through animated sequences that follow the rhythm of noodles being drawn, dropped, and served." },
       { label: "Outcome", text: "The result is a brand system specific to its cultural context without being decorative or illustrative. The identity holds together from storefront signage to packaging to digital motion assets — because every element references the same core idea: the motion, material, and craft of Malaysian Chinese noodle cooking." }
-    ]
-  },
-  {
-    id: "maia",
-    title: "maia",
-    role: "Brand",
-    year: "2023",
-    preview: "images/maia/maia4.jpg",
-    media: [
-      { type: "image", src: "images/maia/maia3.jpg", alt: "maia luxury beauty brand identity — custom refined serif logotype" },
-      { type: "image", src: "images/maia/maia4.jpg", alt: "maia brand identity — softly blurred lifestyle imagery in a warm neutral palette" },
-      { type: "image", src: "images/maia/maia5.jpg", alt: "maia brand identity packaging and product touchpoint in muted warm neutral tones" },
-      { type: "image", src: "images/maia/maia6.jpg", alt: "maia brand identity — editorial campaign composition using negative space" },
-      { type: "image", src: "images/maia/maia7.jpg", alt: "maia brand identity — retail and packaging touchpoint" }
-    ],
-    description: [
-      { label: "Brief", text: "Luxury fashion and beauty brands face a structural tension: they need to feel exclusive enough to justify premium positioning while remaining approachable enough to actually sell personal care services. Most brands resolve this by defaulting to black, gold, and classic serif type — a formula so overused it communicates nothing distinctive. maia needed a different answer." },
-      { label: "Research", text: "I studied how contemporary luxury brands signal quality through restraint rather than decoration, and specifically how the fashion sector uses image treatment — selective focus, blur, and proximity — to communicate aspiration more effectively than sharp product photography. The insight: softness doesn't signal weakness in luxury; it signals ease, confidence, and the kind of quiet assurance that only comes from genuine quality." },
-      { label: "Direction", text: "The logo resolves the tension between elegance and warmth through letterform choice: custom-refined serifs that feel considered rather than rigid, set at a weight that reads as assured. The color palette centers on muted, slightly warm neutrals that photograph beautifully in both digital and print contexts. Blurred imagery becomes a deliberate creative device — partially defocused product and lifestyle shots suggest intimacy and proximity rather than distance. Typography is sparse throughout, using white space as a design material so that every word carries more weight." },
-      { label: "Outcome", text: "The brand system gives maia a clear emotional territory: the feeling of holding something well-made, understated, and worth choosing. The identity works consistently across digital campaigns, physical retail, and beauty service touchpoints — and can scale from launch to full catalog without requiring visual updates." }
     ]
   },
   {
@@ -273,25 +234,6 @@ window.PORTFOLIO_PROJECTS = [
       { label: "Research", text: "I identified four qualities the brand needed to communicate: trustworthy, resilient, authentic, and subtle. These became the filter for every design decision. I looked at how the <a href=\"https://artsandculture.google.com/project/bauhaus\" target=\"_blank\" rel=\"noopener noreferrer\">Bauhaus</a> movement resolved similar tensions — useful and beautiful, mass-produced and crafted — and found the geometry of <a href=\"https://learn.microsoft.com/en-us/typography/font-list/bauhaus-93\" target=\"_blank\" rel=\"noopener noreferrer\">Bauhaus 93</a> letterforms particularly relevant: forms that trust the letter's shape to do the work without ornamentation, that feel settled and earned rather than expressive." },
       { label: "Direction", text: "The lowercase logo takes its proportions and weight directly from Bauhaus 93 geometry — wide stance, even weight, letters that feel stable rather than dynamic. Lowercase signals approachability: this is a brand that doesn't need to shout. The Figma website prototype builds on the same principles: wide margins, restrained typographic hierarchy, product photography showing the chair in use rather than in a void. The interface leads users through three natural decisions: what kind of work do I do, what does my space look like, which chair fits. A soft, weighted scroll mechanic gives the navigation a physical quality consistent with the product it sells." },
       { label: "Outcome", text: "The monday prototype demonstrates a brand system for a competitive product category that differentiates through restraint. The identity and interface communicate the same thing: a company confident enough in its product not to oversell it." }
-    ]
-  },
-  {
-    id: "kill-the-bride",
-    title: "Kill the Bride",
-    role: "Editorial",
-    year: "2023",
-    preview: "images/killthebride/killthebride1.jpg",
-    media: [
-      { type: "image", src: "images/killthebride/killthebride1.jpg", alt: "Kill the Bride speculative film poster — blue-led title treatment, poster one" },
-      { type: "image", src: "images/killthebride/killthebride2.jpg", alt: "Kill the Bride speculative film poster — high-contrast tightly-spaced typography, poster two" },
-      { type: "image", src: "images/killthebride/killthebride3.jpg", alt: "Kill the Bride speculative film poster — exploitation-cinema composition, poster three" },
-      { type: "image", src: "images/killthebride/killthebride4.jpg", alt: "Kill the Bride speculative film poster — geometric negative-space layout, poster four" }
-    ],
-    description: [
-      { label: "Brief", text: "<a href=\"https://www.imdb.com/title/tt6019206/?ref_=nv_sr_srsg_8_tt_6_nm_0_q_kill%2520bill\" target=\"_blank\" rel=\"noopener noreferrer\">Kill Bill</a>'s visual language — the yellow tracksuit, the blood-red title treatment, the exploitation-cinema poster grammar — is so established it has become cultural shorthand. This speculative film poster series imagines a spiritual sequel called Kill The Bride, asking how that language could evolve twenty years later while maintaining enough DNA to register as a continuation." },
-      { label: "Research", text: "I began with close study of both Kill Bill volumes: their specific type hierarchy, the relationship between title treatment and imagery, how the films move between saturated color and black-and-white. A sequel would naturally inherit some of this grammar while needing to signal tonal evolution. The shift from \"Kill Bill\" to \"Kill The Bride\" reads as a psychological shift — the protagonist is simultaneously predator and potential victim — which suggested a cooler, more controlled emotional register." },
-      { label: "Direction", text: "I introduced a blue-led palette as the primary departure from the established red and yellow world. Blue shifts the emotional tone from hot-blooded revenge to cold-blooded precision. Title typography maintains the bold, high-contrast approach of the originals but with tighter letterspacing and more controlled proportions — more deliberate, more precise. Compositional structures reference exploitation cinema posters of the 1970s but filtered through a more graphic, geometry-led sensibility: cleaner edges, more deliberate negative space. Each of the four posters uses a different structural approach to demonstrate visual range while maintaining system coherence." },
-      { label: "Outcome", text: "The four-poster series demonstrates how franchise visual extension can honor an established language while evolving it. Controlled palette shifts and typographic adjustments signal tonal change without breaking brand recognition — the work feels like a sequel should: familiar and different at the same time." }
     ]
   },
   {
@@ -337,24 +279,6 @@ window.PORTFOLIO_PROJECTS = [
       { label: "Research", text: "The design challenge was to create something that felt archival and serious without becoming academic or inaccessible. Vinyl as a medium already carries specific cultural associations — collectibility, deliberate listening, the physical ritual of handling a record — that aligned well with the project's intent. I looked at the visual language of documentary and archival albums from the 1960s and 1970s: flat photography, information-dense liner notes, color restraint from period printing limitations." },
       { label: "Direction", text: "The monochromatic direction was chosen as an archival visual language rather than nostalgia aesthetics. Desaturated photography and a limited two-color palette make the object feel timeless rather than dated. Typography references documentary design from that era: strong information hierarchy, consistent grids, text given as much visual weight as imagery. The album's six-theme structure — Indigenous history, woods, waves, land, wind, and modernization — is reflected in the physical sequence: side A and B, track listings that follow the arc from deep history to contemporary tension. The cover foregrounds the Indigenous place name before any English translation appears." },
       { label: "Outcome", text: "The album functions as a design object that reframes how Stanley Park is understood — treating it as a subject worthy of a collected, archival record, and imagining it as a fundraising piece that could preserve attention, memory, and care for the park." }
-    ]
-  },
-  {
-    id: "raku-haru",
-    title: "raku haru",
-    role: "Brand",
-    year: "2022",
-    preview: "images/rakuharu/rakuharu3.jpg",
-    media: [
-      { type: "image", src: "images/rakuharu/rakuharu1.jpg", alt: "raku haru modest fashion brand — custom refined logotype balancing softness and clarity" },
-      { type: "image", src: "images/rakuharu/rakuharu2.jpg", alt: "raku haru brand identity product packaging and tag system in a warm white palette" },
-      { type: "image", src: "images/rakuharu/rakuharu3.jpg", alt: "raku haru brand identity — lifestyle campaign photography with a quiet brand mark" }
-    ],
-    description: [
-      { label: "Brief", text: "The Muslim fashion market is one of the fastest-growing segments of global fashion, but available branding for hijab and modest fashion products still tends toward either generic corporate presentation or ethnically coded aesthetics that limit the audience. raku haru was a brand concept exploring what accessible luxury in this space could look like — considered enough to be a genuine purchase decision, inclusive enough to reach across age and personal style." },
-      { label: "Research", text: "The naming shaped the design direction from the start. \"Raku\" (楽) means ease, comfort, or enjoyment in Japanese; \"haru\" (春) means spring — lightness, renewal, beginning. The brand name carries a sensory quality the identity needed to deliver visually. I studied how contemporary minimalist fashion brands communicate quality through restraint rather than price signals os heritage narratives, and asked how that system could apply to a product category that deserves more considered design attention." },
-      { label: "Direction", text: "The logo uses a custom refined letterform that sits between feminine softness and contemporary clarity — curves that feel intentional rather than decorative, weight that reads as confident rather than loud. The color palette centers on warm whites and dusty muted tones that photograph well against fabric and in lifestyle contexts. Brand applications keep hierarchy simple: product first, brand mark as a quiet signature rather than a dominant presence. This positions the identity so the product quality speaks before the branding does — exactly the right posture for an accessible luxury offer." },
-      { label: "Outcome", text: "The raku haru system can support a full product range from launch to scale without requiring visual updates. Its restraint is also its flexibility: the identity works equally across product packaging, e-commerce, and lifestyle campaign photography." }
     ]
   },
   {
@@ -462,22 +386,4 @@ window.PORTFOLIO_PROJECTS = [
       { label: "Outcome", text: "The concept was developed to full presentation standard — concept boards, 3D models, KeyShot renders, and a formal design review with the Motorola Solutions design team. The field research methodology — structured observation across 14 hotels at different service levels — produced insights specific enough to drive real design decisions, rather than generalized personas or assumptions." }
     ]
   },
-  {
-    id: "e-k",
-    title: "E/K",
-    role: "Brand",
-    year: "2020",
-    preview: "images/e&k/e&k3.jpg",
-    media: [
-      { type: "image", src: "images/e&k/e&k1.jpg", alt: "E&K automotive accessories brand — two-letter lettermark resolving E and K into a single form" },
-      { type: "image", src: "images/e&k/e&k2.jpg", alt: "E&K brand identity — lettermark applied to vehicle decal and signage" },
-      { type: "image", src: "images/e&k/e&k3.jpg", alt: "E&K brand identity — single-colour mark across packaging touchpoints" }
-    ],
-    description: [
-      { label: "Brief", text: "E&K is an automotive accessories and installation brand. In a category where most brand identities default to speed lines, aggressive angles, and chrome effects, E&K needed a mark that could feel sharp and technically credible without playing into tired conventions — legible across signage, vehicle decals, packaging, and digital touchpoints at every scale." },
-      { label: "Research", text: "The constraint and the opportunity were identical: two letters. A lettermark with only two characters has nowhere to hide — the geometry carries all the meaning. I studied how the most successful automotive-adjacent marks (vehicle badges, tire brands, parts manufacturers) resolve the letter-into-shape problem: those that earn recognition through abstraction, and those that earn trust through immediate legibility. E&K needed legibility and technical credibility above all else." },
-      { label: "Direction", text: "The mark resolves E and K into a compact, horizontally balanced form that reads as a single unit rather than two initials placed side by side. The letterforms were drawn from scratch to eliminate any off-the-shelf quality and to achieve the specific weight and stance the brand needed: technical without being cold, confident without being aggressive. The junction between E and K creates a visual tension point that makes the mark memorable — the eye is drawn to where the letters meet and resolve. The final mark works in single-color application across all substrates: vinyl cut for decals, embossed for packaging, reversed for dark backgrounds." },
-      { label: "Outcome", text: "The E&K mark gives the brand a visual anchor that travels across every touchpoint without modification. Its simplicity is its durability — a mark this resolved doesn't need redesign as the brand scales, and its legibility at small sizes means it works on decals, receipts, and business cards with equal effectiveness." }
-    ]
-  }
 ];
