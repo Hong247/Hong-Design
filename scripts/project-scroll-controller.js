@@ -19,10 +19,17 @@
   document.addEventListener("DOMContentLoaded", function () {
     var title = document.querySelector(".header-title");
     if (!title) return;
-    title.addEventListener("click", function () {
+    function resetProjects() {
       document.querySelectorAll("tr.collapse.is-open").forEach(function (row) {
         closeRow(row);
       });
+    }
+    title.addEventListener("click", resetProjects);
+    title.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+        event.preventDefault();
+        resetProjects();
+      }
     });
   });
   window.addEventListener("popstate", function () {

@@ -39,8 +39,6 @@
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
-body.light-mode .skip-to-content { background: #000; color: #fff; }
-body.orange-mode .skip-to-content { background: #000; color: #fff; }
 
 * {
   box-sizing: border-box;
@@ -71,16 +69,6 @@ body * {
   letter-spacing: inherit;
 }
 
-body.light-mode {
-  background: #ffffff;
-  color: #000000;
-}
-
-body.orange-mode {
-  background: var(--accent);
-  color: #000000;
-}
-
 body.chameleon-mode {
   background: #000000;
   color: #ffffff;
@@ -107,13 +95,6 @@ a:hover,
 .custom-btn:hover,
 tr:hover .custom-btn {
   color: var(--accent);
-}
-
-body.orange-mode a:hover,
-body.orange-mode .custom-btn:hover,
-body.orange-mode tr:hover .custom-btn,
-body.orange-mode .theme-toggle:hover {
-  color: #ffffff;
 }
 
 .fullscreen-container {
@@ -197,11 +178,6 @@ body.orange-mode .theme-toggle:hover {
   font-size: 13px;
   line-height: 1;
 }
-
-body.orange-mode .theme-toggle::before {
-  color: #000000;
-}
-
 
 .theme-toggle:hover {
   color: var(--accent);
@@ -297,12 +273,6 @@ thead th {
   text-align: left;
 }
 
-body.orange-mode thead th {
-  background: var(--accent);
-  color: #000000;
-}
-
-body.dark-mode thead th,
 body.chameleon-mode thead th {
   background: #000000;
   color: inherit;

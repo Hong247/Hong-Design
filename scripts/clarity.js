@@ -1,5 +1,1 @@
-(function(c,l,a,r,i,t,y){
-c[a]=c[a]||function(){(c[a].q=c[a]||[]).push(arguments)};
-t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "l7n7rec4v1");
+!function(e,t,n,c,r,a,s){e[n]=e[n]||function(){(e[n].q=e[n]||[]).push(arguments)},(a=t.createElement(c)).async=1,a.src="https://www.clarity.ms/tag/l7n7rec4v1",(s=t.getElementsByTagName(c)[0]).parentNode.insertBefore(a,s)}(window,document,"clarity","script");
