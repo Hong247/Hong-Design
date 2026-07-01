@@ -518,8 +518,20 @@ body.custom-cursor-active,
 body.custom-cursor-active a,
 body.custom-cursor-active button,
 body.custom-cursor-active .custom-btn,
-body.custom-cursor-active [role="button"] {
+body.custom-cursor-active [role="button"],
+body.custom-cursor-active img,
+body.custom-cursor-active video,
+body.custom-cursor-active iframe {
   cursor: none;
+}
+/* Gallery images/videos and the sort headers carry their own !important
+   cursor rules (zoom-in, pointer) that would otherwise win the cascade and
+   show the native cursor alongside the custom one — beat them explicitly. */
+body.custom-cursor-active .scroll-container img.fullscreen-image,
+body.custom-cursor-active .scroll-container video.fullscreen-image,
+body.custom-cursor-active .year-sort-header,
+body.custom-cursor-active .year-sort-header * {
+  cursor: none !important;
 }
 .custom-cursor {
   position: fixed;
@@ -534,21 +546,62 @@ body.custom-cursor-active [role="button"] {
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
-  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
+  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), border-radius .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
 }
 .custom-cursor.is-active { opacity: 1; }
+
+/* Generic interactive elements: circle grows */
 .custom-cursor.is-hover {
   width: 52px;
   height: 52px;
   margin: -26px 0 0 -26px;
 }
+
+/* Gallery images/videos: circle becomes a magnifying-glass silhouette */
+.custom-cursor.is-magnify {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-radius: 0;
+  clip-path: url(#cursor-magnify-clip);
+}
+
+/* Email copy button: circle becomes the same "copy" glyph used on the button itself */
+.custom-cursor.is-copy {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 0;
+  clip-path: url(#cursor-copy-clip);
+}
+
+/* ROLE / PROJECT / YEAR sort headers: cursor drops its own shape and becomes
+   a rounded rectangle sized + positioned (by JS) to exactly cover the word,
+   so the whole word inverts as a unit — instantly reads as "this is clickable"
+   instead of a circle merely passing over some of the letters. Width/height/
+   margin/transform are all set inline per-word by scripts/custom-cursor.js;
+   transform gets a transition here (unlike the base rule) because while
+   merged, JS freezes transform and sets it only on enter/scroll, so animating
+   it can't fight the per-frame pointer tracking the way it would elsewhere. */
+.custom-cursor.is-merged {
+  border-radius: 6px;
+  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), border-radius .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease, transform .3s cubic-bezier(.22, 1, .36, 1);
+}
+
 @media (hover: none), (pointer: coarse) {
   .custom-cursor { display: none !important; }
   body.custom-cursor-active,
   body.custom-cursor-active a,
   body.custom-cursor-active button,
   body.custom-cursor-active .custom-btn,
-  body.custom-cursor-active [role="button"] {
+  body.custom-cursor-active [role="button"],
+  body.custom-cursor-active img,
+  body.custom-cursor-active video,
+  body.custom-cursor-active iframe,
+  body.custom-cursor-active .scroll-container img.fullscreen-image,
+  body.custom-cursor-active .scroll-container video.fullscreen-image,
+  body.custom-cursor-active .year-sort-header,
+  body.custom-cursor-active .year-sort-header * {
     cursor: auto;
   }
 }
