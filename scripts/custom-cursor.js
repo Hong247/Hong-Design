@@ -150,5 +150,12 @@
     document.addEventListener('pointerout', onPointerOut, { passive: true });
     document.addEventListener('scroll', onScroll, { passive: true, capture: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
+    /* Self-hosted webfont swap can resize text after a merge already
+       measured it against the fallback font — recompute once it settles. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        if (currentMode === 'merged') updateMergeRect();
+      });
+    }
   });
 })();

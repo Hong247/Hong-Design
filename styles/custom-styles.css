@@ -23,17 +23,20 @@ body.chameleon-mode .theme-toggle::before { color: var(--accent); }
   padding: 0 0 1px;
   opacity: .76;
 }
-/* LinkedIn, Email and the copy button share one lift+scale hover, eased over 2s */
+/* LinkedIn, Email and the copy button: the custom cursor's merge effect
+   (see styles/custom-styles.css .custom-cursor.is-merged) is now the hover
+   cue, so these no longer scale/lift themselves — doing both fought each
+   other, since the merge pill measures the text after any CSS transform,
+   dragging the pill's size along with the text as it grew. */
 .social-links a,
 .email-copy-button {
   display: inline-block;
-  transition: transform 1.5s cubic-bezier(.22, 1, .36, 1), opacity 1.5s ease, color .2s ease;
+  transition: opacity 1.5s ease, color .2s ease;
 }
 .social-links a:hover,
 .social-links a:focus-visible,
 .email-copy-button:hover,
 .email-copy-button:focus-visible {
-  transform: translateY(-1px) scale(1.06);
   opacity: 1;
   outline: none;
   color: var(--accent);
@@ -80,14 +83,10 @@ thead th { letter-spacing: -.01em; }
 .year-sort-header.sort-asc .year-sort-up { opacity: 1; }
 .year-sort-header.sort-asc .year-sort-down { opacity: .35; }
 
-/* ── ROLE + YEAR premium hover: label + arrows grow together, and the arrows
-   crossfade to preview the next sort direction — all eased over 2s ── */
-.year-sort-header.role-header:hover .year-sort-label,
-.year-sort-header.role-header:hover .year-sort-symbol,
-thead th.year-sort-header:last-child:hover .year-sort-label,
-thead th.year-sort-header:last-child:hover .year-sort-symbol {
-  transform: translateY(-1px) scale(1.14);
-}
+/* ── ROLE + YEAR: the custom cursor's merge effect is the hover cue now
+   (label + arrows no longer scale themselves — see the LinkedIn/Email
+   comment above for why), arrows still crossfade to preview the next sort
+   direction ── */
 /* desc (or neutral) → preview ascending: up arrow rises, down arrow falls */
 .year-sort-header.role-header.sort-desc:hover .year-sort-up,
 .year-sort-header.role-header:not(.sort-asc):not(.sort-desc):hover .year-sort-up,
@@ -558,11 +557,16 @@ body.custom-cursor-active .year-sort-header * {
 }
 
 /* Gallery images/videos: circle becomes a slim lens ring with a fine
-   handle — a quiet loupe cue rather than a literal, heavy clip-art icon */
+   handle — a quiet loupe cue rather than a literal, heavy clip-art icon.
+   The clip-path uses objectBoundingBox units (fractions of the box, not
+   fixed pixels) so the ring scales exactly with width/height mid-transition
+   — fixed pixel coordinates sized for the final 26px box would clip a
+   smaller ring out of the larger in-between box while shrinking from the
+   40px hover circle, exposing unclipped white square corners for a frame. */
 .custom-cursor.is-magnify {
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
   border-radius: 0;
   clip-path: url(#cursor-magnify-clip);
 }
@@ -582,7 +586,11 @@ body.custom-cursor-active .year-sort-header * {
    the way it would elsewhere. */
 .custom-cursor.is-merged {
   border-radius: 999px;
-  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), border-radius .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease, transform .3s cubic-bezier(.22, 1, .36, 1);
+  /* A spring-style overshoot curve (settles past the target, then eases
+     back) reads as a soft, liquid morph rather than a mechanical resize —
+     closer to iOS's bouncy shape transitions than the site's usual flat
+     ease-out. */
+  transition: width .45s cubic-bezier(.34, 1.56, .64, 1), height .45s cubic-bezier(.34, 1.56, .64, 1), margin .45s cubic-bezier(.34, 1.56, .64, 1), border-radius .45s cubic-bezier(.34, 1.56, .64, 1), transform .45s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
 }
 
 @media (hover: none), (pointer: coarse) {
