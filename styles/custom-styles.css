@@ -552,17 +552,17 @@ body.custom-cursor-active .year-sort-header * {
 
 /* Generic interactive elements: circle grows */
 .custom-cursor.is-hover {
-  width: 52px;
-  height: 52px;
-  margin: -26px 0 0 -26px;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
 }
 
 /* Gallery images/videos: circle becomes a slim lens ring with a fine
    handle — a quiet loupe cue rather than a literal, heavy clip-art icon */
 .custom-cursor.is-magnify {
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
   border-radius: 0;
   clip-path: url(#cursor-magnify-clip);
 }

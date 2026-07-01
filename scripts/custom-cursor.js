@@ -68,7 +68,7 @@
     var right = Math.max.apply(null, rects.map(function (r) { return r.right; }));
     var top = Math.min.apply(null, rects.map(function (r) { return r.top; }));
     var bottom = Math.max.apply(null, rects.map(function (r) { return r.bottom; }));
-    var padX = 12, padY = 7;
+    var padX = 8, padY = 4;
     var w = (right - left) + padX * 2;
     var h = (bottom - top) + padY * 2;
     cursor.style.width = w + 'px';
