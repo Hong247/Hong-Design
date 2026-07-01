@@ -582,11 +582,14 @@ body.custom-cursor-active .year-sort-header * {
   position: fixed;
   top: 0;
   left: 0;
-  width: 11px;
-  height: 2.5px;
-  margin: -1.25px 0 0 0;
-  border-radius: 1.25px;
+  width: 9px;
+  height: 2px;
+  border-radius: 1px;
   background: #fff;
+  /* Origin at top-left so the JS transform's trailing translate(-50%,-50%)
+     centers the bar cleanly; the default 50% 50% origin would double-count
+     that offset and skew both the angle and the distance from the ring. */
+  transform-origin: 0 0;
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 9999;

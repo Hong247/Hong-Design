@@ -86,10 +86,18 @@
   }
 
   function positionHandle() {
-    /* Handle sits just outside the ring along the same 45° diagonal as the
-       ring's own visual "notch", trailing the pointer like the main ring. */
-    var offset = 8;
-    handle.style.transform = 'translate(' + (x + offset) + 'px,' + (y + offset) + 'px) rotate(45deg)';
+    /* Handle sits on the ring's lower-right edge and points radially outward
+       at a true 45°, so it reads as one magnifying glass. Its center is placed
+       a fixed distance from the ring center along the diagonal; the trailing
+       translate(-50%,-50%) makes the rotate() pivot about the bar's own center
+       (so its length grows symmetrically about that point, not from a corner).
+       Ring outer radius is 11 (22px border-box); the inner end overlaps the
+       ring by ~1px so there's no visible gap between bar and ring. */
+    var RING_R = 11, LEN = 9, K = 0.70710678; /* cos/sin 45° */
+    var dist = (RING_R - 1) + LEN / 2;
+    var cx = x + dist * K;
+    var cy = y + dist * K;
+    handle.style.transform = 'translate(' + cx + 'px,' + cy + 'px) rotate(45deg) translate(-50%, -50%)';
   }
 
   /* A merge "root" is the element whose content should be covered as one
@@ -113,9 +121,23 @@
     return null;
   }
 
+  /* Measure the actual rendered glyphs, not the element's border box. A
+     block/flex target like the HONG DESIGN <h1> carries padding-top and
+     line-height leading, so its box is taller than the text and sits above
+     it — centering the pill on that box left the word low ("not centered").
+     A Range over the element's contents returns the tight glyph box, which
+     is what the pill should hug. Falls back to the element box if the range
+     measures empty. */
+  var measureRange = document.createRange();
+  function contentRect(el) {
+    measureRange.selectNodeContents(el);
+    var r = measureRange.getBoundingClientRect();
+    return (r.width === 0 && r.height === 0) ? el.getBoundingClientRect() : r;
+  }
+
   function updateMergeRect() {
     if (!mergedRects) return;
-    var rects = mergedRects().map(function (el) { return el.getBoundingClientRect(); });
+    var rects = mergedRects().map(contentRect);
     if (!rects.length) return;
     var left = Math.min.apply(null, rects.map(function (r) { return r.left; }));
     var right = Math.max.apply(null, rects.map(function (r) { return r.right; }));
