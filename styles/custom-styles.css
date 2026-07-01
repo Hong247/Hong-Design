@@ -561,8 +561,10 @@ body.custom-cursor-active .year-sort-header * {
    with mix-blend-mode left a faint square seam at the element's original
    (unclipped) bounding box on some renderers — an anti-aliasing artifact
    at the clip edge, not a transition-timing issue (a fixed-size border
-   has no clip boundary to leak). A border ring can't render a handle, so
-   the shape is ring-only now — thinner and simpler besides. */
+   has no clip boundary to leak). The handle is a separate element (see
+   .custom-cursor-handle below), not part of this shape — a child of this
+   div would hit the same parent-transform-breaks-child-blend issue noted
+   above the moment it needed its own rotate(). */
 .custom-cursor.is-magnify {
   width: 22px;
   height: 22px;
@@ -572,6 +574,27 @@ body.custom-cursor-active .year-sort-header * {
   border: 2px solid #fff;
 }
 
+/* Independent sibling element for the magnify handle — same reasoning as
+   the main cursor (own transform, own blend-mode, no parent relationship
+   to fight over either). Positioned by scripts/custom-cursor.js next to
+   the ring along the same diagonal, rotated to look like it's attached. */
+.custom-cursor-handle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 2.5px;
+  margin: -1.25px 0 0 0;
+  border-radius: 1.25px;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.custom-cursor-handle.is-visible { opacity: 1; }
+
 /* Sort headers (label + arrows together), LinkedIn, Email, the email copy
    button, and the HONG DESIGN title: cursor drops its own shape and becomes
    a tube/pill sized + positioned (by JS) to exactly cover the control, so
@@ -580,25 +603,24 @@ body.custom-cursor-active .year-sort-header * {
    For sort headers this only triggers near the label/arrows (see
    custom-cursor.js), not anywhere in the header cell, which can be much
    wider than the word (ROLE's <th> is 34% of the table).
-   Width/height/margin/transform are all set inline per-target by
-   scripts/custom-cursor.js. `transform` is deliberately NOT transitioned
-   here, matching the base rule: an earlier version animated it, so merging
-   slid the pill in from wherever the pointer last was while also growing —
-   for the first half of that 0.4s slide the box was still catching up to
-   the word's actual position, which read as "not centered" (it wasn't
-   miscalculated, it just hadn't arrived yet). Position now snaps to the
-   target immediately; only the shape (width/height/margin/border-radius)
-   animates, so the pill is always centered on the word at every frame. */
+   Position (`transform`) snaps immediately and is never transitioned —
+   an earlier version animated it, so merging slid the pill in from
+   wherever the pointer last was while also growing, and for that whole
+   slide the box was still catching up to the word's real position (read
+   as "not centered", correctly). Width/height/margin are tweened directly
+   by scripts/custom-cursor.js (not by a CSS transition) so the three stay
+   frame-for-frame in sync — margin must equal exactly -size/2 at every
+   instant or the pill drifts off-center while resizing, which a shared
+   JS-computed value guarantees and cross-property CSS timing does not.
+   Only border-radius/opacity are left to CSS, since neither needs to
+   stay mathematically in lockstep with the box's size for centering. */
 .custom-cursor.is-merged {
   border-radius: 999px;
-  /* A damped, no-overshoot curve — closer to iOS's critically-damped sheet
-     springs than a bouncy back-ease, still fluid without ever passing the
-     target size. */
-  transition: width .4s cubic-bezier(.32, .72, 0, 1), height .4s cubic-bezier(.32, .72, 0, 1), margin .4s cubic-bezier(.32, .72, 0, 1), border-radius .4s cubic-bezier(.32, .72, 0, 1), opacity .25s ease;
+  transition: border-radius .48s cubic-bezier(.32, .72, 0, 1), opacity .25s ease;
 }
 
 @media (hover: none), (pointer: coarse) {
-  .custom-cursor { display: none !important; }
+  .custom-cursor, .custom-cursor-handle { display: none !important; }
   body.custom-cursor-active,
   body.custom-cursor-active a,
   body.custom-cursor-active button,
