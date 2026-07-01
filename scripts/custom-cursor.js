@@ -17,22 +17,21 @@
      DOM walk; which specific mode it is is then resolved with cheap
      `.matches()` calls instead of walking the tree again per mode. */
   var MODE_SELECTORS = {
-    /* Scoped to the label/arrow spans, not the whole <th> — sort header
-       cells stretch to their column width (e.g. ROLE is 34% of the table),
-       so matching the <th> itself merges across all that empty space
-       instead of just near the word. Hovering the rest of the header cell
-       falls through to the generic [role="button"] grow-circle below. */
-    merged: '.year-sort-label, .year-sort-symbol',
+    /* Scoped to the label/arrow spans (not the whole <th>, which stretches
+       to its column width — ROLE is 34% of the table) and to a handful of
+       small, tightly content-sized text controls that get the same
+       "merge into the word" treatment. */
+    merged: '.year-sort-label, .year-sort-symbol, .social-links a, .email-copy-button, .header-title',
     magnify: '.scroll-container img.fullscreen-image, .scroll-container video.fullscreen-image',
-    copy: '.email-copy-button',
     hover: 'a, button, .custom-btn, input, textarea, select, [role="button"], img, video, iframe'
   };
-  var ALL_SELECTOR = [MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.copy, MODE_SELECTORS.hover].join(', ');
+  var ALL_SELECTOR = [MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.hover].join(', ');
 
   var raf = null;
   var x = 0, y = 0;
   var currentMode = null;
-  var mergedEl = null;
+  var mergedRoot = null;
+  var mergedRects = null;
 
   function move() {
     raf = null;
@@ -40,13 +39,30 @@
     cursor.style.transform = 'translate(' + x + 'px,' + y + 'px)';
   }
 
+  /* A merge "root" is the element whose content should be covered as one
+     shape, and its rects() tells us what to measure. Sort headers merge
+     the label + arrow symbol together (whichever one triggered it); the
+     rest are simple single-element targets. */
+  function getMergeGroup(el) {
+    var header = el.closest('.year-sort-header');
+    if (header) {
+      return {
+        root: header,
+        rects: function () {
+          return [header.querySelector('.year-sort-label'), header.querySelector('.year-sort-symbol')].filter(Boolean);
+        }
+      };
+    }
+    var direct = el.closest('.social-links a, .email-copy-button, .header-title');
+    if (direct) {
+      return { root: direct, rects: function () { return [direct]; } };
+    }
+    return null;
+  }
+
   function updateMergeRect() {
-    if (!mergedEl) return;
-    /* Cover the label AND the sort arrows together as one tube, regardless
-       of which of the two the pointer is actually over. */
-    var label = mergedEl.querySelector('.year-sort-label');
-    var symbol = mergedEl.querySelector('.year-sort-symbol');
-    var rects = [label, symbol].filter(Boolean).map(function (el) { return el.getBoundingClientRect(); });
+    if (!mergedRects) return;
+    var rects = mergedRects().map(function (el) { return el.getBoundingClientRect(); });
     if (!rects.length) return;
     var left = Math.min.apply(null, rects.map(function (r) { return r.left; }));
     var right = Math.max.apply(null, rects.map(function (r) { return r.right; }));
@@ -63,7 +79,8 @@
 
   function clearMode() {
     if (currentMode === 'merged') {
-      mergedEl = null;
+      mergedRoot = null;
+      mergedRects = null;
       cursor.style.width = '';
       cursor.style.height = '';
       cursor.style.margin = '';
@@ -74,19 +91,20 @@
 
   function setModeFor(el) {
     if (el.matches(MODE_SELECTORS.merged)) {
-      var header = el.closest('.year-sort-header');
-      if (!header) return;
-      /* Moving between the label and the arrow symbol within the same
-         header shouldn't re-trigger anything — both cover the same tube. */
-      if (currentMode === 'merged' && mergedEl === header) return;
+      var group = getMergeGroup(el);
+      if (!group) return;
+      /* Moving between two parts of the same merge target (e.g. the label
+         and the arrow symbol) shouldn't re-trigger anything. */
+      if (currentMode === 'merged' && mergedRoot === group.root) return;
       clearMode();
-      mergedEl = header;
+      mergedRoot = group.root;
+      mergedRects = group.rects;
       currentMode = 'merged';
       cursor.classList.add('is-merged');
       updateMergeRect();
       return;
     }
-    var mode = el.matches(MODE_SELECTORS.magnify) ? 'magnify' : el.matches(MODE_SELECTORS.copy) ? 'copy' : 'hover';
+    var mode = el.matches(MODE_SELECTORS.magnify) ? 'magnify' : 'hover';
     if (currentMode === mode) return;
     clearMode();
     currentMode = mode;

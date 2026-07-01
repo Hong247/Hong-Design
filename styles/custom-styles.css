@@ -557,33 +557,25 @@ body.custom-cursor-active .year-sort-header * {
   margin: -26px 0 0 -26px;
 }
 
-/* Gallery images/videos: circle becomes a magnifying-glass silhouette */
+/* Gallery images/videos: circle becomes a slim lens ring with a fine
+   handle — a quiet loupe cue rather than a literal, heavy clip-art icon */
 .custom-cursor.is-magnify {
-  width: 48px;
-  height: 48px;
-  margin: -24px 0 0 -24px;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
   border-radius: 0;
   clip-path: url(#cursor-magnify-clip);
 }
 
-/* Email copy button: circle becomes two stacked page outlines — the
-   universal "copy/duplicate" glyph, echoing the button's own ⧉ icon */
-.custom-cursor.is-copy {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border-radius: 0;
-  clip-path: url(#cursor-copy-clip);
-}
-
-/* ROLE / PROJECT / YEAR sort headers: cursor drops its own shape and becomes
-   a tube/pill sized + positioned (by JS) to exactly cover the label and its
-   sort arrows together, so the whole word+arrows invert as a unit — reads
-   instantly as "this is clickable" instead of a circle merely passing over
-   some of the letters. Only triggers when the pointer is actually near the
-   label/arrows (see custom-cursor.js), not anywhere in the header cell,
-   which can be much wider than the word (ROLE's <th> is 34% of the table).
-   Width/height/margin/transform are all set inline per-word by
+/* Sort headers (label + arrows together), LinkedIn, Email, the email copy
+   button, and the HONG DESIGN title: cursor drops its own shape and becomes
+   a tube/pill sized + positioned (by JS) to exactly cover the control, so
+   the whole word (or icon) inverts as a unit — reads instantly as
+   clickable instead of a circle merely passing over some of the letters.
+   For sort headers this only triggers near the label/arrows (see
+   custom-cursor.js), not anywhere in the header cell, which can be much
+   wider than the word (ROLE's <th> is 34% of the table).
+   Width/height/margin/transform are all set inline per-target by
    scripts/custom-cursor.js; transform gets a transition here (unlike the
    base rule) because while merged, JS freezes transform and sets it only on
    enter/scroll, so animating it can't fight the per-frame pointer tracking
