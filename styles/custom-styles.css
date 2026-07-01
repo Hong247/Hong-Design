@@ -504,3 +504,54 @@ body.project-focus-active .hover-trigger.is-active-project td:first-child::befor
 @media (prefers-reduced-motion: reduce) {
   .project-loading span { animation: none; opacity: .3; }
 }
+
+/* ── Custom cursor: white circle, mix-blend-mode inverts whatever it sits over ──
+   Position is set every frame via `transform`, with no transition, so tracking
+   stays 1:1 with the pointer. The hover-grow animates width/height/margin
+   instead of transform: putting both position and scale on the transform of
+   the SAME element would make every mousemove ease through the hover
+   transition, lagging the cursor behind the pointer. (Nesting a separate
+   inner "dot" for the grow doesn't work either — Chromium fails to blend a
+   mix-blend-mode child against the page when its parent carries its own
+   `transform`, so it must be one element, not a wrapper + child.) */
+body.custom-cursor-active,
+body.custom-cursor-active a,
+body.custom-cursor-active button,
+body.custom-cursor-active .custom-btn,
+body.custom-cursor-active [role="button"] {
+  cursor: none;
+}
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
+}
+.custom-cursor.is-active { opacity: 1; }
+.custom-cursor.is-hover {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+}
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .custom-btn,
+  body.custom-cursor-active [role="button"] {
+    cursor: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor { transition: opacity .2s ease; }
+}
