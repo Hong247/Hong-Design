@@ -566,25 +566,30 @@ body.custom-cursor-active .year-sort-header * {
   clip-path: url(#cursor-magnify-clip);
 }
 
-/* Email copy button: circle becomes the same "copy" glyph used on the button itself */
+/* Email copy button: circle becomes two stacked page outlines — the
+   universal "copy/duplicate" glyph, echoing the button's own ⧉ icon */
 .custom-cursor.is-copy {
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
   border-radius: 0;
   clip-path: url(#cursor-copy-clip);
 }
 
 /* ROLE / PROJECT / YEAR sort headers: cursor drops its own shape and becomes
-   a rounded rectangle sized + positioned (by JS) to exactly cover the word,
-   so the whole word inverts as a unit — instantly reads as "this is clickable"
-   instead of a circle merely passing over some of the letters. Width/height/
-   margin/transform are all set inline per-word by scripts/custom-cursor.js;
-   transform gets a transition here (unlike the base rule) because while
-   merged, JS freezes transform and sets it only on enter/scroll, so animating
-   it can't fight the per-frame pointer tracking the way it would elsewhere. */
+   a tube/pill sized + positioned (by JS) to exactly cover the label and its
+   sort arrows together, so the whole word+arrows invert as a unit — reads
+   instantly as "this is clickable" instead of a circle merely passing over
+   some of the letters. Only triggers when the pointer is actually near the
+   label/arrows (see custom-cursor.js), not anywhere in the header cell,
+   which can be much wider than the word (ROLE's <th> is 34% of the table).
+   Width/height/margin/transform are all set inline per-word by
+   scripts/custom-cursor.js; transform gets a transition here (unlike the
+   base rule) because while merged, JS freezes transform and sets it only on
+   enter/scroll, so animating it can't fight the per-frame pointer tracking
+   the way it would elsewhere. */
 .custom-cursor.is-merged {
-  border-radius: 6px;
+  border-radius: 999px;
   transition: width .3s cubic-bezier(.22, 1, .36, 1), height .3s cubic-bezier(.22, 1, .36, 1), margin .3s cubic-bezier(.22, 1, .36, 1), border-radius .3s cubic-bezier(.22, 1, .36, 1), opacity .25s ease, transform .3s cubic-bezier(.22, 1, .36, 1);
 }
 

@@ -17,7 +17,12 @@
      DOM walk; which specific mode it is is then resolved with cheap
      `.matches()` calls instead of walking the tree again per mode. */
   var MODE_SELECTORS = {
-    merged: '.year-sort-header',
+    /* Scoped to the label/arrow spans, not the whole <th> — sort header
+       cells stretch to their column width (e.g. ROLE is 34% of the table),
+       so matching the <th> itself merges across all that empty space
+       instead of just near the word. Hovering the rest of the header cell
+       falls through to the generic [role="button"] grow-circle below. */
+    merged: '.year-sort-label, .year-sort-symbol',
     magnify: '.scroll-container img.fullscreen-image, .scroll-container video.fullscreen-image',
     copy: '.email-copy-button',
     hover: 'a, button, .custom-btn, input, textarea, select, [role="button"], img, video, iframe'
@@ -37,15 +42,23 @@
 
   function updateMergeRect() {
     if (!mergedEl) return;
-    var label = mergedEl.querySelector('.year-sort-label') || mergedEl;
-    var rect = label.getBoundingClientRect();
-    var padX = 10, padY = 6;
-    var w = rect.width + padX * 2;
-    var h = rect.height + padY * 2;
+    /* Cover the label AND the sort arrows together as one tube, regardless
+       of which of the two the pointer is actually over. */
+    var label = mergedEl.querySelector('.year-sort-label');
+    var symbol = mergedEl.querySelector('.year-sort-symbol');
+    var rects = [label, symbol].filter(Boolean).map(function (el) { return el.getBoundingClientRect(); });
+    if (!rects.length) return;
+    var left = Math.min.apply(null, rects.map(function (r) { return r.left; }));
+    var right = Math.max.apply(null, rects.map(function (r) { return r.right; }));
+    var top = Math.min.apply(null, rects.map(function (r) { return r.top; }));
+    var bottom = Math.max.apply(null, rects.map(function (r) { return r.bottom; }));
+    var padX = 12, padY = 7;
+    var w = (right - left) + padX * 2;
+    var h = (bottom - top) + padY * 2;
     cursor.style.width = w + 'px';
     cursor.style.height = h + 'px';
     cursor.style.margin = (-h / 2) + 'px 0 0 ' + (-w / 2) + 'px';
-    cursor.style.transform = 'translate(' + (rect.left + rect.width / 2) + 'px,' + (rect.top + rect.height / 2) + 'px)';
+    cursor.style.transform = 'translate(' + ((left + right) / 2) + 'px,' + ((top + bottom) / 2) + 'px)';
   }
 
   function clearMode() {
@@ -61,9 +74,13 @@
 
   function setModeFor(el) {
     if (el.matches(MODE_SELECTORS.merged)) {
-      if (currentMode === 'merged' && mergedEl === el) return;
+      var header = el.closest('.year-sort-header');
+      if (!header) return;
+      /* Moving between the label and the arrow symbol within the same
+         header shouldn't re-trigger anything — both cover the same tube. */
+      if (currentMode === 'merged' && mergedEl === header) return;
       clearMode();
-      mergedEl = el;
+      mergedEl = header;
       currentMode = 'merged';
       cursor.classList.add('is-merged');
       updateMergeRect();
