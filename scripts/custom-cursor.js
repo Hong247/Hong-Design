@@ -25,21 +25,28 @@
      DOM walk; which specific mode it is is then resolved with cheap
      `.matches()` calls instead of walking the tree again per mode. */
   var MODE_SELECTORS = {
-    /* Scoped to the label/arrow spans (not the whole <th>, which stretches
-       to its column width — ROLE is 34% of the table) and to a handful of
-       small, tightly content-sized text controls that get the same
-       "merge into the word" treatment. */
-    merged: '.year-sort-label, .year-sort-symbol, .social-links a, .email-copy-button, .header-title',
+    /* A handful of small, tightly content-sized text controls that merge into
+       the word on a direct hover. Sort headers are handled separately (below)
+       because their <th> stretches to its column width — ROLE is 34% of the
+       table — so they need proximity logic, not a whole-cell hit. */
+    merged: '.social-links a, .email-copy-button, .header-title',
     magnify: '.scroll-container img.fullscreen-image, .scroll-container video.fullscreen-image',
     hover: 'a, button, .custom-btn, input, textarea, select, [role="button"], img, video, iframe'
   };
-  var ALL_SELECTOR = [MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.hover].join(', ');
+  /* Sort headers get a PROXIMITY-based merge (see evaluateSortHeader): the
+     pill engages as the pointer nears the label OR the arrows — spanning the
+     small gap between "ROLE" and its ▲▼, plus a slack margin so it kicks in
+     on approach rather than only on a pixel-perfect hit over one glyph. */
+  var SORT_SELECTOR = '.year-sort-header';
+  var SORT_APPROACH = 10; /* px of slack around the label+arrows union box */
+  var ALL_SELECTOR = [MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.hover, SORT_SELECTOR].join(', ');
 
   var raf = null;
   var x = 0, y = 0;
   var currentMode = null;
   var mergedRoot = null;
   var mergedRects = null;
+  var sortHeader = null; /* the .year-sort-header the pointer is currently within */
 
   /* Merge sizing is tweened in JS rather than left to a CSS transition:
      width, height, and margin must always satisfy margin = -size/2 at every
@@ -100,25 +107,21 @@
     handle.style.transform = 'translate(' + cx + 'px,' + cy + 'px) rotate(45deg) translate(-50%, -50%)';
   }
 
-  /* A merge "root" is the element whose content should be covered as one
-     shape, and its rects() tells us what to measure. Sort headers merge
-     the label + arrow symbol together (whichever one triggered it); the
-     rest are simple single-element targets. */
+  /* Direct merge targets (LinkedIn, Email, copy button, HONG DESIGN): each is
+     a single tightly-sized element covered as one pill. Sort headers are not
+     handled here — see evaluateSortHeader. */
   function getMergeGroup(el) {
-    var header = el.closest('.year-sort-header');
-    if (header) {
-      return {
-        root: header,
-        rects: function () {
-          return [header.querySelector('.year-sort-label'), header.querySelector('.year-sort-symbol')].filter(Boolean);
-        }
-      };
-    }
     var direct = el.closest('.social-links a, .email-copy-button, .header-title');
     if (direct) {
       return { root: direct, rects: function () { return [direct]; } };
     }
     return null;
+  }
+
+  /* The label + arrow symbol of a sort header, measured together so the pill
+     covers "ROLE ▲▼" as one unit regardless of which part it engaged near. */
+  function sortHeaderRects(header) {
+    return [header.querySelector('.year-sort-label'), header.querySelector('.year-sort-symbol')].filter(Boolean);
   }
 
   /* Measure the actual rendered glyphs, not the element's border box. A
@@ -153,6 +156,37 @@
     animateSizeTo(w, h);
   }
 
+  /* Sort-header proximity: while the pointer is anywhere within a sort header,
+     this runs on every pointer move and picks the mode by distance to the
+     label+arrows union (expanded by SORT_APPROACH). Inside that zone the pill
+     merges onto the word; outside it (the wide empty rest of the <th>) it's a
+     plain hover circle — so the merge engages smoothly on approach and covers
+     the ▲▼ and the gap, not just a direct glyph hit. */
+  function evaluateSortHeader() {
+    if (!sortHeader) return;
+    var parts = sortHeaderRects(sortHeader).map(contentRect);
+    if (!parts.length) return;
+    var left = Math.min.apply(null, parts.map(function (r) { return r.left; })) - SORT_APPROACH;
+    var right = Math.max.apply(null, parts.map(function (r) { return r.right; })) + SORT_APPROACH;
+    var top = Math.min.apply(null, parts.map(function (r) { return r.top; })) - SORT_APPROACH;
+    var bottom = Math.max.apply(null, parts.map(function (r) { return r.bottom; })) + SORT_APPROACH;
+    var near = x >= left && x <= right && y >= top && y <= bottom;
+    if (near) {
+      if (currentMode === 'merged' && mergedRoot === sortHeader) return;
+      clearMode();
+      mergedRoot = sortHeader;
+      mergedRects = function () { return sortHeaderRects(sortHeader); };
+      currentMode = 'merged';
+      cursor.classList.add('is-merged');
+      updateMergeRect();
+    } else {
+      if (currentMode === 'hover') return;
+      clearMode();
+      currentMode = 'hover';
+      cursor.classList.add('is-hover');
+    }
+  }
+
   function clearMode() {
     if (currentMode === 'merged') {
       mergedRoot = null;
@@ -168,6 +202,13 @@
   }
 
   function setModeFor(el) {
+    var header = el.closest(SORT_SELECTOR);
+    if (header) {
+      sortHeader = header;
+      evaluateSortHeader();
+      return;
+    }
+    sortHeader = null;
     if (el.matches(MODE_SELECTORS.merged)) {
       var group = getMergeGroup(el);
       if (!group) return;
@@ -196,6 +237,10 @@
   function onPointerMove(e) {
     x = e.clientX;
     y = e.clientY;
+    /* Re-evaluate merge/hover by proximity while inside a sort header, so the
+       pill engages on approach and doesn't flicker across the label/arrow gap.
+       Runs regardless of mode (move() freezes position while merged). */
+    if (sortHeader) evaluateSortHeader();
     if (!raf) raf = requestAnimationFrame(move);
     cursor.classList.add('is-active');
   }
@@ -211,8 +256,8 @@
     var related = e.relatedTarget;
     var relatedEl = related && related.closest && related.closest(ALL_SELECTOR);
     if (relatedEl === el) return; /* moved within the same matched ancestor */
-    if (relatedEl) setModeFor(relatedEl);
-    else clearMode();
+    if (relatedEl) setModeFor(relatedEl); /* setModeFor resets sortHeader */
+    else { sortHeader = null; clearMode(); }
   }
 
   function onScroll() {
@@ -221,6 +266,7 @@
 
   function onLeave() {
     cursor.classList.remove('is-active');
+    sortHeader = null;
     clearMode();
   }
 
