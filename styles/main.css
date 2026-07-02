@@ -311,6 +311,18 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
     transform: translate(-50%, -50%) scale(1);
     transition-duration: .5s, .55s;
   }
+  /* Rays reveal + spin are otherwise wired to dark-mode-shows-sun only
+     (desktop's mapping); touch shows the sun in light mode instead, so
+     the same reveal/spin needs its own light-mode selector here. */
+  body.chameleon-light .theme-toggle.is-previewing .theme-toggle-sun .sun-rays line {
+    opacity: 1;
+    transform: scale(1);
+  }
+  body.chameleon-light .theme-toggle.is-previewing .theme-toggle-sun .sun-rays {
+    transform-box: view-box;
+    transform-origin: 16px 16px;
+    animation: theme-toggle-sun-spin 40s linear infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
