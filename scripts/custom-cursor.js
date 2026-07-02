@@ -65,15 +65,25 @@
      timing being exact. */
   var sizeRaf = null;
   var sizeStart = null;
-  var sizeDuration = 480;
+  var sizeDuration = 750;
   var fromW = 22, fromH = 22, toW = 22, toH = 22;
 
-  function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
+  /* A pronounced single overshoot-then-settle — the pill grows past its
+     final size and eases back, reading as an elastic, water-like flow
+     rather than a mechanical snap. c1 controls how far past 100% it
+     stretches before settling; standard "easeOutBack" uses ~1.7, this
+     uses a larger value for a more dramatic effect as requested. */
+  function easeOutLiquid(t) {
+    var c1 = 2.4;
+    var c3 = c1 + 1;
+    var p = t - 1;
+    return 1 + c3 * p * p * p + c1 * p * p;
+  }
 
   function tweenSize(ts) {
     if (sizeStart === null) sizeStart = ts;
     var progress = Math.min(1, (ts - sizeStart) / sizeDuration);
-    var eased = easeOutQuint(progress);
+    var eased = easeOutLiquid(progress);
     var w = fromW + (toW - fromW) * eased;
     var h = fromH + (toH - fromH) * eased;
     cursor.style.width = w + 'px';
