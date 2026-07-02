@@ -337,11 +337,14 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
 }
 
 .theme-toggle:focus-visible,
-.custom-btn:focus-visible,
 .social-links a:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 3px;
 }
+/* Archive row buttons never draw a focus rectangle — the browser could flag
+   them :focus-visible after mixed keyboard/pointer use, boxing the title of
+   whichever project was just opened. */
+.custom-btn:focus-visible { outline: none; }
 
 .body-copy {
   max-width: 520px;

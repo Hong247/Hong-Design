@@ -73,7 +73,9 @@
       var ratio = el.clientWidth / el.scrollWidth;
       if (ratio >= 1) { track.style.opacity = '0'; return; }
       track.style.opacity = '1';
-      track.style.background = c.track;
+      /* Track stays invisible — only the thumb is drawn. A tinted track
+         under the gallery read as a stray low-opacity bar across the page. */
+      track.style.background = 'transparent';
       thumb.style.background = c.thumb;
       track.style.left = el.scrollLeft + 'px';
       track.style.width = el.clientWidth + 'px';
