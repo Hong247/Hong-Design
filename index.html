@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <base href="/">
-<script defer src="scripts/analytics.js?v=202607012339"></script>
+<script defer src="scripts/analytics.js?v=202607020006"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4NDW15EB6"></script>
 <meta name="description" content="Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.">
 <meta name="author" content="Cheok Hong Lai">
@@ -38,9 +38,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="styles/bundle.css?v=202607012339">
-<script src="data/projects-index.js?v=202607012339" defer></script>
-<script src="scripts/bundle.js?v=202607012339" defer></script>
+<link rel="stylesheet" href="styles/bundle.css?v=202607020006">
+<script src="data/projects-index.js?v=202607020006" defer></script>
+<script src="scripts/bundle.js?v=202607020006" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,7 +358,7 @@
   ]
 }
 </script>
-<script src="scripts/clarity.js?v=202607012339" defer></script>
+<script src="scripts/clarity.js?v=202607020006" defer></script>
 </head>
 <body class="chameleon-mode">
 <script>!function(){try{var t=localStorage.getItem("theme");document.body.className=t==="chameleon-light"?"chameleon-mode chameleon-light":"chameleon-mode"}catch(e){}}()</script>
@@ -372,7 +372,44 @@
 <div class="overlay-text">
 <header class="header is-flex">
 <h1 class="header-title" tabindex="0" role="button" aria-label="Hong Design — close all open projects">HONG DESIGN</h1>
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle black or white chameleon theme"></button>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle black or white chameleon theme">
+<span class="theme-toggle-dot" aria-hidden="true"></span>
+<svg class="theme-toggle-icon theme-toggle-sun" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+<!-- Disc + a subtle terminator: one path, two full-circle subpaths combined
+     with fill-rule="evenodd" so the second (offset) circle cuts a true,
+     see-through crescent gap out of the disc rather than a same-colour
+     translucent overlay, which is invisible when the "shadow" and the disc
+     are the same currentColor (as they are here in both themes). -->
+<path class="sun-core" fill-rule="evenodd" d="M16 10a6 6 0 1 0 0 12 6 6 0 1 0 0-12Z M18 10.6a5.6 5.6 0 1 0 0 11.2 5.6 5.6 0 1 0 0-11.2Z"></path>
+<g class="sun-rays">
+<line x1="23.6" y1="16" x2="27.4" y2="16"></line>
+<line x1="23.02" y1="18.91" x2="24.59" y2="19.56"></line>
+<line x1="21.37" y1="21.37" x2="24.06" y2="24.06"></line>
+<line x1="18.91" y1="23.02" x2="19.56" y2="24.59"></line>
+<line x1="16" y1="23.6" x2="16" y2="27.4"></line>
+<line x1="13.09" y1="23.02" x2="12.44" y2="24.59"></line>
+<line x1="10.63" y1="21.37" x2="7.94" y2="24.06"></line>
+<line x1="8.98" y1="18.91" x2="7.41" y2="19.56"></line>
+<line x1="8.4" y1="16" x2="4.6" y2="16"></line>
+<line x1="8.98" y1="13.09" x2="7.41" y2="12.44"></line>
+<line x1="10.63" y1="10.63" x2="7.94" y2="7.94"></line>
+<line x1="13.09" y1="8.98" x2="12.44" y2="7.41"></line>
+<line x1="16" y1="8.4" x2="16" y2="4.6"></line>
+<line x1="18.91" y1="8.98" x2="19.56" y2="7.41"></line>
+<line x1="21.37" y1="10.63" x2="24.06" y2="7.94"></line>
+<line x1="23.02" y1="13.09" x2="24.59" y2="12.44"></line>
+</g>
+</svg>
+<svg class="theme-toggle-icon theme-toggle-moon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+<!-- Crescent + craters: the craters are extra full-circle subpaths on this
+     same evenodd path, so each is a genuine cutout (shows the real page
+     background through) instead of a same-colour translucent circle sitting
+     on an already-opaque same-colour crescent, which paints nothing visible. -->
+<path class="moon-body" fill-rule="evenodd" d="M16 7a9 9 0 1 0 0 18 9 9 0 0 0 8.66-6.58A7.6 7.6 0 0 1 20.5 19.1a7.6 7.6 0 0 1-4.5-13.75A9 9 0 0 0 16 7Z M11 11.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3Z M10 17.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2Z M15 21.1a0.9 0.9 0 1 0 0 1.8 0.9 0.9 0 1 0 0-1.8Z"></path>
+<path class="star star-1" transform="translate(25,6) scale(1.7)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
+<path class="star star-2" transform="translate(24,25) scale(1.15)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
+</svg>
+</button>
 </header>
 <main id="main">
 <section id="about" class="about std-margin-bottom">

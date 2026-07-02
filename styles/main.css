@@ -155,11 +155,12 @@ tr:hover .custom-btn {
 }
 
 .theme-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  min-width: 20px;
+  width: 22px;
+  min-width: 22px;
   height: 22px;
   margin-top: 8px;
   margin-left: auto;
@@ -169,18 +170,155 @@ tr:hover .custom-btn {
   color: inherit;
   cursor: pointer;
   line-height: 1;
+  overflow: visible;
 }
 
-.theme-toggle::before {
-  content: "●";
+/* Plain dot: the only thing shown by default. Fades out for the detailed
+   sun/moon icon underneath the instant the button is hovered/focused/tapped. */
+.theme-toggle-dot {
   display: block;
-  color: var(--accent);
-  font-size: 13px;
-  line-height: 1;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity .35s cubic-bezier(.22, 1, .36, 1), transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+/* :hover variant lives in the (hover: hover) media block further down, so
+   touch devices' sticky post-tap :hover can't keep the dot hidden forever. */
+.theme-toggle.is-previewing .theme-toggle-dot,
+.theme-toggle:focus-visible .theme-toggle-dot {
+  opacity: 0;
+  transform: scale(.25);
+  transition-duration: .22s;
 }
 
-.theme-toggle:hover {
-  color: var(--accent);
+/* Sun and moon are both always in the DOM at opacity 0 (never display:none) so
+   that clicking mid-hover — which flips which one the current theme targets —
+   crossfades cleanly between them instead of popping, since a display:none
+   element can't transition on the same frame it becomes visible. Only one is
+   ever the "target" at a time, decided purely by the existing body theme
+   classes: dark shows the sun (clicking goes light), light shows the moon
+   (clicking goes dark) — a preview of what the click will switch you into. */
+.theme-toggle-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%) scale(.4);
+  opacity: 0;
+  pointer-events: none;
+  fill: currentColor;
+  stroke: currentColor;
+  transition: opacity .4s cubic-bezier(.22, 1, .36, 1), transform .5s cubic-bezier(.32, 1.5, .5, 1);
+}
+.sun-rays {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.star { opacity: .85; }
+
+/* Rays/stars pop in from the icon's own center point, staggered, so the
+   reveal reads as a precise unfurl rather than a single flat fade. Craters
+   and the sun's shading terminator are real cutouts baked into the moon/sun
+   paths themselves (see index.html) — same-colour circles layered atop an
+   already-opaque same-colour shape at reduced opacity paint nothing visible,
+   so they can't be separate animatable elements the way rays/stars are. */
+.sun-rays line, .star { transform-box: view-box; opacity: 0; transform: scale(.2); transition: opacity .3s ease, transform .38s cubic-bezier(.34, 1.5, .64, 1); }
+.sun-rays line { transform-origin: 16px 16px; }
+.star-1 { transform-origin: 25px 6px; }
+.star-2 { transform-origin: 24px 25px; }
+
+/* Touch devices can leave a "sticky" :hover on a button after a tap (no
+   pointer ever leaves to clear it), which would keep the icon shown forever
+   instead of "goes back to plain circle once done". :hover is therefore only
+   ever wired up under (hover: hover) — a real mouse — so touch relies solely
+   on the explicit .is-previewing class main.js adds/removes around the tap. */
+@media (hover: hover) {
+  body.chameleon-mode:not(.chameleon-light) .theme-toggle:hover .theme-toggle-sun,
+  body.chameleon-light .theme-toggle:hover .theme-toggle-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: .5s, .55s;
+  }
+  body.chameleon-mode:not(.chameleon-light) .theme-toggle:hover .theme-toggle-sun .sun-rays line,
+  body.chameleon-light .theme-toggle:hover .theme-toggle-moon .star {
+    opacity: 1;
+    transform: scale(1);
+  }
+  body.chameleon-mode:not(.chameleon-light) .theme-toggle:hover .theme-toggle-sun .sun-rays {
+    transform-box: view-box;
+    transform-origin: 16px 16px;
+    animation: theme-toggle-sun-spin 40s linear infinite;
+  }
+  body.chameleon-light .theme-toggle:hover .theme-toggle-moon .star {
+    animation: theme-toggle-star-twinkle 2.2s ease-in-out infinite;
+  }
+  .theme-toggle:hover .theme-toggle-dot { opacity: 0; transform: scale(.25); transition-duration: .22s; }
+}
+body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-sun,
+body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-toggle-sun,
+body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon,
+body.chameleon-light .theme-toggle:focus-visible .theme-toggle-moon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition-duration: .5s, .55s;
+}
+body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-sun .sun-rays line,
+body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-toggle-sun .sun-rays line,
+body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon .star,
+body.chameleon-light .theme-toggle:focus-visible .theme-toggle-moon .star {
+  opacity: 1;
+  transform: scale(1);
+}
+/* Staggered entrance delay, radiating clockwise from the top ray/nearest detail */
+.sun-rays line:nth-child(1)  { transition-delay: .12s; }
+.sun-rays line:nth-child(2)  { transition-delay: .13s; }
+.sun-rays line:nth-child(3)  { transition-delay: .15s; }
+.sun-rays line:nth-child(4)  { transition-delay: .16s; }
+.sun-rays line:nth-child(5)  { transition-delay: .18s; }
+.sun-rays line:nth-child(6)  { transition-delay: .19s; }
+.sun-rays line:nth-child(7)  { transition-delay: .21s; }
+.sun-rays line:nth-child(8)  { transition-delay: .22s; }
+.sun-rays line:nth-child(9)  { transition-delay: .24s; }
+.sun-rays line:nth-child(10) { transition-delay: .25s; }
+.sun-rays line:nth-child(11) { transition-delay: .27s; }
+.sun-rays line:nth-child(12) { transition-delay: .28s; }
+.sun-rays line:nth-child(13) { transition-delay: .3s; }
+.sun-rays line:nth-child(14) { transition-delay: .31s; }
+.sun-rays line:nth-child(15) { transition-delay: .33s; }
+.sun-rays line:nth-child(16) { transition-delay: .34s; }
+.star-1 { transition-delay: .3s; }
+.star-2 { transition-delay: .36s; }
+
+/* Slow ambient rotation while the sun is actually showing, matching the
+   site's other slow ambient motion (chroma blobs drift over 54s/67s) — a
+   quiet "living" touch rather than a static icon. (@media (hover: hover)
+   block above wires up the :hover variant of these animations; touch/
+   keyboard get them via .is-previewing/:focus-visible below.) */
+@keyframes theme-toggle-sun-spin { to { transform: rotate(360deg); } }
+@keyframes theme-toggle-star-twinkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-sun .sun-rays,
+body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-toggle-sun .sun-rays {
+  transform-box: view-box;
+  transform-origin: 16px 16px;
+  animation: theme-toggle-sun-spin 40s linear infinite;
+}
+body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon .star,
+body.chameleon-light .theme-toggle:focus-visible .theme-toggle-moon .star {
+  animation: theme-toggle-star-twinkle 2.2s ease-in-out infinite;
+}
+.star-2 { animation-delay: .6s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-icon, .theme-toggle-dot, .sun-rays line, .star {
+    transition-duration: .2s;
+    transition-delay: 0s !important;
+  }
+  .sun-rays, .star { animation: none !important; }
 }
 
 .theme-toggle:focus-visible,

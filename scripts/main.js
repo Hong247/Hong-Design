@@ -22,6 +22,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   if (themeToggle) {
     themeToggle.addEventListener("click", toggleTheme);
+    /* Touch devices don't get a sustained :hover, so the sun/moon reveal (a
+       pure CSS hover effect otherwise) needs an explicit class covering the
+       tap. Added on touchstart so the icon is already visible by the time the
+       click fires and flips the theme (crossfading to the new target icon),
+       then removed after the reveal has had time to read before falling back
+       to the plain dot. */
+    var previewTimer = null;
+    themeToggle.addEventListener("touchstart", function () {
+      themeToggle.classList.add("is-previewing");
+      if (previewTimer) window.clearTimeout(previewTimer);
+    }, { passive: true });
+    themeToggle.addEventListener("click", function () {
+      if (previewTimer) window.clearTimeout(previewTimer);
+      previewTimer = window.setTimeout(function () {
+        themeToggle.classList.remove("is-previewing");
+        previewTimer = null;
+      }, 900);
+    });
   }
 
   /* Event delegation — single listener on the table instead of one per row */

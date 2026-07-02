@@ -549,6 +549,13 @@ body.custom-cursor-active .year-sort-header * {
 }
 .custom-cursor.is-active { opacity: 1; }
 
+/* Theme toggle draws its own detailed sun/moon reveal on hover (see
+   styles/main.css .theme-toggle-icon) — the generic difference-blend circle
+   sitting on top of it would invert that white-on-white detail to solid
+   black. Hide the cursor entirely over it so the toggle's own animation is
+   the only thing you see. */
+.custom-cursor.is-hidden { opacity: 0; }
+
 /* Generic interactive elements: circle grows */
 .custom-cursor.is-hover {
   width: 40px;

@@ -25,6 +25,14 @@
      DOM walk; which specific mode it is is then resolved with cheap
      `.matches()` calls instead of walking the tree again per mode. */
   var MODE_SELECTORS = {
+    /* The theme toggle draws its own detailed sun/moon reveal on hover — the
+       generic mix-blend-mode circle sitting on top of it would invert those
+       shapes (difference-blending white icon detail against itself reads as
+       solid black), muddying exactly the "precise and clear" transition it's
+       going for. Hide the custom cursor entirely over it instead, same as
+       every other mode here gets its own dedicated treatment rather than the
+       plain hover circle. */
+    hidden: '.theme-toggle',
     /* A handful of small, tightly content-sized text controls that merge into
        the word on a direct hover. Sort headers are handled separately (below)
        because their <th> stretches to its column width — ROLE is 34% of the
@@ -39,7 +47,7 @@
      on approach rather than only on a pixel-perfect hit over one glyph. */
   var SORT_SELECTOR = '.year-sort-header';
   var SORT_APPROACH = 10; /* px of slack around the label+arrows union box */
-  var ALL_SELECTOR = [MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.hover, SORT_SELECTOR].join(', ');
+  var ALL_SELECTOR = [MODE_SELECTORS.hidden, MODE_SELECTORS.merged, MODE_SELECTORS.magnify, MODE_SELECTORS.hover, SORT_SELECTOR].join(', ');
 
   var raf = null;
   var x = 0, y = 0;
@@ -209,6 +217,13 @@
       return;
     }
     sortHeader = null;
+    if (el.matches(MODE_SELECTORS.hidden)) {
+      if (currentMode === 'hidden') return;
+      clearMode();
+      currentMode = 'hidden';
+      cursor.classList.add('is-hidden');
+      return;
+    }
     if (el.matches(MODE_SELECTORS.merged)) {
       var group = getMergeGroup(el);
       if (!group) return;
