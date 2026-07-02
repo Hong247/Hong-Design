@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <base href="/">
-<script defer src="scripts/analytics.js?v=202607020228"></script>
+<script defer src="scripts/analytics.js?v=202607020232"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4NDW15EB6"></script>
 <meta name="description" content="Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.">
 <meta name="author" content="Cheok Hong Lai">
@@ -38,9 +38,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="styles/bundle.css?v=202607020228">
-<script src="data/projects-index.js?v=202607020228" defer></script>
-<script src="scripts/bundle.js?v=202607020228" defer></script>
+<link rel="stylesheet" href="styles/bundle.css?v=202607020232">
+<script src="data/projects-index.js?v=202607020232" defer></script>
+<script src="scripts/bundle.js?v=202607020232" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,7 +358,7 @@
   ]
 }
 </script>
-<script src="scripts/clarity.js?v=202607020228" defer></script>
+<script src="scripts/clarity.js?v=202607020232" defer></script>
 </head>
 <body class="chameleon-mode">
 <script>!function(){try{var t=localStorage.getItem("theme");document.body.className=t==="chameleon-light"?"chameleon-mode chameleon-light":"chameleon-mode"}catch(e){}}()</script>
@@ -402,14 +402,14 @@
      — wrong shape, wrong fill, or visibly jagged straight-line edges standing
      in for a curve. A mask sidesteps all of that: luminance compositing is
      unambiguous (white shows, black hides) and the circles stay genuinely
-     round. Sized and rotated to match the user-supplied reference image
-     directly: a big, full crescent (cutout radius well under the main
-     radius, unlike the slimmer version this replaces) rotated 35° so the
-     tips point up-left and lower-right instead of straight left/right. -->
+     round. Rotated 20° (down from 35°) and shrunk (main radius 9 vs 13,
+     cutout radius closer to it for a thinner body) to match a follow-up
+     reference image showing a smaller, thinner, less-rotated crescent
+     than the first one. -->
 <mask id="theme-toggle-moon-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
-<g transform="rotate(35 16 16)">
-<circle cx="16.2" cy="16" r="13" fill="#fff"></circle>
-<circle cx="22.2" cy="17" r="10.5" fill="#000"></circle>
+<g transform="rotate(20 16 16)">
+<circle cx="17.1" cy="15.65" r="9" fill="#fff"></circle>
+<circle cx="21.6" cy="16.15" r="8.3" fill="#000"></circle>
 </g>
 </mask>
 <rect class="moon-body" x="0" y="0" width="32" height="32" mask="url(#theme-toggle-moon-mask)"></rect>
