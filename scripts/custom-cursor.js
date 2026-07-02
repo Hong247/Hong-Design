@@ -68,17 +68,9 @@
   var sizeDuration = 750;
   var fromW = 22, fromH = 22, toW = 22, toH = 22;
 
-  /* A pronounced single overshoot-then-settle — the pill grows past its
-     final size and eases back, reading as an elastic, water-like flow
-     rather than a mechanical snap. c1 controls how far past 100% it
-     stretches before settling; standard "easeOutBack" uses ~1.7, this
-     uses a larger value for a more dramatic effect as requested. */
-  function easeOutLiquid(t) {
-    var c1 = 2.4;
-    var c3 = c1 + 1;
-    var p = t - 1;
-    return 1 + c3 * p * p * p + c1 * p * p;
-  }
+  /* Smooth decelerate-only ease — grows straight to its final size and
+     settles, no overshoot past the target width/height. */
+  function easeOutLiquid(t) { return 1 - Math.pow(1 - t, 4); }
 
   function tweenSize(ts) {
     if (sizeStart === null) sizeStart = ts;

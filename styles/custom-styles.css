@@ -626,11 +626,10 @@ body.custom-cursor-active .year-sort-header * {
    stay mathematically in lockstep with the box's size for centering. */
 .custom-cursor.is-merged {
   border-radius: 999px;
-  /* Overshoot-style curve (bulges past the final radius, then settles) to
-     match the same dramatic, water-like overshoot scripts/custom-cursor.js
-     now drives width/height/margin with — .48s/no-overshoot read as a
-     mechanical snap next to that, so both need to move together. */
-  transition: border-radius .75s cubic-bezier(.34, 1.56, .64, 1), opacity .35s ease;
+  /* Duration matches scripts/custom-cursor.js's width/height/margin tween
+     (sizeDuration) so border-radius doesn't visually lag behind or finish
+     ahead of the box's own resize. No overshoot — decelerate-only. */
+  transition: border-radius .75s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
 }
 
 @media (hover: none), (pointer: coarse) {
