@@ -299,7 +299,8 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
   }
   body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-moon {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    /* 25% smaller than desktop's scale(1) reveal, touch only. */
+    transform: translate(-50%, -50%) scale(.75);
     transition-duration: .5s, .55s;
   }
   body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon {
