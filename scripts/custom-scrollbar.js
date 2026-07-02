@@ -19,6 +19,9 @@
 
     var track = document.createElement('div');
     var thumb = document.createElement('div');
+    /* Class lets CSS hide this fixed indicator while the lightbox is open —
+       its z-index sits above the overlay (see body.lb-active rule). */
+    track.className = 'custom-scrollbar-y';
     /* position:fixed — sits above all stacking contexts, no layering issues */
     track.style.cssText = 'position:fixed;width:2px;pointer-events:none;z-index:9999;border-radius:2px;transition:opacity .25s';
     thumb.style.cssText = 'position:absolute;left:0;width:100%;border-radius:2px;transition:top .06s linear,height .06s linear,background .2s';

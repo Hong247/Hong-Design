@@ -278,6 +278,37 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
 
 body.lb-active { overflow: hidden; }
 
+/* While the lightbox is open the page's fixed vertical scroll indicator
+   (z-index 9999, above the overlay) would keep floating on top of the dimmed
+   page — hide it; it fades back when the lightbox closes. !important because
+   scripts/custom-scrollbar.js drives its opacity inline. */
+body.lb-active .custom-scrollbar-y { opacity: 0 !important; }
+
+/* Horizontal position indicator: which image of the set is showing. Same
+   quiet track+thumb grammar as the gallery's own scrollbar. Wheel/trackpad
+   in the lightbox steps through images horizontally (see scripts/lightbox.js),
+   so this doubles as the "horizontal scroll" readout for that. */
+#lb-hbar {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  width: min(220px, 40vw);
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .16);
+  z-index: 1001;
+  pointer-events: none;
+}
+#lb-hthumb {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  background: #fff;
+  transition: left .28s cubic-bezier(.22, 1, .36, 1), width .28s cubic-bezier(.22, 1, .36, 1);
+}
+
 /* Gallery images — each piece reveals as it enters view (IntersectionObserver
    in project-renderer.js adds .img-inview with a per-batch stagger delay), so
    the initially visible images unfurl in sequence on open and later ones

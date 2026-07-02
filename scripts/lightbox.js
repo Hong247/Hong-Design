@@ -1,6 +1,10 @@
 (function () {
   var overlay, imgEl, videoEl, closeBtn, prevBtn, nextBtn;
+  var hbarEl, hthumbEl; /* horizontal position indicator */
   var mediaEl; /* the element currently shown (imgEl or videoEl) */
+
+  /* wheel-to-navigate state */
+  var wheelAccum = 0, wheelCooldownUntil = 0;
 
   /* zoom / pan state */
   var currentScale = 1, baseScale = 1;
@@ -66,12 +70,42 @@
       '<svg width="20" height="36" viewBox="0 0 20 36" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
       '<polyline points="4,4 16,18 4,32"/></svg>';
 
+    /* Horizontal position indicator: mirrors the gallery's own scrollbar
+       grammar — a quiet track with a thumb showing which image you're on. */
+    hbarEl = document.createElement("div");
+    hbarEl.id = "lb-hbar";
+    hbarEl.setAttribute("aria-hidden", "true");
+    hthumbEl = document.createElement("div");
+    hthumbEl.id = "lb-hthumb";
+    hbarEl.appendChild(hthumbEl);
+
     overlay.appendChild(imgEl);
     overlay.appendChild(videoEl);
     overlay.appendChild(closeBtn);
     overlay.appendChild(prevBtn);
     overlay.appendChild(nextBtn);
+    overlay.appendChild(hbarEl);
     document.body.appendChild(overlay);
+
+    /* Wheel = horizontal navigation. Vertical page scroll is blocked while
+       the lightbox is open (preventDefault below + body.lb-active overflow);
+       instead a wheel/trackpad gesture on either axis steps through the set.
+       Accumulate deltas so one trackpad flick is one step, with a short
+       cooldown so momentum scrolling doesn't skip several images. */
+    overlay.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      if (isAnimating || currentScale > 1.05) return;
+      var now = Date.now();
+      if (now < wheelCooldownUntil) return;
+      var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      wheelAccum += d;
+      if (Math.abs(wheelAccum) > 60) {
+        var dir = wheelAccum > 0 ? 1 : -1;
+        wheelAccum = 0;
+        wheelCooldownUntil = now + 450;
+        navigateAnimated(dir, 0);
+      }
+    }, { passive: false });
 
     closeBtn.addEventListener("click", close);
     prevBtn.addEventListener("click", function () { navigateAnimated(-1, 0); });
@@ -111,6 +145,8 @@
     if (currentIndex < 0) currentIndex = 0;
     loadItem(currentImages[currentIndex]);
     resetTransform(true);
+    wheelAccum = 0;
+    wheelCooldownUntil = 0;
     overlay.classList.add("lb-open");
     document.body.classList.add("lb-active");
     updateNavButtons();
@@ -155,6 +191,11 @@
     nextBtn.style.display = single ? "none" : "";
     prevBtn.style.opacity = currentIndex === 0 ? "0.25" : "";
     nextBtn.style.opacity = currentIndex === currentImages.length - 1 ? "0.25" : "";
+    hbarEl.style.display = single ? "none" : "";
+    if (!single) {
+      hthumbEl.style.width = (100 / currentImages.length) + "%";
+      hthumbEl.style.left = (currentIndex * 100 / currentImages.length) + "%";
+    }
   }
 
   /* ─── smooth navigate with exit → swap → enter ─── */
