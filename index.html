@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <base href="/">
-<script defer src="scripts/analytics.js?v=202607020505"></script>
+<script defer src="scripts/analytics.js?v=202607020523"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4NDW15EB6"></script>
 <meta name="description" content="Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.">
 <meta name="author" content="Cheok Hong Lai">
@@ -38,9 +38,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="styles/bundle.css?v=202607020505">
-<script src="data/projects-index.js?v=202607020505" defer></script>
-<script src="scripts/bundle.js?v=202607020505" defer></script>
+<link rel="stylesheet" href="styles/bundle.css?v=202607020523">
+<script src="data/projects-index.js?v=202607020523" defer></script>
+<script src="scripts/bundle.js?v=202607020523" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,7 +358,7 @@
   ]
 }
 </script>
-<script src="scripts/clarity.js?v=202607020505" defer></script>
+<script src="scripts/clarity.js?v=202607020523" defer></script>
 </head>
 <body class="chameleon-mode">
 <script>!function(){try{var t=localStorage.getItem("theme");document.body.className=t==="chameleon-light"?"chameleon-mode chameleon-light":"chameleon-mode"}catch(e){}}()</script>
@@ -394,23 +394,22 @@
 </g>
 </svg>
 <svg class="theme-toggle-icon theme-toggle-moon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-<!-- Crescent via an SVG mask: two real, perfectly round circles (main disc,
-     white = shown; an offset disc, black = hidden), rather than a hand-built
-     path. Three earlier attempts at drawing the crescent as a single path
-     (two independent circle subpaths under evenodd; a hand-picked arc outline;
-     a polygon traced from verified pixels) each had a different subtle defect
-     — wrong shape, wrong fill, or visibly jagged straight-line edges standing
-     in for a curve. A mask sidesteps all of that: luminance compositing is
-     unambiguous (white shows, black hides) and the circles stay genuinely
-     round. Same proportions and 45° counterclockwise rotation as before,
-     scaled down 25% (radii and offset all ×0.75) and re-centered. -->
-<mask id="theme-toggle-moon-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+<!-- Crescent as a single closed vector path (two circular arcs meeting at
+     the two intersection points of the same main/cut circles the old mask
+     used), not an SVG mask. Masks are rasterized/composited per pixel, and
+     on some mobile browsers that raster step loses enough fine detail at
+     this icon's small on-screen size to visibly fatten the crescent (seen
+     on real phones — a plain vector fill doesn't have that failure mode,
+     same as the sun ring's evenodd circles). Arc flags + endpoints were
+     solved numerically and pixel-diffed against the mask's own rendering
+     (41 px of 102400 differ, pure edge anti-aliasing) rather than guessed —
+     hand-picked flags were tried before and silently produced a
+     right-bounding-box-wrong-fill sliver. Same proportions and 45°
+     counterclockwise rotation as the old mask (radii/offset ×0.75, re-
+     centered). -->
 <g transform="rotate(-45 16 16)">
-<circle cx="16.15" cy="16.3" r="9.75" fill="#fff"></circle>
-<circle cx="20.65" cy="17.05" r="7.875" fill="#000"></circle>
+<path class="moon-body" d="M 20.6969 24.9249 A 9.75 9.75 0 1 1 23.2484 9.616 A 7.875 7.875 0 1 0 20.6969 24.9249 Z"></path>
 </g>
-</mask>
-<rect class="moon-body" x="0" y="0" width="32" height="32" mask="url(#theme-toggle-moon-mask)"></rect>
 </svg>
 </button>
 </header>
