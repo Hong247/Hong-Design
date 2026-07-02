@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <base href="/">
-<script defer src="scripts/analytics.js?v=202607020138"></script>
+<script defer src="scripts/analytics.js?v=202607020150"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4NDW15EB6"></script>
 <meta name="description" content="Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.">
 <meta name="author" content="Cheok Hong Lai">
@@ -38,9 +38,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="styles/bundle.css?v=202607020138">
-<script src="data/projects-index.js?v=202607020138" defer></script>
-<script src="scripts/bundle.js?v=202607020138" defer></script>
+<link rel="stylesheet" href="styles/bundle.css?v=202607020150">
+<script src="data/projects-index.js?v=202607020150" defer></script>
+<script src="scripts/bundle.js?v=202607020150" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,7 +358,7 @@
   ]
 }
 </script>
-<script src="scripts/clarity.js?v=202607020138" defer></script>
+<script src="scripts/clarity.js?v=202607020150" defer></script>
 </head>
 <body class="chameleon-mode">
 <script>!function(){try{var t=localStorage.getItem("theme");document.body.className=t==="chameleon-light"?"chameleon-mode chameleon-light":"chameleon-mode"}catch(e){}}()</script>
@@ -405,18 +405,26 @@
 </g>
 </svg>
 <svg class="theme-toggle-icon theme-toggle-moon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-<!-- Crescent + craters: one evenodd path, main disc (r11) minus an offset
-     disc (r7.5) fully CONTAINED inside it (offset distance + its radius <=
-     11) so the result is a single clean crescent — an earlier version let
-     the cutout poke outside the main disc, which makes evenodd paint that
-     protruding sliver too (a second lobe, not a crescent). Containment also
-     keeps the crescent's own bounding box centered on (16,16), matching the
-     sun's rays, instead of drifting toward whichever side got cut. The
-     craters are extra full-circle subpaths on the same path, so each is a
-     genuine cutout (shows the real page background through) instead of a
-     same-colour translucent circle sitting on an already-opaque same-colour
-     crescent, which paints nothing visible. -->
-<path class="moon-body" fill-rule="evenodd" d="M16 5a11 11 0 1 0 0 22 11 11 0 1 0 0-22Z M19.3 8.2a7.5 7.5 0 1 0 0 15 7.5 7.5 0 1 0 0-15Z M10 10.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6Z M9 17.7a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 1 0 0-2.6Z M14 22a1 1 0 1 0 0 2 1 1 0 1 0 0-2Z"></path>
+<!-- Crescent: a closed polygon tracing the exact outline of a real circle-
+     minus-circle subtraction (main r11 minus an intersecting r10 circle),
+     extracted point-by-point from a canvas destination-out composite — i.e.
+     genuine shape subtraction — rather than hand-written as two SVG arc
+     commands. Two earlier attempts at writing the arcs directly both went
+     wrong in ways that were hard to catch by eye: combining two independent
+     full-circle subpaths under evenodd doesn't subtract one from the other,
+     it paints both circles' exclusive regions and holes only their overlap
+     (two lobes, not a crescent); and hand-picked arc sweep/large-arc flags
+     for the single-outline version produced a shape whose bounding box
+     happened to match by coincidence while the fill itself traced only a
+     thin sliver near the boundary (confirmed via isPointInFill — points
+     well inside the intended crescent came back false). Tracing the
+     verified pixels sidesteps guessing at flags entirely. Its bounding box
+     centers on (16,16), matching the sun's rays. Craters are separate
+     small-circle subpaths appended to this same path — genuine cutouts
+     (show the real page background through), not a same-colour translucent
+     circle over an already-opaque same-colour shape, which paints nothing
+     visible. -->
+<path class="moon-body" fill-rule="evenodd" d="M16.15,5.25 L13.8,6 L12.45,6.75 L11.4,7.5 L10.55,8.25 L9.9,9 L9.3,9.75 L8.85,10.5 L8.45,11.25 L8.1,12 L7.85,12.75 L7.65,13.5 L7.5,14.25 L7.4,15 L7.35,15.75 L7.35,16.5 L7.4,17.25 L7.55,18 L7.7,18.75 L7.9,19.5 L8.2,20.25 L8.55,21 L8.95,21.75 L9.45,22.5 L10.05,23.25 L10.75,24 L11.65,24.75 L12.75,25.5 L14.3,26.25 L17.6,27 L21.65,26.5 L23.45,25.75 L24.65,25 L19.45,24.25 L18,23.5 L16.95,22.75 L16.15,22 L15.45,21.25 L14.95,20.5 L14.5,19.75 L14.1,19 L13.85,18.25 L13.6,17.5 L13.45,16.75 L13.35,16 L13.3,15.25 L13.3,14.5 L13.4,13.75 L13.5,13 L13.7,12.25 L13.95,11.5 L14.25,10.75 L14.65,10 L15.15,9.25 L15.7,8.5 L16.45,7.75 L17.35,7 L18.5,6.25 L20.25,5.5 Z M10 9.4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 1 0 0-3.2Z M9 14.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2Z M12 20.1a0.9 0.9 0 1 0 0 1.8 0.9 0.9 0 1 0 0-1.8Z"></path>
 <path class="star star-1" transform="translate(25,6) scale(1.7)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
 <path class="star star-2" transform="translate(24,25) scale(1.15)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
 </svg>
