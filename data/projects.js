@@ -28,13 +28,13 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee Tote Bag",
     role: "Product",
     year: "2026",
-    preview: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg",
+    preview: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.webp",
     media: [
-      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.jpg", alt: "C Market Coffee natural canvas tote bag worn over the shoulder with black handles and small stacked logo" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.jpg", alt: "C Market Coffee natural canvas tote bag carried by black handles in angled shadow" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/1.jpg", alt: "C Market Coffee black and natural tote bag pair staged in directional shadow" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/2.jpg", alt: "C Market Coffee natural canvas tote bag standing upright with black side panels and handles" },
-      { type: "image", src: "images/C Market Coffee Tote Bag/3.jpg", alt: "C Market Coffee black canvas tote bag with oversized white C Market graphic mark" }
+      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 1.webp", alt: "C Market Coffee natural canvas tote bag worn over the shoulder with black handles and small stacked logo" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/c market coffee tote bag 2.webp", alt: "C Market Coffee natural canvas tote bag carried by black handles in angled shadow" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/1.webp", alt: "C Market Coffee black and natural tote bag pair staged in directional shadow" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/2.webp", alt: "C Market Coffee natural canvas tote bag standing upright with black side panels and handles" },
+      { type: "image", src: "images/C Market Coffee Tote Bag/3.webp", alt: "C Market Coffee black canvas tote bag with oversized white C Market graphic mark" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee is a Vancouver-based specialty coffee and bakery brand with multiple locations and a growing community presence. When they needed to extend the brand into physical merchandise, the goal wasn't promotional swag — it was a carry object useful enough that customers would actually choose it for daily use, creating authentic brand visibility across the city." },
@@ -48,17 +48,17 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee — Brand Experience System",
     role: "Brand",
     year: "2025",
-    preview: "images/C Market Coffee Brand Catalog/page-01.jpg",
+    preview: "images/C Market Coffee Brand Catalog/page-01.webp",
     media: [
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-01.jpg", alt: "C Market Coffee brand catalog cover with cafe interior photography and centered C Market mark" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-02.jpg", alt: "C Market Coffee brand catalog executive summary spread with cafe interior photography" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-03.jpg", alt: "C Market Coffee brand catalog brand story spread with bar counter photography and Where Every Sip Sparks Connection headline" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-04.jpg", alt: "C Market Coffee brand catalog store environment spread with counter and espresso bar photography" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-05.jpg", alt: "C Market Coffee brand catalog company background and menu offerings spread" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-06.jpg", alt: "C Market Coffee brand catalog branding and innovation spread with tote, mug, and campaign examples" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-07.jpg", alt: "C Market Coffee brand catalog locally crafted menu spread with Korean-inspired food and drink imagery" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-08.jpg", alt: "C Market Coffee brand catalog community involvement and connection spread with cupping and latte art programs" },
-      { type: "image", src: "images/C Market Coffee Brand Catalog/page-09.jpg", alt: "C Market Coffee brand catalog closing spread with Canadian identity, trend positioning, and multicultural values" }
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-01.webp", alt: "C Market Coffee brand catalog cover with cafe interior photography and centered C Market mark" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-02.webp", alt: "C Market Coffee brand catalog executive summary spread with cafe interior photography" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-03.webp", alt: "C Market Coffee brand catalog brand story spread with bar counter photography and Where Every Sip Sparks Connection headline" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-04.webp", alt: "C Market Coffee brand catalog store environment spread with counter and espresso bar photography" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-05.webp", alt: "C Market Coffee brand catalog company background and menu offerings spread" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-06.webp", alt: "C Market Coffee brand catalog branding and innovation spread with tote, mug, and campaign examples" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-07.webp", alt: "C Market Coffee brand catalog locally crafted menu spread with Korean-inspired food and drink imagery" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-08.webp", alt: "C Market Coffee brand catalog community involvement and connection spread with cupping and latte art programs" },
+      { type: "image", src: "images/C Market Coffee Brand Catalog/page-09.webp", alt: "C Market Coffee brand catalog closing spread with Canadian identity, trend positioning, and multicultural values" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee needed a more consistent and scalable creative system across social media, retail, e-commerce, product launches, packaging, print, and in-store communication. As the brand continued to grow, the design challenge was not only to create individual assets, but to make every customer touchpoint feel connected — from Instagram posts and reels to Shopify pages, product launch graphics, menus, packaging, posters, and signage.<br><br>My role was to design and maintain customer-facing brand assets across both digital and physical channels, creating marketing materials that were visually consistent, production-ready, and aligned with real business goals." },
@@ -72,12 +72,12 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee Barista Apron",
     role: "Product",
     year: "2025",
-    preview: "images/c-market-barista-apron/apron1.jpg",
+    preview: "images/c-market-barista-apron/apron1.webp",
     media: [
-      { type: "image", src: "images/c-market-barista-apron/apron1.jpg", alt: "C Market Coffee barista apron — women's hanbok-inspired wrap silhouette with cloth belt, worn by model" },
-      { type: "image", src: "images/c-market-barista-apron/apron2.jpg", alt: "C Market Coffee barista apron technical flat — knot buttons, fixed ribbon, chest pocket, side pockets, cloth belt detail callouts" },
-      { type: "image", src: "images/c-market-barista-apron/apron3.jpg", alt: "C Market Coffee barista apron worn by model — single welt chest pocket and double welt besom side pockets annotated" },
-      { type: "image", src: "images/c-market-barista-apron/apron4.jpg", alt: "C Market Coffee barista apron — men's short-sleeve crossover variation with cloth belt, worn by model" }
+      { type: "image", src: "images/c-market-barista-apron/apron1.webp", alt: "C Market Coffee barista apron — women's hanbok-inspired wrap silhouette with cloth belt, worn by model" },
+      { type: "image", src: "images/c-market-barista-apron/apron2.webp", alt: "C Market Coffee barista apron technical flat — knot buttons, fixed ribbon, chest pocket, side pockets, cloth belt detail callouts" },
+      { type: "image", src: "images/c-market-barista-apron/apron3.webp", alt: "C Market Coffee barista apron worn by model — single welt chest pocket and double welt besom side pockets annotated" },
+      { type: "image", src: "images/c-market-barista-apron/apron4.webp", alt: "C Market Coffee barista apron — men's short-sleeve crossover variation with cloth belt, worn by model" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee required a staff uniform that could function as front-of-house workwear while reinforcing the brand's identity as a specialty coffee retailer rooted in Korean craft culture. The brief called for a garment that felt considered and purposeful — not a generic apron, but a piece that could hold its own as a designed object, worn by people who care about the quality of what they make and how they present it." },
@@ -90,13 +90,13 @@ window.PORTFOLIO_PROJECTS = [
     title: "KAIA",
     role: "Brand",
     year: "2025",
-    preview: "images/kaia/kaia2.png",
+    preview: "images/kaia/kaia2.webp",
     media: [
-      { type: "image", src: "images/kaia/kaia1.png", alt: "KAIA Korean sauce brand identity full system overview" },
-      { type: "image", src: "images/kaia/kaia2.png", alt: "KAIA brand identity Latin letterform color-block poster" },
-      { type: "image", src: "images/kaia/kaia3.png", alt: "KAIA brand identity Hangul character color-block poster" },
-      { type: "image", src: "images/kaia/kaia4.png", alt: "KAIA Soy Garlic and Yang Nyeom sauce labels shown as overlapping product, nutrition, and barcode panels" },
-      { type: "image", src: "images/kaia/kaia5.png", alt: "KAIA Spicy Yang Nyeom Sauce back labels with nutrition table, barcode, and circular bilingual seal" },
+      { type: "image", src: "images/kaia/kaia1.webp", alt: "KAIA Korean sauce brand identity full system overview" },
+      { type: "image", src: "images/kaia/kaia2.webp", alt: "KAIA brand identity Latin letterform color-block poster" },
+      { type: "image", src: "images/kaia/kaia3.webp", alt: "KAIA brand identity Hangul character color-block poster" },
+      { type: "image", src: "images/kaia/kaia4.webp", alt: "KAIA Soy Garlic and Yang Nyeom sauce labels shown as overlapping product, nutrition, and barcode panels" },
+      { type: "image", src: "images/kaia/kaia5.webp", alt: "KAIA Spicy Yang Nyeom Sauce back labels with nutrition table, barcode, and circular bilingual seal" },
       { type: "image", src: "images/kaia/kaia6.png", alt: "KAIA sauce packaging mockup — Teriyaki, Soy Garlic and Yang Nyeom variants" }
     ],
     description: [
@@ -110,13 +110,13 @@ window.PORTFOLIO_PROJECTS = [
     title: "kkookie",
     role: "Brand",
     year: "2025",
-    preview: "images/kkookie/kkookie1.jpg",
+    preview: "images/kkookie/kkookie1.webp",
     media: [
-      { type: "image", src: "images/kkookie/kkookie1.jpg", alt: "kkookie packaging dieline system showing six cookie flavours, colour variants, nutrition panels, and circular product windows" },
-      { type: "image", src: "images/kkookie/kkookie2.jpg", alt: "kkookie sage green stand-up pouch with oversized serif wordmark and circular cookie window" },
-      { type: "image", src: "images/kkookie/kkookie3.png", alt: "kkookie Millda Bakery cake box dielines — white chocolate matcha, red velvet, and ultimate chocolate cake in dark colourways" },
-      { type: "image", src: "images/kkookie/kkookie4.png", alt: "kkookie Millda Bakery cake box dielines — ultimate chocolate, red velvet, and white chocolate matcha cake in light colourways with bilingual French labelling" },
-      { type: "image", src: "images/kkookie/kkookie5.jpg", alt: "kkookie full cookie packaging range — dark chocolate, sage green, and natural cream colourways side by side" }
+      { type: "image", src: "images/kkookie/kkookie1.webp", alt: "kkookie packaging dieline system showing six cookie flavours, colour variants, nutrition panels, and circular product windows" },
+      { type: "image", src: "images/kkookie/kkookie2.webp", alt: "kkookie sage green stand-up pouch with oversized serif wordmark and circular cookie window" },
+      { type: "image", src: "images/kkookie/kkookie3.webp", alt: "kkookie Millda Bakery cake box dielines — white chocolate matcha, red velvet, and ultimate chocolate cake in dark colourways" },
+      { type: "image", src: "images/kkookie/kkookie4.webp", alt: "kkookie Millda Bakery cake box dielines — ultimate chocolate, red velvet, and white chocolate matcha cake in light colourways with bilingual French labelling" },
+      { type: "image", src: "images/kkookie/kkookie5.webp", alt: "kkookie full cookie packaging range — dark chocolate, sage green, and natural cream colourways side by side" }
     ],
     description: [
       { label: "Brief", text: "kkookie is an in-house bakery brand developed as a strategic extension of Millda Bakery's product portfolio. The brief required a distinct brand identity that could occupy the premium cookie market without cannibalising the parent brand's positioning — tonally different enough to feel like a standalone label, yet coherent within the same production and distribution context. The target market was design-literate gift buyers and specialty food retailers seeking artisan cookie products with shelf presence." },
@@ -129,13 +129,13 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee × Oak + Fort",
     role: "Product",
     year: "2024",
-    preview: "images/c-market-oak-fort/oak+fort1.jpg",
+    preview: "images/c-market-oak-fort/oak+fort1.webp",
     media: [
-      { type: "image", src: "images/c-market-oak-fort/oak+fort1.jpg", alt: "C Market Coffee × Oak + Fort bottled beverage label design — Flat White, Latte, Cold Brew" },
-      { type: "image", src: "images/c-market-oak-fort/oak+fort2.jpg", alt: "C Market Coffee × Oak + Fort candle packaging — Acadia Butterfly, Colombia Swiss, Siberian Chrysanthemum" },
-      { type: "image", src: "images/c-market-oak-fort/oak+fort3.jpg", alt: "C Market Coffee × Oak + Fort fabric hang tag and swing tag on folded textile" },
-      { type: "image", src: "images/c-market-oak-fort/oak+fort4.jpg", alt: "C Market Coffee × Oak + Fort co-branded crewneck sweatshirt worn by model" },
-      { type: "image", src: "images/c-market-oak-fort/oak+fort5.jpg", alt: "C Market Coffee × Oak + Fort wax seal business card mockup in silver and brass" }
+      { type: "image", src: "images/c-market-oak-fort/oak+fort1.webp", alt: "C Market Coffee × Oak + Fort bottled beverage label design — Flat White, Latte, Cold Brew" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort2.webp", alt: "C Market Coffee × Oak + Fort candle packaging — Acadia Butterfly, Colombia Swiss, Siberian Chrysanthemum" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort3.webp", alt: "C Market Coffee × Oak + Fort fabric hang tag and swing tag on folded textile" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort4.webp", alt: "C Market Coffee × Oak + Fort co-branded crewneck sweatshirt worn by model" },
+      { type: "image", src: "images/c-market-oak-fort/oak+fort5.webp", alt: "C Market Coffee × Oak + Fort wax seal business card mockup in silver and brass" }
     ],
     description: [
       { label: "Brief", text: "A collaboration proposal between C Market Coffee and Oak + Fort for a limited-edition pop-up at Oak + Fort's Gastown, Vancouver location. The brief was to explore what a cross-brand identity could look like in practice — identifying where two distinct visual languages could share the same surface without either brand losing its character. The work focused on proposing tangible touch points across merchandise, packaging, and in-store presentation that would hold up as a cohesive collection." },
@@ -148,15 +148,15 @@ window.PORTFOLIO_PROJECTS = [
     title: "C Market Coffee Website",
     role: "Digital",
     year: "2024",
-    preview: "images/C Market Coffee Website/cmarket website 1.jpg",
+    preview: "images/C Market Coffee Website/cmarket website 1.webp",
     media: [
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 1.jpg", alt: "C Market Coffee website shown on a mobile phone beside concrete block and coffee beans" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 2.png", alt: "C Market Coffee online ordering and menu section" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 3.png", alt: "C Market Coffee community events and classes section" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 4.png", alt: "C Market Coffee mobile app promotion section" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 5.png", alt: "C Market Coffee locations and café information" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 6.png", alt: "C Market Coffee e-commerce product grid" },
-      { type: "image", src: "images/C Market Coffee Website/cmarket website 7.png", alt: "C Market Coffee franchise and brand partnership section" }
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 1.webp", alt: "C Market Coffee website shown on a mobile phone beside concrete block and coffee beans" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 2.webp", alt: "C Market Coffee online ordering and menu section" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 3.webp", alt: "C Market Coffee community events and classes section" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 4.webp", alt: "C Market Coffee mobile app promotion section" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 5.webp", alt: "C Market Coffee locations and café information" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 6.webp", alt: "C Market Coffee e-commerce product grid" },
+      { type: "image", src: "images/C Market Coffee Website/cmarket website 7.webp", alt: "C Market Coffee franchise and brand partnership section" }
     ],
     description: [
       { label: "Brief", text: "C Market Coffee had built a brand with real depth — multiple café locations, a mobile app, online store, barista classes, community events, pop-up markets, room rental, and a franchise program — but their digital presence was fragmented. The website redesign needed to consolidate all of this into one Shopify-based destination serving both new customers discovering the brand and regulars looking for specific information quickly." },
@@ -183,9 +183,9 @@ window.PORTFOLIO_PROJECTS = [
       { type: "image", src: "images/kee/Kee1.jpg", alt: "Kee wonton noodle brand identity lead composition with bowl-inspired color system and logotype", className: "keen" },
       { type: "image", src: "images/kee/Kee2.jpg", alt: "Kee brand identity restaurant touchpoint with signage and printed assets", className: "keen" },
       { type: "image", src: "images/kee/Kee3.jpg", alt: "Kee brand identity — typographic and colour treatment detail", className: "keen" },
-      { type: "image", src: "images/kee/keem1.jpg", alt: "Kee mobile presentation layout introducing the Malaysian Chinese wonton noodle brand concept", className: "keem" },
-      { type: "image", src: "images/kee/keem2.jpg", alt: "Kee mobile presentation layout showing color, material, and kitchen-inspired identity system", className: "keem" },
-      { type: "image", src: "images/kee/keem3.jpg", alt: "Kee mobile presentation layout showing packaging, signage, and collateral applications", className: "keem" },
+      { type: "image", src: "images/kee/keem1.webp", alt: "Kee mobile presentation layout introducing the Malaysian Chinese wonton noodle brand concept", className: "keem" },
+      { type: "image", src: "images/kee/keem2.webp", alt: "Kee mobile presentation layout showing color, material, and kitchen-inspired identity system", className: "keem" },
+      { type: "image", src: "images/kee/keem3.webp", alt: "Kee mobile presentation layout showing packaging, signage, and collateral applications", className: "keem" },
       { type: "image", src: "images/kee/keem4.jpg", alt: "Kee mobile presentation layout showing motion graphics and restaurant brand touchpoints", className: "keem" }
     ],
     description: [
@@ -200,16 +200,16 @@ window.PORTFOLIO_PROJECTS = [
     title: "Browns Rebrand Concept",
     role: "Brand",
     year: "2023",
-    preview: "images/browns/browns3.jpg",
+    preview: "images/browns/browns3.webp",
     media: [
-      { type: "image", src: "images/browns/browns1.png", alt: "Browns Shoes rebrand concept campaign composition with footwear isolated against a color-matched background" },
-      { type: "image", src: "images/browns/browns2.png", alt: "Browns Shoes rebrand concept — material and texture study with footwear as the primary subject" },
-      { type: "image", src: "images/browns/browns3.png", alt: "Browns Shoes rebrand concept — catalogue spread with tight grid discipline" },
-      { type: "image", src: "images/browns/browns3.jpg", alt: "Browns Shoes rebrand concept campaign photograph with the shoe as the primary subject" },
-      { type: "image", src: "images/browns/browns4.jpg", alt: "Browns Shoes rebrand concept — e-commerce product grid layout" },
+      { type: "image", src: "images/browns/browns1.webp", alt: "Browns Shoes rebrand concept campaign composition with footwear isolated against a color-matched background" },
+      { type: "image", src: "images/browns/browns2.webp", alt: "Browns Shoes rebrand concept — material and texture study with footwear as the primary subject" },
+      { type: "image", src: "images/browns/browns3.webp", alt: "Browns Shoes rebrand concept — catalogue spread with tight grid discipline" },
+      { type: "image", src: "images/browns/browns3.webp", alt: "Browns Shoes rebrand concept campaign photograph with the shoe as the primary subject" },
+      { type: "image", src: "images/browns/browns4.webp", alt: "Browns Shoes rebrand concept — e-commerce product grid layout" },
       { type: "image", src: "images/browns/browns5.jpg", alt: "Browns Shoes rebrand concept large-format retail advertising mockup" },
       { type: "image", src: "images/browns/browns6.jpg", alt: "Browns Shoes rebrand concept — seasonal lookbook spread" },
-      { type: "image", src: "images/browns/browns7.jpg", alt: "Browns Shoes rebrand concept — wide-set single-weight typographic treatment" }
+      { type: "image", src: "images/browns/browns7.webp", alt: "Browns Shoes rebrand concept — wide-set single-weight typographic treatment" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.brownsshoes.com/en/home\" target=\"_blank\" rel=\"noopener noreferrer\">Browns Shoes</a> is a national Canadian footwear retailer with decades of history. Like many legacy retailers, it had accumulated a visual identity that felt neither premium enough for its higher-end product range nor distinctive enough to compete with directional international footwear brands. This speculative rebrand concept explores how Browns could sharpen its identity to feel more product-led and more considered — without abandoning the breadth of a national retailer." },
@@ -223,11 +223,11 @@ window.PORTFOLIO_PROJECTS = [
     title: "monday",
     role: "Digital",
     year: "2023",
-    preview: "images/monday/monday1.jpg",
+    preview: "images/monday/monday1.webp",
     media: [
-      { type: "image", src: "images/monday/monday1.jpg", alt: "monday office chair brand — lowercase logotype built from Bauhaus 93 geometry" },
+      { type: "image", src: "images/monday/monday1.webp", alt: "monday office chair brand — lowercase logotype built from Bauhaus 93 geometry" },
       { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fdv8az6NYXGDcKNXhG3Tqik%2Fwebsite-design%3Ftype%3Ddesign%26node-id%3D1-95%26t%3DWyWhJP6iFvh9E6Cb-1%26scaling%3Dscale-down-width%26page-id%3D0%253A1%26mode%3Ddesign", width: 1200, height: 600 },
-      { type: "image", src: "images/monday/monday2.jpg", alt: "monday office chair brand — product photography of the chair in a workspace" }
+      { type: "image", src: "images/monday/monday2.webp", alt: "monday office chair brand — product photography of the chair in a workspace" }
     ],
     description: [
       { label: "Brief", text: "The office chair market divides into two positions: ergonomic function with zero visual ambition, or design-forward pieces that sacrifice usability for looks. monday was a brand and website prototype asking whether a third position existed — a chair brand that felt both genuinely reliable and visually considered, with a personality quiet enough to belong in any workspace." },
@@ -286,12 +286,12 @@ window.PORTFOLIO_PROJECTS = [
     title: "TRAPO Digital Catalogue",
     role: "Digital",
     year: "2022",
-    preview: "images/trapodpc/trapodpc1.png",
+    preview: "images/trapodpc/trapodpc1.webp",
     media: [
       { type: "iframe", src: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F42OkkDJ2wRe9etERcPKCVz%2FTRAPO-Digital-Catalogue%3Ftype%3Ddesign%26node-id%3D1-2%26t%3Dh4Ksn1BdopSt7HCP-1%26scaling%3Dcontain%26page-id%3D0%253A1%26mode%3Ddesign", width: 800, height: 600 },
-      { type: "image", src: "images/trapodpc/trapodpc1.png", alt: "TRAPO digital catalogue prototype — category browse interface" },
-      { type: "image", src: "images/trapodpc/trapodpc2.png", alt: "TRAPO digital catalogue prototype — product detail view with specs and price tier" },
-      { type: "image", src: "images/trapodpc/trapodpc3.png", alt: "TRAPO digital catalogue prototype — product comparison layout" }
+      { type: "image", src: "images/trapodpc/trapodpc1.webp", alt: "TRAPO digital catalogue prototype — category browse interface" },
+      { type: "image", src: "images/trapodpc/trapodpc2.webp", alt: "TRAPO digital catalogue prototype — product detail view with specs and price tier" },
+      { type: "image", src: "images/trapodpc/trapodpc3.webp", alt: "TRAPO digital catalogue prototype — product comparison layout" }
     ],
     description: [
       { label: "Brief", text: "<a href=\"https://www.trapo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">TRAPO</a> is a Malaysian automotive accessories brand with a substantial product range sold through retail and direct channels. The printed sales catalogue creates significant operational friction: expensive to produce, difficult to update, and impossible to personalize. This digital catalogue prototype explores a faster, clearer alternative for offline sales teams, in-store promotion, and product comparison." },
@@ -305,16 +305,16 @@ window.PORTFOLIO_PROJECTS = [
     title: "TRAPO Smartphone Holder",
     role: "Industrial",
     year: "2022",
-    preview: "images/traposh/traposh5.jpg",
+    preview: "images/traposh/traposh5.webp",
     media: [
-      { type: "image", src: "images/traposh/traposh1.jpg", alt: "TRAPO smartphone holder concept — form built from the TRAPO logo silhouette" },
-      { type: "image", src: "images/traposh/traposh2.jpg", alt: "TRAPO smartphone holder — Alcantara suede and machined aluminium construction" },
-      { type: "image", src: "images/traposh/traposh3.jpg", alt: "TRAPO smartphone holder — LED edge detail illuminated on connection" },
-      { type: "image", src: "images/traposh/traposh4.jpg", alt: "TRAPO smartphone holder — mounted in a vehicle interior" },
-      { type: "image", src: "images/traposh/traposh5.jpg", alt: "TRAPO smartphone holder close-up render showing the TRAPO silhouette as the product body" },
-      { type: "image", src: "images/traposh/traposh6.jpg", alt: "TRAPO smartphone holder — MagSafe rotation and case-clearance detail" },
-      { type: "image", src: "images/traposh/traposh7.jpg", alt: "TRAPO smartphone holder — material and finish close-up" },
-      { type: "image", src: "images/traposh/traposh8.jpg", alt: "TRAPO smartphone holder — driver's-seat view showing the brand signature form" }
+      { type: "image", src: "images/traposh/traposh1.webp", alt: "TRAPO smartphone holder concept — form built from the TRAPO logo silhouette" },
+      { type: "image", src: "images/traposh/traposh2.webp", alt: "TRAPO smartphone holder — Alcantara suede and machined aluminium construction" },
+      { type: "image", src: "images/traposh/traposh3.webp", alt: "TRAPO smartphone holder — LED edge detail illuminated on connection" },
+      { type: "image", src: "images/traposh/traposh4.webp", alt: "TRAPO smartphone holder — mounted in a vehicle interior" },
+      { type: "image", src: "images/traposh/traposh5.webp", alt: "TRAPO smartphone holder close-up render showing the TRAPO silhouette as the product body" },
+      { type: "image", src: "images/traposh/traposh6.webp", alt: "TRAPO smartphone holder — MagSafe rotation and case-clearance detail" },
+      { type: "image", src: "images/traposh/traposh7.webp", alt: "TRAPO smartphone holder — material and finish close-up" },
+      { type: "image", src: "images/traposh/traposh8.webp", alt: "TRAPO smartphone holder — driver's-seat view showing the brand signature form" }
     ],
     description: [
       { label: "Brief", text: "MagSafe-compatible smartphone holders had become a commodity category by 2022 — flooded with generic injection-molded mounts at aggressive price points. For TRAPO to enter this space with a flagship product, it needed something that could justify a premium and immediately communicate the brand's automotive-grade quality positioning. The design had to feel like it belonged in a well-specified vehicle interior, not dropped in from an accessory bin." },
@@ -328,14 +328,14 @@ window.PORTFOLIO_PROJECTS = [
     title: "Talentlounge Virtual Career Fair",
     role: "Digital",
     year: "2021",
-    preview: "images/talentlounge/talentlounge5.jpg",
+    preview: "images/talentlounge/talentlounge5.webp",
     media: [
-      { type: "image", src: "images/talentlounge/talentlounge1.jpg", alt: "Talentlounge virtual career fair 3D-rendered booth hall with category signage and walkable environment" },
-      { type: "image", src: "images/talentlounge/talentlounge2.jpg", alt: "Talentlounge virtual career fair — industry-categorised booth hall rendering" },
-      { type: "image", src: "images/talentlounge/talentlounge3.jpg", alt: "Talentlounge virtual career fair company listing scene with branded booth and interview entry point" },
-      { type: "image", src: "images/talentlounge/talentlounge4.jpg", alt: "Talentlounge virtual career fair — spatial navigation environment render" },
-      { type: "image", src: "images/talentlounge/talentlounge5.jpg", alt: "Talentlounge virtual career fair — colour-coded booth wayfinding" },
-      { type: "image", src: "images/talentlounge/talentlounge6.jpg", alt: "Talentlounge virtual career fair — website integration of rendered booth assets" }
+      { type: "image", src: "images/talentlounge/talentlounge1.webp", alt: "Talentlounge virtual career fair 3D-rendered booth hall with category signage and walkable environment" },
+      { type: "image", src: "images/talentlounge/talentlounge2.webp", alt: "Talentlounge virtual career fair — industry-categorised booth hall rendering" },
+      { type: "image", src: "images/talentlounge/talentlounge3.webp", alt: "Talentlounge virtual career fair company listing scene with branded booth and interview entry point" },
+      { type: "image", src: "images/talentlounge/talentlounge4.webp", alt: "Talentlounge virtual career fair — spatial navigation environment render" },
+      { type: "image", src: "images/talentlounge/talentlounge5.webp", alt: "Talentlounge virtual career fair — colour-coded booth wayfinding" },
+      { type: "image", src: "images/talentlounge/talentlounge6.webp", alt: "Talentlounge virtual career fair — website integration of rendered booth assets" }
     ],
     description: [
       { label: "Brief", text: "The 2020–2021 period eliminated in-person career fairs, forcing recruitment platforms to find digital alternatives. Most solutions were Zoom calls or basic webinar setups — functional but entirely unable to replicate the exploratory, discovery-oriented quality of a physical fair, where candidates could wander, notice unexpected companies, and make quick cultural reads of booths. The <a href=\"https://talentlounge.co/Hello\" target=\"_blank\" rel=\"noopener noreferrer\">Talentlounge</a> virtual career fair asked how a digital recruitment event could feel genuinely engaging rather than simply adequate." },
@@ -349,14 +349,14 @@ window.PORTFOLIO_PROJECTS = [
     title: "Nexus",
     role: "Industrial",
     year: "2021",
-    preview: "images/nexus/nexus2.jpg",
+    preview: "images/nexus/nexus2.webp",
     media: [
       { type: "image", src: "images/nexus/nexus1.jpg", alt: "Nexus transit bench concept — modular Serambi-inspired MRT seating, TRANSEAT finalist" },
-      { type: "image", src: "images/nexus/nexus2.jpg", alt: "Nexus transit bench — modular units connected for social grouping" },
-      { type: "image", src: "images/nexus/nexus3.jpg", alt: "Nexus transit bench — Thermoplastic Elastomer in warm earth tones" },
+      { type: "image", src: "images/nexus/nexus2.webp", alt: "Nexus transit bench — modular units connected for social grouping" },
+      { type: "image", src: "images/nexus/nexus3.webp", alt: "Nexus transit bench — Thermoplastic Elastomer in warm earth tones" },
       { type: "image", src: "images/nexus/nexus4.jpg", alt: "Nexus transit bench — illuminated edge detail for low-light wayfinding" },
       { type: "image", src: "images/nexus/nexus5.jpg", alt: "Nexus transit bench — continuous-flow silhouette in elevation" },
-      { type: "image", src: "images/nexus/nexus6.jpg", alt: "Nexus transit bench — MRT station context render" }
+      { type: "image", src: "images/nexus/nexus6.webp", alt: "Nexus transit bench — MRT station context render" }
     ],
     description: [
       { label: "Brief", text: "Transit seating is one of the most under-considered categories in public design — built for durability and cleanability above everything else, producing furniture that communicates only institutional indifference. The Malaysia National Design Competition <a href=\"https://www.mymrt.com.my/events/infinity-wins-transeat-grand-prize/\" target=\"_blank\" rel=\"noopener noreferrer\">TRANSEAT</a> asked whether MRT station seating could be something more: a piece of public furniture with genuine cultural and social intention. Our team reached the top 10 as a finalist." },
@@ -372,11 +372,11 @@ window.PORTFOLIO_PROJECTS = [
     year: "2020",
     preview: "images/motorola/motorola3.jpg",
     media: [
-      { type: "image", src: "images/motorola/motorola1.jpg", alt: "Motorola Solutions two-way radio concept compact hospitality-grade form with premium black finish" },
-      { type: "image", src: "images/motorola/motorola2.jpg", alt: "Motorola Solutions radio concept — flatter profile for chest pocket or belt holster" },
+      { type: "image", src: "images/motorola/motorola1.webp", alt: "Motorola Solutions two-way radio concept compact hospitality-grade form with premium black finish" },
+      { type: "image", src: "images/motorola/motorola2.webp", alt: "Motorola Solutions radio concept — flatter profile for chest pocket or belt holster" },
       { type: "image", src: "images/motorola/motorola3.jpg", alt: "Motorola Solutions radio concept auxiliary e-ink information display hidden behind the device surface" },
-      { type: "image", src: "images/motorola/motorola4.jpg", alt: "Motorola Solutions radio concept — ergonomic grip and control-layout study" },
-      { type: "image", src: "images/motorola/motorola5.jpg", alt: "Motorola Solutions radio concept — premium surface finish and LED status indicator" },
+      { type: "image", src: "images/motorola/motorola4.webp", alt: "Motorola Solutions radio concept — ergonomic grip and control-layout study" },
+      { type: "image", src: "images/motorola/motorola5.webp", alt: "Motorola Solutions radio concept — premium surface finish and LED status indicator" },
       { type: "image", src: "images/motorola/motorola6.jpg", alt: "Motorola Solutions radio concept — in-use hospitality context" }
     ],
     description: [
