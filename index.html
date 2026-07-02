@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <base href="/">
-<script defer src="scripts/analytics.js?v=202607020006"></script>
+<script defer src="scripts/analytics.js?v=202607020029"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4NDW15EB6"></script>
 <meta name="description" content="Portfolio of Cheok Hong Lai — Vancouver-based designer specializing in visual identity and product design with a focus on clarity, restraint, and strong visual structure.">
 <meta name="author" content="Cheok Hong Lai">
@@ -38,9 +38,9 @@
 <link rel="preload" href="fonts/ibm-plex-sans-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/fonts.css">
 <link rel="stylesheet" href="styles/reset.css">
-<link rel="stylesheet" href="styles/bundle.css?v=202607020006">
-<script src="data/projects-index.js?v=202607020006" defer></script>
-<script src="scripts/bundle.js?v=202607020006" defer></script>
+<link rel="stylesheet" href="styles/bundle.css?v=202607020029">
+<script src="data/projects-index.js?v=202607020029" defer></script>
+<script src="scripts/bundle.js?v=202607020029" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -358,7 +358,7 @@
   ]
 }
 </script>
-<script src="scripts/clarity.js?v=202607020006" defer></script>
+<script src="scripts/clarity.js?v=202607020029" defer></script>
 </head>
 <body class="chameleon-mode">
 <script>!function(){try{var t=localStorage.getItem("theme");document.body.className=t==="chameleon-light"?"chameleon-mode chameleon-light":"chameleon-mode"}catch(e){}}()</script>
@@ -405,7 +405,12 @@
      same evenodd path, so each is a genuine cutout (shows the real page
      background through) instead of a same-colour translucent circle sitting
      on an already-opaque same-colour crescent, which paints nothing visible. -->
-<path class="moon-body" fill-rule="evenodd" d="M16 7a9 9 0 1 0 0 18 9 9 0 0 0 8.66-6.58A7.6 7.6 0 0 1 20.5 19.1a7.6 7.6 0 0 1-4.5-13.75A9 9 0 0 0 16 7Z M11 11.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3Z M10 17.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2Z M15 21.1a0.9 0.9 0 1 0 0 1.8 0.9 0.9 0 1 0 0-1.8Z"></path>
+<!-- translate: the crescent's fill (a big disc minus an offset disc) has its
+     visual mass well left/below the path's own (16,16) origin — measured via
+     isPointInFill sampling at ~(13.95, 18.29) — while the icon box centers
+     on (16,16) itself, same as the sun. Shifting the whole shape by the
+     inverse of that offset brings its visible weight back to the center. -->
+<path class="moon-body" fill-rule="evenodd" transform="translate(2.05,-2.29)" d="M16 7a9 9 0 1 0 0 18 9 9 0 0 0 8.66-6.58A7.6 7.6 0 0 1 20.5 19.1a7.6 7.6 0 0 1-4.5-13.75A9 9 0 0 0 16 7Z M11 11.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3Z M10 17.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2Z M15 21.1a0.9 0.9 0 1 0 0 1.8 0.9 0.9 0 1 0 0-1.8Z"></path>
 <path class="star star-1" transform="translate(25,6) scale(1.7)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
 <path class="star star-2" transform="translate(24,25) scale(1.15)" d="M0,-1 C0.15,-0.15 0.15,-0.15 1,0 C0.15,0.15 0.15,0.15 0,1 C-0.15,0.15 -0.15,0.15 -1,0 C-0.15,-0.15 -0.15,-0.15 0,-1 Z"></path>
 </svg>
