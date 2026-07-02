@@ -198,7 +198,12 @@
     }
   }
 
-  /* ─── smooth navigate with exit → swap → enter ─── */
+  /* ─── smooth navigate with exit → swap → enter ───
+     The outgoing item genuinely glides off-screen (an earlier version held it
+     in place briefly and then teleported it out, which read as an abrupt
+     snap), fading as it goes; the incoming one eases in from the opposite
+     side on a longer decelerate-only curve with a soft fade-up, so the whole
+     move reads as one continuous slide instead of a swap. */
   function navigateAnimated(dir, fromOffset) {
     var next = currentIndex + dir;
     if (next < 0 || next >= currentImages.length) {
@@ -214,33 +219,43 @@
     var enterX = -exitX;
     var oldEl  = mediaEl;
 
-    /* 1. animate current item off-screen */
-    translateEl(oldEl, fromOffset, "transform .12s cubic-bezier(.4, 0, .6, 1)");
+    /* 1. glide the current item off-screen from wherever the swipe left it */
+    oldEl.style.transition = "transform .26s cubic-bezier(.5, 0, .75, .6), opacity .26s ease";
+    oldEl.style.transform  = "translate(" + exitX + "px, 0) scale(1)";
+    oldEl.style.opacity    = "0";
 
     setTimeout(function () {
-      translateEl(oldEl, exitX, "none");
-
       /* 2. swap to new item (may switch between img and video element) */
       currentIndex = next;
       loadItem(currentImages[currentIndex]);
       var newEl = mediaEl;
-      if (newEl !== oldEl) translateEl(oldEl, 0, "none"); /* park the outgoing element */
+      if (newEl !== oldEl) {
+        /* park the outgoing element (loadItem display:none'd it) */
+        oldEl.style.transition = "none";
+        oldEl.style.transform  = "translate(0, 0) scale(1)";
+        oldEl.style.opacity    = "";
+      }
 
       /* 3. place new item off-screen on the opposite side */
-      translateEl(newEl, enterX, "none");
+      newEl.style.transition = "none";
+      newEl.style.transform  = "translate(" + enterX + "px, 0) scale(1)";
+      newEl.style.opacity    = "0";
 
-      /* 4. animate into view */
+      /* 4. ease into view */
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          translateEl(newEl, 0, "transform .18s cubic-bezier(.22, 1, .36, 1)");
+          newEl.style.transition = "transform .44s cubic-bezier(.22, 1, .36, 1), opacity .3s ease";
+          newEl.style.transform  = "translate(0, 0) scale(1)";
+          newEl.style.opacity    = "1";
           setTimeout(function () {
+            newEl.style.opacity = "";
             resetTransform(true);
             isAnimating = false;
             updateNavButtons();
-          }, 190);
+          }, 450);
         });
       });
-    }, 120);
+    }, 240);
   }
 
   function springBack() {
@@ -249,11 +264,6 @@
   }
 
   /* ─── transform helpers ─── */
-  function translateEl(el, tx, transition) {
-    el.style.transition = transition;
-    el.style.transform  = "translate(" + tx + "px, 0) scale(1)";
-  }
-
   function setTranslate(tx, ty, transition) {
     swipeOffset = tx;
     panX = ty === 0 ? tx : panX; /* keep in sync for pinch base */
