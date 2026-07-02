@@ -629,7 +629,7 @@ body.custom-cursor-active .year-sort-header * {
   /* Duration matches scripts/custom-cursor.js's width/height/margin tween
      (sizeDuration) so border-radius doesn't visually lag behind or finish
      ahead of the box's own resize. No overshoot — decelerate-only. */
-  transition: border-radius .75s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
+  transition: border-radius .6s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
 }
 
 @media (hover: none), (pointer: coarse) {

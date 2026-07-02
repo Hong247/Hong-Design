@@ -65,7 +65,7 @@
      timing being exact. */
   var sizeRaf = null;
   var sizeStart = null;
-  var sizeDuration = 750;
+  var sizeDuration = 600;
   var fromW = 22, fromH = 22, toW = 22, toH = 22;
 
   /* Smooth decelerate-only ease — grows straight to its final size and
