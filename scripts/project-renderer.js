@@ -111,6 +111,8 @@ function populateDetailRow(row) {
       window.addScrollDots(scrollContainer);
     }
 
+    initGalleryReveal(scrollContainer);
+
     window.requestAnimationFrame(function () { scrollContainer.scrollLeft = 0; });
 
     var closeBtn = document.createElement("button");
@@ -160,6 +162,38 @@ window.renderProjectDetailRow = function (row) {
       populateDetailRow(row);
     });
 };
+
+/* Reveal-on-entry for gallery media: each image/video gets .img-inview (see
+   styles/custom-styles.css) the first time it enters the horizontally
+   scrolling container. Images revealed in the same observer batch — i.e. the
+   ones visible together when the project opens — get a 60ms stagger so the
+   opening reads as a sequenced unfurl; images scrolled to later reveal
+   individually with no delay. While the row is still collapsed the cells are
+   clipped to zero width, so nothing is marked in-view until it actually opens. */
+function initGalleryReveal(scrollContainer) {
+  var mediaEls = Array.prototype.slice.call(
+    scrollContainer.querySelectorAll(".fullscreen-image")
+  );
+  if (!mediaEls.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    mediaEls.forEach(function (el) { el.classList.add("img-inview"); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    var batch = 0;
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.style.transitionDelay = (batch * 60) + "ms";
+      entry.target.classList.add("img-inview");
+      io.unobserve(entry.target);
+      batch++;
+    });
+  }, { root: scrollContainer, threshold: 0.12 });
+
+  mediaEls.forEach(function (el) { io.observe(el); });
+}
 
 function buildGalleryHtml(project) {
   var html = '<div class="scroll-container">';

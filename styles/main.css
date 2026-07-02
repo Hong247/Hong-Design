@@ -74,9 +74,11 @@ body.chameleon-mode {
   color: #ffffff;
 }
 
-/* White chameleon: paper base, ink text */
+/* White chameleon: paper base, ink text. The base is a slightly warm
+   off-white rather than pure #fff so light mode reads as its own material
+   (paper) instead of a naive inversion of dark mode. */
 body.chameleon-light {
-  background: #ffffff;
+  background: #fbfaf8;
   color: #000000;
 }
 
@@ -418,7 +420,7 @@ thead th {
   z-index: 2;
   padding: 8px;
   border-bottom: 0;
-  background: #ffffff;
+  background: #fbfaf8; /* matches body.chameleon-light's paper base */
   color: inherit;
   font-weight: 400;
   text-align: left;

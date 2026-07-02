@@ -110,6 +110,30 @@ thead th.year-sort-header:last-child.sort-asc:hover .year-sort-up {
   opacity: .35;
 }
 
+/* Archive table micro-interactions:
+   1. Row numbers recede so the titles carry the row; they return to full
+      strength on hover and while their project is open.
+   2. On hover, the role and year quietly gather 3px toward the title — the
+      same "pull together" grammar as the cursor merge animation. Gated to
+      (hover: hover) so touch taps don't leave it stuck, and suppressed on the
+      open project's row (which already has its own emphasis treatment). */
+.hover-trigger td:nth-child(1) .custom-btn {
+  opacity: .4;
+  transition: opacity .14s ease, letter-spacing .14s ease, color .14s ease;
+}
+.hover-trigger.is-active-project td:nth-child(1) .custom-btn { opacity: 1; }
+@media (hover: hover) {
+  .hover-trigger:hover td:nth-child(1) .custom-btn { opacity: 1; }
+  .hover-trigger td:nth-child(3) .custom-btn,
+  .hover-trigger td:nth-child(4) .custom-btn {
+    transition: opacity .15s ease, letter-spacing .14s ease, color .14s ease,
+      transform .3s cubic-bezier(.22, 1, .36, 1);
+  }
+  .hover-trigger:hover td:nth-child(3) .custom-btn,
+  .hover-trigger:hover td:nth-child(4) .custom-btn { transform: translateX(-3px); }
+  .hover-trigger.is-active-project:hover td .custom-btn { transform: none; }
+}
+
 /* Project row hover / active state */
 .hover-trigger td { transition: letter-spacing .18s cubic-bezier(.22, 1, .36, 1), opacity .14s ease; }
 .hover-trigger.is-active-project td {
@@ -132,6 +156,14 @@ tr.collapse .project-detail {
 }
 tr.collapse.is-open .project-detail { filter: blur(0); }
 tr.collapse.is-open .project-description { animation: projectDescriptionMorph .22s cubic-bezier(.22, 1, .36, 1) both; }
+
+/* Thin accent-tinted rule between gallery and case text, so the open project
+   is marked structurally (a drawn line in its own sampled colour) rather than
+   by colour emphasis alone. */
+.project-description {
+  border-top: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  padding-top: 16px;
+}
 
 @keyframes projectDescriptionMorph {
   0%   { opacity: 0; transform: translateY(6px); }
@@ -246,14 +278,37 @@ tr.collapse.is-open .project-description { animation: projectDescriptionMorph .2
 
 body.lb-active { overflow: hidden; }
 
-/* Gallery images */
-.scroll-container img.fullscreen-image {
-  cursor: zoom-in !important;
+/* Gallery images — each piece reveals as it enters view (IntersectionObserver
+   in project-renderer.js adds .img-inview with a per-batch stagger delay), so
+   the initially visible images unfurl in sequence on open and later ones
+   settle in as you scroll to them. The reveal starts slightly low AND
+   slightly large (scale 1.015) so images read as "placed" rather than popped.
+   The soft large-radius shadow is tinted from the project's own sampled
+   accent — the chameleon system extending into the imagery itself. */
+.scroll-container img.fullscreen-image { cursor: zoom-in !important; }
+.scroll-container img.fullscreen-image,
+.scroll-container video.fullscreen-image {
   opacity: 0;
-  transform: translateY(6px) scale(.99);
-  transition: opacity .22s ease, transform .24s cubic-bezier(.22, 1, .36, 1);
+  transform: translateY(12px) scale(1.015);
+  transition: opacity .55s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+  box-shadow: 0 26px 70px -26px color-mix(in srgb, var(--accent) 42%, transparent);
 }
-tr.collapse.is-open .scroll-container img.fullscreen-image { opacity: 1; transform: translateY(0) scale(1); }
+body.chameleon-light .scroll-container img.fullscreen-image,
+body.chameleon-light .scroll-container video.fullscreen-image {
+  box-shadow: 0 26px 70px -26px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+tr.collapse.is-open .scroll-container .fullscreen-image.img-inview {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-container img.fullscreen-image,
+  .scroll-container video.fullscreen-image {
+    transform: none;
+    transition-duration: .2s;
+    transition-delay: 0s !important;
+  }
+}
 
 /* Iframes */
 .scroll-container iframe { width: min(400px, 90vw); height: min(840px, 88vh); display: block; }
@@ -346,9 +401,11 @@ body.chameleon-mode .chroma-bg {
   filter: blur(140px);
   transition: opacity 0.6s ease;
 }
-/* Colours fade in only while hovering or with a project open */
+/* Colours fade in only while hovering or with a project open. Light mode
+   runs quieter than dark: on paper the field should read as a wash behind
+   the content, not a glow competing with it. */
 body.chameleon-mode.chroma-locked .chroma-bg { opacity: 0.55; }
-body.chameleon-light.chroma-locked .chroma-bg { opacity: 0.82; }
+body.chameleon-light.chroma-locked .chroma-bg { opacity: 0.55; }
 .chroma-blob {
   position: absolute;
   border-radius: 50%;
@@ -651,4 +708,38 @@ body.custom-cursor-active .year-sort-header * {
 }
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor { transition: opacity .2s ease; }
+}
+
+/* ── One-time entrance choreography ──
+   The inline script at the top of <body> adds .intro-play on the very first
+   page view of the session (sessionStorage-gated, so back/forward and
+   project-page navigations never replay it). Left column rises in reading
+   order, then the archive rows fade in top-down at ~60ms intervals. All
+   animations use fill-mode: backwards — they hold the hidden "from" state
+   during their delay and release to the natural styles once done, so none of
+   the site's hover/focus opacity states are permanently overridden by a
+   lingering animation fill. Rows animate opacity only (no transform): table
+   rows are the one element type where transforms still render inconsistently
+   across engines. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes intro-rise { from { opacity: 0; transform: translateY(10px); } }
+  @keyframes intro-fade { from { opacity: 0; } }
+
+  body.intro-play .header          { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) backwards; }
+  body.intro-play .intro-kicker    { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) .07s backwards; }
+  body.intro-play .intro-statement { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) .13s backwards; }
+  body.intro-play .intro-detail    { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) .19s backwards; }
+  body.intro-play .profile-facts   { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) .25s backwards; }
+  body.intro-play .social-links    { animation: intro-rise .55s cubic-bezier(.22, 1, .36, 1) .31s backwards; }
+
+  body.intro-play thead .header-row th { animation: intro-fade .5s ease .18s backwards; }
+  body.intro-play #projectArchive tr.hover-trigger { animation: intro-fade .5s ease .74s backwards; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(1)  { animation-delay: .26s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(3)  { animation-delay: .32s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(5)  { animation-delay: .38s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(7)  { animation-delay: .44s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(9)  { animation-delay: .5s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(11) { animation-delay: .56s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(13) { animation-delay: .62s; }
+  body.intro-play #projectArchive tr.hover-trigger:nth-child(15) { animation-delay: .68s; }
 }
