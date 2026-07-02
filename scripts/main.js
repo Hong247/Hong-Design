@@ -164,7 +164,15 @@ window.setChromaActiveProject = function (src) {
 
 window.clearChromaActiveProject = function () {
   _activeProjectSrc = null;
-  if (document.body.classList.contains("chameleon-mode") && !hoverState.trigger) {
+  /* Touch has no real :hover to leave, so the mouseover a tap synthesizes
+     never gets a matching mouseout — hoverState.trigger would otherwise
+     stay stuck pointing at the just-closed project forever, permanently
+     blocking this reset and leaving the background tinted after close. */
+  var touchOnly = window.matchMedia && window.matchMedia("(hover: none)").matches;
+  if (touchOnly) {
+    stopIntelligentHoverPreview();
+  }
+  if (document.body.classList.contains("chameleon-mode") && (touchOnly || !hoverState.trigger)) {
     document.body.classList.remove("chroma-locked");
     resetAccent();
   }
