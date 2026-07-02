@@ -285,6 +285,34 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
   animation: theme-toggle-sun-spin 40s linear infinite;
 }
 
+/* On touch, the tap fires the actual theme change (click) almost
+   simultaneously with the preview (touchstart), so what the user actually
+   sees settle in is the icon for the mode they just landed in — not a
+   pre-click "preview of the destination" the way desktop hover works.
+   Swap the mapping here so touch shows the intuitive current-mode icon
+   (dark = moon, light = sun) instead of desktop's destination-preview one.
+   Desktop hover and keyboard :focus-visible are untouched. */
+@media (hover: none) {
+  body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.4);
+  }
+  body.chameleon-mode:not(.chameleon-light) .theme-toggle.is-previewing .theme-toggle-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: .5s, .55s;
+  }
+  body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.4);
+  }
+  body.chameleon-light .theme-toggle.is-previewing .theme-toggle-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition-duration: .5s, .55s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle-icon, .theme-toggle-dot, .sun-rays line {
     transition-duration: .2s;
