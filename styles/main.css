@@ -214,6 +214,12 @@ tr:hover .custom-btn {
   stroke: currentColor;
   transition: opacity .4s cubic-bezier(.22, 1, .36, 1), transform .5s cubic-bezier(.32, 1.5, .5, 1);
 }
+/* Hardcoded (not currentColor) so the mobile filter: invert(1) below has a
+   known black baseline to flip to white — same shape/fill desktop renders,
+   just pixel-inverted. */
+.theme-toggle-moon .moon-body {
+  fill: #000;
+}
 .sun-rays {
   fill: none;
   stroke-width: 1.6;
@@ -301,6 +307,9 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
     transition-duration: .5s, .55s;
+    /* Same black crescent desktop renders, pixel-inverted to white for the
+       dark background instead of depending on currentColor resolving. */
+    filter: invert(1);
   }
   body.chameleon-light .theme-toggle.is-previewing .theme-toggle-moon {
     opacity: 0;
