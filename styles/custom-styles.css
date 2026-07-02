@@ -283,19 +283,14 @@ body.lb-active { overflow: hidden; }
    the initially visible images unfurl in sequence on open and later ones
    settle in as you scroll to them. The reveal starts slightly low AND
    slightly large (scale 1.015) so images read as "placed" rather than popped.
-   The soft large-radius shadow is tinted from the project's own sampled
-   accent — the chameleon system extending into the imagery itself. */
+   No shadows on the media: an accent-tinted glow was tried here and read as
+   a hazy band under the gallery / a murky frame around large images. */
 .scroll-container img.fullscreen-image { cursor: zoom-in !important; }
 .scroll-container img.fullscreen-image,
 .scroll-container video.fullscreen-image {
   opacity: 0;
   transform: translateY(12px) scale(1.015);
   transition: opacity .55s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
-  box-shadow: 0 26px 70px -26px color-mix(in srgb, var(--accent) 42%, transparent);
-}
-body.chameleon-light .scroll-container img.fullscreen-image,
-body.chameleon-light .scroll-container video.fullscreen-image {
-  box-shadow: 0 26px 70px -26px color-mix(in srgb, var(--accent) 24%, transparent);
 }
 tr.collapse.is-open .scroll-container .fullscreen-image.img-inview {
   opacity: 1;
