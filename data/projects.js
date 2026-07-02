@@ -264,13 +264,12 @@ window.PORTFOLIO_PROJECTS = [
     title: "X̱wáýx̱way",
     role: "Editorial",
     year: "2023",
-    preview: "images/x/x5.gif",
+    preview: "images/x/x1.jpg",
     media: [
       { type: "image", src: "images/x/x1.jpg", alt: "X̱wáýx̱way — archival vinyl record concept honouring Stanley Park as Squamish territory, cover" },
       { type: "image", src: "images/x/x2.jpg", alt: "X̱wáýx̱way vinyl record — monochromatic documentary photography spread" },
       { type: "image", src: "images/x/x3.jpg", alt: "X̱wáýx̱way vinyl record — information-dense liner notes layout" },
       { type: "image", src: "images/x/x4.jpg", alt: "X̱wáýx̱way vinyl record two-colour archival layout using red and green documentary photography" },
-      { type: "image", src: "images/x/x5.gif", alt: "X̱wáýx̱way — animated sequence from the record's six-theme structure" },
       { type: "image", src: "images/x/x6.jpg", alt: "X̱wáýx̱way vinyl record — gatefold spread on a documentary grid" },
       { type: "image", src: "images/x/x7.jpg", alt: "X̱wáýx̱way vinyl record — track listing and Indigenous place-name typography" }
     ],
