@@ -346,6 +346,18 @@ body.chameleon-mode:not(.chameleon-light) .theme-toggle:focus-visible .theme-tog
    whichever project was just opened. */
 .custom-btn:focus-visible { outline: none; }
 
+/* Newer Chrome makes scrollable areas keyboard-focusable by default and
+   draws its own rounded focus ring around them — on the gallery it shows up
+   as a stray frame hugging the scrollbar line. The site draws its own custom
+   scrollbars (scripts/custom-scrollbar.js), so suppress the UA ring on both
+   scrollers. */
+.scroll-container:focus,
+.scroll-container:focus-visible,
+.scroll-wrapper:focus,
+.scroll-wrapper:focus-visible {
+  outline: none;
+}
+
 .body-copy {
   max-width: 520px;
 }
